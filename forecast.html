@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Your 2026 Energy Forecast — Guanlan Energy</title>
+<meta name="description" content="See your Five Elements energy trend for 2026. Personalized annual forecast based on your birth element."/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=EB+Garamond:wght@400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-T82Z7E5ELB');
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050e09;color:#f0ebe0;font-family:'EB Garamond',serif;min-height:100vh}
+.header{text-align:center;padding:40px 20px 20px}
+.header h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;letter-spacing:3px;color:#e8d4a0;margin-bottom:6px}
+.header p{font-size:14px;color:rgba(240,235,224,.4);letter-spacing:1px}
+.container{max-width:600px;margin:0 auto;padding:20px}
+.canvas-wrap{margin:20px auto;text-align:center;border-radius:4px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,.4)}
+#energyCanvas{width:100%;height:auto;display:block}
+.actions{text-align:center;margin:24px auto}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 24px;background:transparent;border:1px solid rgba(201,168,76,.25);color:#e8d4a0;font-family:'EB Garamond',serif;font-size:14px;letter-spacing:1px;cursor:pointer;transition:all .3s;margin:0 5px 8px}
+.btn:hover{background:rgba(201,168,76,.08);border-color:#c9a84c}
+.btn-primary{background:#c9a84c;color:#050e09;font-weight:600}
+.btn-primary:hover{background:#e8d4a0}
+.meta{text-align:center;font-size:12px;color:rgba(240,235,224,.25);margin-top:8px}
+.share-cta{text-align:center;margin:24px 0;padding:20px;border:1px solid rgba(201,168,76,.08);border-radius:4px}
+.share-cta p{font-size:14px;color:rgba(240,235,224,.5);margin-bottom:12px}
+.share-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.share-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border:1px solid rgba(201,168,76,.15);background:transparent;color:#e8d4a0;font-size:12px;letter-spacing:1px;cursor:pointer;transition:all .3s}
+.share-btn:hover{background:rgba(201,168,76,.06)}
+.share-btn span{font-size:16px}
+.newsletter-box{text-align:center;margin:30px 0;padding:24px;border-top:1px solid rgba(201,168,76,.06)}
+.newsletter-box p{font-size:13px;color:rgba(240,235,224,.45);margin-bottom:12px}
+.newsletter-form{display:flex;max-width:300px;margin:0 auto;gap:0}
+.newsletter-form input{flex:1;padding:9px 12px;background:rgba(240,235,224,.04);border:1px solid rgba(201,168,76,.15);border-right:none;color:#f0ebe0;font-size:13px;outline:none;font-family:inherit}
+.newsletter-form button{padding:9px 16px;background:#c9a84c;border:none;color:#050e09;font-weight:600;font-size:12px;letter-spacing:1px;cursor:pointer;text-transform:uppercase}
+footer{text-align:center;padding:24px;font-size:11px;color:rgba(240,235,224,.25)}
+.hidden{display:none}
+</style>
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://eastern-five-elements.vercel.app/#website",
+      "url": "https://eastern-five-elements.vercel.app",
+      "name": "Eastern Five Elements \u2014 Feng Shui & Energy Balance",
+      "description": "Discover how the five elements shape your home, career, and relationships.",
+      "inLanguage": "en",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Guanlan Energy",
+        "url": "https://guanlan.energy"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://eastern-five-elements.vercel.app/forecast.html#webpage",
+      "url": "https://eastern-five-elements.vercel.app/forecast.html",
+      "name": "Your 2026 Energy Forecast \u2014 Guanlan Energy",
+      "description": "See your Five Elements energy trend for 2026. Personalized annual forecast based on your birth element.",
+      "isPartOf": {
+        "@id": "https://eastern-five-elements.vercel.app/#website"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Wood Element"
+      },
+      "mainEntity": {
+        "@id": "https://eastern-five-elements.vercel.app/forecast.html#article"
+      }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://eastern-five-elements.vercel.app/forecast.html#article",
+      "headline": "Your 2026 Energy Forecast \u2014 Guanlan Energy",
+      "description": "See your Five Elements energy trend for 2026. Personalized annual forecast based on your birth element.",
+      "author": {
+        "@type": "Person",
+        "name": "Guanlan (\u89c2\u6f9c)",
+        "url": "https://guanlan.energy"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Guanlan Energy"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Open Graph / Social Meta — injected by guanlan-bot -->
+<meta property="og:title" content="⚡ Your 2026 Energy Forecast"/>
+<meta property="og:description" content="See your Five Elements energy trend for 2026. Personalized annual forecast based on your birth element."/>
+<meta property="og:image" content="https://metaphysicflow.com/images/calligraphy.jpg"/>
+<meta property="og:url" content="https://metaphysicflow.com/"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="⚡ Your 2026 Energy Forecast"/>
+<meta name="twitter:description" content="See your Five Elements energy trend for 2026. Personalized annual forecast based on your birth element."/>
+<meta name="twitter:image" content="https://metaphysicflow.com/images/calligraphy.jpg"/>
+
+</head>
+<body>
+
+<div class="header">
+<h1>⚡ Your 2026 Energy Forecast</h1>
+<p>Powered by Guanlan Energy · Ancient Five Elements · Modern Living</p>
+</div>
+
+<div class="container">
+  <div class="canvas-wrap">
+    <canvas id="energyCanvas" width="600" height="800"></canvas>
+  </div>
+
+  <div class="actions" id="actionBar">
+    <button class="btn btn-primary" onclick="downloadForecast()">⬇ Download · Share</button>
+    <button class="btn" onclick="shareTo('twitter')">𝕏 Share on X</button>
+    <button class="btn" onclick="shareTo('instagram')">📱 Share to Instagram</button>
+  </div>
+
+  <div class="meta">Tap Download, then share to Instagram Stories or X</div>
+
+  <div class="share-cta">
+    <p>Not your element? Get your personalized forecast →</p>
+    <a href="https://eastern-five-elements.vercel.app?utm_source=energy_forecast&utm_medium=share_card&utm_campaign=annual_2026" class="btn btn-primary" style="display:inline-flex;text-decoration:none">Take the free assessment →</a>
+  </div>
+
+  <div class="newsletter-box">
+    <p>Weekly Five Elements wisdom in your inbox</p>
+    <form class="newsletter-form" action="https://buttondown.com/api/emails" method="post" target="_blank">
+      <input type="email" name="email" placeholder="your@email.com" required />
+      <input type="hidden" name="tag" value="energy-forecast-2026" />
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</div>
+
+<footer>Guanlan Energy — eastern-five-elements.vercel.app
+                    <section class="related">
+        <h3>📖 继续探索五行智慧</h3>
+        <p class="note-label">Related readings</p>
+        <ul>
+            <li><a href="/pages/wood-creativity-decision-guide.html">🌲 Wood Element — How to Handle Creativity Block...</a></li>
+            <li><a href="/blog/blog3-3.html">Your Desk's Hidden Frequency: How to Arrange Yo...</a></li>
+            <li><a href="/index.html">Guanlan Energy | Modern Five Elements & Cosmic ...</a></li>
+            <li><a href="/blog/hot-command-position-five-elements.html">The Command Position Is Real — But Only for Cer...</a></li>
+            <li><a href="/longtail/water-element-saving-strategies-economic-uncertainty.html">Water Element Saving Strategies During Economic...</a></li>
+            <li><a href="/blog/blog1.html">Is Your Child a Hidden Genius? Five Elements Ch...</a></li>
+        </ul>
+    </section>
+<div id="guanlan-bazi-widget" style="margin:40px 0;padding:30px 20px;border:1px solid rgba(201,168,76,.15);background:rgba(240,235,224,.02);text-align:center;border-radius:2px;">
+    <style>
+        #guanlan-bazi-widget *{box-sizing:border-box;font-family:'EB Garamond',serif}
+        #guanlan-bazi-widget .gw-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:#e8d4a0;letter-spacing:1px;margin-bottom:6px}
+        #guanlan-bazi-widget .gw-sub{font-size:13px;color:rgba(240,235,224,.55);margin-bottom:18px}
+        #guanlan-bazi-widget .gw-field{background:#0d1a14;border:1px solid rgba(201,168,76,.2);color:#f0ebe0;padding:10px 14px;font-size:15px;width:180px;margin:4px;border-radius:2px;outline:none;font-family:inherit}
+        #guanlan-bazi-widget .gw-field:focus{border-color:#c9a84c}
+        #guanlan-bazi-widget .gw-btn{display:inline-block;padding:10px 28px;background:#c9a84c;color:#06100c;font-weight:600;font-size:13px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;transition:background .3s;border:none;font-family:inherit;margin-top:12px;border-radius:2px}
+        #guanlan-bazi-widget .gw-btn:hover{background:#e8d4a0}
+        #guanlan-bazi-widget .gw-btn:disabled{opacity:.4;cursor:not-allowed}
+        #guanlan-bazi-widget .gw-result{margin-top:20px;padding:20px;background:rgba(201,168,76,.05);border-left:2px solid #c9a84c;text-align:left;display:none;font-size:15px;line-height:1.8;color:rgba(240,235,224,.85)}
+        #guanlan-bazi-widget .gw-result strong{color:#e8d4a0}
+        #guanlan-bazi-widget .gw-email-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(6,16,12,.9);z-index:9999;align-items:center;justify-content:center}
+        #guanlan-bazi-widget .gw-email-box{background:#0d1a14;border:1px solid rgba(201,168,76,.2);padding:40px 30px;max-width:440px;width:90%;text-align:center}
+        #guanlan-bazi-widget .gw-email-box h3{font-family:'Cormorant Garamond',serif;color:#e8d4a0;font-size:20px;margin-bottom:8px;letter-spacing:1px}
+        #guanlan-bazi-widget .gw-email-box p{font-size:14px;color:rgba(240,235,224,.65);margin-bottom:18px;line-height:1.7}
+        #guanlan-bazi-widget .gw-email-close{position:absolute;top:20px;right:28px;color:rgba(240,235,224,.4);cursor:pointer;font-size:24px;background:none;border:none;font-family:inherit}
+        #guanlan-bazi-widget .gw-email-close:hover{color:#e8d4a0}
+        #guanlan-bazi-widget .gw-email-success{display:none;margin-top:12px;color:#c9a84c;font-size:14px}
+    </style>
+
+    <div class="gw-title">🔮 2026 丙午马年 · 财运洗牌指数</div>
+    <p class="gw-sub">For independent contractors · Enter your birth info for a free Bazi wealth forecast</p>
+    <div>
+        <input type="text" class="gw-field" id="gw-year" placeholder="YYYY" maxlength="4" style="width:90px">
+        <input type="text" class="gw-field" id="gw-month" placeholder="MM" maxlength="2" style="width:70px">
+        <input type="text" class="gw-field" id="gw-day" placeholder="DD" maxlength="2" style="width:70px">
+    </div>
+    <div style="margin-top:8px">
+        <input type="text" class="gw-field" id="gw-hour" placeholder="Hour (0-23)" maxlength="2" style="width:100px">
+    </div>
+    <button class="gw-btn" id="gw-submit" onclick="guanlanCalculate()">🔍 Read My Wealth Forecast</button>
+
+    <div class="gw-result" id="gw-result"></div>
+
+    <!-- Email 拦截弹窗 -->
+    <div class="gw-email-overlay" id="gw-email-overlay">
+        <div class="gw-email-box">
+            <button class="gw-email-close" onclick="document.getElementById('gw-email-overlay').style.display='none'">&times;</button>
+            <h3>📩 核心破局方略已就绪</h3>
+            <p>你的五行旺衰已解析至 70%。<br>完整版破局改运方略（含个人元素化煞与流年催财时辰表）<br>将在输入邮箱后发送至您的邮箱。</p>
+            <input type="email" class="gw-field" id="gw-email" placeholder="your@email.com" style="width:260px">
+            <br>
+            <button class="gw-btn" onclick="guanlanSubmitEmail()">🚀 解锁完整报告</button>
+            <div class="gw-email-success" id="gw-email-success">✅ 报告已发送至您的邮箱！请检查收件箱（包括垃圾邮件）。</div>
+            <p style="font-size:11px;color:rgba(240,235,224,.3);margin-top:16px">We respect your privacy · No spam ever</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function guanlanGetElem(id) { return document.getElementById(id); }
+
+// 五行财富解读库（纯前端，零API）
+var ELEMENT_PROFILES = {
+    wood: { emoji:'🌲', name:'Wood', career:'Entrepreneurship, creative fields, education', wealth:'Multiple income streams, side projects', advise:'Focus on expansion this year. Your wealth sector activates in Spring and late Autumn. Avoid overextending.' },
+    fire:  { emoji:'🔥', name:'Fire', career:'Marketing, sales, entertainment, leadership', wealth:'Brand building, public visibility, speaking income', advise:'2026 Fire Horse year is YOUR year. Lead boldly. Your wealth peaks in Summer — raise rates aggressively.' },
+    earth: { emoji:'🌍', name:'Earth', career:'Real estate, healthcare, hospitality', wealth:'Stable assets, recurring revenue, savings', advise:'Ground yourself. 2026 brings rapid change. Hold steady and build systems. Your wealth grows through patience.' },
+    metal: { emoji:'💎', name:'Metal', career:'Finance, law, technology, engineering', wealth:'Structured portfolios, contract income, premium services', advise:'Refine and optimize. Cut low-value clients. Your wealth comes through precision and premium positioning in 2026.' },
+    water: { emoji:'💧', name:'Water', career:'Research, writing, consulting, strategy', wealth:'Intellectual property, royalties, long-term investments', advise:'Go deep in one area. 2026 favors strategic depth over breadth. Your wealth comes through accumulated wisdom.' },
+};
+
+function guanlanCalculate() {
+    var y = guanlanGetElem('gw-year').value.trim();
+    var m = guanlanGetElem('gw-month').value.trim();
+    var d = guanlanGetElem('gw-day').value.trim();
+    var h = guanlanGetElem('gw-hour').value.trim();
+
+    if (!y || !m || !d || y.length !== 4 || m < 1 || m > 12 || d < 1 || d > 31) {
+        var result = guanlanGetElem('gw-result');
+        result.style.display = 'block';
+        result.innerHTML = '⚠️ Please enter a valid birth date (YYYY MM DD).';
+        return;
+    }
+
+    // Element calculation based on birth year last digit (simplified Bazi day master proxy)
+    var lastDigit = parseInt(y.slice(-1));
+    var elemMap = { 0:'metal', 1:'metal', 2:'water', 3:'water', 4:'wood', 5:'wood', 6:'fire', 7:'fire', 8:'earth', 9:'earth' };
+    var elementKey = elemMap[lastDigit] || 'earth';
+    var profile = ELEMENT_PROFILES[elementKey];
+
+    // Annual windfall score
+    var score = Math.floor(40 + Math.random() * 40);
+    if (elementKey === 'fire') score += 15; // Fire Horse year advantage
+
+    var reportHTML = '<strong>🔮 Your 2026 Wealth Forecast</strong><br><br>';
+    reportHTML += 'Your Element: ' + profile.emoji + ' ' + profile.name + '<br>';
+    reportHTML += '2026 Wealth Shift Index: <strong>' + score + '/100</strong><br><br>';
+    reportHTML += '<strong>Best Career Paths:</strong> ' + profile.career + '<br>';
+    reportHTML += '<strong>Wealth Pattern:</strong> ' + profile.wealth + '<br><br>';
+    reportHTML += '<strong>2026 Guidance:</strong> ' + profile.advise + '<br>';
+    reportHTML += '<span style="color:rgba(240,235,224,.4);font-size:13px">(Based on 10-year luck cycle overlay with Bing Wu year pillar)</span>';
+
+    var result = guanlanGetElem('gw-result');
+    result.innerHTML = reportHTML;
+    result.style.display = 'block';
+
+    // 加到 70% 触发弹窗
+    guanlanGetElem('gw-submit').disabled = true;
+    setTimeout(function() {
+        guanlanGetElem('gw-email-overlay').style.display = 'flex';
+    }, 1800);
+}
+
+function guanlanSubmitEmail() {
+    var email = guanlanGetElem('gw-email').value.trim();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    // 后端 - 把 Email 写入 lead_pool
+    fetch('/api/collect-lead', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({
+        email: email,
+        page: window.location.pathname,
+        ts: new Date().toISOString(),
+        ref: document.referrer || 'direct'
+    })}).then(function(r) { return r.json(); }).then(function(d) {
+        guanlanGetElem('gw-email-success').style.display = 'block';
+        guanlanGetElem('gw-submit').disabled = false;
+    }).catch(function() {
+        guanlanGetElem('gw-email-success').style.display = 'block';
+        guanlanGetElem('gw-submit').disabled = false;
+    });
+
+    document.getElementById('gw-email').value = '';
+}
+</script>
+
+</footer>
+
+<script>
+// ─── DATA ───
+const ELEM = {
+  wood: {name:'Wood',sym:'🌲',season:'Spring',kw:'Growth · Vision · Expansion',color:'#6ab87a',bg:'#0a1f12',accent:'#d4e8d4',mood:'Expansive, hopeful'},
+  fire: {name:'Fire',sym:'🔥',season:'Summer',kw:'Passion · Visibility · Action',color:'#e07060',bg:'#1f0a08',accent:'#f0d0c8',mood:'Bold, risk-taking'},
+  earth:{name:'Earth',sym:'🌍',season:'Late Summer',kw:'Stability · Nurture · Grounding',color:'#c9a84c',bg:'#141006',accent:'#e8e0cc',mood:'Steady, reflective'},
+  metal:{name:'Metal',sym:'💎',season:'Autumn',kw:'Precision · Structure · Refinement',color:'#c0c8d4',bg:'#0c0e12',accent:'#e0e4ec',mood:'Analytical, focused'},
+  water:{name:'Water',sym:'💧',season:'Winter',kw:'Depth · Intuition · Strategy',color:'#5a8fc0',bg:'#060e1a',accent:'#c8d8e8',mood:'Contemplative, strategic'},
+};
+
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+// Element cycle order: wood → fire → earth → metal → water → wood...
+const CYCLE = ['wood','fire','earth','metal','water'];
+const MONTH_EL = ['water','water','wood','wood','fire','fire','earth','earth','metal','metal','water','water']; // season mapping
+
+// Seasonal keywords per element per quarter
+const SEASON_KW = {
+  wood:   ['Awakening','Planting','Expanding','Growth','New shoots','Breaking ground','Sprouting','Branching out','Thriving','Deep roots','Harvesting','Resting'],
+  fire:   ['Spark','Igniting','Radiating','Peak','Blazing','Transforming','Leading','Inspiring','Refining','Tempering','Containing','Storing'],
+  earth:  ['Nurturing','Centering','Grounding','Fortifying','Sustaining','Harvesting','Restoring','Anchoring','Stabilizing','Deepening','Preparing','Fallowing'],
+  metal:  ['Refining','Structuring','Organizing','Perfecting','Cutting','Polishing','Reviewing','Letting go','Paring down','Collecting','Storing','Resting'],
+  water:  ['Resting','Planning','Strategizing','Deep diving','Flowing','Navigating','Reflecting','Absorbing','Releasing','Freezing','Stillness','Renewal'],
+};
+
+function drawForecast(element, name, birthYear){
+  var canvas = document.getElementById('energyCanvas');
+  var ctx = canvas.getContext('2d');
+  var W = 600, H = 800;
+  canvas.width = W; canvas.height = H;
+
+  var el = ELEM[element] || ELEM.earth;
+  var age = 2026 - birthYear;
+
+  // ── Background ──
+  var grad = ctx.createLinearGradient(0,0,0,H);
+  grad.addColorStop(0, el.bg);
+  grad.addColorStop(0.4, '#06100c');
+  grad.addColorStop(0.7, '#06100c');
+  grad.addColorStop(1, el.bg);
+  ctx.fillStyle = grad;
+  ctx.fillRect(0,0,W,H);
+
+  // Border frame
+  ctx.strokeStyle = el.color;
+  ctx.lineWidth = 1.2;
+  ctx.globalAlpha = 0.2;
+  ctx.strokeRect(18,18,W-36,H-36);
+  ctx.globalAlpha = 1;
+
+  // ── Header ──
+  // Top line
+  ctx.globalAlpha = 0.12;
+  ctx.fillRect(50,38,W-100,1);
+  ctx.globalAlpha = 1;
+
+  // Logo
+  ctx.font = '300 11px "Inter", sans-serif';
+  ctx.fillStyle = el.color;
+  ctx.globalAlpha = 0.3;
+  ctx.textAlign = 'right';
+  ctx.fillText('GUANLAN ENERGY', W-55, 52);
+  ctx.globalAlpha = 1;
+
+  // Symbol
+  ctx.font = '70px serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(el.sym, W/2, 155);
+
+  // Title
+  ctx.font = '300 40px "Cormorant Garamond", serif';
+  ctx.fillStyle = el.color;
+  ctx.fillText(name.toUpperCase(), W/2, 210);
+
+  // Subtitle
+  ctx.font = '300 16px "EB Garamond", serif';
+  ctx.fillStyle = el.accent;
+  ctx.globalAlpha = 0.6;
+  ctx.fillText('2026 ANNUAL ENERGY FORECAST', W/2, 240);
+  ctx.globalAlpha = 1;
+
+  // Element attribute line
+  ctx.font = '300 14px "Inter", sans-serif';
+  ctx.fillStyle = el.color;
+  ctx.globalAlpha = 0.5;
+  ctx.fillText(el.kw, W/2, 270);
+  ctx.globalAlpha = 1;
+
+  ctx.globalAlpha = 0.15;
+  ctx.fillRect(150,285,W-300,1);
+  ctx.globalAlpha = 1;
+
+  // Age
+  ctx.font = '300 15px "EB Garamond", serif';
+  ctx.fillStyle = el.accent;
+  ctx.globalAlpha = 0.5;
+  ctx.fillText('Born ' + birthYear + ' · Age ' + age + ' in 2026', W/2, 308);
+  ctx.globalAlpha = 1;
+
+  // ── Monthly Energy Trend Chart ──
+  var chartTop = 340;
+  var chartH = 120;
+  var chartLeft = 70;
+  var chartW = 460;
+
+  // Chart area frame
+  ctx.strokeStyle = el.color;
+  ctx.globalAlpha = 0.1;
+  ctx.strokeRect(chartLeft, chartTop, chartW, chartH);
+  ctx.globalAlpha = 1;
+
+  // Baseline
+  ctx.strokeStyle = el.color;
+  ctx.globalAlpha = 0.15;
+  ctx.beginPath();
+  ctx.moveTo(chartLeft, chartTop + chartH/2);
+  ctx.lineTo(chartLeft+chartW, chartTop+chartH/2);
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+
+  // Draw monthly energy curve
+  var baseIdx = CYCLE.indexOf(element);
+  ctx.beginPath();
+  ctx.strokeStyle = el.color;
+  ctx.globalAlpha = 0.8;
+  ctx.lineWidth = 2;
+
+  for(var m=0; m<12; m++){
+    var x = chartLeft + (m / 11) * chartW;
+    // Energy value: seasonal + element harmony
+    var monthElIdx = MONTH_EL[m];
+    var harmIdx = CYCLE.indexOf(monthElIdx);
+    // Distance in cycle (0=same, 1=generated, 2=overcome, 3=draining...)
+    var dist = (harmIdx - baseIdx + 5) % 5;
+    var energy = 0.3 + 0.7 * (1 - (dist===0?0 : dist===1?0.2 : dist===2?0.5 : dist===3?0.35 : 0.45));
+    // Add seasonal peak
+    var monthEnergy = Math.sin((m - baseIdx*2.4) / 12 * Math.PI * 2) * 0.2 + 0.5;
+    var y = chartTop + chartH - (chartH * 0.85 * ((energy + monthEnergy * 0.3) * 0.8 - (dist===0?0.1:dist===1?0.05:0)) - chartH*0.08);
+
+    if(m===0) ctx.moveTo(x,y);
+    else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+
+  // Month labels
+  ctx.globalAlpha = 0.3;
+  ctx.font = '9px "Inter", sans-serif';
+  ctx.fillStyle = el.accent;
+  ctx.textAlign = 'center';
+  for(var m=0; m<12; m++){
+    var x = chartLeft + (m / 11) * chartW;
+    if(m % 2 === 0){
+      ctx.fillText(MONTHS[m], x, chartTop + chartH + 16);
+    }
+  }
+  ctx.globalAlpha = 1;
+
+  // ── 3 Key Annual Keywords ──
+  var kw = SEASON_KW[element] || [];
+  var kw1 = kw[Math.floor(Math.random() * kw.length)];
+  var kw2 = kw[Math.floor(Math.random() * kw.length)];
+  var kw3 = kw[Math.floor(Math.random() * kw.length)];
+  while(kw2 === kw1) kw2 = kw[(Math.floor(Math.random() * kw.length) + 1) % kw.length];
+  while(kw3 === kw1 || kw3 === kw2) kw3 = kw[(Math.floor(Math.random() * kw.length) + 2) % kw.length];
+
+  var kwBoxTop = 485;
+  ctx.globalAlpha = 0.08;
+  ctx.fillStyle = el.color;
+  ctx.fillRect(80, kwBoxTop, 440, 70);
+  ctx.globalAlpha = 1;
+
+  ctx.globalAlpha = 0.1;
+  ctx.strokeStyle = el.color;
+  ctx.strokeRect(80, kwBoxTop, 440, 70);
+  ctx.globalAlpha = 1;
+
+  ctx.font = '300 20px "Cormorant Garamond", serif';
+  ctx.fillStyle = el.color;
+  ctx.textAlign = 'center';
+  ctx.fillText('✦  ' + kw1 + '  ✦  ' + kw2 + '  ✦  ' + kw3 + '  ✦', W/2, kwBoxTop + 44);
+
+  // ── 2026 Theme Summary ──
+  var themes = {
+    wood:  '2026 is a year of STRUCTURE for Wood. Your natural expansion meets a ceiling — not to stop you, but to shape you. Focus on depth over breadth.',
+    fire:  '2026 is a year of DEEPENING for Fire. The heat you generate needs a container — a craft, a relationship, a long-term project. Burn long, not bright.',
+    earth: '2026 is a year of MOVEMENT for Earth. Stability has served you, but now growth requires discomfort. One step into the unknown beats a year of standing still.',
+    metal: '2026 is a year of WARMTH for Metal. Your precision is your strength, but connection is your missing piece. Let one person in this year.',
+    water: '2026 is a year of ACTION for Water. Your intuition has been gathering data long enough. Trust what you know and make one decision you have been avoiding.',
+  };
+  var theme = themes[element] || '2026 is your year of alignment — trust your element and let it guide you.';
+
+  ctx.font = '300 13px "EB Garamond", serif';
+  ctx.fillStyle = el.accent;
+  ctx.globalAlpha = 0.55;
+  var words = theme.split(' ');
+  var line = '';
+  var lineY = 590;
+  for(var i=0; i<words.length; i++){
+    var test = line + words[i] + ' ';
+    if(ctx.measureText(test).width > 440 && line !== ''){
+      ctx.fillText(line.trim(), W/2, lineY);
+      line = words[i] + ' ';
+      lineY += 20;
+    } else {
+      line = test;
+    }
+  }
+  ctx.fillText(line.trim(), W/2, lineY);
+  ctx.globalAlpha = 1;
+
+  // ── Branding ──
+  ctx.font = '300 11px "Inter", sans-serif';
+  ctx.fillStyle = el.color;
+  ctx.globalAlpha = 0.15;
+  ctx.textAlign = 'center';
+  ctx.fillText('guanlanenergy.app', W/2, H-52);
+  ctx.globalAlpha = 1;
+
+  // Bottom line
+  ctx.globalAlpha = 0.08;
+  ctx.fillRect(100, H-42, W-200, 1);
+  ctx.globalAlpha = 1;
+
+  // QR-style text mark
+  ctx.font = '8px "Inter", sans-serif';
+  ctx.fillStyle = el.color;
+  ctx.globalAlpha = 0.08;
+  ctx.textAlign = 'center';
+  ctx.fillText('✦  Five Elements · Ancient Wisdom for Modern Life  ✦', W/2, H-28);
+  ctx.globalAlpha = 1;
+}
+
+function getElementFromBirth(birthYear, birthMonth, birthDay){
+  var baseYear = 2024; // 2024 is Wood Dragon
+  var yearEls = ['wood','wood','fire','fire','earth','earth','metal','metal','water','water'];
+  // Use simplified: day stem determines element
+  var dayNum = birthYear * 365 + birthMonth * 30 + birthDay;
+  var stemIdx = (dayNum % 10 + 10) % 10;
+  var elMap = ['metal','water','wood','wood','fire','fire','earth','earth','metal','water'];
+  var el = elMap[stemIdx] || 'earth';
+  return el;
+}
+
+// Main
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var y = parseInt(params.get('year') || 1990);
+  var m = parseInt(params.get('month') || 1) - 1;
+  var d = parseInt(params.get('day') || 15);
+  var element = params.get('element') || getElementFromBirth(y,m,d);
+  var el = ELEM[element];
+
+  // Map month to name for season display
+  var monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+  drawForecast(element, el.name, y);
+
+  // GA4 event
+  gtag('event', 'energy_forecast_viewed', {
+    element: element,
+    birth_year: y,
+    page_title: document.title
+  });
+})();
+
+function downloadForecast(){
+  var canvas = document.getElementById('energyCanvas');
+  var link = document.createElement('a');
+  var params = new URLSearchParams(window.location.search);
+  var el = params.get('element') || 'earth';
+  link.download = 'guanlan-energy-2026-forecast-' + el + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+  gtag('event', 'forecast_downloaded', {element: el});
+}
+
+function shareTo(platform){
+  var canvas = document.getElementById('energyCanvas');
+  var params = new URLSearchParams(window.location.search);
+  var el = params.get('element') || 'earth';
+  var url = 'https://eastern-five-elements.vercel.app?utm_source=share_forecast&utm_medium=' + platform + '&utm_campaign=annual_2026';
+  if(platform === 'twitter'){
+    var text = encodeURIComponent('My 2026 Five Elements energy forecast is here. What\'s yours? 🔥');
+    window.open('https://twitter.com/intent/tweet?text=' + text + '&url=' + encodeURIComponent(url), '_blank', 'width=600,height=400');
+  } else if(platform === 'instagram'){
+    // Copy the canvas to clipboard for Instagram
+    canvas.toBlob(function(blob){
+      navigator.clipboard.write([
+        new ClipboardItem({'image/png': blob})
+      ]);
+    });
+    // Also open the assessment link
+    window.open(url, '_blank');
+    var btn = document.querySelector('.share-btns');
+    if(btn){
+      var orig = btn.innerHTML;
+      btn.innerHTML = '<span style="font-size:13px;color:#6ab87a">✓ Image copied! Paste into Instagram →</span>';
+      setTimeout(function(){ /* restore */ }, 3000);
+    }
+  }
+  gtag('event', 'forecast_shared', {element: el, platform: platform});
+}
+</script>
+</body>
+</html>

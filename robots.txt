@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+# 全量站点地图
+Sitemap: https://metaphysicflow.com/sitemap.xml
+
+# IndexNow 发现端点
+Sitemap: https://metaphysicflow.com/indexnow-links.xml
+
+# 友好爬取
+Crawl-delay: 1

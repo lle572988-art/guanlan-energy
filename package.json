@@ -1,0 +1,9 @@
+{
+  "name": "guanlan-energy",
+  "version": "1.0.0",
+  "description": "Guanlan Energy - Five Elements Wisdom",
+  "dependencies": {
+    "@vercel/blob": "^2.4.0",
+    "stripe": "^17.0.0"
+  }
+}

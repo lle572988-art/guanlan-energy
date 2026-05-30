@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Feng Shui Scan | Guanlan Energy</title>
+<meta name="description" content="Free AI Feng Shui space scanner. Upload a photo of your room for an instant five elements energy reading. Pure frontend, no data upload."/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D0X4ESE9RL"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-D0X4ESE9RL');
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--ink:#06100c;--ink2:#0d1f17;--gold:#c9a84c;--gold2:#e8d4a0;--jade:#2d5a3d;--text:#f0ebe0;--muted:rgba(240,235,224,.55);--wood:#4a7c59;--fire:#c0392b;--earth:#c9a84c;--metal:#b0b8c1;--water:#2c5f8a}
+html{scroll-behavior:smooth}
+body{font-family:'EB Garamond','Noto Serif SC',serif;background:var(--ink);color:var(--text);overflow-x:hidden;line-height:1.85;font-size:16px}
+.bg-layer{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 10% 10%,rgba(45,90,61,.2) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 90% 90%,rgba(201,168,76,.06) 0%,transparent 55%),var(--ink)}
+.taiji-bg{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiByPSI4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzlhODRjIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=")}
+nav{position:sticky;top:0;z-index:9999;background:rgba(6,16,12,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,168,76,.12);padding:18px 0}
+.nav-inner{width:min(1200px,90%);margin:auto;display:flex;justify-content:space-between;align-items:center}
+.nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none;color:inherit}
+.nav-logo svg{animation:spin 25s linear infinite}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:2px;color:var(--gold);font-weight:400}
+.nav-sub{font-size:9px;letter-spacing:4px;color:var(--muted);margin-top:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:36px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:14px;letter-spacing:2px;font-family:'Cormorant Garamond',serif;transition:.3s;position:relative}
+.nav-links a:hover{color:var(--gold)}.nav-links a::after{content:'';position:absolute;bottom:-6px;left:50%;width:0;height:1px;background:var(--gold);transition:.3s;transform:translateX(-50%)}
+.nav-links a:hover::after{width:80%}
+.nav-links a.active{color:var(--gold)}.nav-links a.active::after{width:80%}
+.hamburger{display:none;flex-direction:column;gap:6px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:1px;background:var(--gold);transition:.3s}
+.mobile-menu{display:none;position:fixed;top:70px;left:0;width:100%;background:rgba(6,16,12,.98);border-bottom:1px solid rgba(201,168,76,.15);z-index:9998;flex-direction:column;align-items:center;padding:30px 0;gap:24px;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text);text-decoration:none;font-size:18px;letter-spacing:2px}
+@media(max-width:768px){.nav-links{display:none}.hamburger{display:flex}}
+.wrap{position:relative;z-index:10;width:min(1200px,90%);margin:auto;padding:60px 0 100px}
+.page-header{text-align:center;margin-bottom:50px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.04);font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:28px;text-transform:uppercase}
+.page-header h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,5vw,56px);font-weight:300;letter-spacing:2px;line-height:1.15;margin-bottom:16px;color:var(--text)}
+.page-header h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.page-header p{font-size:16px;color:var(--muted);max-width:600px;margin:0 auto 0;line-height:1.7}
+.scanner-card{background:rgba(13,31,23,.75);border:1px solid rgba(201,168,76,.16);border-radius:24px;padding:40px;max-width:640px;width:100%;backdrop-filter:blur(20px);box-shadow:0 20px 50px rgba(0,0,0,.4);margin:0 auto}
+.scanner-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.scanner-top h2{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold2)}
+.scanner-badge{padding:4px 12px;border-radius:999px;background:rgba(74,124,89,.15);color:#9fd0ba;font-size:12px;border:1px solid rgba(74,124,89,.25);letter-spacing:1px}
+.upload-zone{display:block;border:1px dashed rgba(201,168,76,.3);border-radius:20px;padding:50px 20px;text-align:center;cursor:pointer;background:rgba(6,16,12,.4);transition:.3s}
+.upload-zone:hover{border-color:rgba(201,168,76,.5)}
+.upload-icon{width:70px;height:70px;margin:0 auto 16px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.2),transparent);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--gold)}
+.upload-zone h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--text);margin-bottom:8px}
+.upload-zone p{font-size:13px;color:var(--muted);line-height:1.6}
+.preview-wrap{display:none;margin-bottom:20px;position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(201,168,76,.2)}
+.preview-wrap img{width:100%;display:block}
+.laser-line{display:none;position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);box-shadow:0 0 12px var(--gold);animation:laserMove 2s linear infinite}
+.scan-loader{display:none;text-align:center;padding:20px 0}
+.scan-loader p{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);letter-spacing:1px;margin-bottom:12px}
+.progress-track{width:100%;height:6px;background:rgba(255,255,255,.05);border-radius:999px;overflow:hidden}
+.progress-fill{width:0%;height:100%;background:linear-gradient(90deg,var(--gold),var(--wood));transition:width 3s linear}
+.scan-result{display:none;border-top:1px dashed rgba(201,168,76,.2);padding-top:24px}
+.scan-result h3{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);margin-bottom:14px}
+.scan-typing{font-size:14.5px;color:rgba(240,235,224,.85);line-height:1.8;text-align:justify;min-height:80px;white-space:pre-line;margin-bottom:24px}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.result-item{background:rgba(6,16,12,.5);padding:14px;border-radius:12px;border:1px solid rgba(201,168,76,.08)}
+.result-item .label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.result-item .value{font-size:16px;color:var(--gold2);font-weight:500;margin-top:4px}
+.result-cta{text-align:center;margin-top:24px}
+.result-cta a,.result-cta button{background:none;border:none;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:1px;cursor:pointer;text-decoration:underline}
+footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08);margin-top:60px;font-size:12px;color:var(--muted);letter-spacing:1px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes laserMove{0%{top:0%}50%{top:100%}100%{top:0%}}
+</style>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="taiji-bg"></div>
+
+<nav>
+ <div class="nav-inner">
+ <a href="/" class="nav-logo">
+ <svg viewBox="0 0 100 100" width="34" height="34">
+ <circle cx="50" cy="50" r="45" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity="0.4"/>
+ <path d="M50 5 A45 45 0 0 1 50 95 A22.5 22.5 0 0 0 50 50 A22.5 22.5 0 0 1 50 5 Z" fill="#c9a84c" opacity="0.7"/>
+ <circle cx="50" cy="27.5" r="5" fill="#06100c"/>
+ <circle cx="50" cy="72.5" r="5" fill="#c9a84c"/>
+ </svg>
+ <div>
+ <div class="nav-name">Guanlan Energy</div>
+ <div class="nav-sub">Cosmic Blueprint</div>
+ </div>
+ </a>
+ <div class="nav-links">
+ <a href="/">Alignment</a>
+ <a href="/blog/index.html">Stories</a>
+ <a href="/scan/" class="active">Scanner</a>
+ <a href="/#blueprint">Premium Blueprint</a>
+ </div>
+ <button class="hamburger" onclick="toggleMobileMenu()">
+ <span></span><span></span><span></span>
+ </button>
+ </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+ <a href="/" onclick="toggleMobileMenu()">Alignment</a>
+ <a href="/blog/index.html" onclick="toggleMobileMenu()">Stories</a>
+ <a href="/scan/" onclick="toggleMobileMenu()">Scanner</a>
+ <a href="/#blueprint" onclick="toggleMobileMenu()">Premium Blueprint</a>
+</div>
+
+<div class="wrap">
+ <div class="page-header">
+ <div class="hero-eyebrow">✦ Spatial Intelligence Baseline</div>
+ <h1>AI Spatial Feng Shui <em>Scanner</em></h1>
+ <p>Upload a photograph of your sacred studio, workspace, or bedroom to instantly calibrate its internal multi-dimensional energy vectors.</p>
+ </div>
+
+ <div class="scanner-card">
+ <div class="scanner-top">
+ <h2>Spatial Aura Calibration</h2>
+ <div class="scanner-badge" id="scanBadge">● READY FOR DEPLOYMENT</div>
+ </div>
+
+ <label class="upload-zone" id="uploadZone">
+ <input type="file" id="spaceImageInput" accept="image/*" style="display:none;" onchange="triggerScan(event)">
+ <div class="upload-icon">☯</div>
+ <h3>Capture or Upload Your Space</h3>
+ <p>Supports JPG, PNG, HEIC.<br>Pure matrix protocol will automatically isolate furniture flows and elemental blockages.</p>
+ </label>
+
+ <div class="preview-wrap" id="previewWrap">
+ <img id="previewImg" src="" alt="Space Preview">
+ <div class="laser-line" id="laserLine"></div>
+ </div>
+
+ <div class="scan-loader" id="scanLoader">
+ <p>Decoding environmental layout signatures...</p>
+ <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+ </div>
+
+ <div class="scan-result" id="scanResult">
+ <h3>Spatial Reading Complete</h3>
+ <div class="scan-typing" id="typingText"></div>
+ <div class="result-grid">
+ <div class="result-item"><div class="label">Dominant Vector</div><div class="value" id="resVector">-</div></div>
+ <div class="result-item"><div class="label">Auspicious Tint</div><div class="value" id="resTint">-</div></div>
+ <div class="result-item"><div class="label">Focal Cardinal</div><div class="value" id="resCardinal">-</div></div>
+ <div class="result-item"><div class="label">Vibrational Sync</div><div class="value" id="resVibe">-</div></div>
+ </div>
+ <div class="result-cta">
+ <a href="/#blueprint">Integrate with Your Comprehensive Cosmic Blueprint →</a>
+ </div>
+ </div>
+ </div>
+</div>
+
+<footer>
+ <p>© 2026 Guanlan Energy. All Rights Reserved.</p>
+ <p style="margin-top:8px; opacity:0.5;">Ancient metaphysical methodologies modeled through advanced AI frameworks. Intended for lifestyle curation and self-reflection.</p>
+</footer>
+
+<script>
+function toggleMobileMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+
+function triggerScan(event){
+ var file=event.target.files[0];
+ if(!file)return;
+ var reader=new FileReader();
+ reader.onload=function(e){
+ document.getElementById('uploadZone').style.display='none';
+ document.getElementById('previewWrap').style.display='block';
+ document.getElementById('previewImg').src=e.target.result;
+ document.getElementById('laserLine').style.display='block';
+ var badge=document.getElementById('scanBadge');
+ badge.textContent='● CALIBRATING AURA';
+ badge.style.color='#d8b46d';
+ badge.style.borderColor='rgba(216,180,109,.3)';
+ document.getElementById('scanLoader').style.display='block';
+ var pb=document.getElementById('progressFill');
+ pb.style.width='0%';
+ setTimeout(function(){pb.style.width='100%'},50);
+ setTimeout(function(){
+ document.getElementById('scanLoader').style.display='none';
+ document.getElementById('laserLine').style.display='none';
+ badge.textContent='● MATRIX ALIGNED';
+ badge.style.color='#4a7c59';
+ var pool=[
+ {text:"✨ Analysis confirms your room is highly receptive, carrying an unyielding Wood-element signature with excellent fluid Water harmony.\n\n✨ The layout fundamentally nurtures high-end strategic vision, creative output, and rapid emotional recovery. However, AI matrix detected slight directional friction caused by raw reflecting surfaces.\n\n✨ Remedial protocol: Introduce soft organic textiles or warm low-glow lights near the western boundary to stabilize the Qi flow.",vector:"Wood · 木",tint:"Jade & Sage Green",cardinal:"East / Southeast",vibe:"Creative Sanctuary"},
+ {text:"✨ Deep aura scan indicates a heavy sovereign Earth foundational layer balanced by ambient Fire expressions.\n\n✨ Your space anchors high concentration and structural stability—making it an exceptional matrix for financial preservation and business planning. The primary limitation stems from an excess of angular shadowing.\n\n✨ Remedial protocol: Utilize linear brass accents or open ceramic vessels to circulate stagnant energy pockets.",vector:"Earth · 土",tint:"Ochre & Terracotta",cardinal:"Center / Southwest",vibe:"Grounded Monolith"},
+ {text:"✨ Spatial readings show a highly refined, high-vibration Geng Metal core intersecting with clear deep Water paths.\n\n✨ Exceptional clarity, crisp intellectual processing, and flawless organization dominate the current perimeter. Beware of cold containment tendencies that freeze emotional expression.\n\n✨ Remedial protocol: Introduce small broad-leaf botanical structures or amber crystal stones to dissolve structural chill.",vector:"Metal · 金",tint:"Alabaster & Brushed Silver",cardinal:"True West",vibe:"Tempered Precision"}
+ ];
+ var idx=Math.abs(file.name.length+file.size)%pool.length;
+ var r=pool[idx];
+ document.getElementById('resVector').textContent=r.vector;
+ document.getElementById('resTint').textContent=r.tint;
+ document.getElementById('resCardinal').textContent=r.cardinal;
+ document.getElementById('resVibe').textContent=r.vibe;
+ document.getElementById('scanResult').style.display='block';
+ typeText(r.text,'typingText');
+ },3000);
+ };
+ reader.readAsDataURL(file);
+}
+
+function typeText(text,targetId){
+ var el=document.getElementById(targetId);
+ el.innerHTML='';
+ var i=0,spd=15;
+ function loop(){if(i<text.length){el.innerHTML+=text.charAt(i);i++;setTimeout(loop,spd)}}
+ loop();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+.vercel
+.env
+*.local
+config/sa-*.json
+config/*.json
+*.key.json
