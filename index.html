@@ -18,28 +18,28 @@ gtag('config', 'G-T82Z7E5ELB');
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --ink:#06100c;--ink2:#0d1f17;
+  --ink:#0D0E10;--ink2:#121417;
   --gold:#c9a84c;--gold2:#e8d4a0;--gold3:rgba(201,168,76,.12);
   --jade:#2d5a3d;--jade2:#1a3828;
-  --text:#f0ebe0;--muted:rgba(240,235,224,.55);
+  --text:#e8e4db;--muted:rgba(232,228,219,.5);
   --wood:#4a7c59;--fire:#c0392b;--earth:#c9a84c;--metal:#b0b8c1;--water:#2c5f8a;
   --seal:#c23a2b;
 }
 html{scroll-behavior:smooth}
 body{
-  font-family:'EB Garamond','Noto Serif SC',serif;
+  font-family:'Noto Serif SC','Songti SC',serif;
   background:var(--ink);color:var(--text);
-  overflow-x:hidden;line-height:1.85;font-size:16px;
+  overflow-x:hidden;line-height:1.9;font-size:15px;
 }
 .bg-layer{
   position:fixed;inset:0;z-index:1;pointer-events:none;
-  background:radial-gradient(ellipse 80% 60% at 10% 10%,rgba(45,90,61,.2) 0%,transparent 60%),
-             radial-gradient(ellipse 60% 80% at 90% 90%,rgba(201,168,76,.06) 0%,transparent 55%),
+  background:radial-gradient(ellipse 80% 60% at 10% 10%,rgba(45,90,61,.15) 0%,transparent 60%),
+             radial-gradient(ellipse 60% 80% at 90% 90%,rgba(201,168,76,.04) 0%,transparent 55%),
              var(--ink);
 }
 .taiji-bg{
@@ -57,12 +57,12 @@ nav{
 }
 .nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer}
 .nav-logo svg{animation:spin 25s linear infinite}
-.nav-name{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:2px;color:var(--gold);font-weight:400}
-.nav-sub{font-size:9px;letter-spacing:4px;color:var(--muted);margin-top:2px;text-transform:uppercase}
+.nav-name{font-family:'Noto Serif SC','Songti SC',serif;font-size:20px;letter-spacing:3px;color:var(--gold);font-weight:600}
+.nav-sub{font-size:8px;letter-spacing:6px;color:var(--muted);margin-top:1px;font-family:'Inter','Helvetica Neue',sans-serif;font-weight:200;text-transform:uppercase}
 .nav-links{display:flex;gap:36px;align-items:center}
 .nav-links a{
   color:var(--muted);text-decoration:none;font-size:14px;
-  letter-spacing:2px;font-family:'Cormorant Garamond',serif;transition:.3s;position:relative;
+  letter-spacing:3px;font-family:'Inter','Helvetica Neue',sans-serif;font-weight:300;transition:.3s;position:relative;
 }
 .nav-links a:hover{color:var(--gold)}
 .nav-links a::after{
@@ -92,60 +92,76 @@ nav{
   text-align:center;padding:60px 0;
 }
 .hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;
-  border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.04);
-  font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:28px;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:8px;padding:4px 12px;
+  font-family:'Noto Serif SC','Songti SC',serif;
+  font-size:13px;letter-spacing:4px;color:var(--gold);margin-bottom:28px;font-weight:400;
 }
 .hero h1{
-  font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,76px);
-  font-weight:300;letter-spacing:2px;line-height:1.15;margin-bottom:20px;color:var(--text);
+  font-family:'Noto Serif SC','Songti SC',serif;
+  font-size:clamp(34px,5vw,56px);
+  font-weight:600;letter-spacing:5px;line-height:1.4;margin-bottom:24px;color:var(--text);
 }
-.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
-.hero-desc{font-size:18px;color:var(--muted);max-width:640px;margin:0 auto 45px;font-weight:300}
+.hero h1 em{font-style:normal;color:var(--gold);font-weight:700}
+.hero-desc{
+  font-family:'Inter','Helvetica Neue',sans-serif;
+  font-size:13px;font-weight:200;letter-spacing:0.2em;
+  color:var(--muted);max-width:520px;margin:0 auto 45px;line-height:1.7;
+}
 
-/* 🖌️ 古典灵魂纹理 — 观澜美学注入 */
+/* 🖌️ 焦墨流金 — 观澜灵魂纹理 */
 .guanlan-hero-bg {
- background-color: #04120c;
+ background-color: #0D0E10;
  background-image:
- url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E"),
- radial-gradient(circle at 50% 25%, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.03) 40%, transparent 70%);
+ url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E"),
+ radial-gradient(circle at 50% 25%, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 50%, transparent 75%);
 }
 
 .metaphysics-input {
  border: none !important;
- border-bottom: 0.5px solid rgba(212, 175, 55, 0.15) !important;
+ border-bottom: 0.5px solid rgba(212, 175, 55, 0.25) !important;
  background: transparent !important;
  border-radius: 0 !important;
- color: #e2e8f0;
- transition: all 0.3s ease;
- caret-color: rgba(212, 175, 55, 0.6);
+ padding: 12px 4px !important;
+ color: var(--text);
+ transition: border-color 0.6s ease;
+ caret-color: rgba(212, 175, 55, 0.5);
+}
+.metaphysics-input::placeholder {
+ color: rgba(232,228,219,0.25);
+ font-family: 'Noto Serif SC','Songti SC',serif;
+ font-size: 13px;
 }
 .metaphysics-input:focus {
  border-bottom: 0.5px solid rgba(212, 175, 55, 0.5) !important;
  box-shadow: none !important;
 }
 .form-card{
-  background:rgba(13,31,23,.75);border:1px solid rgba(201,168,76,.16);
-  border-radius:24px;padding:40px;max-width:540px;width:100%;
-  backdrop-filter:blur(20px);box-shadow:0 20px 50px rgba(0,0,0,.4);
+  background:rgba(13,14,16,.6);
+  border:1px solid rgba(201,168,76,.1);
+  border-radius:4px;padding:48px 40px 36px;max-width:520px;width:100%;
+  backdrop-filter:blur(8px);
   text-align:left;margin:0 auto;position:relative;
 }
-.form-title{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold2);margin-bottom:6px;text-align:center;letter-spacing:1px}
-.form-subtitle{font-size:13px;color:var(--muted);margin-bottom:30px;text-align:center}
+.form-title{font-family:'Noto Serif SC','Songti SC',serif;font-size:20px;color:var(--gold2);margin-bottom:8px;text-align:center;letter-spacing:4px;font-weight:600}
+.form-subtitle{font-family:'Inter','Helvetica Neue',sans-serif;font-size:11px;font-weight:200;letter-spacing:0.15em;color:var(--muted);margin-bottom:36px;text-align:center}
 .field{margin-bottom:22px}
-.field label{display:block;font-size:11px;letter-spacing:2px;color:rgba(201,168,76,.7);margin-bottom:8px;text-transform:uppercase}
-.field input, .field select{.metaphysics-input,
-  width:100%;padding:14px 16px;border-radius:10px;border:1px solid rgba(201,168,76,.15);
-  background:rgba(6,16,12,.7);color:var(--text);font-size:15px;outline:none;transition:.3s;
-  font-family:inherit;
+.field label{display:block;font-family:'Inter','Helvetica Neue',sans-serif;font-size:10px;letter-spacing:3px;color:rgba(201,168,76,.5);margin-bottom:6px;font-weight:300}
+.field input, .field select{
+  width:100%;padding:10px 4px;
+  border:none;border-bottom:0.5px solid rgba(201,168,76,.15);
+  background:transparent;color:var(--text);font-size:14px;outline:none;transition:.3s;
+  font-family:'Noto Serif SC','Songti SC',serif;
+  caret-color:rgba(212,175,55,.5);
 }
+.field input:focus, .field select:focus{border-color:rgba(201,168,76,.6)}
+.field input::placeholder{color:rgba(232,228,219,.2)}
+.fields-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .field input:focus, .field select:focus{border-color:var(--gold);box-shadow:0 0 8px rgba(201,168,76,.25)}
 .fields-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .submit-btn{
   width:100%;padding:16px;border-radius:999px;border:none;
-  background:linear-gradient(135deg, rgba(201,168,76,.3), rgba(45,90,61,.4));
-  border:1px solid rgba(201,168,76,.4);color:var(--gold2);
-  font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:2px;
+  background:transparent;border:none;color:var(--gold2);
+  font-family:'Noto Serif SC','Songti SC',serif;font-size:16px;letter-spacing:3px;font-weight:400;
   cursor:pointer;transition:.3s;margin-top:10px;font-weight:500;
 }
 .submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(201,168,76,.2)}
@@ -379,18 +395,18 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
 
 <div class="wrap">
   <section class="hero guanlan-hero-bg" id="home">
-    <div class="hero-eyebrow">Oriental Cosmic Energy Baseline</div>
-    <h1>Align with Your <em>Elemental Source</em></h1>
-    <div class="hero-desc">Enter your birth details to decode your unique cosmic elemental blueprint. Calibrated for global founders, remote creators, and independent builders navigating the shifting wealth frequencies of 2026.</div>
+    <div class="hero-eyebrow">· 太初有道 ·</div>
+    <h1>知命而驭 · <em>顺势而为</em></h1>
+    <div class="hero-desc">输入生辰，解码先天五行气数。为全球创业者、远程创造者与独立建造者校准丙午流年能量频率。</div>
     
     <div class="form-card">
-      <div class="form-title">Calibrate Your Cosmic Core</div>
-      <div class="form-subtitle">Ensure precise coordinates for an authentic metaphysical reflection</div>
+      <div class="form-title">· 校准先天命盘 ·</div>
+      <div class="form-subtitle">请输入准确信息以确保气场定位精准</div>
       
       <form onsubmit="runGuanlanEngine(event)">
         <div class="field">
           <label>Name / Identifier</label>
-          <input type="text" placeholder="e.g., Rowan" required id="username"/>
+          <input type="text" placeholder="例：张守中" required id="username"/>
         </div>
         <div class="fields-row">
           <div class="field">
