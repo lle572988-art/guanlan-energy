@@ -77,5 +77,11 @@
       "source": "/((?!hubs/|blog/|scan/|longtail/|images/|pages/|api/|[a-z]+\\.\\w+).*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  "functions": {
+    "api/checkout.mjs": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  }
 }
