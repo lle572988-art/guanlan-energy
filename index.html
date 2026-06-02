@@ -350,7 +350,7 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
 }
 </script>
 
-<!-- FAQ Schema — 抢 Google 搜索结果位 -->
+<!-- FAQ Schema — Google Search Rich Results -->
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -374,7 +374,7 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
  },
  {
  "@type": "Question",
- "name": "Is Bazi (八字) accurate?",
+ "name": "Is Bazi (Four Pillars) accurate?",
  "acceptedAnswer": {
  "@type": "Answer",
  "text": "Bazi has been used for over a thousand years as a reflective framework, not a deterministic prediction. Modern practitioners treat it as a self-awareness tool — it surfaces patterns in your temperament, decision-making, and life cycles. Think of it as a personality lens, not a fortune-telling script. Our AI-powered engine applies contemporary calculation to the classical methodology."
@@ -965,7 +965,7 @@ function guanlanSubmitEmail() {
         return;
     }
 
-    // 后端 - 把 Email 写入 lead_pool
+    // Backend: write email to lead_pool
     fetch('/api/collect-lead', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({
         email: email,
         page: window.location.pathname,
