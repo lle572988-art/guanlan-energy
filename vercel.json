@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
   "redirects": [
     { "source": "/stories", "destination": "/blog/index.html", "permanent": true },
     { "source": "/scanner", "destination": "/scan/", "permanent": true },
-    { "source": "/premium", "destination": "#blueprint", "permanent": true }
+    { "source": "/premium", "destination": "/consultation.html", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/((?!hubs/|blog/|scan/|longtail/|images/|pages/|api/|[a-z]+\\.\\w+).*)", "destination": "/index.html" }
   ]
 }
