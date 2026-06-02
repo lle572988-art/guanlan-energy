@@ -57,8 +57,8 @@ footer{text-align:center;padding:24px;font-size:11px;color:rgba(240,235,224,.25)
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://eastern-five-elements.vercel.app/#website",
-      "url": "https://eastern-five-elements.vercel.app",
+      "@id": "https://metaphysicflow.com/#website",
+      "url": "https://metaphysicflow.com",
       "name": "Eastern Five Elements \u2014 Feng Shui & Energy Balance",
       "description": "Discover how the five elements shape your home, career, and relationships.",
       "inLanguage": "en",
@@ -70,24 +70,24 @@ footer{text-align:center;padding:24px;font-size:11px;color:rgba(240,235,224,.25)
     },
     {
       "@type": "WebPage",
-      "@id": "https://eastern-five-elements.vercel.app/forecast.html#webpage",
-      "url": "https://eastern-five-elements.vercel.app/forecast.html",
+      "@id": "https://metaphysicflow.com/forecast.html#webpage",
+      "url": "https://metaphysicflow.com/forecast.html",
       "name": "Your 2026 Energy Forecast \u2014 Guanlan Energy",
       "description": "See your Five Elements energy trend for 2026. Personalized annual forecast based on your birth element.",
       "isPartOf": {
-        "@id": "https://eastern-five-elements.vercel.app/#website"
+        "@id": "https://metaphysicflow.com/#website"
       },
       "about": {
         "@type": "Thing",
         "name": "Wood Element"
       },
       "mainEntity": {
-        "@id": "https://eastern-five-elements.vercel.app/forecast.html#article"
+        "@id": "https://metaphysicflow.com/forecast.html#article"
       }
     },
     {
       "@type": "Article",
-      "@id": "https://eastern-five-elements.vercel.app/forecast.html#article",
+      "@id": "https://metaphysicflow.com/forecast.html#article",
       "headline": "Your 2026 Energy Forecast \u2014 Guanlan Energy",
       "description": "See your Five Elements energy trend for 2026. Personalized annual forecast based on your birth element.",
       "author": {
@@ -217,7 +217,7 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
 
   <div class="share-cta">
     <p>Not your element? Get your personalized forecast →</p>
-    <a href="https://eastern-five-elements.vercel.app?utm_source=energy_forecast&utm_medium=share_card&utm_campaign=annual_2026" class="btn btn-primary" style="display:inline-flex;text-decoration:none">Take the free assessment →</a>
+    <a href="https://metaphysicflow.com?utm_source=energy_forecast&utm_medium=share_card&utm_campaign=annual_2026" class="btn btn-primary" style="display:inline-flex;text-decoration:none">Take the free assessment →</a>
   </div>
 
   <div class="newsletter-box">
@@ -230,7 +230,7 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
   </div>
 </div>
 
-<footer>Guanlan Energy — eastern-five-elements.vercel.app
+<footer>Guanlan Energy — metaphysicflow.com
                     <section class="related">
         <h3>📖 继续探索五行智慧</h3>
         <p class="note-label">Related readings</p>
@@ -654,7 +654,7 @@ function shareTo(platform){
   var canvas = document.getElementById('energyCanvas');
   var params = new URLSearchParams(window.location.search);
   var el = params.get('element') || 'earth';
-  var url = 'https://eastern-five-elements.vercel.app?utm_source=share_forecast&utm_medium=' + platform + '&utm_campaign=annual_2026';
+  var url = 'https://metaphysicflow.com?utm_source=share_forecast&utm_medium=' + platform + '&utm_campaign=annual_2026';
   if(platform === 'twitter'){
     var text = encodeURIComponent('My 2026 Five Elements energy forecast is here. What\'s yours? 🔥');
     window.open('https://twitter.com/intent/tweet?text=' + text + '&url=' + encodeURIComponent(url), '_blank', 'width=600,height=400');
