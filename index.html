@@ -250,7 +250,7 @@ nav{
 }
 .cta-btn:hover{transform:translateY(-3px);background:var(--gold2);box-shadow:0 15px 40px rgba(201,168,76,0.5)}
 
-/* 订阅弹窗样式 */
+/* Subscribe popup styles */
 .subscribe-overlay{
   position:fixed;inset:0;background:rgba(6,16,12,.85);backdrop-filter:blur(10px);
   z-index:100000;display:none;align-items:center;justify-content:center;padding:20px;
@@ -361,7 +361,7 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
  "name": "What is the Five Elements (Wu Xing) theory?",
  "acceptedAnswer": {
  "@type": "Answer",
- "text": "Wu Xing (五行) is a 2,000-year-old Chinese cosmological framework describing how Wood, Fire, Earth, Metal, and Water interact through cycles of generation and control. Each element represents a quality of qi (vital energy). Your birth chart reveals your unique elemental distribution, which modern practitioners map to personality, career fit, and lifestyle rhythms."
+ "text": "Wu Xing (Five Elements) is a 2,000-year-old Chinese cosmological framework describing how Wood, Fire, Earth, Metal, and Water interact through cycles of generation and control. Each element represents a quality of qi (vital energy). Your birth chart reveals your unique elemental distribution, which modern practitioners map to personality, career fit, and lifestyle rhythms."
  }
  },
  {
@@ -401,7 +401,7 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
  "name": "What is the Fire Horse year 2026 about?",
  "acceptedAnswer": {
  "@type": "Answer",
- "text": "2026 is the Bing Wu (丙午) Fire Horse year in the Chinese sexagenary cycle. It amplifies Fire energy globally — speed, visibility, and bold action. People with a Fire element in their birth chart are expected to experience accelerated momentum in career and wealth. Earth and Water types may need to consciously ground or rest more than usual."
+ "text": "2026 is the Bing Wu (Fire Horse) Fire Horse year in the Chinese sexagenary cycle. It amplifies Fire energy globally — speed, visibility, and bold action. People with a Fire element in their birth chart are expected to experience accelerated momentum in career and wealth. Earth and Water types may need to consciously ground or rest more than usual."
  }
  },
  {
@@ -427,13 +427,15 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
 <!-- Open Graph / Social Meta — injected by guanlan-bot -->
 <meta property="og:title" content="Guanlan Energy | Free BaZi Wealth Forecast for Independent Workers"/>
 <meta property="og:description" content="Free BaZi reading reveals your Five Elements distribution, wealth sector timing, and career activation — built for founders, freelancers, and remote professionals."/>
-<meta property="og:image" content="https://metaphysicflow.com/images/calligraphy.jpg"/>
+<meta property="og:image" content="https://metaphysicflow.com/images/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
 <meta property="og:url" content="https://metaphysicflow.com/"/>
 <meta property="og:type" content="website"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Free BaZi Wealth Forecast for Independent Workers"/>
 <meta name="twitter:description" content="Enter your birth date for a free BaZi reading. 2,000 years of Chinese wisdom, recalibrated for modern independent professionals."/>
-<meta name="twitter:image" content="https://metaphysicflow.com/images/calligraphy.jpg"/>
+<meta name="twitter:image" content="https://metaphysicflow.com/images/og-image.png"/>
 
 <!-- Plausible Analytics -->
 <script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
@@ -854,7 +856,7 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
 
     <div class="gw-result" id="gw-result"></div>
 
-    <!-- Email 拦截弹窗 -->
+    <!-- Email capture popup -->
     <div class="gw-email-overlay" id="gw-email-overlay">
         <div class="gw-email-box">
             <button class="gw-email-close" onclick="document.getElementById('gw-email-overlay').style.display='none'">&times;</button>
@@ -872,7 +874,7 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
 <script>
 function guanlanGetElem(id) { return document.getElementById(id); }
 
-// 五行财富解读库（纯前端，零API）
+// Five Elements wealth insight library (pure frontend, zero API)
 var ELEMENT_PROFILES = {
     wood: { emoji:'🌲', name:'Wood', career:'Entrepreneurship, creative fields, education', wealth:'Multiple income streams, side projects', advise:'Focus on expansion this year. Your wealth sector activates in Spring and late Autumn. Avoid overextending.' },
     fire:  { emoji:'🔥', name:'Fire', career:'Marketing, sales, entertainment, leadership', wealth:'Brand building, public visibility, speaking income', advise:'2026 Fire Horse year is YOUR year. Lead boldly. Your wealth peaks in Summer — raise rates aggressively.' },
@@ -916,7 +918,7 @@ function guanlanCalculate() {
     result.innerHTML = reportHTML;
     result.style.display = 'block';
 
-    // 加到 70% 触发弹窗
+    // 70% scroll triggers popup
     guanlanGetElem('gw-submit').disabled = true;
     setTimeout(function() {
         guanlanGetElem('gw-email-overlay').style.display = 'flex';

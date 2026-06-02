@@ -19,7 +19,7 @@
         #guanlan-bazi-widget .gw-email-success{display:none;margin-top:12px;color:#c9a84c;font-size:14px}
     </style>
 
-    <div class="gw-title">🔮 2026 丙午马年 · 财运洗牌指数</div>
+    <div class="gw-title">🔮 2026 Bing Wu (Fire Horse) Year · Wealth Frequency Index</div>
     <p class="gw-sub">For independent contractors · Enter your birth info for a free Bazi wealth forecast</p>
     <div>
         <input type="text" class="gw-field" id="gw-year" placeholder="YYYY" maxlength="4" style="width:90px">
@@ -33,12 +33,12 @@
 
     <div class="gw-result" id="gw-result"></div>
 
-    <!-- Email 拦截弹窗 -->
+    <!-- Email capture popup -->
     <div class="gw-email-overlay" id="gw-email-overlay">
         <div class="gw-email-box">
             <button class="gw-email-close" onclick="document.getElementById('gw-email-overlay').style.display='none'">&times;</button>
             <h3>📩 核心破局方略已就绪</h3>
-            <p>你的五行旺衰已解析至 70%。<br>完整版破局改运方略（含个人元素化煞与流年催财时辰表）<br>将在输入邮箱后发送至您的邮箱。</p>
+            <p>Your Five Elements chart is 70% complete.<br>The full strategic report (personalized wealth activation calendar + timing) will be sent to your email.</p>
             <input type="email" class="gw-field" id="gw-email" placeholder="your@email.com" style="width:260px">
             <br>
             <button class="gw-btn" onclick="guanlanSubmitEmail()">🚀 解锁完整报告</button>
@@ -51,7 +51,7 @@
 <script>
 function guanlanGetElem(id) { return document.getElementById(id); }
 
-// 五行财富解读库（纯前端，零API）
+// Five Elements wealth insight library (pure frontend, zero API)
 var ELEMENT_PROFILES = {
     wood: { emoji:'🌲', name:'Wood', career:'Entrepreneurship, creative fields, education', wealth:'Multiple income streams, side projects', advise:'Focus on expansion this year. Your wealth sector activates in Spring and late Autumn. Avoid overextending.' },
     fire:  { emoji:'🔥', name:'Fire', career:'Marketing, sales, entertainment, leadership', wealth:'Brand building, public visibility, speaking income', advise:'2026 Fire Horse year is YOUR year. Lead boldly. Your wealth peaks in Summer — raise rates aggressively.' },
