@@ -468,6 +468,85 @@ document.addEventListener('scroll', function(){
 <meta name="twitter:description" content="Guanlan bridges ancient Eastern wisdom and modern aesthetics. Discover the philosophy behind our Five Elements energy readings."/>
 <meta name="twitter:image" content="https://metaphysicflow.com/images/calligraphy.jpg"/>
 
+<!-- Plausible Analytics -->
+<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
+<script>
+window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
+</script>
+<!-- Funnel Tracking (Plausible custom events) -->
+<script>
+(function() {
+  // form_view: when form card enters viewport
+  var formCard = document.querySelector(".form-card");
+  if (formCard) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { plausible("form_view"); obs.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(formCard);
+  }
+
+  // form_start: first field focus
+  var inputs = document.querySelectorAll("#username, #birthdate, #birthtime, .gw-field");
+  var started = false;
+  inputs.forEach(function(inp) {
+    inp.addEventListener("focus", function() {
+      if (!started) { started = true; plausible("form_start"); }
+    });
+  });
+
+  // form_submit: BaZi form submission
+  var baziForm = document.querySelector("form[onsubmit*='runGuanlanEngine']");
+  if (baziForm) {
+    baziForm.addEventListener("submit", function() { plausible("form_submit"); });
+  }
+
+  // report_generated: patch runGuanlanEngine
+  var origEngine = window.runGuanlanEngine;
+  if (origEngine) {
+    window.runGuanlanEngine = function(e) {
+      origEngine(e);
+      // The original code sets results display after 4200ms via setTimeout
+      // We intercept the relevant setTimeout to fire our event
+      var origST = window.setTimeout;
+      window.setTimeout = function(fn, ms) {
+        return origST(function() {
+          fn();
+          if (ms > 4000) {
+            setTimeout(function() { plausible("report_generated"); }, 200);
+            window.setTimeout = origST;
+          }
+        }, ms);
+      };
+    };
+  }
+
+  // paywall_view & paywall_click
+  var paywallBtn = document.querySelector(".cta-btn.gumroad-button");
+  if (paywallBtn) {
+    var pwObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { plausible("paywall_view"); pwObs.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    pwObs.observe(paywallBtn);
+    paywallBtn.addEventListener("click", function() { plausible("paywall_click"); });
+  }
+
+  // email_subscribe: popup form + widget
+  var popupForm = document.querySelector(".popup-form");
+  if (popupForm) popupForm.addEventListener("submit", function() { plausible("email_subscribe"); });
+
+  var widgetBtn = document.querySelector(".gw-email-box .gw-btn");
+  if (widgetBtn) widgetBtn.addEventListener("click", function() { plausible("email_subscribe"); });
+
+  // gumroad purchase_complete (fires when user lands back from Gumroad)
+  if (window.location.search.includes("gumroad_return")) {
+    plausible("purchase_complete");
+  }
+})();
+</script>
 </head>
 <body>
 
