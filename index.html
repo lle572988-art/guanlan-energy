@@ -824,7 +824,27 @@ function guanlanSubmitEmail() {
 }
 </script>
 
+ <div style="text-align:center;padding:30px 0 20px;border-top:1px solid var(--border);margin-top:40px;font-size:13px;color:var(--muted)">
+ <a href="/privacy.html" style="color:var(--gold);text-decoration:none;margin:0 10px">Privacy Policy</a>
+ <a href="/terms.html" style="color:var(--gold);text-decoration:none;margin:0 10px">Terms of Service</a>
+ <a href="/refund.html" style="color:var(--gold);text-decoration:none;margin:0 10px">Refund Policy</a>
+ <a href="/disclaimer.html" style="color:var(--gold);text-decoration:none;margin:0 10px">Disclaimer</a>
+ </div>
 </footer>
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:rgba(6,16,12,.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:20px 30px;display:none;font-size:14px;color:var(--text)">
+ <div style="width:min(800px,100%);margin:auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between">
+ <span style="flex:1;min-width:240px">We use minimal cookies for analytics and essential functionality. <a href="/privacy.html" style="color:var(--gold)">Learn more</a>.</span>
+ <div style="display:flex;gap:10px">
+ <button onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookie-consent','rejected')" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 20px;border-radius:8px;cursor:pointer;font-size:13px">Reject</button>
+ <button onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookie-consent','accepted')" style="background:var(--gold);border:none;color:var(--ink);padding:8px 24px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600">Accept</button>
+ </div>
+ </div>
+</div>
+<script>
+(function(){if(!localStorage.getItem('cookie-consent')){document.getElementById('cookie-banner').style.display='block'}})();
+</script>
 
 <script>
 function toggleMobileMenu() {
