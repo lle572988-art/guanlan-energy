@@ -1,5 +1,10 @@
 import Stripe from 'stripe';
 
+export const config = {
+  runtime: 'nodejs18.x',
+  regions: ['iad1'], // us-east-1 — Stripe-compatible region
+};
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -9,14 +14,13 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') { res.status(405).json({ error: 'Method not allowed' }); return; }
 
   const sk = process.env.STRIPE_SECRET_KEY;
-  if (!sk) { res.status(500).json({ error: 'STRIPE_SECRET_KEY not configured' }); return; }
+  if (!sk) { 
+    res.status(500).json({ error: 'STRIPE_SECRET_KEY not configured' }); 
+    return; 
+  }
 
   try {
-    // Use proxy for Stripe connections behind firewalls
-    const httpProxy = process.env.HTTPS_PROXY || process.env.HTTP_PROXY;
-    const stripeOpts = {};
-    
-    const stripe = new Stripe(sk, stripeOpts);
+    const stripe = new Stripe(sk);
     const origin = req.headers.origin || 'https://metaphysicflow.com';
     
     const session = await stripe.checkout.sessions.create({
@@ -36,9 +40,10 @@ export default async function handler(req, res) {
       cancel_url: `${origin}/checkout.html`,
     });
     
+    console.log('Stripe session created:', session.id);
     res.status(200).json({ url: session.url });
   } catch (err) {
-    console.error('Stripe error:', err.message);
+    console.error('Stripe error:', err.message, err.type);
     res.status(500).json({ error: 'Payment service unavailable', detail: err.message });
   }
 }
