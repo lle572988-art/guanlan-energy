@@ -1,13 +1,81 @@
 {
   "version": 2,
   "redirects": [
-    { "source": "/stories", "destination": "/blog/index.html", "permanent": true },
-    { "source": "/scanner", "destination": "/scan/", "permanent": true },
-    { "source": "/premium", "destination": "/consultation.html", "permanent": true },
-    { "source": "/passterra_authority_dictionary.html", "destination": "/", "permanent": true },
-    { "source": "/passterra(.*)", "destination": "/", "permanent": true }
+    {
+      "source": "/stories",
+      "destination": "/blog/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/scanner",
+      "destination": "/scan/",
+      "permanent": true
+    },
+    {
+      "source": "/premium",
+      "destination": "/consultation.html",
+      "permanent": true
+    },
+    {
+      "source": "/passterra_authority_dictionary.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/passterra(.*)",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/widget-bazi-wealth.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/article-detail.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/blog1.html",
+      "destination": "/blog/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/blog1-:num(\\d+).html",
+      "destination": "/blog/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/blog2.html",
+      "destination": "/blog/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/blog2-:num(\\d+).html",
+      "destination": "/blog/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/blog3.html",
+      "destination": "/blog/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/blog/blog3-:num(\\d+).html",
+      "destination": "/blog/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/passterra",
+      "destination": "/",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    { "source": "/((?!hubs/|blog/|scan/|longtail/|images/|pages/|api/|[a-z]+\\.\\w+).*)", "destination": "/index.html" }
+    {
+      "source": "/((?!hubs/|blog/|scan/|longtail/|images/|pages/|api/|[a-z]+\\.\\w+).*)",
+      "destination": "/index.html"
+    }
   ]
 }
