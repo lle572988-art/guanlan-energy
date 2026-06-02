@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="referrer" content="strict-origin-when-cross-origin"/>
-<title>Guanlan Energy | Modern Five Elements & Cosmic Blueprint Analysis</title>
-<meta name="description" content="Discover your Five Elements energy blueprint. Free birth date analysis reveals your Wood, Fire, Earth, Metal, Water balance — elemental personality, lucky colors, career fortune, and your complete Wu Xing chart. Ancient Zi Wei Dou Shu wisdom meets modern cosmic alignment."/>
+<title>Guanlan Energy | Free BaZi Wealth Forecast for Independent Workers</title>
+<meta name="description" content="Free BaZi (Four Pillars) reading for freelancers, founders, and remote workers. Discover your Five Elements distribution, wealth sector activation, and career timing — ancient Chinese wisdom serving modern independent professionals."/>
 <script src="https://gumroad.com/js/gumroad-embed.js"></script>
 <script src="https://gumroad.com/js/gumroad.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
@@ -433,16 +433,17 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
       </svg>
       <div>
         <div class="nav-name">Guanlan Energy</div>
-        <div class="nav-sub">Cosmic Blueprint</div>
+        <div class="nav-sub">BaZi Five Elements</div>
       </div>
     </div>
     <div class="nav-links">
-      <a href="#home">Alignment</a>
+      <a href="#home">Free BaZi</a>
       <a href="#results" id="nav-report-link" style="display:none;">Your Report</a>
-      <a href="/blog/index.html">Stories</a>
+      <a href="/hubs/founders.html">For Founders</a>
+      <a href="/blog/index.html">Guides</a>
       <a href="/scan/">Scanner</a>
-      <a href="#blueprint">Premium Blueprint</a>
-      <a href="javascript:void(0)" onclick="openPopup()">Weekly Forecast</a>
+      <a href="#blueprint">Premium</a>
+      <a href="javascript:void(0)" onclick="openPopup()">Weekly Intel</a>
     </div>
     <button class="hamburger" onclick="toggleMobileMenu()">
       <span></span><span></span><span></span>
@@ -451,22 +452,23 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#home" onclick="toggleMobileMenu()">Alignment</a>
-  <a href="/blog/index.html" onclick="toggleMobileMenu()">Stories</a>
+  <a href="#home" onclick="toggleMobileMenu()">Free BaZi</a>
+  <a href="/hubs/founders.html" onclick="toggleMobileMenu()">For Founders</a>
+  <a href="/blog/index.html" onclick="toggleMobileMenu()">Guides</a>
   <a href="/scan/" onclick="toggleMobileMenu()">Scanner</a>
-  <a href="#blueprint" onclick="toggleMobileMenu()">Premium Blueprint</a>
-  <a href="javascript:void(0)" onclick="openPopup(); toggleMobileMenu();">Weekly Forecast</a>
+  <a href="#blueprint" onclick="toggleMobileMenu()">Premium</a>
+  <a href="javascript:void(0)" onclick="openPopup(); toggleMobileMenu();">Weekly Intel</a>
 </div>
 
 <div class="wrap">
   <section class="hero" id="home">
-    <div class="hero-eyebrow">Oriental Cosmic Energy Baseline</div>
-    <h1>Align with Your <em>Elemental Source</em></h1>
-    <div class="hero-desc">Enter your birth details to decode your unique cosmic elemental blueprint. Calibrated for global founders, remote creators, and independent builders navigating the shifting wealth frequencies of 2026.</div>
+    <div class="hero-eyebrow">Free BaZi Wealth Forecast</div>
+    <h1>Your Five Elements <em>Wealth Blueprint</em></h1>
+    <div class="hero-desc">Enter your birth details for a free BaZi reading. 2,000 years of Chinese metaphysical wisdom — recalibrated for founders, freelancers, and remote professionals navigating 2026’s Bing Wu (Fire Horse) year.</div>
     
     <div class="form-card">
-      <div class="form-title">Calibrate Your Cosmic Core</div>
-      <div class="form-subtitle">Ensure precise coordinates for an authentic metaphysical reflection</div>
+      <div class="form-title">Enter Your Birth Details</div>
+      <div class="form-subtitle">Your BaZi (Four Pillars of Destiny) chart — calculated in seconds</div>
       
       <form onsubmit="runGuanlanEngine(event)">
         <div class="field">
@@ -503,7 +505,7 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
           <label>Date of Birth</label>
           <input type="date" required id="birthdate" value="1983-10-10"/>
         </div>
-        <button type="submit" class="submit-btn">Reveal My Cosmic Blueprint</button>
+        <button type="submit" class="submit-btn">Get My Free BaZi Profile</button>
       </form>
     </div>
   </section>
@@ -512,24 +514,24 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
     <svg class="loading-icon" viewBox="0 0 100 100">
       <circle cx="50" cy="50" r="40" fill="none" stroke="#c9a84c" stroke-width="2" stroke-dasharray="150 100"/>
     </svg>
-    <div class="loading-text">Communicating with Cosmic Matrix...</div>
+    <div class="loading-text">Calculating Your BaZi Chart...</div>
     <div class="loading-steps">
-      <div class="lstep" id="step1">○ Charting Four Pillars of Destiny...</div>
-      <div class="lstep" id="step2">○ Pinpointing Zi Wei Dou Shu Palaces...</div>
-      <div class="lstep" id="step3">○ Integrating Stems and Branches Potency...</div>
-      <div class="lstep" id="step4">○ Rendering Personal Multi-Dimensional Blueprint...</div>
+      <div class="lstep" id="step1">○ Decoding Four Pillars (BaZi)...</div>
+      <div class="lstep" id="step2">○ Mapping Elemental Distribution...</div>
+      <div class="lstep" id="step3">○ Analyzing Wealth &amp; Career Sectors...</div>
+      <div class="lstep" id="step4">○ Generating Your Personal Blueprint...</div>
     </div>
   </div>
 
   <section id="results">
     <div class="report-header">
       <div class="report-badge" id="reportArchetypeBadge">Daymaster Archetype</div>
-      <h2 class="report-main-title">Cosmic Baseline Report for <span id="resName"></span></h2>
+      <h2 class="report-main-title">BaZi Profile Report for <span id="resName"></span></h2>
       <div class="report-subtitle" id="resMeta"></div>
     </div>
 
     <div class="chart-block">
-      <div class="block-title">Wu Xing Baseline Distribution</div>
+      <div class="block-title">Your Five Elements Distribution</div>
       <div class="bar-group">
         <div class="bar-row">
           <div class="bar-label">Wood</div>
@@ -561,19 +563,19 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
 
     <div class="analysis-grid">
       <div class="analysis-card">
-        <div class="card-head">✨ Core Archetype & Spiritual Matrix</div>
+        <div class="card-head">✨ Your Core Element Core Archetype & Spiritual Matrix Personality Archetype</div>
         <div class="card-text" id="text-nature">Recalibrating...</div>
       </div>
       <div class="analysis-card">
-        <div class="card-head">💼 Wealth Flow, Expression & High-Velocity Sectors</div>
+        <div class="card-head">💼 Career Wealth Flow, Expression & High-Velocity Sectors Wealth Sector Activation</div>
         <div class="card-text" id="text-career">Recalibrating...</div>
       </div>
       <div class="analysis-card">
-        <div class="card-head">🌹 Relational Resonance & Magnetic Attraction</div>
+        <div class="card-head">🌹 Relational Relational Resonance & Magnetic Attraction Social Dynamics</div>
         <div class="card-text" id="text-love">Recalibrating...</div>
       </div>
       <div class="analysis-card">
-        <div class="card-head">⚖️ System Calibration & Energetic Longevity</div>
+        <div class="card-head">⚖️ Energy Management System Calibration & Energetic Longevity Resilience</div>
         <div class="card-text" id="text-health">Recalibrating...</div>
       </div>
     </div>
@@ -615,12 +617,12 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
 </section>
 
     <div class="premium-cta" id="blueprint">
-      <div class="cta-badge">Exclusive Access · Full Spectrum Revelation</div>
-      <h3 class="cta-title">Unlock Your Full Multi-Dimensional Cosmic Blueprint</h3>
+      <div class="cta-badge">Premium Upgrade · Full Strategic Report</div>
+      <h3 class="cta-title">Unlock Your Complete 10,000-Word BaZi Report</h3>
       <div class="cta-desc">
-        The baseline evaluation merely opens the portal to your primary elemental distribution. Beneath this surface lies an intricate metaphysical layout dictate by your 10-Year Major Pillars, Hidden Stems, and Star Activations. Our full-length digital blueprint offers over 10,000 words of precise, strategic intelligence mapping your wealth surges, relational milestones, and defense keys against upcoming cyclical retrogrades.
+        Your free baseline shows your elemental distribution. The full report goes deeper: 10-Year Major Pillar cycle, Hidden Stems analysis, Star Activations, and a personalized 2026 wealth activation calendar. Designed for independent professionals who want real strategic timing, not generic horoscopes.
       </div>
-      <a class="cta-btn gumroad-button" href="https://gumroad.com/l/wovthw" target="_blank">Unlock Full Intelligence ($6.90)</a>
+      <a class="cta-btn gumroad-button" href="https://gumroad.com/l/wovthw" target="_blank">Download Full Report ($6.90)</a>
     </div>
   </section>
 </div>
@@ -629,12 +631,12 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
 <div class="subscribe-overlay" id="subscribeOverlay">
   <div class="subscribe-card">
     <button class="close-popup" onclick="closePopup()">×</button>
-    <div class="popup-badge">Weekly Cosmic Sync</div>
-    <div class="popup-title">Receive Your Metaphysical Weather Forecast</div>
-    <div class="popup-desc">Subscribe to our premium briefing. Every Sunday, we deliver two concise cosmic insights calibrated to tune your professional and wealth frequency. No fluff, just leverage.</div>
+    <div class="popup-badge">Free Weekly Intel</div>
+    <div class="popup-title">BaZi Receive Your Metaphysical Weather Forecast Five Elements Briefing</div>
+    <div class="popup-desc">Every Sunday, get two actionable insights: one on career/wealth timing, one on your elemental energy pulse. Built for busy independents — no fluff, just signal.</div>
     <form class="popup-form" onsubmit="submitPopup(event)">
       <input type="email" placeholder="Enter your email address" required />
-      <button type="submit" class="popup-submit">Subscribe to Weekly Intel</button>
+      <button type="submit" class="popup-submit">Get Weekly Intel</button>
     </form>
     <div class="popup-success" id="popupSuccess">✓ Registration successful. Check your inbox soon.</div>
   </div>
@@ -642,7 +644,7 @@ footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08
 
 <footer>
   <p>© 2026 Guanlan Energy. All Rights Reserved.</p>
-  <p style="margin-top:8px; opacity:0.5;">Ancient metaphysical methodologies modeled through advanced AI frameworks. Intended for lifestyle curation and self-reflection.</p>
+  <p style="margin-top:8px; opacity:0.5;">BaZi Ancient metaphysical methodologies modeled through advanced AI frameworks. Intended for lifestyle curation and self-reflection. Five Elements analysis powered by traditional Chinese metaphysical frameworks, modeled through AI. For self-awareness and lifestyle optimization — not medical or financial advice.</p>
 
 <section style="padding:50px 0 30px 0;">
  <div class="block-title" style="margin-bottom:20px;">📚 Most-Read Guides for Founders &amp; Creators</div>
