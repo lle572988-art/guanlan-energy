@@ -1,8 +1,8 @@
 import Stripe from 'stripe';
 
 export const config = {
-  runtime: 'nodejs18.x',
-  regions: ['iad1'], // us-east-1 — Stripe-compatible region
+  runtime: 'nodejs',
+  // iad1 is default for this Vercel team
 };
 
 export default async function handler(req, res) {
