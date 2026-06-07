@@ -83,6 +83,13 @@
       "memory": 128,
       "maxDuration": 10,
       "includeFiles": "**"
+    },
+    "api/generate-reading.js": {
+      "maxDuration": 30
+    },
+    "api/collect-lead.js": {
+      "maxDuration": 15,
+      "includeFiles": "api/lib/**"
     }
   }
 }
