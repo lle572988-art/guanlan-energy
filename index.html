@@ -14,9 +14,17 @@
   <meta property="og:site_name" content="Guanlan Energy — Purple Star Astrology">
   <meta name="author" content="Guanlan Energy">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
   <link rel="alternate" hreflang="en" href="https://metaphysicflow.com/">
-  <link rel="alternate" hreflang="zh-Hant" href="https://metaphysicflow.com/zh/">
   <link rel="alternate" hreflang="x-default" href="https://metaphysicflow.com/">
+
+  <!-- Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-T82Z7E5ELB');</script>
+  <script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
+  <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 
   <!-- Open Graph / Social Media Preview -->
   <meta property="og:type" content="website">
@@ -2043,12 +2051,15 @@ footer {
     padding: 0 24px;
   }
   .hero-left {
-    display: contents;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    width: 100%;
   }
-  .hero-copy { order: 1; }
-  .urgency-bar { order: 2; }
-  .chart-form { order: 3; max-width: 100%; }
+  .hero-copy { order: 1; width: 100%; }
+  .urgency-bar { order: 2; justify-content: center; }
+  .chart-form { order: 3; max-width: 100%; width: 100%; }
   .chart-trust-row {
     order: 4;
     justify-content: center;
@@ -3396,6 +3407,43 @@ body::before {
 </footer>
 
 <script>
+/* ─── SAFE STORAGE (Safari / private mode) ─── */
+window.__storage = (function() {
+  function tryLS() {
+    try { localStorage.setItem('__t', '1'); localStorage.removeItem('__t'); return true; }
+    catch (e) { return false; }
+  }
+  var _mem = {};
+  var _ok = tryLS();
+  return {
+    get: function(k) { return _ok ? localStorage.getItem(k) : (_mem[k] != null ? _mem[k] : null); },
+    set: function(k, v) {
+      if (_ok) { try { localStorage.setItem(k, v); } catch (e) {} }
+      else { _mem[k] = v; }
+    },
+    remove: function(k) {
+      if (_ok) { try { localStorage.removeItem(k); } catch (e) {} }
+      else { delete _mem[k]; }
+    }
+  };
+})();
+
+window.__session = (function() {
+  function trySS() {
+    try { sessionStorage.setItem('__t', '1'); sessionStorage.removeItem('__t'); return true; }
+    catch (e) { return false; }
+  }
+  var _mem = {};
+  var _ok = trySS();
+  return {
+    get: function(k) { return _ok ? sessionStorage.getItem(k) : (_mem[k] != null ? _mem[k] : null); },
+    set: function(k, v) {
+      if (_ok) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+      else { _mem[k] = v; }
+    }
+  };
+})();
+
 /* ─── STARFIELD ─── */
 (function() {
   const isMobile = window.innerWidth < 768;
@@ -3744,6 +3792,9 @@ function handleSubmit(event) {
   }
   if (!valid) return false;
 
+  if (window.plausible) plausible('form_submit');
+  if (window.gtag) gtag('event', 'generate_lead', { event_category: 'hero_form' });
+
   submitBtn.disabled = true;
   submitBtn.style.cursor = 'wait';
   submitBtn.style.opacity = '0.8';
@@ -3766,9 +3817,25 @@ function handleSubmit(event) {
     country: country
   });
 
+  function resetSubmitBtn() {
+    submitBtn.disabled = false;
+    submitBtn.style.cursor = '';
+    submitBtn.style.opacity = '1';
+    submitBtn.innerHTML = 'Reveal My Fate Map — Free';
+  }
+
   setTimeout(function() {
-    window.location.href = 'free-chart.html?' + params.toString();
+    try {
+      window.location.href = 'free-chart.html?' + params.toString();
+    } catch (err) {
+      resetSubmitBtn();
+      console.error('Navigation failed:', err);
+    }
   }, 250);
+
+  setTimeout(function() {
+    if (submitBtn.disabled) resetSubmitBtn();
+  }, 5000);
 
   return false;
 }
@@ -4094,7 +4161,7 @@ window.addEventListener('scroll', () => {
 </div>
 
 <div id="sticky-cta" style="
-  display:none; position:fixed; bottom:0; left:0; right:0;
+  display:flex; position:fixed; bottom:0; left:0; right:0;
   z-index:500; padding:0.9rem 2rem;
   background:rgba(6,13,26,0.97);
   border-top:1px solid rgba(197,152,74,0.3);
@@ -4131,9 +4198,9 @@ window.addEventListener('scroll', () => {
 // Exit Intent Logic
 let exitShown = false;
 document.addEventListener('mouseleave', function(e) {
-  if (e.clientY <= 0 && !exitShown && !sessionStorage.getItem('exitShown')) {
+  if (e.clientY <= 0 && !exitShown && !window.__session.get('exitShown')) {
     exitShown = true;
-    sessionStorage.setItem('exitShown', '1');
+    window.__session.set('exitShown', '1');
     document.getElementById('exit-popup').style.display = 'flex';
   }
 });
@@ -4147,9 +4214,9 @@ function handleExitCapture(e) {
 
   function saveLeadLocally(emailAddr, src) {
     try {
-      const existing = JSON.parse(localStorage.getItem('pending_leads') || '[]');
+      const existing = JSON.parse(window.__storage.get('pending_leads') || '[]');
       existing.push({ email: emailAddr, source: src, coupon: 'STAR5', ts: Date.now() });
-      localStorage.setItem('pending_leads', JSON.stringify(existing));
+      window.__storage.set('pending_leads', JSON.stringify(existing));
     } catch (err) {}
   }
 
@@ -4174,7 +4241,6 @@ document.getElementById('exit-popup').addEventListener('click', function(e){
 window.addEventListener('scroll', function() {
   const bar = document.getElementById('sticky-cta');
   if (!bar) return;
-  bar.style.display = 'flex';
   if (window.scrollY > 600) {
     bar.style.transform = 'translateY(0)';
   } else {
@@ -4183,10 +4249,31 @@ window.addEventListener('scroll', function() {
 }, { passive: true });
 </script>
 <script>
+/* ─── HOMEPAGE FUNNEL (Plausible) ─── */
+(function() {
+  var form = document.getElementById('chart-form');
+  if (!form) return;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        if (window.plausible) plausible('form_view');
+      }
+    }, { threshold: 0.3 }).observe(form);
+  }
+  var started = false;
+  form.addEventListener('focusin', function() {
+    if (!started && window.plausible) {
+      started = true;
+      plausible('form_start');
+    }
+  });
+})();
+</script>
+<script>
 /* COOKIE CONSENT — FIX-07 */
 (function() {
   var KEY = 'guanlan_cookie_consent';
-  var stored = localStorage.getItem(KEY);
+  var stored = window.__storage.get(KEY);
   if (stored === 'accepted' || stored === 'rejected') return;
 
   var banner = document.getElementById('cookie-consent');
@@ -4208,7 +4295,8 @@ window.addEventListener('scroll', function() {
   banner.style.display = 'block';
 
   function dismiss(choice) {
-    localStorage.setItem(KEY, choice);
+    window.__storage.set(KEY, choice);
+    try { window.__session.set(KEY, choice); } catch (e) {}
     banner.style.transform = 'translateY(120%)';
     banner.style.transition = 'transform 0.4s ease';
     setTimeout(function() { banner.style.display = 'none'; }, 450);
@@ -4218,6 +4306,30 @@ window.addEventListener('scroll', function() {
   var rejectBtn = document.getElementById('cookie-reject');
   if (acceptBtn) acceptBtn.addEventListener('click', function() { dismiss('accepted'); });
   if (rejectBtn) rejectBtn.addEventListener('click', function() { dismiss('rejected'); });
+})();
+</script>
+<script>
+/* ─── CHECKOUT UTM + GA4 ─── */
+(function() {
+  var links = document.querySelectorAll('a[href*="checkout.html"]');
+  links.forEach(function(link) {
+    var href = link.getAttribute('href') || '';
+    if (href.indexOf('utm_source=') !== -1) return;
+    var product = (href.match(/product=([^&]+)/) || [])[1] || 'unknown';
+    var parent = link.closest('section, header, nav, footer');
+    var section = (parent && parent.id) ? parent.id : 'page';
+    var sep = href.indexOf('?') === -1 ? '?' : '&';
+    link.setAttribute('href', href + sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product));
+    link.addEventListener('click', function() {
+      if (window.gtag) {
+        gtag('event', 'begin_checkout', {
+          item_name: product,
+          item_category: 'ziwei_reading',
+          source_section: section
+        });
+      }
+    });
+  });
 })();
 </script>
 </body>
