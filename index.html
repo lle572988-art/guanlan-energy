@@ -29,19 +29,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --void: #050508;
-  --deep: #09080F;
-  --surface: #0F0E18;
-  --layer: #141222;
-  --rim: #1E1A30;
+  --bg-primary: #0d0d12;
+  --bg-card: #13131a;
+  --bg-form: #1a1f2e;
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --text-muted: rgba(255, 255, 255, 0.55);
+  --void: #0d0d12;
+  --deep: #13131a;
+  --surface: #161622;
+  --layer: #1a1f2e;
+  --rim: #242036;
   --gold: #C9943A;
   --gold-light: #E8C87A;
-  --gold-dim: #6B4E1E;
-  --silver: #A8C4D8;
-  --silver-dim: #4A6070;
-  --text: #C8D4E0;
-  --text-dim: #6A8A9A;
-  --parchment: #E2D4B8;
+  --gold-dim: #8A6A30;
+  --silver: #C8DCE8;
+  --silver-dim: rgba(255, 255, 255, 0.55);
+  --text: var(--text-primary);
+  --text-dim: var(--text-secondary);
+  --parchment: #EDE4D0;
   --amethyst: #3D2655;
   --amethyst-glow: rgba(61, 38, 85, 0.3);
   --r: 0.5rem;
@@ -52,18 +58,35 @@
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--void);
+  background: var(--bg-primary);
   background-image: radial-gradient(
     ellipse at 30% 20%,
-    rgba(61, 38, 85, 0.08) 0%,
+    rgba(61, 38, 85, 0.1) 0%,
     transparent 60%
   );
-  color: var(--text);
+  color: var(--text-primary);
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 19px;
   line-height: 1.7;
   overflow-x: hidden;
   cursor: default;
+}
+
+p {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.feature-item,
+.pricing-features li {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.palace-name-en,
+.palace-label,
+.palace-num,
+.cred-label,
+.stat-label {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* ─── STAR FIELD ─── */
@@ -241,28 +264,30 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6rem 0;
+  padding: 5rem 0 4rem;
   overflow: hidden;
 }
-
 
 .hero-container,
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(340px, 440px) minmax(540px, 1.2fr);
-  gap: clamp(32px, 4vw, 72px);
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
   align-items: center;
   max-width: 1320px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 clamp(24px, 4vw, 56px);
+  padding: 0 5%;
+  min-height: calc(100vh - 7rem);
 }
 
 .hero-left {
   padding: 0;
-  position: relative; z-index: 2;
-  max-width: 440px;
+  position: relative;
+  z-index: 2;
   width: 100%;
+  max-width: 520px;
+  justify-self: start;
 }
 #hero::after {
   content: '';
@@ -278,16 +303,16 @@ body {
 }
 
 .hero-copy {
-  margin-bottom: 1.75rem;
+  margin-bottom: 1rem;
 }
 
 .hero-eyebrow {
   font-family: 'Cinzel', serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.28em;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   color: var(--gold);
   text-transform: uppercase;
-  margin-bottom: 1.6rem;
+  margin-bottom: 0.5rem;
   display: flex; align-items: center; gap: 0.7rem;
   opacity: 0;
   animation: fadeUp 0.8s 0.2s forwards;
@@ -302,21 +327,38 @@ body {
 
 .hero-h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.4rem, 3.6vw, 3.5rem);
   font-weight: 300;
-  line-height: 1.12;
+  line-height: 1.08;
   color: var(--parchment);
   letter-spacing: -0.01em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.65rem;
   text-wrap: balance;
   opacity: 0;
   animation: fadeUp 0.8s 0.35s forwards;
 }
-.hero-h1 em {
+.hero-title-small {
+  display: block;
+  font-size: clamp(1.6rem, 2.2vw, 2rem);
+  margin-bottom: 0.1rem;
+}
+.hero-h1 em,
+.hero-title-large {
   font-style: italic;
   color: var(--gold-light);
   display: block;
-  margin-top: 0.08em;
+  font-size: clamp(2.2rem, 3.2vw, 3rem);
+}
+
+.hero-lead {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--text-dim);
+  line-height: 1.55;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.45s forwards;
 }
 
 .hero-subtitle {
@@ -343,10 +385,17 @@ body {
 .hero-body strong { color: var(--silver); font-weight: 500; }
 
 .trust-row {
-  display: flex; align-items: center; gap: 1rem;
-  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
   opacity: 0;
   animation: fadeUp 0.8s 0.65s forwards;
+}
+.chart-trust-row {
+  margin-top: 1rem;
+  justify-content: center;
+  text-align: center;
 }
 .trust-dot {
   width: 5px; height: 5px; border-radius: 50%;
@@ -362,8 +411,8 @@ body {
 
 /* ─── FORM ─── */
 .chart-form {
-  background: rgba(34, 53, 82, 0.88);
-  border: 1px solid rgba(212,168,85,0.28);
+  background: var(--bg-form);
+  border: 1px solid rgba(212,168,85,0.32);
   border-radius: 2px;
   padding: 1.5rem;
   width: 100%;
@@ -562,14 +611,17 @@ body {
   height: auto;
   min-height: 0;
   padding: 0;
+  overflow: visible;
+  justify-self: end;
 }
 
 #zwds-chart {
   width: 100%;
-  max-width: min(520px, 44vw);
+  max-width: 480px;
   height: auto;
   aspect-ratio: 1 / 1;
   margin: 0 auto;
+  margin-top: 0;
   position: static;
 }
 
@@ -583,6 +635,7 @@ body {
   opacity: 0;
   width: 100%;
   margin: 0 auto;
+  margin-top: 0;
   position: static;
 }
 
@@ -627,7 +680,7 @@ body {
   color: var(--silver-dim);
   margin-top: 0.8rem;
   text-transform: none;
-  max-width: min(520px, 44vw);
+  max-width: 480px;
 }
 
 /* ─── DIVIDER ─── */
@@ -1712,36 +1765,47 @@ footer {
 
 /* ─── RESPONSIVE ─── */
 @media (min-width: 1025px) {
+  #hero {
+    overflow: visible;
+  }
   .hero-container,
   .hero-grid {
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 60px;
+    gap: 40px;
     min-height: calc(100vh - 7rem);
   }
   .hero-left {
-    order: 1;
-    max-width: none;
+    max-width: 520px;
   }
   .chart-form {
     max-width: none;
   }
   .hero-copy {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.85rem;
   }
   .hero-right {
-    order: -1;
-    flex-direction: column;
-    padding: 0;
-    align-self: center;
+    align-items: flex-end;
+    overflow: visible;
   }
   #zwds-chart,
   .chart-preview {
-    max-width: min(500px, 100%);
+    max-width: 480px;
+    transform: translateX(5%);
+  }
+  @keyframes chartReveal {
+    from {
+      opacity: 0;
+      transform: scale(0.94) translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0) translateX(5%);
+    }
   }
   #hero::after {
-    right: auto;
-    left: -5%;
+    right: -5%;
+    left: auto;
   }
 }
 
@@ -1772,7 +1836,8 @@ footer {
     min-height: auto;
     padding: 0.5rem 0 1.5rem;
   }
-  #zwds-chart { display: none !important; }
+  #zwds-chart { display: none !important; transform: none; }
+  .chart-preview { transform: none; }
   .chart-mobile-thumb { display: block; }
   .chart-hint { font-size: 0.5rem; letter-spacing: 0.14em; }
   .form-mini-reviews { gap: 0.5rem; }
@@ -1796,13 +1861,14 @@ footer {
   .urgency-bar { order: 2; }
   .chart-form { order: 3; max-width: 100%; }
   .hero-right { order: 4; }
-  .trust-row { justify-content: center; }
+  .chart-trust-row { justify-content: center; }
   #hero {
     padding-top: 8rem;
     padding-bottom: 3rem;
   }
   .hero-right { height: auto; padding: 1rem 0 2rem; }
-  #zwds-chart { width: min(480px, 92vw); height: min(480px, 92vw); }
+  #zwds-chart { width: min(480px, 92vw); height: min(480px, 92vw); transform: none; }
+  .chart-preview { transform: none; }
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .about-portrait { max-width: 300px; }
   .pricing-grid, .testimonials-grid { grid-template-columns: 1fr; }
@@ -1947,23 +2013,10 @@ body::before {
       <div class="hero-eyebrow">Purple Star Astrology · Zi Wei Dou Shu · 紫微斗數</div>
 
       <h1 class="hero-h1">
-        Your <em>Zi Wei Dou Shu Chart</em>
+        <span class="hero-title-small">Your</span>
+        <em class="hero-title-large">Zi Wei Dou Shu Chart</em>
       </h1>
-      <p class="hero-subtitle">The Most Detailed Chinese Astrology System</p>
-
-      <p class="hero-body">
-        <strong>Real chart calculation. Real human interpretation.</strong><br>
-        The ancient imperial system — used by the Son of Heaven to understand the patterns of fate — now available in English for the first time.
-      </p>
-
-      <div class="trust-row">
-        <div class="trust-dot"></div>
-        <span>Professional Calculation</span>
-        <div class="trust-dot"></div>
-        <span>Human Interpretation</span>
-        <div class="trust-dot"></div>
-        <span>500+ Charts Read</span>
-      </div>
+      <p class="hero-lead">Real chart calculation and human interpretation — the imperial system, now in English.</p>
       </div>
 
       <div class="urgency-bar">
@@ -2230,6 +2283,14 @@ body::before {
         Hover any palace to explore ·
         Enter your birth data to unlock yours
       </p>
+      <div class="trust-row chart-trust-row">
+        <div class="trust-dot"></div>
+        <span>Professional Calculation</span>
+        <div class="trust-dot"></div>
+        <span>Human Interpretation</span>
+        <div class="trust-dot"></div>
+        <span>500+ Charts Read</span>
+      </div>
     </div>
   </div>
 </section>
@@ -2737,7 +2798,8 @@ body::before {
     ctx.clearRect(0, 0, W, H);
     t += 0.008;
     stars.forEach(s => {
-      const alpha = s.a * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase));
+      const pulse = 0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase);
+      const alpha = Math.min(0.95, 0.28 + s.a * 0.42 + pulse * 0.38);
       ctx.beginPath();
       ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(200, 220, 255, ${alpha})`;

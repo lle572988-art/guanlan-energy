@@ -20,45 +20,66 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --void: #050508;
-    --deep: #09080F;
-    --surface: #0F0E18;
-    --layer: #141222;
-    --rim: #1E1A30;
+    --bg-primary: #0d0d12;
+    --bg-card: #13131a;
+    --bg-form: #1a1f2e;
+    --text-primary: rgba(255, 255, 255, 0.95);
+    --text-secondary: rgba(255, 255, 255, 0.75);
+    --text-muted: rgba(255, 255, 255, 0.55);
+    --void: #0d0d12;
+    --deep: #13131a;
+    --surface: #161622;
+    --layer: #1a1f2e;
+    --rim: #242036;
     --gold: #C9943A;
     --gold-light: #E8C87A;
-    --gold-dim: #6B4E1E;
-    --silver: #A8C4D8;
-    --silver-dim: #4A6070;
-    --text: #C8D4E0;
-    --text-dim: #6A8A9A;
-    --parchment: #E2D4B8;
+    --gold-dim: #8A6A30;
+    --silver: #C8DCE8;
+    --silver-dim: rgba(255, 255, 255, 0.55);
+    --text: var(--text-primary);
+    --text-dim: var(--text-secondary);
+    --parchment: #EDE4D0;
     --amethyst: #3D2655;
     --amethyst-glow: rgba(61, 38, 85, 0.3);
-    --text-primary: var(--text);
-    --text-muted: var(--text-dim);
     --text-gold: var(--gold-light);
     --navy: var(--void);
     --navy-mid: var(--deep);
     --navy-card: var(--surface);
-    --navy-border: rgba(212, 168, 85, 0.28);
+    --navy-border: rgba(212, 168, 85, 0.32);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: var(--void);
+    background: var(--bg-primary);
     background-image: radial-gradient(
       ellipse at 30% 20%,
-      rgba(61, 38, 85, 0.08) 0%,
+      rgba(61, 38, 85, 0.1) 0%,
       transparent 60%
     );
-    color: var(--text);
+    color: var(--text-primary);
     font-family: 'EB Garamond', Georgia, serif;
     font-size: 19px;
     line-height: 1.7;
     min-height: 100vh;
     overflow-x: hidden;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .feature-item,
+  .pricing-features li {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .palace-name-en,
+  .palace-label,
+  .palace-num,
+  .cred-label,
+  .stat-label {
+    color: rgba(255, 255, 255, 0.6);
   }
 
   body::before {
