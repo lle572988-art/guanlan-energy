@@ -20,26 +20,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --void: #03070F;
-    --deep: #060D1A;
-    --surface: #0C1628;
-    --layer: #111E35;
-    --rim: #1A2D4A;
-    --gold: #C5984A;
-    --gold-light: #E2C27A;
-    --gold-dim: #7A5C28;
-    --silver: #9BB5CC;
-    --silver-dim: #4A6680;
-    --parchment: #D4C4A0;
-    --text: #C8D8E8;
-    --text-dim: #7FA0BA;
+    --void: #121E32;
+    --deep: #182840;
+    --surface: #223552;
+    --layer: #2A4060;
+    --rim: #345070;
+    --gold: #D4A855;
+    --gold-light: #F0D48A;
+    --gold-dim: #9A7840;
+    --silver: #C0D4E8;
+    --silver-dim: #7A9AB8;
+    --parchment: #F0E6CC;
+    --text: #E8F0FA;
+    --text-dim: #A8C0D8;
     --text-primary: var(--text);
     --text-muted: var(--text-dim);
     --text-gold: var(--gold-light);
     --navy: var(--void);
     --navy-mid: var(--deep);
     --navy-card: var(--surface);
-    --navy-border: rgba(197, 152, 74, 0.18);
+    --navy-border: rgba(212, 168, 85, 0.28);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,8 +48,8 @@
     background: var(--void);
     color: var(--text);
     font-family: 'EB Garamond', Georgia, serif;
-    font-size: 17px;
-    line-height: 1.65;
+    font-size: 19px;
+    line-height: 1.7;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -73,7 +73,7 @@
     justify-content: space-between;
     padding: 1.2rem 3rem;
     border-bottom: 1px solid rgba(197, 152, 74, 0.12);
-    background: linear-gradient(to bottom, rgba(3,7,15,0.95) 0%, rgba(3,7,15,0.88) 100%);
+    background: linear-gradient(to bottom, rgba(18,30,50,0.96) 0%, rgba(18,30,50,0.88) 100%);
     backdrop-filter: blur(8px);
   }
 
@@ -1169,7 +1169,7 @@
     <div class="palace-grid" id="palace-grid"></div>
     <div id="email-gate-embedded" class="gate-embedded">
       <h2>Unlock Your Full 12-Palace Cosmic Map</h2>
-      <p>Enter your email below to instantly generate and download your comprehensive 8-page illustrated PDF report, unlocking all 12 palaces including Relationships, Health, and Real Estate alignment.</p>
+      <p>Enter your email once here to unlock all 12 palace readings and receive your comprehensive PDF report — including Relationships, Health, and Property alignment.</p>
       <form id="gate-form" onsubmit="return submitGate(event)">
         <input class="fi" type="text" id="gate-name" placeholder="Your name" autocomplete="name">
         <input class="fi" type="email" id="gate-email" placeholder="Your email address" autocomplete="email" required>

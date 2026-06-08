@@ -29,21 +29,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --void: #03070F;
-  --deep: #060D1A;
-  --surface: #0C1628;
-  --layer: #111E35;
-  --rim: #1A2D4A;
-  --gold: #C5984A;
-  --gold-light: #E2C27A;
-  --gold-dim: #7A5C28;
-  --silver: #9BB5CC;
-  --silver-dim: #4A6680;
-  --amethyst: #5C3D7A;
-  --amethyst-glow: rgba(92, 61, 122, 0.25);
-  --parchment: #D4C4A0;
-  --text: #C8D8E8;
-  --text-dim: #7FA0BA;
+  --void: #121E32;
+  --deep: #182840;
+  --surface: #223552;
+  --layer: #2A4060;
+  --rim: #345070;
+  --gold: #D4A855;
+  --gold-light: #F0D48A;
+  --gold-dim: #9A7840;
+  --silver: #C0D4E8;
+  --silver-dim: #7A9AB8;
+  --amethyst: #6E4A8E;
+  --amethyst-glow: rgba(110, 74, 142, 0.2);
+  --parchment: #F0E6CC;
+  --text: #E8F0FA;
+  --text-dim: #A8C0D8;
   --r: 0.5rem;
 }
 
@@ -55,8 +55,8 @@ body {
   background: var(--void);
   color: var(--text);
   font-family: 'EB Garamond', Georgia, serif;
-  font-size: 17px;
-  line-height: 1.65;
+  font-size: 19px;
+  line-height: 1.7;
   overflow-x: hidden;
   cursor: default;
 }
@@ -74,7 +74,7 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.2rem 4rem;
   border-bottom: 1px solid rgba(197, 152, 74, 0.12);
-  background: linear-gradient(to bottom, rgba(3,7,15,0.92) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(18,30,50,0.96) 0%, rgba(18,30,50,0.85) 100%);
   backdrop-filter: blur(8px);
 }
 .nav-brand {
@@ -86,7 +86,7 @@ body {
 }
 .nav-name {
   font-family: 'Cinzel', serif;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   letter-spacing: 0.18em;
   color: var(--gold);
   text-transform: uppercase;
@@ -106,7 +106,7 @@ body {
 }
 .nav-links a {
   font-family: 'Cinzel', serif;
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   letter-spacing: 0.15em;
   color: var(--silver-dim);
   text-decoration: none;
@@ -243,8 +243,8 @@ body {
 
 .hero-container {
   display: grid;
-  grid-template-columns: minmax(320px, 440px) minmax(480px, 1fr);
-  gap: clamp(32px, 4vw, 64px);
+  grid-template-columns: minmax(340px, 440px) minmax(540px, 1.2fr);
+  gap: clamp(32px, 4vw, 72px);
   align-items: center;
   max-width: 1320px;
   width: 100%;
@@ -357,8 +357,8 @@ body {
 
 /* ─── FORM ─── */
 .chart-form {
-  background: rgba(12, 22, 40, 0.7);
-  border: 1px solid rgba(197,152,74,0.18);
+  background: rgba(34, 53, 82, 0.88);
+  border: 1px solid rgba(212,168,85,0.28);
   border-radius: 2px;
   padding: 1.5rem;
   width: 100%;
@@ -376,7 +376,7 @@ body {
 
 .form-title {
   font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
+  font-size: 0.72rem;
   letter-spacing: 0.2em;
   color: var(--gold);
   text-transform: uppercase;
@@ -387,20 +387,20 @@ body {
 .form-label {
   display: block;
   font-family: 'Cinzel', serif;
-  font-size: 0.58rem;
-  letter-spacing: 0.18em;
-  color: var(--silver-dim);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  color: var(--silver);
   text-transform: uppercase;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 .form-input, .form-select {
   width: 100%;
-  background: rgba(6, 13, 26, 0.8);
-  border: 1px solid rgba(74, 102, 128, 0.4);
+  background: rgba(24, 40, 64, 0.92);
+  border: 1px solid rgba(122, 154, 184, 0.45);
   color: var(--text);
   font-family: 'EB Garamond', serif;
-  font-size: 0.95rem;
-  padding: 0.6rem 0.9rem;
+  font-size: 1.05rem;
+  padding: 0.72rem 1rem;
   border-radius: 1px;
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
@@ -414,7 +414,7 @@ body {
 .form-select option { background: #0A1525; }
 
 .form-hint {
-  font-size: 0.75rem;
+  font-size: 0.88rem;
   font-style: italic;
   color: var(--text-dim);
   margin-top: 0.25rem;
@@ -467,13 +467,13 @@ body {
   align-items: center;
   justify-content: center;
   height: auto;
-  min-height: min(620px, 78vh);
+  min-height: min(760px, 88vh);
   padding-left: clamp(0px, 2vw, 24px);
 }
 
 #zwds-chart {
-  width: min(600px, 100%);
-  height: min(600px, 100%);
+  width: min(720px, 100%);
+  height: min(720px, 100%);
   position: relative;
 }
 
@@ -1062,32 +1062,47 @@ section {
   position: fixed;
   z-index: 200;
   pointer-events: none;
-  padding: 0.55rem 0.85rem;
-  background: rgba(6,13,26,0.96);
-  border: 1px solid rgba(197,152,74,0.35);
-  border-radius: 1px;
-  font-family: 'Cinzel', serif;
-  font-size: 0.62rem;
-  letter-spacing: 0.1em;
-  color: var(--gold);
-  white-space: nowrap;
+  padding: 0.85rem 1rem;
+  background: rgba(24, 40, 64, 0.98);
+  border: 1px solid rgba(212,168,85,0.45);
+  border-radius: 2px;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  white-space: normal;
+  max-width: 300px;
+  line-height: 1.55;
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.2s, transform 0.2s;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
 }
 #palace-tooltip.visible {
   opacity: 1;
   transform: translateY(0);
 }
+#palace-tooltip .tooltip-title {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
 #palace-tooltip .tooltip-en {
   display: block;
-  font-family: 'EB Garamond', serif;
-  font-size: 0.75rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
   font-style: italic;
-  letter-spacing: 0.04em;
-  color: var(--silver);
-  margin-top: 0.2rem;
+  color: var(--parchment);
+  margin-bottom: 0.4rem;
+}
+#palace-tooltip .tooltip-desc {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--text);
+  letter-spacing: 0.01em;
 }
 
 /* ─── TESTIMONIALS ─── */
@@ -1291,7 +1306,7 @@ footer {
     padding-bottom: 3rem;
   }
   .hero-right { height: auto; padding: 1rem 0 2rem; }
-  #zwds-chart { width: min(400px, 88vw); height: min(400px, 88vw); }
+  #zwds-chart { width: min(480px, 92vw); height: min(480px, 92vw); }
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .about-portrait { max-width: 300px; }
   .pricing-grid, .testimonials-grid { grid-template-columns: 1fr; }
@@ -1503,34 +1518,16 @@ body::before {
         </div>
 
         <div class="form-row">
-          <label class="form-label" for="country" id="country-label" style="font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:1rem;line-height:1.5;">
+          <label class="form-label" for="country" id="country-label" style="font-family:'Cormorant Garamond',serif;color:var(--gold-light);font-size:1.08rem;line-height:1.5;">
             Birth Location (Highly Recommended) — Used for precise true solar time alignment to maximize chart accuracy.
           </label>
           <input class="form-input" type="text" id="country" name="country" placeholder="e.g. London, United Kingdom" autocomplete="country-name" aria-describedby="country-label">
         </div>
 
-        <div class="form-row">
-          <label class="form-label" for="email">Email Address</label>
-          <input
-            class="form-input"
-            type="email"
-            id="email"
-            name="email"
-            placeholder="your@email.com"
-            autocomplete="email"
-            aria-required="true"
-            required
-            aria-describedby="email-hint"
-          >
-          <p id="email-hint" class="form-hint">
-            Your chart link + interpretation notes are sent here. We never spam.
-          </p>
-        </div>
-
         <button class="btn-primary" type="submit">
           ◆ &nbsp; Calculate My Fate Map — Free &nbsp; ◆
         </button>
-        <p class="form-sub">✓ Free chart &nbsp;·&nbsp; <span>Delivered to your email</span> &nbsp;·&nbsp; Results in 30 seconds</p>
+        <p class="form-sub">✓ Free chart preview &nbsp;·&nbsp; <span>Unlock full report with email on results page</span> &nbsp;·&nbsp; Results in 30 seconds</p>
       </form>
     </div>
 
@@ -1748,7 +1745,8 @@ body::before {
   <div class="seo-intro-inner reveal">
     <h2>What is <em>Zi Wei Dou Shu</em>? (Purple Star Astrology)</h2>
     <p><strong>Zi Wei Dou Shu</strong> (紫微斗數), often called <strong>Purple Star Astrology</strong> in English, is the most granular system in Chinese metaphysics. Developed during the Song Dynasty for imperial court use, it maps your birth moment onto a 12-palace board populated by over 100 stars — revealing patterns in career, wealth, relationships, health, and timing that simpler systems cannot reach.</p>
-    <p>Unlike Western astrology's sun-sign generalizations, a Zi Wei chart is built from your exact birth date, <strong>Chinese birth hour</strong> (two-hour branch), and ideally your birth location for true solar time. Each of the twelve palaces governs a life domain: Life (self), Wealth, Career, Spouse, Health, Travel, and more. The interaction of major stars like Zi Wei (Purple Emperor), Wu Qu (Commander), and Tai Yin (Lunar Nobility) creates a unique blueprint no two people share.</p>
+    <p>Unlike Western astrology's sun-sign generalizations, a Zi Wei chart is built from your exact birth date, <strong>birth hour</strong> (a two-hour time branch), and ideally your birth location for true solar time. Each of the twelve palaces governs a life domain: Life (self), Wealth, Career, Spouse, Health, Travel, and more. The interaction of major stars like Zi Wei (Purple Emperor), Wu Qu (Commander), and Tai Yin (Lunar Nobility) creates a unique blueprint no two people share.</p>
+    <p>Wherever you were born — in Asia, Europe, the Americas, or anywhere else — as long as you enter your birth date and birth hour, you can receive your personal Zi Wei Dou Shu natal chart in English.</p>
     <p>Guanlan Energy offers a <a href="free-chart.html">free Zi Wei Dou Shu calculator</a> that generates your natal board in seconds, plus optional professional PDF readings for deeper interpretation. Whether you are comparing <a href="/blog/zi-wei-dou-shu-vs-bazi.html">Zi Wei Dou Shu vs BaZi</a> or exploring your <a href="#palaces">twelve palaces</a>, this is the most detailed Chinese astrology reading available in English today.</p>
     <div class="seo-faq-preview">
       <h3>Common Questions</h3>
@@ -1758,7 +1756,7 @@ body::before {
       </div>
       <div class="seo-faq-item">
         <strong>Do I need my exact birth hour?</strong>
-        <p>Yes. The birth hour determines palace placement and the Life Palace position. Without it, the chart shifts entirely. Our calculator accepts standard two-hour branches (Zi, Chou, Yin…).</p>
+        <p>Yes. The birth hour determines palace placement and the Life Palace position. Without it, the chart shifts entirely. Our calculator accepts standard two-hour branches (Zi, Chou, Yin…), wherever you were born in the world.</p>
       </div>
       <div class="seo-faq-item">
         <strong>Is this a free Chinese astrology reading?</strong>
@@ -2379,18 +2377,18 @@ body::before {
 /* ─── PALACE SVG TOOLTIPS ─── */
 (function() {
   var PALACES = [
-    { x: 60, y: 60, cn: '命宮', en: 'Life Palace' },
-    { x: 170, y: 60, cn: '父母宮', en: 'Parents Palace' },
-    { x: 280, y: 60, cn: '福德宮', en: 'Virtue Palace' },
-    { x: 390, y: 60, cn: '田宅宮', en: 'Property Palace' },
-    { x: 60, y: 170, cn: '兄弟宮', en: 'Siblings Palace' },
-    { x: 390, y: 170, cn: '官祿宮', en: 'Career Palace' },
-    { x: 60, y: 280, cn: '夫妻宮', en: 'Spouse Palace' },
-    { x: 390, y: 280, cn: '仆役宮', en: 'Friends Palace' },
-    { x: 60, y: 390, cn: '子女宮', en: 'Children Palace' },
-    { x: 170, y: 390, cn: '財帛宮', en: 'Wealth Palace' },
-    { x: 280, y: 390, cn: '疾厄宮', en: 'Health Palace' },
-    { x: 390, y: 390, cn: '遷移宮', en: 'Travel Palace' }
+    { x: 60, y: 60, cn: '命宮', en: 'Life & Destiny Palace', desc: 'Your core character, life mission, and overall fate trajectory — the most important palace in any chart.' },
+    { x: 170, y: 60, cn: '父母宮', en: 'Parents Palace', desc: 'Your relationship with parents and authority figures, plus the mentors and guides who shape your path.' },
+    { x: 280, y: 60, cn: '福德宮', en: 'Virtue & Fortune Palace', desc: 'Inner happiness, spiritual inclination, and the quality of joy available to you across life.' },
+    { x: 390, y: 60, cn: '田宅宮', en: 'Property Palace', desc: 'Real estate luck, home environment, family heritage, and whether property brings fortune or burden.' },
+    { x: 60, y: 170, cn: '兄弟宮', en: 'Siblings Palace', desc: 'Bonds with siblings and close peers, plus your capacity for collaboration and mutual support.' },
+    { x: 390, y: 170, cn: '官祿宮', en: 'Career & Status Palace', desc: 'Professional vocation, public reputation, and the work path most aligned with your nature.' },
+    { x: 60, y: 280, cn: '夫妻宮', en: 'Spouse & Romance Palace', desc: 'Intimate partnership patterns, who you attract, and the dynamics governing your love life.' },
+    { x: 390, y: 280, cn: '仆役宮', en: 'Friends & Servants Palace', desc: 'Colleagues, helpers, and social networks that either elevate your path or drain your energy.' },
+    { x: 60, y: 390, cn: '子女宮', en: 'Children Palace', desc: 'Children, creative output, legacy, and how you nurture what you bring into the world.' },
+    { x: 170, y: 390, cn: '財帛宮', en: 'Wealth Palace', desc: 'How you earn, manage, and lose money — whether fortune flows through skill, relationships, or timing.' },
+    { x: 280, y: 390, cn: '疾厄宮', en: 'Health Palace', desc: 'Constitutional health tendencies, vulnerability periods, and how wellbeing connects to your life path.' },
+    { x: 390, y: 390, cn: '遷移宮', en: 'Travel & Migration Palace', desc: 'Luck away from home, relocation potential, international fortune, and outside environments.' }
   ];
   var ns = 'http://www.w3.org/2000/svg';
   var svg = document.getElementById('chart-svg');
@@ -2401,16 +2399,21 @@ body::before {
   hitsG.setAttribute('id', 'palace-hits');
 
   function showTooltip(evt, palace) {
-    tooltip.innerHTML = palace.cn + '<span class="tooltip-en">' + palace.en + '</span>';
+    tooltip.innerHTML =
+      '<span class="tooltip-title">' + palace.cn + '</span>' +
+      '<span class="tooltip-en">' + palace.en + '</span>' +
+      '<span class="tooltip-desc">' + palace.desc + '</span>';
     tooltip.classList.add('visible');
     tooltip.setAttribute('aria-hidden', 'false');
     moveTooltip(evt);
   }
   function moveTooltip(evt) {
-    var x = (evt.clientX || 0) + 14;
-    var y = (evt.clientY || 0) - 10;
-    tooltip.style.left = x + 'px';
-    tooltip.style.top = y + 'px';
+    var x = (evt.clientX || 0) + 16;
+    var y = (evt.clientY || 0) - 12;
+    var maxX = window.innerWidth - 320;
+    var maxY = window.innerHeight - 140;
+    tooltip.style.left = Math.min(x, maxX) + 'px';
+    tooltip.style.top = Math.min(y, maxY) + 'px';
   }
   function hideTooltip() {
     tooltip.classList.remove('visible');
@@ -2464,7 +2467,6 @@ function handleSubmit(event) {
 
   const dobInput = form.querySelector('#dob');
   const hourSelect = form.querySelector('#hour');
-  const emailInput = form.querySelector('#email');
 
   let valid = true;
   if (!dobInput || !dobInput.value) {
@@ -2478,12 +2480,6 @@ function handleSubmit(event) {
     valid = false;
   } else if (hourSelect) {
     hourSelect.style.borderColor = '';
-  }
-  if (!emailInput || !emailInput.value.trim()) {
-    if (emailInput) emailInput.style.borderColor = 'red';
-    valid = false;
-  } else if (emailInput) {
-    emailInput.style.borderColor = '';
   }
   if (!valid) return false;
 
@@ -2501,14 +2497,12 @@ function handleSubmit(event) {
   const hourIndex = hourMap[hourValue] ?? 6;
   const hourLabel = hourSelect.options[hourSelect.selectedIndex]?.text || '';
   const country = (form.querySelector('#country')?.value || '').trim();
-  const email = (form.querySelector('#email')?.value || '').trim();
 
   const params = new URLSearchParams({
     date: dobInput.value,
     hour: hourIndex,
     hourLabel: hourLabel,
-    country: country,
-    email: email
+    country: country
   });
 
   setTimeout(function() {
@@ -2618,7 +2612,7 @@ window.addEventListener('scroll', () => {
         "name": "How do I get a free Zi Wei Dou Shu chart?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Enter your date of birth and Chinese birth hour on our homepage calculator. Your personalized 12-palace chart generates instantly at free-chart.html with Life, Wealth, and Career palace previews."
+          "text": "Enter your date of birth and birth hour on our homepage calculator. Your personalized 12-palace chart generates instantly at free-chart.html with Life, Wealth, and Career palace previews."
         }
       },
       {
@@ -2652,5 +2646,128 @@ window.addEventListener('scroll', () => {
   </script>
   <script defer src="https://gumroad.com/js/gumroad.js"></script>
   <script defer src="/js/cookie-consent.js"></script>
+
+<!-- EXIT INTENT POPUP -->
+<div id="exit-popup" style="
+  display:none; position:fixed; inset:0; z-index:9000;
+  background:rgba(3,7,15,0.85); backdrop-filter:blur(6px);
+  align-items:center; justify-content:center;
+">
+  <div style="
+    background:linear-gradient(160deg,var(--surface),var(--deep));
+    border:1px solid rgba(197,152,74,0.35);
+    max-width:480px; width:90%; padding:2.5rem;
+    position:relative; text-align:center;
+  ">
+    <button onclick="closeExitPopup()" style="
+      position:absolute;top:1rem;right:1rem;
+      background:transparent;border:none;
+      color:var(--silver-dim);font-size:1.2rem;cursor:pointer;
+    ">×</button>
+    <div style="font-family:'Cinzel',serif;font-size:0.6rem;
+      letter-spacing:0.2em;color:var(--gold);margin-bottom:1rem;">
+      WAIT — YOUR CHART IS FREE
+    </div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;
+      font-weight:300;color:var(--parchment);margin-bottom:1rem;">
+      Don't leave without your<br><em style="color:var(--gold-light);">Purple Star Blueprint</em>
+    </h3>
+    <p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:1.5rem;">
+      Enter your email and we'll send your free 12-palace preview + a $5 coupon for your first reading.
+    </p>
+    <form onsubmit="handleExitCapture(event)" style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+      <input type="email" placeholder="your@email.com" id="exit-email" required style="
+        flex:1;min-width:180px;
+        background:rgba(6,13,26,0.8);border:1px solid rgba(74,102,128,0.4);
+        color:var(--text);font-family:'EB Garamond',serif;font-size:0.95rem;
+        padding:0.7rem 0.9rem;border-radius:1px;outline:none;
+      ">
+      <button type="submit" style="
+        background:var(--gold);color:var(--void);
+        font-family:'Cinzel',serif;font-size:0.65rem;
+        letter-spacing:0.15em;text-transform:uppercase;
+        border:none;padding:0.7rem 1.2rem;cursor:pointer;border-radius:1px;
+        white-space:nowrap;
+      ">Send My Chart</button>
+    </form>
+    <p style="font-size:0.72rem;color:var(--text-dim);margin-top:0.8rem;font-style:italic;">
+      No spam. Unsubscribe anytime.
+    </p>
+  </div>
+</div>
+
+<div id="sticky-cta" style="
+  display:none; position:fixed; bottom:0; left:0; right:0;
+  z-index:500; padding:0.9rem 2rem;
+  background:rgba(6,13,26,0.97);
+  border-top:1px solid rgba(197,152,74,0.3);
+  backdrop-filter:blur(8px);
+  align-items:center; justify-content:space-between;
+  gap:1rem; transform:translateY(100%);
+  transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+">
+  <div>
+    <div style="font-family:'Cinzel',serif;font-size:0.62rem;
+      letter-spacing:0.15em;color:var(--gold);">
+      YOUR FREE CHART IS WAITING
+    </div>
+    <div style="font-size:0.82rem;color:var(--text-dim);font-style:italic;">
+      Zi Wei Dou Shu · 12-palace fate map · delivered to your email
+    </div>
+  </div>
+  <button onclick="document.getElementById('chart-form').scrollIntoView({behavior:'smooth'})"
+    style="
+      background:var(--gold);color:var(--void);
+      font-family:'Cinzel',serif;font-size:0.62rem;
+      letter-spacing:0.15em;text-transform:uppercase;
+      border:none;padding:0.75rem 1.5rem;cursor:pointer;
+      border-radius:1px;flex-shrink:0;white-space:nowrap;
+    ">
+    Get My Free Chart →
+  </button>
+  <button onclick="this.parentElement.style.transform='translateY(100%)'"
+    style="background:transparent;border:none;color:var(--silver-dim);
+      font-size:1.1rem;cursor:pointer;flex-shrink:0;">×</button>
+</div>
+
+<script>
+// Exit Intent Logic
+let exitShown = false;
+document.addEventListener('mouseleave', function(e) {
+  if (e.clientY <= 0 && !exitShown && !sessionStorage.getItem('exitShown')) {
+    exitShown = true;
+    sessionStorage.setItem('exitShown', '1');
+    document.getElementById('exit-popup').style.display = 'flex';
+  }
+});
+function closeExitPopup() {
+  document.getElementById('exit-popup').style.display = 'none';
+}
+function handleExitCapture(e) {
+  e.preventDefault();
+  const email = document.getElementById('exit-email').value;
+  fetch('/api/subscribe', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ email, source: 'exit_popup', coupon: 'STAR5' })
+  }).catch(function(){});
+  document.getElementById('exit-popup').innerHTML =
+    '<div style="padding:3rem;text-align:center;color:var(--gold);font-family:Cinzel,serif;font-size:0.8rem;letter-spacing:0.15em;">✓ CHECK YOUR EMAIL — YOUR CHART IS ON THE WAY</div>';
+  setTimeout(closeExitPopup, 3000);
+}
+document.getElementById('exit-popup').addEventListener('click', function(e){
+  if(e.target === this) closeExitPopup();
+});
+
+window.addEventListener('scroll', function() {
+  const bar = document.getElementById('sticky-cta');
+  if (!bar) return;
+  bar.style.display = 'flex';
+  if (window.scrollY > 600) {
+    bar.style.transform = 'translateY(0)';
+  } else {
+    bar.style.transform = 'translateY(100%)';
+  }
+}, { passive: true });
+</script>
 </body>
 </html>
