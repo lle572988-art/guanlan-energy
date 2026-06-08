@@ -4,6 +4,24 @@
   "description": "Guanlan Energy - Five Elements Wisdom",
   "dependencies": {
     "@vercel/blob": "^2.4.0",
+    "lunar-javascript": "^1.7.7",
+    "solarlunar": "^3.1.0",
     "stripe": "^17.0.0"
-  }
+  },
+  "main": "articlesData.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lle572988-art/guanlan-energy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/lle572988-art/guanlan-energy/issues"
+  },
+  "homepage": "https://github.com/lle572988-art/guanlan-energy#readme"
 }

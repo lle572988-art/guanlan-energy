@@ -3,486 +3,315 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog — Guanlan Energy | Spatial Flow & Biohacking</title>
-<meta name="description" content="Explore the science of spatial energy flow, biohacking, and environmental psychology. Evidence-based guides to optimize your workspace, bedroom, and digital life.">
+<title>Blog — Zi Wei Dou Shu &amp; Five Elements</title>
+<meta name="description" content="Zi Wei Dou Shu (Purple Star Astrology) guides, Feng Shui space optimization, and Five Elements wisdom. Practical Chinese metaphysics for the modern world.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Guanlan Energy">
+<meta property="og:title" content="Guanlan Energy Blog">
+<meta property="og:description" content="Purple Star Astrology, Feng Shui, Five Elements — practical Chinese metaphysics for modern life.">
+<meta property="og:url" content="https://metaphysicflow.com/blog/">
+<link rel="canonical" href="https://metaphysicflow.com/blog/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?display=swap&family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  
-  body {
-    font-family: 'Inter', -apple-system, sans-serif;
-    background: #0a0a0a;
-    color: rgba(240, 235, 224, 0.87);
-    line-height: 1.6;
-    min-height: 100vh;
-  }
-
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  /* Banner */
-  .banner {
-    padding: 60px 0 40px;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-  }
-
-  .banner h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 42px;
-    font-weight: 300;
-    letter-spacing: 6px;
-    color: #D4AF37;
-    margin-bottom: 12px;
-  }
-
-  .banner p {
-    font-size: 15px;
-    font-weight: 300;
-    color: rgba(240, 235, 224, 0.5);
-    letter-spacing: 2px;
-    margin-bottom: 28px;
-  }
-
-  .scan-btn {
-    display: inline-block;
-    padding: 12px 32px;
-    background: transparent;
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    color: #D4AF37;
-    font-family: 'Inter', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
-  }
-
-  .scan-btn:hover {
-    background: rgba(212, 175, 55, 0.08);
-    border-color: #D4AF37;
-  }
-
-  /* Grid */
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    padding: 48px 0 80px;
-  }
-
-  @media (min-width: 640px) {
-    .grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  /* Card */
-  .card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(240, 235, 224, 0.06);
-    border-radius: 8px;
-    padding: 32px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .card:hover {
-    background: rgba(255, 255, 255, 0.04);
-    border-color: rgba(212, 175, 55, 0.2);
-    transform: translateY(-2px);
-  }
-
-  .card:hover::before { opacity: 1; }
-
-  .card-tag {
-    display: inline-block;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: rgba(240, 235, 224, 0.3);
-    margin-bottom: 12px;
-  }
-
-  .card h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 1.3;
-    margin-bottom: 12px;
-    color: rgba(240, 235, 224, 0.9);
-  }
-
-  .card h2 a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .card h2 a:hover {
-    color: #D4AF37;
-  }
-
-  .card-summary {
-    font-size: 13px;
-    line-height: 1.6;
-    color: rgba(240, 235, 224, 0.5);
-    margin-bottom: 16px;
-  }
-
-  .card-meta {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    font-size: 11px;
-    letter-spacing: 1px;
-    color: rgba(240, 235, 224, 0.25);
-    text-transform: uppercase;
-  }
-
-  .card-read {
-    margin-left: auto;
-    color: rgba(212, 175, 55, 0.6);
-    text-decoration: none;
-    font-size: 11px;
-    letter-spacing: 2px;
-  }
-
-  .card-read:hover {
-    color: #D4AF37;
-  }
-
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 40px 0 60px;
-    border-top: 1px solid rgba(240, 235, 224, 0.06);
-  }
-
-  .footer a {
-    color: rgba(212, 175, 55, 0.5);
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 3px;
-  }
-
-  .footer a:hover { color: #D4AF37; }
+ :root {
+ --void: #03070F;
+ --deep: #060D1A;
+ --surface: #0C1628;
+ --layer: #111E35;
+ --rim: #1A2D4A;
+ --gold: #C5984A;
+ --gold-light: #E2C27A;
+ --gold-dim: #7A5C28;
+ --silver: #9BB5CC;
+ --silver-dim: #4A6680;
+ --parchment: #D4C4A0;
+ --text: #C8D8E8;
+ --text-dim: #6A8299;
+ --r: 0.5rem;
+ }
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+ body {
+ font-family: "Inter", -apple-system, sans-serif;
+ background: var(--void);
+ color: var(--text);
+ line-height: 1.6;
+ min-height: 100vh;
+ }
+ nav {
+ position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+ background: rgba(3,7,15,0.92); backdrop-filter: blur(20px);
+ padding: 0.8rem 2rem;
+ display: flex; align-items: center; justify-content: space-between;
+ border-bottom: 1px solid rgba(197,152,74,0.12);
+ }
+ nav .logo {
+ font-family: "Cinzel", serif;
+ font-size: 0.85rem; letter-spacing: 0.15em;
+ color: var(--parchment); text-decoration: none;
+ }
+ nav a { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
+ nav a:hover { color: var(--gold-light); }
+ .container { max-width: 880px; margin: 0 auto; padding: 5rem 1.5rem 3rem; }
+ h1 {
+ font-family: "Cormorant Garamond", serif;
+ font-size: 2.5rem; font-weight: 300;
+ color: var(--parchment); margin-bottom: 0.5rem;
+ letter-spacing: 0.02em;
+ }
+ .subtitle {
+ color: var(--text-dim); font-size: 0.95rem;
+ margin-bottom: 3rem; border-bottom: 1px solid rgba(197,152,74,0.1);
+ padding-bottom: 1.5rem;
+ }
+ .category-label {
+ font-family: "Cinzel", serif;
+ font-size: 0.7rem; letter-spacing: 0.2em;
+ color: var(--gold-dim); text-transform: uppercase;
+ margin: 2.5rem 0 1rem;
+ padding-bottom: 0.5rem;
+ border-bottom: 1px solid rgba(197,152,74,0.08);
+ }
+ .article-list { display: grid; gap: 1.2rem; }
+ .article-card {
+ background: var(--surface); border: 1px solid rgba(197,152,74,0.08);
+ border-radius: 6px; padding: 1.2rem 1.5rem;
+ transition: border-color 0.3s;
+ }
+ .article-card:hover { border-color: rgba(197,152,74,0.25); }
+ .article-card h2 {
+ font-family: "Cormorant Garamond", serif;
+ font-size: 1.1rem; font-weight: 400;
+ margin-bottom: 0.3rem;
+ }
+ .article-card h2 a { color: var(--gold); text-decoration: none; }
+ .article-card h2 a:hover { color: var(--gold-light); }
+ .article-card p {
+ font-size: 0.82rem; color: var(--text-dim); line-height: 1.5;
+ }
+ footer {
+ text-align: center; padding: 2rem;
+ color: var(--silver-dim); font-size: 0.8rem;
+ border-top: 1px solid rgba(197,152,74,0.06);
+ }
 </style>
-
-
-
-
-
-
-
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://metaphysicflow.com/#website",
-      "url": "https://metaphysicflow.com",
-      "name": "Eastern Five Elements \u2014 Feng Shui & Energy Balance",
-      "description": "Discover how the five elements shape your home, career, and relationships.",
-      "inLanguage": "en",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Guanlan Energy",
-        "url": "https://guanlan.energy"
-      }
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://metaphysicflow.com/blog/index.html#webpage",
-      "url": "https://metaphysicflow.com/blog/index.html",
-      "name": "Blog \u2014 Guanlan Energy | Spatial Flow & Biohacking",
-      "description": "Explore the science of spatial energy flow, biohacking, and environmental psychology. Evidence-based guides to optimize your workspace, bedroom, and digital life.",
-      "isPartOf": {
-        "@id": "https://metaphysicflow.com/#website"
-      },
-      "about": {
-        "@type": "Thing",
-        "name": "Wood Element"
-      },
-      "mainEntity": {
-        "@id": "https://metaphysicflow.com/blog/index.html#article"
-      }
-    },
-    {
-      "@type": "Article",
-      "@id": "https://metaphysicflow.com/blog/index.html#article",
-      "headline": "Blog \u2014 Guanlan Energy | Spatial Flow & Biohacking",
-      "description": "Explore the science of spatial energy flow, biohacking, and environmental psychology. Evidence-based guides to optimize your workspace, bedroom, and digital life.",
-      "author": {
-        "@type": "Person",
-        "name": "Guanlan (\u89c2\u6f9c)",
-        "url": "https://guanlan.energy"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Guanlan Energy"
-      }
-    }
-  ]
-}
-</script>
-
-<!-- Open Graph / Social Meta — injected by guanlan-bot -->
-<meta property="og:title" content="✦ JOURNAL"/>
-<meta property="og:description" content="Explore the science of spatial energy flow, biohacking, and environmental psychology. Evidence-based guides to optimize your workspace, bedroom, and digital life."/>
-<meta property="og:image" content="https://metaphysicflow.com/images/og-image.png"/>
-<meta property="og:image:width" content="1200"/>
-<meta property="og:image:height" content="630"/>
-<meta property="og:url" content="https://metaphysicflow.com/blog/index.html"/>
-<meta property="og:type" content="website"/>
-<meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="✦ JOURNAL"/>
-<meta name="twitter:description" content="Explore the science of spatial energy flow, biohacking, and environmental psychology. Evidence-based guides to optimize your workspace, bedroom, and digital life."/>
-<meta name="twitter:image" content="https://metaphysicflow.com/images/og-image.png"/>
-
-<!-- Plausible Analytics -->
-<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
-<script>
-window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
-</script>
 </head>
 <body>
+<nav>
+ <a href="/" class="logo">GUANLAN ENERGY</a>
+ <a href="/">← Home</a>
+</nav>
 
 <div class="container">
-  <header class="banner">
-    <h1>✦ JOURNAL</h1>
-    <p>Explore the science of spatial flow and biohacking.</p>
-    <a href="https://metaphysicflow.com" class="scan-btn">← AI Energy Scan</a>
-  </header>
+ <h1>Guanlan Energy Journal</h1>
+ <div class="subtitle">Zi Wei Dou Shu · Feng Shui · Five Elements — practical Chinese metaphysics for modern life.</div>
 
-  <div class="grid">
-    <article class="card">
-      <div class="card-tag">Spatial Psychology</div>
-      <h2><a href="workspace-command-position.html">The Command Position: Why Your Desk Orientation Controls Your Flow State</a></h2>
-      <p class="card-summary">Most remote workers optimize for ergonomics but ignore a deeper variable: spatial command. Facing the door isn't superstition—it's neurobiology backed by polyvagal theory and a 2023 study showing 23% higher focus.</p>
-      <div class="card-meta">
-        <span>April 12, 2026</span>
-        <span>·</span>
-        <span>6 min read</span>
-        <a href="workspace-command-position.html" class="card-read">Read →</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-tag">Biohacking</div>
-      <h2><a href="bedroom-layout-for-deep-sleep.html">The Geometry of Deep Sleep: How Bed Placement Changes Your Recovery</a></h2>
-      <p class="card-summary">Your mattress matters less than where you put it. New research shows bed orientation alters sleep architecture by up to 25%. A data-driven protocol for optimizing your bedroom as a recovery chamber.</p>
-      <div class="card-meta">
-        <span></span>
-        <span>·</span>
-        <span>7 min read</span>
-        <a href="bedroom-layout-for-deep-sleep.html" class="card-read">Read →</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-tag">Digital Hygiene</div>
-      <h2><a href="digital-clutter-and-mind-flow.html">Digital Clutter Is Spatial Pollution: Why 46 Open Tabs Destroy Your Flow State</a></h2>
-      <p class="card-summary">Physical clutter drains focus, but digital clutter hijacks your attentional field through covert attention allocation. Princeton research shows it reduces working memory by 30%. The 3-day digital cleanse.</p>
-      <div class="card-meta">
-        <span>April 26, 2026</span>
-        <span>·</span>
-        <span>7 min read</span>
-        <a href="digital-clutter-and-mind-flow.html" class="card-read">Read →</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-tag">Biophilic Design</div>
-      <h2><a href="office-plant-myth-busting.html">The Office Plant Paradox: Which Plants Actually Energize Your Workspace</a></h2>
-      <p class="card-summary">Not all plants improve your workspace—some create more energetic problems than they solve. The evidence-based matrix for which plants calm, which alert, and where to place each for optimal cognitive effect.</p>
-      <div class="card-meta">
-        <span>May 3, 2026</span>
-        <span>·</span>
-        <span>7 min read</span>
-        <a href="office-plant-myth-busting.html" class="card-read">Read →</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="card-tag">Neuroscience</div>
-      <h2><a href="the-psychology-of-minimalist-spaces.html">The Anxiety-Productivity Curve: Why Minimalism Actually Rewires Your Brain</a></h2>
-      <p class="card-summary">Minimalism isn't aesthetic preference—it's an intervention on your brain's attentional system. UCLA and Caltech studies show a 27% anxiety reduction after 14 days of intentional minimalism. The 6-object rule explained.</p>
-      <div class="card-meta">
-        <span>May 10, 2026</span>
-        <span>·</span>
-        <span>9 min read</span>
-        <a href="the-psychology-of-minimalist-spaces.html" class="card-read">Read →</a>
-      </div>
-    </article>
-  </div>
-
-  <footer class="footer">
-    <a href="https://metaphysicflow.com">← Back to Guanlan Energy</a>
-  
-                    <section class="related">
-        <h3>📖 继续探索五行智慧</h3>
-        <p class="note-label">Related readings</p>
-        <ul>
-            <li><a href="/pages/wood-study-feng-shui.html">🌲 Wood Element Study Room — Feng Shui Guide for...</a></li>
-            <li><a href="/blog/blog1-3.html">Screen Time, Academic Pressure & the Ancient Re...</a></li>
-            <li><a href="/longtail/hidden-trunk-stars-unexpected-income.html">Hidden Trunk Stars Feng Shui Adjustment for Une...</a></li>
-            <li><a href="/pages/wood-health-decision-guide.html">🌲 Wood Element — How to Handle Health Routine U...</a></li>
-            <li><a href="/blog/blog3-4.html">Fashion as Energy Medicine: Dressing in Your El...</a></li>
-            <li><a href="/longtail/wealth-palace-activation-digital-nomads.html">Chinese Astrology Wealth Palace Activation for ...</a></li>
-        </ul>
-    </section>
-<div id="guanlan-bazi-widget" style="margin:40px 0;padding:30px 20px;border:1px solid rgba(201,168,76,.15);background:rgba(240,235,224,.02);text-align:center;border-radius:2px;">
-    <style>
-        #guanlan-bazi-widget *{box-sizing:border-box;font-family:'EB Garamond',serif}
-        #guanlan-bazi-widget .gw-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:#e8d4a0;letter-spacing:1px;margin-bottom:6px}
-        #guanlan-bazi-widget .gw-sub{font-size:13px;color:rgba(240,235,224,.55);margin-bottom:18px}
-        #guanlan-bazi-widget .gw-field{background:#0d1a14;border:1px solid rgba(201,168,76,.2);color:#f0ebe0;padding:10px 14px;font-size:15px;width:180px;margin:4px;border-radius:2px;outline:none;font-family:inherit}
-        #guanlan-bazi-widget .gw-field:focus{border-color:#c9a84c}
-        #guanlan-bazi-widget .gw-btn{display:inline-block;padding:10px 28px;background:#c9a84c;color:#06100c;font-weight:600;font-size:13px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;transition:background .3s;border:none;font-family:inherit;margin-top:12px;border-radius:2px}
-        #guanlan-bazi-widget .gw-btn:hover{background:#e8d4a0}
-        #guanlan-bazi-widget .gw-btn:disabled{opacity:.4;cursor:not-allowed}
-        #guanlan-bazi-widget .gw-result{margin-top:20px;padding:20px;background:rgba(201,168,76,.05);border-left:2px solid #c9a84c;text-align:left;display:none;font-size:15px;line-height:1.8;color:rgba(240,235,224,.85)}
-        #guanlan-bazi-widget .gw-result strong{color:#e8d4a0}
-        #guanlan-bazi-widget .gw-email-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(6,16,12,.9);z-index:9999;align-items:center;justify-content:center}
-        #guanlan-bazi-widget .gw-email-box{background:#0d1a14;border:1px solid rgba(201,168,76,.2);padding:40px 30px;max-width:440px;width:90%;text-align:center}
-        #guanlan-bazi-widget .gw-email-box h3{font-family:'Cormorant Garamond',serif;color:#e8d4a0;font-size:20px;margin-bottom:8px;letter-spacing:1px}
-        #guanlan-bazi-widget .gw-email-box p{font-size:14px;color:rgba(240,235,224,.65);margin-bottom:18px;line-height:1.7}
-        #guanlan-bazi-widget .gw-email-close{position:absolute;top:20px;right:28px;color:rgba(240,235,224,.4);cursor:pointer;font-size:24px;background:none;border:none;font-family:inherit}
-        #guanlan-bazi-widget .gw-email-close:hover{color:#e8d4a0}
-        #guanlan-bazi-widget .gw-email-success{display:none;margin-top:12px;color:#c9a84c;font-size:14px}
-    </style>
-
-    <div class="gw-title">🔮 2026 丙午马年 · 财运洗牌指数</div>
-    <p class="gw-sub">For independent contractors · Enter your birth info for a free Bazi wealth forecast</p>
-    <div>
-        <input type="text" class="gw-field" id="gw-year" placeholder="YYYY" maxlength="4" style="width:90px">
-        <input type="text" class="gw-field" id="gw-month" placeholder="MM" maxlength="2" style="width:70px">
-        <input type="text" class="gw-field" id="gw-day" placeholder="DD" maxlength="2" style="width:70px">
-    </div>
-    <div style="margin-top:8px">
-        <input type="text" class="gw-field" id="gw-hour" placeholder="Hour (0-23)" maxlength="2" style="width:100px">
-    </div>
-    <button class="gw-btn" id="gw-submit" onclick="guanlanCalculate()">🔍 Read My Wealth Forecast</button>
-
-    <div class="gw-result" id="gw-result"></div>
-
-    <!-- Email 拦截弹窗 -->
-    <div class="gw-email-overlay" id="gw-email-overlay">
-        <div class="gw-email-box">
-            <button class="gw-email-close" onclick="document.getElementById('gw-email-overlay').style.display='none'">&times;</button>
-            <h3>📩 核心破局方略已就绪</h3>
-            <p>你的五行旺衰已解析至 70%。<br>完整版破局改运方略（含个人元素化煞与流年催财时辰表）<br>将在输入邮箱后发送至您的邮箱。</p>
-            <input type="email" class="gw-field" id="gw-email" placeholder="your@email.com" style="width:260px">
-            <br>
-            <button class="gw-btn" onclick="guanlanSubmitEmail()">🚀 解锁完整报告</button>
-            <div class="gw-email-success" id="gw-email-success">✅ 报告已发送至您的邮箱！请检查收件箱（包括垃圾邮件）。</div>
-            <p style="font-size:11px;color:rgba(240,235,224,.3);margin-top:16px">We respect your privacy · No spam ever</p>
-        </div>
-    </div>
+ <div class="article-list">
+ <div class="category-label">Purple Star Astrology · Zi Wei Dou Shu</div>
+ <div class="article-card">
+  <h2><a href="/blog/what-is-zi-wei-dou-shu.html">What is Zi Wei Dou Shu? A Complete Guide for Beginners</a></h2>
+  <p>Target: what is zi wei dou shu · Featured Snippet candidate. Origins, 12 palaces, 14 main stars, and how Purple Star Astrology works in English.</p>
+ </div>
+ <div class="article-card">
+  <h2><a href="/blog/zi-wei-dou-shu-vs-bazi.html">Zi Wei Dou Shu vs BaZi: Which Is More Accurate?</a></h2>
+  <p>High-intent comparison: 12 palaces vs eight characters, use cases, and when to use each Chinese astrology system.</p>
+ </div>
+ <div class="article-card">
+  <h2><a href="/blog/12-palaces-zi-wei-dou-shu-explained.html">The 12 Palaces of Zi Wei Dou Shu Explained</a></h2>
+  <p>Authoritative reference for Life, Wealth, Career, Spouse, Health, Travel, and all twelve palace domains.</p>
+ </div>
+ <div class="article-card">
+  <h2><a href="/blog/how-to-read-zi-wei-dou-shu-chart.html">How to Read Your Zi Wei Chart: 5 Key Elements</a></h2>
+  <p>Educational guide linking to the free calculator — Life Palace star, Wealth, Career, Four Transformations, Major Cycle.</p>
+ </div>
+ <div class="article-card">
+  <h2><a href="/blog/2026-zi-wei-dou-shu-annual-forecast.html">2026 Zi Wei Dou Shu Annual Forecast</a></h2>
+  <p>Chinese astrology 2026 · Fire Horse year themes, palace activations, and personalized timing guidance.</p>
+ </div>
+ <div class="article-card">
+  <h2><a href="/blog/purple-star-astrology-vs-western-astrology.html">Purple Star vs Western Astrology</a></h2>
+  <p>Cross-system comparison for Western astrology readers exploring Zi Wei Dou Shu for the first time.</p>
+ </div>
+ <div class="category-label">Feng Shui · Five Elements · Space</div>
+<div class="article-card">
+ <h2><a href="/blog/14-main-stars-explained.html">14 Main Stars of Purple Star Astrology | Zi Wei Dou Shu Star Guide</a></h2>
+ <p>Complete guide to the 14 main stars in Zi Wei Dou Shu: Zi Wei, Tian Fu, Tai Yang, Wu Qu, Tian Tong, Lian Zhen, Tian Ji, </p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/wealth-corner-feng-shui.html">2026 Wealth Activation: Your Southeast Corner De</a></h2>
+ <p>The Eight White Star of wealth flies to the southeast in 2026. Is your money corner clean and energized?</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/new-house-moving-feng-shui.html">5 Energy Red Flags to Check Before Moving Into a</a></h2>
+ <p>Previous tenant energy, door facing stairs, bedroom over kitchen, missing corners, rushing qi — check these before you m</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/interview-promotion-energy.html">A 3-Day Energy Prep Plan Before Your Interview o</a></h2>
+ <p>From clearing your room to creating a mentor corner — use spatial psychology to ace your interview or promotion panel.</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/money-drain-5-feng-shui-signs.html">Always Short on Money? 5 Feng Shui 'Wealth Drain</a></h2>
+ <p>Entryway clutter, stove facing door, center toilet, through-draft, beam over bed — your home might be secretly draining </p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/best-colors-for-home-energy-balance-a-five-elements-room-by-.html">Best Colors for Home Energy Balance: A Five Elem</a></h2>
+ <p>Best Colors for Home Energy Balance: A Five Elements Room-by-Room Guide Practical insights from Guanlan Energy on Feng S</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/self-cultivation-home-sanctuary.html">Burned Out? 5 Spatial Adjustments to Turn Your H</a></h2>
+ <p>A no-screen corner, a sleep sanctuary, scents that heal, indoor plants, and the TV trap — how to make your home recharge</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/home-office-productivity-spatial.html">Can't Focus at Home? It's Not Your Willpower — I</a></h2>
+ <p>Living room desk, facing a wall, wrong plants, bad lighting — your home office setup is quietly draining your focus ever</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/sleep-quality-bedroom-feng-shui.html">Can't Sleep? Don't Blame Stress — Your Bedroom L</a></h2>
+ <p>Bed position, mirrors, electronics, colors, under-bed storage — 5 overlooked sleep killers hiding in your bedroom.</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/feng-shui-career-acceleration.html">Career Acceleration Through Feng Shui: The 7-Day</a></h2>
+ <p>A 7-day energy makeover for your workspace that creates visible career acceleration — from promotion visibility to negot</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/chinese-five-elements-personality-test-discover-your-element.html">Chinese Five Elements Personality Test: Discover</a></h2>
+ <p>Chinese Five Elements Personality Test: Discover Your Elemental Type Practical insights from Guanlan Energy on Feng Shui</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/desk-facing-wall-productivity.html">Desk Facing a Wall? Here's How to Fix Your Focus</a></h2>
+ <p>Facing a wall kills cognitive range and creative output. These 5 fixes restore your focus without rearranging your entir</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/desk-feng-shui-founders.html">Desk Feng Shui for Founders</a></h2>
+ <p>Optimize your founder desk with Feng Shui. Metal-Water wealth vector guide for high-growth entrepreneurs. Boost producti</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/digital-clutter-and-mind-flow.html">Digital Clutter Is Spatial Pollution: Why 46 Ope</a></h2>
+ <p>Digital Clutter Is Spatial Pollution: Why 46 Open Tabs Destroy Your Flow State Practical insights from Guanlan Energy on</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/earth-element-home-styling-tips-ground-your-space-with-five-.html">Earth Element Home Styling Tips: Ground Your Spa</a></h2>
+ <p>Earth Element Home Styling Tips: Ground Your Space with Five Elements Design Practical insights from Guanlan Energy on F</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/feng-shui-living-room-layout-guide-arrange-your-space-for-fl.html">Feng Shui Living Room Layout Guide: Arrange Your</a></h2>
+ <p>Feng Shui Living Room Layout Guide: Arrange Your Space for Flow and Connection Practical insights from Guanlan Energy on</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/feng-shui-colors-office-luck.html">Feng Shui Office Colors: Which Hues Attract Care</a></h2>
+ <p>Not all colors support career growth. Red builds momentum, blue deepens authority, and the wrong grey can kill your visi</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/relationship-space-clash.html">Fighting More Since Moving In Together? Your Fur</a></h2>
+ <p>Uneven energy, asymmetric nightstands, the kitchen dynamic, sofa positioning, and the missing anchor — is your home maki</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/fire-element-balance-for-better-sleep-calm-your-energy-at-ni.html">Fire Element Balance for Better Sleep: Calm Your</a></h2>
+ <p>Fire Element Balance for Better Sleep: Calm Your Energy at Night Practical insights from Guanlan Energy on Feng Shui, Fi</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/five-elements-decor-for-your-office-boost-productivity-with-.html">Five Elements Decor for Your Office: Boost Produ</a></h2>
+ <p>Five Elements Decor for Your Office: Boost Productivity with Ancient Chinese Wisdom Practical insights from Guanlan Ener</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/how-to-balance-wood-element-in-your-home-decor-tips-for-grow.html">How to Balance Wood Element in Your Home: Decor </a></h2>
+ <p>How to Balance Wood Element in Your Home: Decor Tips for Growth Energy Practical insights from Guanlan Energy on Feng Sh</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/how-to-fix-bad-bedroom-energy-a-five-elements-guide-to-restf.html">How to Fix Bad Bedroom Energy: A Five Elements G</a></h2>
+ <p>How to Fix Bad Bedroom Energy: A Five Elements Guide to Restful Sleep Practical insights from Guanlan Energy on Feng Shu</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/stop-office-politics-feng-shui.html">How to Stop Office Politics With Feng Shui: 5 Sp</a></h2>
+ <p>Office politics is often a spatial energy problem. These 5 adjustments reduce friction, deflect negative energy, and pro</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/hot-fengshui-modern-five-elements.html">Is "Feng Shui Modern" Missing the Point?</a></h2>
+ <p>Is </p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/feng-shui-zoom-meeting-energy.html">Look More Powerful on Zoom: Feng Shui for the Ba</a></h2>
+ <p>Your video call background broadcasts energy every meeting. Books signal depth, plants signal growth, and a blank wall s</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/metaphysical-timeline-bazi.html">Metaphysical Timeline & BaZi</a></h2>
+ <p>Explore the metaphysical timeline through BaZi. Understand how Chinese astrology maps your life periods, energy cycles, </p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/anxiety-home-five-elements.html">More Exhausted at Home Than at Work? Your Room M</a></h2>
+ <p>Too much Fire keeps you wired. Too much Water makes you depressed. Is your home's Five Elements balance working against </p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/silicon-valley-alignment.html">Silicon Valley Alignment Strategy</a></h2>
+ <p>Five Elements alignment strategy for Silicon Valley professionals. Balance your Wood, Fire, Earth, Metal, Water energy f</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/feng-shui-ceiling-beam-home-office.html">Sitting Under a Beam Ruins Focus: How to Neutral</a></h2>
+ <p>A ceiling beam or air vent above your desk creates measurable cognitive pressure. Three tested fixes that cost under $50</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/office-feng-shui-3-mistakes-en.html">Stuck in a Career Rut? 3 Workspace Red Flags Dra</a></h2>
+ <p>Feel like you're hitting invisible walls at work? Three spatial red flags may be draining your career energy. Free local</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/the-psychology-of-minimalist-spaces.html">The Anxiety-Productivity Curve: Why Minimalism A</a></h2>
+ <p>The Anxiety-Productivity Curve: Why Minimalism Actually Rewires Your Brain Practical insights from Guanlan Energy on Fen</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/plants-desk-protection-feng-shui.html">The Best Desk Plants for Protection, Focus, and </a></h2>
+ <p>Not all plants protect your energy. Snake plants deflect, pothos purifies, and the wrong succulent can actually invite f</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/hot-command-position-five-elements.html">The Command Position Is Real — But Only for Cert</a></h2>
+ <p>The Command Position Is Real — But Only for Certain Elements Practical insights from Guanlan Energy on Feng Shui, Five E</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/workspace-command-position.html">The Command Position: Why Your Desk Orientation </a></h2>
+ <p>The Command Position: Why Your Desk Orientation Controls Your Flow State Practical insights from Guanlan Energy on Feng </p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/command-position-desk-feng-shui.html">The Command Position: Why Your Desk Should Never</a></h2>
+ <p>The Command Position is the single most powerful desk arrangement in Feng Shui — and 90% of people get it wrong. Here's </p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/bedroom-layout-for-deep-sleep.html">The Geometry of Deep Sleep: How Bed Placement Ch</a></h2>
+ <p>The Geometry of Deep Sleep: How Bed Placement Changes Your Recovery Practical insights from Guanlan Energy on Feng Shui,</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/home-office-energy-flow.html">The Hidden Energy Drain in Your Home Office: Why</a></h2>
+ <p>Your Wi-Fi router, power strip, and smart devices create invisible energy noise. Shield your workspace without giving up</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/office-plant-myth-busting.html">The Office Plant Paradox: Which Plants Actually </a></h2>
+ <p>The Office Plant Paradox: Which Plants Actually Energize Your Workspace — and Which Ones Drain It Practical insights fro</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/water-element-decor-create-a-calm-sanctuary-with-five-elemen.html">Water Element Decor: Create a Calm Sanctuary wit</a></h2>
+ <p>Water Element Decor: Create a Calm Sanctuary with Five Elements Design Practical insights from Guanlan Energy on Feng Sh</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/what-does-my-birth-element-mean-a-complete-guide-to-your-fiv.html">What Does My Birth Element Mean? A Complete Guid</a></h2>
+ <p>What Does My Birth Element Mean? A Complete Guide to Your Five Elements Profile Practical insights from Guanlan Energy o</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/hot-bed-direction-five-elements.html">Your Bed Direction Chart Is Wrong</a></h2>
+ <p>Your Bed Direction Chart Is Wrong Practical insights from Guanlan Energy on Feng Shui, Five Elements, and energy alignme</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/feng-shui-career-path-birth-element.html">Your Birth Element Reveals Your Ideal Career Pat</a></h2>
+ <p>Each of the Five Elements has a natural career affinity. Fire types lead, Water types strategize, Earth types stabilize.</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/career-blockage-desk-mistakes.html">Your Desk Is Killing Your Promotion: 5 Layout Mi</a></h2>
+ <p>Back to door, facing a wall, right-side overload, beam overhead, cluttered under-desk — which one is blocking your caree</p>
+ </div>
+<div class="article-card">
+ <h2><a href="/blog/office-feng-shui-3-mistakes.html">职场不顺总遇小人？检查你办公桌上的这 3 个风水重灾区</a></h2>
+ <p>职场总遇小人背锅？检查办公桌上这 3 个风水重灾区：背对通道、白虎压青龙、尖刺植物。观澜 AI 空间磁场扫描器帮你一键诊断工位能量。</p>
+ </div>
+ </div>
 </div>
 
-<script>
-function guanlanGetElem(id) { return document.getElementById(id); }
-
-// 五行财富解读库（纯前端，零API）
-var ELEMENT_PROFILES = {
-    wood: { emoji:'🌲', name:'Wood', career:'Entrepreneurship, creative fields, education', wealth:'Multiple income streams, side projects', advise:'Focus on expansion this year. Your wealth sector activates in Spring and late Autumn. Avoid overextending.' },
-    fire:  { emoji:'🔥', name:'Fire', career:'Marketing, sales, entertainment, leadership', wealth:'Brand building, public visibility, speaking income', advise:'2026 Fire Horse year is YOUR year. Lead boldly. Your wealth peaks in Summer — raise rates aggressively.' },
-    earth: { emoji:'🌍', name:'Earth', career:'Real estate, healthcare, hospitality', wealth:'Stable assets, recurring revenue, savings', advise:'Ground yourself. 2026 brings rapid change. Hold steady and build systems. Your wealth grows through patience.' },
-    metal: { emoji:'💎', name:'Metal', career:'Finance, law, technology, engineering', wealth:'Structured portfolios, contract income, premium services', advise:'Refine and optimize. Cut low-value clients. Your wealth comes through precision and premium positioning in 2026.' },
-    water: { emoji:'💧', name:'Water', career:'Research, writing, consulting, strategy', wealth:'Intellectual property, royalties, long-term investments', advise:'Go deep in one area. 2026 favors strategic depth over breadth. Your wealth comes through accumulated wisdom.' },
-};
-
-function guanlanCalculate() {
-    var y = guanlanGetElem('gw-year').value.trim();
-    var m = guanlanGetElem('gw-month').value.trim();
-    var d = guanlanGetElem('gw-day').value.trim();
-    var h = guanlanGetElem('gw-hour').value.trim();
-
-    if (!y || !m || !d || y.length !== 4 || m < 1 || m > 12 || d < 1 || d > 31) {
-        var result = guanlanGetElem('gw-result');
-        result.style.display = 'block';
-        result.innerHTML = '⚠️ Please enter a valid birth date (YYYY MM DD).';
-        return;
-    }
-
-    // Element calculation based on birth year last digit (simplified Bazi day master proxy)
-    var lastDigit = parseInt(y.slice(-1));
-    var elemMap = { 0:'metal', 1:'metal', 2:'water', 3:'water', 4:'wood', 5:'wood', 6:'fire', 7:'fire', 8:'earth', 9:'earth' };
-    var elementKey = elemMap[lastDigit] || 'earth';
-    var profile = ELEMENT_PROFILES[elementKey];
-
-    // Annual windfall score
-    var score = Math.floor(40 + Math.random() * 40);
-    if (elementKey === 'fire') score += 15; // Fire Horse year advantage
-
-    var reportHTML = '<strong>🔮 Your 2026 Wealth Forecast</strong><br><br>';
-    reportHTML += 'Your Element: ' + profile.emoji + ' ' + profile.name + '<br>';
-    reportHTML += '2026 Wealth Shift Index: <strong>' + score + '/100</strong><br><br>';
-    reportHTML += '<strong>Best Career Paths:</strong> ' + profile.career + '<br>';
-    reportHTML += '<strong>Wealth Pattern:</strong> ' + profile.wealth + '<br><br>';
-    reportHTML += '<strong>2026 Guidance:</strong> ' + profile.advise + '<br>';
-    reportHTML += '<span style="color:rgba(240,235,224,.4);font-size:13px">(Based on 10-year luck cycle overlay with Bing Wu year pillar)</span>';
-
-    var result = guanlanGetElem('gw-result');
-    result.innerHTML = reportHTML;
-    result.style.display = 'block';
-
-    // 加到 70% 触发弹窗
-    guanlanGetElem('gw-submit').disabled = true;
-    setTimeout(function() {
-        guanlanGetElem('gw-email-overlay').style.display = 'flex';
-    }, 1800);
-}
-
-function guanlanSubmitEmail() {
-    var email = guanlanGetElem('gw-email').value.trim();
-    if (!email || !email.includes('@') || !email.includes('.')) {
-        alert('Please enter a valid email address.');
-        return;
-    }
-
-    // 后端 - 把 Email 写入 lead_pool
-    fetch('/api/collect-lead', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({
-        email: email,
-        page: window.location.pathname,
-        ts: new Date().toISOString(),
-        ref: document.referrer || 'direct'
-    })}).then(function(r) { return r.json(); }).then(function(d) {
-        guanlanGetElem('gw-email-success').style.display = 'block';
-        guanlanGetElem('gw-submit').disabled = false;
-    }).catch(function() {
-        guanlanGetElem('gw-email-success').style.display = 'block';
-        guanlanGetElem('gw-submit').disabled = false;
-    });
-
-    document.getElementById('gw-email').value = '';
-}
-</script>
-
-</footer>
-</div>
-
+<footer>Guanlan Energy · Purple Star Astrology</footer>
 </body>
 </html>

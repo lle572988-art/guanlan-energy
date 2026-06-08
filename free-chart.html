@@ -658,48 +658,364 @@
     padding: 1rem 0;
   }
 
-  /* CTA SECTION */
-  .cta-section {
-    position: relative;
-    z-index: 1;
+  /* Share + final CTA */
+  .share-section {
+    max-width: 680px;
+    margin: 4rem auto 5rem;
+    padding: 0 2rem;
     text-align: center;
-    padding: 4rem 2rem 6rem;
-    border-top: 1px solid var(--navy-border);
-    margin-top: 2rem;
   }
-
-  .cta-eyebrow {
+  .share-eyebrow {
     font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .share-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--parchment);
+    margin-bottom: 0.5rem;
+  }
+  .share-header p {
+    font-style: italic;
+    color: var(--text-dim);
+    margin-bottom: 2rem;
+  }
+  .share-card {
+    background: linear-gradient(135deg, var(--surface), var(--deep));
+    border: 1px solid rgba(197, 152, 74, 0.25);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .share-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .share-card-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
     letter-spacing: 0.25em;
     color: var(--gold-dim);
-    margin-bottom: 1.5rem;
-  }
-
-  .cta-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 300;
-    color: var(--text-primary);
     margin-bottom: 1rem;
-    line-height: 1.2;
   }
-
-  .cta-title em { color: var(--gold); font-style: italic; }
-
-  .cta-body {
-    font-size: 1.05rem;
-    color: var(--text-muted);
-    max-width: 480px;
-    margin: 0 auto 2.5rem;
-    line-height: 1.8;
+  .share-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--parchment);
+    margin-bottom: 0.3rem;
   }
-
-  .cta-buttons {
+  .share-card-title em {
+    color: var(--gold-light);
+    font-style: italic;
+  }
+  .share-card-star {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    color: var(--silver-dim);
+    margin-bottom: 1rem;
+  }
+  .share-card-tagline {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  .share-card-url {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+    opacity: 0.6;
+  }
+  .share-buttons {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .share-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.4rem;
+    border-radius: 1px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid rgba(197, 152, 74, 0.3);
+    color: var(--gold);
+    background: transparent;
+  }
+  .share-btn:hover {
+    background: rgba(197, 152, 74, 0.08);
+    border-color: var(--gold);
+  }
+  .share-friend-hook {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
+  .sfh-divider {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--silver-dim);
+    margin-bottom: 1rem;
+  }
+  .sfh-text {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-dim);
+    margin-bottom: 0.6rem;
+  }
+  .sfh-link {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(197, 152, 74, 0.3);
+    padding-bottom: 0.1rem;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .sfh-link:hover {
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+  .final-cta-section {
+    max-width: 760px;
+    margin: 0 auto 8rem;
+    padding: 0 2rem;
+  }
+  .cta-divider {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--gold-dim);
+    margin-bottom: 4rem;
+    opacity: 0.5;
+  }
+  .cta-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .final-cta-section .cta-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+  }
+  .cta-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    color: var(--parchment);
+    line-height: 1.25;
+    margin-bottom: 1.2rem;
+  }
+  .cta-headline em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .cta-subtext {
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  .cta-primary-product {
+    border: 1px solid rgba(197, 152, 74, 0.35);
+    background: linear-gradient(160deg, var(--surface), var(--deep));
+    position: relative;
+    margin-bottom: 1rem;
+  }
+  .cta-primary-product::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .cta-primary-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    padding: 2.5rem;
+    align-items: center;
+  }
+  .cta-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--void);
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.18em;
+    padding: 0.25rem 0.7rem;
+    margin-bottom: 0.8rem;
+  }
+  .cta-product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--parchment);
+    margin-bottom: 0.2rem;
+  }
+  .cta-product-zh {
+    font-size: 0.82rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.06em;
+    margin-bottom: 1.2rem;
+  }
+  .cta-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cta-features li {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(197, 152, 74, 0.1);
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    line-height: 1.4;
+  }
+  .cta-features li::before {
+    content: '◆';
+    font-size: 0.38rem;
+    color: var(--gold-dim);
+    flex-shrink: 0;
+    margin-top: 0.3rem;
+  }
+  .cta-primary-right {
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .cta-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .price-currency {
+    font-size: 1.5rem;
+    vertical-align: super;
+  }
+  .btn-cta-primary {
+    display: block;
+    background: var(--gold);
+    color: var(--void);
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 1.8rem;
+    text-decoration: none;
+    border-radius: 1px;
+    transition: all 0.3s;
+    white-space: nowrap;
+    margin-bottom: 0.8rem;
+  }
+  .btn-cta-primary:hover {
+    background: var(--gold-light);
+    box-shadow: 0 4px 24px rgba(197, 152, 74, 0.4);
+  }
+  .cta-guarantee {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.1em;
+    color: var(--silver-dim);
+    line-height: 1.6;
+  }
+  .cta-secondary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(197, 152, 74, 0.08);
+  }
+  .cta-secondary-card {
+    background: var(--deep);
+    padding: 1.8rem;
+    transition: background 0.3s;
+  }
+  .cta-secondary-card:hover { background: var(--surface); }
+  .cta-s-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    color: var(--silver-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .cta-s-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--parchment);
+    margin-bottom: 0.8rem;
+  }
+  .cta-s-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+  .cta-s-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .btn-cta-secondary {
+    display: inline-block;
+    border: 1px solid rgba(197, 152, 74, 0.35);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.4rem;
+    text-decoration: none;
+    transition: all 0.3s;
+    border-radius: 1px;
+  }
+  .btn-cta-secondary:hover {
+    background: rgba(197, 152, 74, 0.08);
+    border-color: var(--gold);
+  }
+  @media (max-width: 768px) {
+    .cta-primary-inner {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .cta-primary-right { text-align: left; }
+    .btn-cta-primary { text-align: center; }
+    .cta-secondary-grid { grid-template-columns: 1fr; }
+    .share-buttons { flex-direction: column; align-items: center; }
   }
 
   .btn-primary {
@@ -970,58 +1286,255 @@
     display: block;
   }
 
-  /* SEO guide section */
+  /* Chart explainer article (below report) */
   #seo-guide {
     position: relative;
     z-index: 1;
+    border-top: 1px solid rgba(197, 152, 74, 0.15);
+  }
+  .chart-explainer {
     max-width: 760px;
-    margin: 0 auto 4rem;
-    padding: 3rem 1.5rem 0;
-    border-top: 1px solid rgba(201,168,76,0.15);
+    margin: 6rem auto 0;
+    padding: 0 2rem;
   }
-  #seo-guide h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.75rem;
-    font-weight: 300;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
+  .explainer-header {
+    text-align: center;
+    margin-bottom: 5rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(197, 152, 74, 0.15);
   }
-  #seo-guide h3 {
-    font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin: 2rem 0 0.75rem;
-  }
-  #seo-guide p, #seo-guide li {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: var(--text-muted);
-    margin-bottom: 0.85rem;
-  }
-  #seo-guide a { color: var(--gold); }
-  #seo-guide ol { padding-left: 1.25rem; margin-bottom: 1rem; }
-  .seo-cta-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-  }
-  .seo-cta-links a {
+  .explainer-eyebrow {
     font-family: 'Cinzel', serif;
     font-size: 0.58rem;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
     text-transform: uppercase;
-    text-decoration: none;
-    padding: 0.65rem 1.1rem;
-    border: 1px solid rgba(201,168,76,0.35);
-    color: var(--gold);
+    margin-bottom: 1.2rem;
   }
-  .seo-cta-links a.primary {
-    background: var(--gold);
-    color: var(--navy);
+  .explainer-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--parchment);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+  .explainer-lead {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--text-dim);
+    line-height: 1.8;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .explainer-section {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(197, 152, 74, 0.08);
+  }
+  .explainer-section h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--parchment);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+  .explainer-section p {
+    font-size: 1.05rem;
+    color: var(--text-dim);
+    line-height: 1.85;
+    margin-bottom: 1.2rem;
+  }
+  .palace-explainer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(197, 152, 74, 0.08);
+    border: 1px solid rgba(197, 152, 74, 0.1);
+    margin: 2.5rem 0;
+  }
+  .peg-item {
+    background: var(--deep);
+    padding: 1.5rem;
+    transition: background 0.3s;
+  }
+  .peg-item:hover { background: var(--surface); }
+  .peg-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .peg-item p {
+    font-size: 0.92rem;
+    margin-bottom: 0;
+    line-height: 1.7;
+  }
+  .explainer-note {
+    font-style: italic;
+    font-size: 0.92rem !important;
+    color: var(--silver-dim) !important;
+    text-align: center;
+    margin-top: 1.5rem !important;
+  }
+  .explainer-section--featured {
+    background: linear-gradient(135deg, rgba(61, 38, 85, 0.08) 0%, transparent 60%);
+    padding: 3rem;
+    border: 1px solid rgba(197, 152, 74, 0.12);
+    border-radius: 1px;
+    margin-bottom: 4rem;
+  }
+  .sihua-explainer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  .sihua-explainer-grid .sihua-item {
+    padding: 1.5rem;
+    border: 1px solid rgba(197, 152, 74, 0.12);
+    background: rgba(9, 8, 15, 0.5);
+    position: relative;
+  }
+  .sihua-symbol {
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+    line-height: 1;
+  }
+  .sihua-lu .sihua-symbol { color: #6DB87A; }
+  .sihua-quan .sihua-symbol { color: var(--gold); }
+  .sihua-ke .sihua-symbol { color: #7EB8D4; }
+  .sihua-ji .sihua-symbol { color: #B87070; }
+  .sihua-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--silver-dim);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .sihua-explainer-grid .sihua-item p {
+    font-size: 0.9rem !important;
+    margin-bottom: 0 !important;
+  }
+  .explainer-callout {
+    font-style: italic;
+    text-align: center;
+    color: var(--gold-dim) !important;
+    border-top: 1px solid rgba(197, 152, 74, 0.15);
+    padding-top: 1.5rem;
+    margin-top: 1rem !important;
+  }
+  .explainer-faq .faq-item {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(197, 152, 74, 0.06);
+  }
+  .faq-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--silver);
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+  .faq-a {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+  }
+  .explainer-cta {
+    margin: 4rem 0 8rem;
+    text-align: center;
+  }
+  .explainer-cta-inner {
+    padding: 3.5rem;
+    border: 1px solid rgba(197, 152, 74, 0.25);
+    background: linear-gradient(160deg, var(--surface), var(--deep));
+    position: relative;
+  }
+  .explainer-cta-inner::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .explainer-cta-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    margin-bottom: 1.2rem;
+  }
+  .explainer-cta-inner h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--parchment);
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+  .explainer-cta-inner p {
+    color: var(--text-dim);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+  }
+  .explainer-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+  }
+  .explainer-cta-buttons .btn-primary,
+  .explainer-cta-buttons .btn-outline {
+    text-decoration: none;
+    display: inline-block;
+  }
+  .explainer-cta-buttons .btn-outline {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid rgba(201, 148, 58, 0.4);
+    padding: 1rem 2.5rem;
+    transition: all 0.2s;
+  }
+  .explainer-cta-buttons .btn-outline:hover {
     border-color: var(--gold);
+    background: rgba(201, 148, 58, 0.06);
+  }
+  .explainer-cta-note {
+    font-family: 'Cinzel', serif !important;
+    font-size: 0.55rem !important;
+    letter-spacing: 0.15em;
+    color: var(--silver-dim) !important;
+    margin-bottom: 0 !important;
+  }
+  @media (max-width: 768px) {
+    .palace-explainer-grid,
+    .sihua-explainer-grid {
+      grid-template-columns: 1fr;
+    }
+    .explainer-section--featured {
+      padding: 1.5rem;
+    }
+    .explainer-cta-inner {
+      padding: 2rem 1.5rem;
+    }
+    .chart-explainer {
+      padding: 0 1.25rem;
+    }
   }
 
   /* ─── NEW 4-SCREEN LAYOUT ─── */
@@ -1038,12 +1551,18 @@
   }
   #chart-decor svg { width: 100%; height: 100%; }
   #results-container { max-width: none; padding: 0 0 5rem; }
-  #three-pillars, #year-forecast, #twelve-palaces, #cta-block {
+  #three-pillars, #twelve-palaces {
     max-width: 920px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
+  }
+  #cta-block {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: none;
   }
   #identity-hook {
     min-height: 100vh;
@@ -1247,7 +1766,7 @@
     line-height: 1.6;
     margin: 0;
   }
-  #three-pillars, #year-forecast, #twelve-palaces {
+  #three-pillars, #twelve-palaces {
     position: relative;
     z-index: 1;
     padding: 4rem 0;
@@ -1308,10 +1827,13 @@
   }
   .pillar-tag { font-size: 0.82rem; color: var(--text-dim); font-style: italic; }
   #year-forecast {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    box-sizing: border-box;
     background: linear-gradient(180deg, var(--deep) 0%, var(--void) 100%);
     padding: 4rem 1.5rem;
     text-align: center;
-    margin: 0 -1.5rem;
   }
   .forecast-eyebrow {
     font-family: 'Cinzel', serif;
@@ -1319,6 +1841,10 @@
     letter-spacing: 0.28em;
     color: var(--gold-dim);
     margin-bottom: 0.75rem;
+  }
+  .forecast-cta {
+    max-width: 820px;
+    margin: 0 auto;
   }
   .forecast-windows {
     display: grid;
@@ -1598,55 +2124,507 @@
     </div>
   </section>
 
-  <div class="cta-section" id="cta-block">
-    <div class="cta-eyebrow">READY TO GO DEEPER?</div>
-    <div class="cta-title">Your complete chart holds<br><em>what the free preview cannot show</em></div>
-    <div class="cta-body">Upgrade to the Full 12-Palace Matrix for Major Cycle analysis, Four Transformations, and your personalized 2026 forecast — or book a live session for direct answers.</div>
-    <div class="cta-buttons">
-      <a class="btn-primary" href="checkout.html?product=full-chart">FULL 12-PALACE MATRIX — $39</a>
-      <a class="btn-secondary" href="checkout.html?product=partner-compatibility">PARTNER COMPATIBILITY — $59</a>
-      <a class="btn-secondary" href="checkout.html?product=live-reading">LIVE VIDEO SESSION — $99</a>
-    </div>
+  <div id="cta-block">
+
+    <section class="share-section">
+      <div class="share-header">
+        <div class="share-eyebrow">SHARE YOUR BLUEPRINT</div>
+        <h3>Someone in your life needs to see this.</h3>
+        <p>You already know who came to mind just now.</p>
+      </div>
+
+      <div class="share-card" id="share-card">
+        <div class="share-card-inner">
+          <div class="share-card-brand">GUANLAN ENERGY · 紫微斗數</div>
+          <div class="share-card-title">
+            I am <em id="share-persona">The Seeker</em>
+          </div>
+          <div class="share-card-star" id="share-star-meta">—</div>
+          <div class="share-card-tagline" id="share-tagline">"Your destiny is written in the stars."</div>
+          <div class="share-card-url">metaphysicflow.com</div>
+        </div>
+      </div>
+
+      <div class="share-buttons">
+        <button class="share-btn share-btn--copy" type="button" onclick="copyChartLink()" id="copy-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2"/>
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+          </svg>
+          Copy My Chart Link
+        </button>
+        <a class="share-btn share-btn--twitter" id="twitter-share-btn" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          Share on X
+        </a>
+        <a class="share-btn share-btn--whatsapp" id="whatsapp-share-btn" href="#" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Send via WhatsApp
+        </a>
+      </div>
+
+      <div class="share-friend-hook">
+        <div class="sfh-divider">or</div>
+        <p class="sfh-text">Curious what your partner's chart says about your dynamic?</p>
+        <a href="index.html#chart-form" class="sfh-link">Calculate their chart free →</a>
+      </div>
+    </section>
+
+    <section class="final-cta-section">
+      <div class="cta-divider"><span>◆</span></div>
+
+      <div class="cta-hero">
+        <div class="cta-eyebrow">THE READING CONTINUES</div>
+        <h2 class="cta-headline">
+          Your chart has shown you the outline.<br>
+          <em>The full reading shows you the story.</em>
+        </h2>
+        <p class="cta-subtext">
+          What you have read is the surface layer —
+          the stars and their basic meanings.
+          The full report goes beneath: how your stars
+          interact, which years carry the heaviest weight,
+          and what the specific timing of 2026 means
+          for your Wealth and Career palaces in particular.
+        </p>
+      </div>
+
+      <div class="cta-primary-product">
+        <div class="cta-primary-inner">
+          <div class="cta-primary-left">
+            <div class="cta-badge">MOST COMPLETE</div>
+            <div class="cta-product-name">Full 12-Palace Matrix</div>
+            <div class="cta-product-zh">完整十二宮深度報告</div>
+            <ul class="cta-features">
+              <li>All 12 palaces — fully interpreted, not summarized</li>
+              <li>Your current Major Cycle decoded</li>
+              <li>Four Transformations breakdown for every active star</li>
+              <li>Complete 2026 forecast with monthly themes</li>
+              <li>20–25 page illustrated PDF · delivered in 24h</li>
+            </ul>
+          </div>
+          <div class="cta-primary-right">
+            <div class="cta-price"><span class="price-currency">$</span>39</div>
+            <a href="checkout.html?product=full-chart" class="btn-cta-primary" data-product="full-chart">Order My Full Reading</a>
+            <div class="cta-guarantee">PDF in 24h · Human-written · Not AI-generated</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-secondary-grid">
+        <div class="cta-secondary-card">
+          <div class="cta-s-label">FOCUSED DEEP DIVE</div>
+          <div class="cta-s-name">Life Palace Report</div>
+          <p class="cta-s-desc">
+            Your master star, life mission, and
+            personality patterns — fully explored.
+            8–10 pages. Perfect first reading.
+          </p>
+          <div class="cta-s-price">$9.90</div>
+          <a href="checkout.html?product=life-palace-dive" class="btn-cta-secondary">Start Here →</a>
+        </div>
+        <div class="cta-secondary-card">
+          <div class="cta-s-label">LIVE SESSION</div>
+          <div class="cta-s-name">30-min Video Reading</div>
+          <p class="cta-s-desc">
+            Ask your specific questions.
+            Get direct answers.
+            Recording included.
+          </p>
+          <div class="cta-s-price">$99</div>
+          <a href="checkout.html?product=live-reading" class="btn-cta-secondary">Book Session →</a>
+        </div>
+      </div>
+    </section>
+
   </div>
 
 </div>
 
 <section id="seo-guide">
-  <h2>How to Read Your Zi Wei Dou Shu Chart</h2>
-  <p>This free <strong>Zi Wei Dou Shu calculator</strong> (Purple Star Astrology) builds your natal board from your birth date and Chinese birth hour. Unlike a generic horoscope, every palace placement is mathematically derived from lunar calendar conversion — the same method used in traditional chart reading for centuries.</p>
+  <article class="chart-explainer">
 
-  <h3>What Each Palace Means</h3>
-  <p>Your chart above displays twelve palaces arranged in a fixed grid. The <strong>Life Palace (命宮)</strong> reveals your core character and life direction. The <strong>Wealth Palace (財帛宮)</strong> shows how money flows to and from you. The <strong>Career Palace (官祿宮)</strong> governs vocation, reputation, and professional timing. Other palaces cover relationships, health, travel, property, parents, siblings, children, friends, and inner fortune.</p>
-  <p>Each palace contains major stars (such as Zi Wei, Wu Qu, Tai Yin) and auxiliary stars that modify their expression. Stars can also carry Four Transformations (Si Hua 四化) — Lu (prosperity), Quan (power), Ke (recognition), and Ji (obstruction) — which activate different themes during specific life periods.</p>
+    <header class="explainer-header">
+      <div class="explainer-eyebrow">UNDERSTANDING YOUR CHART</div>
+      <h2>You Were Not Born Into a Generic Story</h2>
+      <p class="explainer-lead">
+        Most people have read a horoscope. Very few have read
+        their actual chart. There is a difference — and once
+        you feel it, you cannot go back.
+      </p>
+    </header>
 
-  <h3>Understanding Your Birth Hour</h3>
-  <p>In Zi Wei Dou Shu, your birth hour is measured in two-hour branches, not clock hours alone. The twelve branches — Zi (11pm–1am), Chou (1–3am), Yin (3–5am), and so on — determine where the Life Palace sits and how all other palaces rotate around the board. If you were born near a branch boundary, adding your <strong>birth location</strong> helps align true solar time for maximum accuracy.</p>
-  <p>Not sure which branch applies? Each branch covers a two-hour window in local time. When in doubt, use the midpoint of the window you remember — or book a professional reading to verify palace placement with solar time correction.</p>
+    <section class="explainer-section">
+      <h3>What Makes This Different From Western Astrology</h3>
+      <p>
+        Western astrology gives you a sun sign. Zi Wei Dou Shu
+        gives you a map. Twelve palaces, each governing a
+        specific domain of your life — not metaphorically,
+        but with the precision of a system refined over a
+        thousand years of imperial court use.
+      </p>
+      <p>
+        Your sun sign tells you what kind of person you are.
+        Your Zi Wei chart tells you what kind of life you are
+        living, when your fortune shifts, why your relationships
+        follow the same patterns, and — most importantly —
+        what to do about it.
+      </p>
+      <p>
+        The difference is not spiritual versus scientific.
+        It is broad versus specific. And once you have seen
+        your own chart, the generalities of sun-sign astrology
+        will feel like reading someone else's mail.
+      </p>
+    </section>
 
-  <h3>The Five Most Important Elements</h3>
-  <ol>
-    <li><strong>Life Palace star</strong> — your governing star and primary life theme</li>
-    <li><strong>Wealth Palace configuration</strong> — how you earn, save, and lose money</li>
-    <li><strong>Career Palace stars</strong> — ideal vocation and promotion timing</li>
-    <li><strong>Spouse Palace</strong> — partnership patterns and who you attract</li>
-    <li><strong>Major Cycle (大限)</strong> — ten-year fortune periods that activate different palaces</li>
-  </ol>
-  <p>Our interactive preview unlocks three core palaces instantly. For a complete palace-by-palace analysis including your 2026 annual forecast and Major Cycle timing, explore our professional reports.</p>
+    <section class="explainer-section">
+      <h3>The Twelve Palaces: Your Life, Mapped</h3>
+      <p>
+        Every chart contains twelve palaces arranged in a fixed
+        grid. Each palace holds a different dimension of your
+        existence — and the stars placed inside them at the
+        moment of your birth determine the quality, timing,
+        and texture of what unfolds there.
+      </p>
 
-  <h3>Common Questions</h3>
-  <p><strong>What is birth hour in Zi Wei Dou Shu?</strong> It is one of twelve two-hour earthly branches derived from the traditional Chinese time system. Your hour branch is as essential as your birth date — without it, the chart cannot be calculated correctly.</p>
-  <p><strong>Is this the same as BaZi?</strong> No. BaZi uses four pillars of eight characters. Zi Wei Dou Shu uses a full star map across twelve palaces. Read our <a href="/blog/zi-wei-dou-shu-vs-bazi.html">Zi Wei vs BaZi comparison</a> for a detailed breakdown.</p>
-  <p><strong>Can I get a full written reading?</strong> Yes. Our <a href="/checkout.html?product=full-chart">Full 12-Palace Matrix report ($39)</a> includes every palace, Major Cycle analysis, and a 2026 forecast. For a focused Life Palace deep dive, see the <a href="/checkout.html?product=life-palace-dive">$9.90 Life Palace report</a>.</p>
+      <div class="palace-explainer-grid">
 
-  <h3>Why Use a Zi Wei Dou Shu Calculator?</h3>
-  <p>Search interest in <strong>zi wei dou shu calculator</strong> and <strong>purple star astrology free reading</strong> has grown rapidly among English speakers, yet most online tools are inaccurate translations or static templates. A proper calculator performs lunar calendar conversion, assigns the Life Palace from your birth month and hour, distributes all major and auxiliary stars, and calculates Four Transformations automatically — the same computational steps a human practitioner performs at the start of every session.</p>
-  <p>Once your chart renders, compare your Life Palace star with Western natal placements, explore our <a href="/blog/what-is-zi-wei-dou-shu.html">beginner's guide to Zi Wei Dou Shu</a>, or dive into the <a href="/blog/12-palaces-zi-wei-dou-shu-explained.html">complete 12-palace reference</a>. For annual timing, see the <a href="/blog/2026-zi-wei-dou-shu-annual-forecast.html">2026 Zi Wei forecast overview</a> — then order a personalized report to see how Fire Horse year energy activates your specific Wealth and Career palaces.</p>
+        <div class="peg-item">
+          <div class="peg-name">命宮 · Life Palace</div>
+          <p>
+            Your core character. The self you cannot perform
+            your way out of. Whatever star sits here governs
+            your instincts, your magnetism, and the theme
+            that will repeat across your entire life —
+            whether you choose it or not.
+          </p>
+        </div>
 
-  <div class="seo-cta-links">
-    <a href="/" class="primary">Calculate Another Chart</a>
-    <a href="/checkout.html?product=full-chart">Order Full Report</a>
-    <a href="/blog/how-to-read-zi-wei-dou-shu-chart.html">Reading Guide</a>
-  </div>
+        <div class="peg-item">
+          <div class="peg-name">財帛宮 · Wealth Palace</div>
+          <p>
+            Not how much money you make — how money moves
+            through you. Whether you accumulate or scatter,
+            whether your fortune comes early or late,
+            whether your wealth comes through skill,
+            relationship, or timing. All of it is written here.
+          </p>
+        </div>
+
+        <div class="peg-item">
+          <div class="peg-name">官祿宮 · Career Palace</div>
+          <p>
+            The work that fits your nature — and the work
+            that will quietly drain you no matter how well
+            it pays. Also governs when promotion windows open,
+            when to move, and when to wait.
+          </p>
+        </div>
+
+        <div class="peg-item">
+          <div class="peg-name">夫妻宮 · Spouse Palace</div>
+          <p>
+            Not who you choose — who you attract.
+            The patterns that repeat in your closest
+            relationships regardless of who the other
+            person is. If the same dynamic keeps appearing
+            with different faces, this palace explains why.
+          </p>
+        </div>
+
+        <div class="peg-item">
+          <div class="peg-name">疾厄宮 · Health Palace</div>
+          <p>
+            Constitutional tendencies your body carries
+            regardless of lifestyle. Not a diagnosis —
+            a map of where to pay attention
+            before your body forces the conversation.
+          </p>
+        </div>
+
+        <div class="peg-item">
+          <div class="peg-name">遷移宮 · Travel Palace</div>
+          <p>
+            Whether you thrive abroad or belong at home.
+            Whether distance expands your fortune or
+            complicates it. For many people, this is the
+            palace that changes everything —
+            because the life they are looking for
+            exists somewhere else.
+          </p>
+        </div>
+
+      </div>
+
+      <p class="explainer-note">
+        The remaining six palaces — Siblings, Children,
+        Friends, Property, Virtue, and Parents —
+        complete the picture. Every relationship,
+        every resource, every inherited pattern
+        has its own address in your chart.
+      </p>
+    </section>
+
+    <section class="explainer-section explainer-section--featured">
+      <h3>The Four Transformations: Where Fate Gets Specific</h3>
+      <p>
+        Stars are character. Transformations are events.
+        This is the part of Zi Wei Dou Shu that most
+        English explanations get wrong — or skip entirely.
+      </p>
+      <p>
+        Each year and each ten-year cycle, specific stars
+        receive one of four transformations. These are not
+        vague themes. They are precise activations that
+        tell you exactly which domain of your life is
+        being charged — and how.
+      </p>
+
+      <div class="sihua-explainer-grid">
+
+        <div class="sihua-item sihua-lu">
+          <div class="sihua-symbol">禄</div>
+          <div class="sihua-name">Hua Lu · Prosperity</div>
+          <p>
+            The gate opens. Whatever this palace governs —
+            money, career, relationship — is receiving
+            genuine incoming energy. Not luck.
+            Not wishful thinking. An actual window.
+            The question is whether you are positioned
+            to walk through it.
+          </p>
+        </div>
+
+        <div class="sihua-item sihua-quan">
+          <div class="sihua-symbol">权</div>
+          <div class="sihua-name">Hua Quan · Power</div>
+          <p>
+            Authority arrives — wanted or not.
+            You will be asked to lead, decide, or carry
+            something heavier than before.
+            The people who thrive under Quan are the ones
+            who stop waiting for permission
+            and start acting like they already have it.
+          </p>
+        </div>
+
+        <div class="sihua-item sihua-ke">
+          <div class="sihua-symbol">科</div>
+          <div class="sihua-name">Hua Ke · Recognition</div>
+          <p>
+            Your work is being seen by people who matter.
+            Reputation builds quietly under Ke —
+            which means the seeds you plant now
+            will produce a harvest you cannot yet see.
+            This is not the time for invisibility.
+          </p>
+        </div>
+
+        <div class="sihua-item sihua-ji">
+          <div class="sihua-symbol">忌</div>
+          <div class="sihua-name">Hua Ji · Obstruction</div>
+          <p>
+            Ji is not punishment. It is pressure applied
+            to exactly the area of your life that needs
+            to change. The palace receiving Ji is showing
+            you where you have been avoiding a necessary
+            confrontation. The discomfort is the direction.
+          </p>
+        </div>
+
+      </div>
+
+      <p class="explainer-callout">
+        Your chart above shows which transformations are
+        active in your current ten-year cycle. The full
+        report breaks down how they interact — and what
+        that means specifically for 2026.
+      </p>
+    </section>
+
+    <section class="explainer-section">
+      <h3>Why Your Birth Hour Changes Everything</h3>
+      <p>
+        In Western astrology, your rising sign shifts every
+        two hours. In Zi Wei Dou Shu, your birth hour does
+        something more fundamental — it determines which
+        palace becomes your Life Palace, and therefore
+        how every star in your chart is distributed.
+      </p>
+      <p>
+        Two people born on the same day, one hour apart,
+        can have completely different Life Palace stars.
+        This is not a minor variation. It is a different chart.
+      </p>
+      <p>
+        The twelve time branches — Zi (11pm–1am) through
+        Hai (9–11pm) — each span two hours of solar time,
+        not clock time. If you were born near a boundary,
+        your birth location matters for calculating
+        true solar time. Our calculator accounts for this
+        when you provide a birth location.
+      </p>
+      <p style="font-style:italic; color:var(--gold-dim);">
+        Still unsure of your exact birth hour?
+        A professional reading can verify your chart
+        through the process of rectification —
+        cross-referencing known life events against
+        palace timing to confirm placement.
+      </p>
+    </section>
+
+    <section class="explainer-section">
+      <h3>The Ten-Year Cycles: When Your Life Changes Chapter</h3>
+      <p>
+        Your natal chart is the stage. The Major Cycle
+        (大限, Dà Xiàn) is the spotlight — moving to a
+        different palace every decade, illuminating
+        different domains of your life in sequence.
+      </p>
+      <p>
+        This is why two people with similar charts can have
+        profoundly different lives at 30 versus 50.
+        The same stars produce entirely different effects
+        depending on which cycle you are in.
+        A Wealth Palace that lies dormant for decades
+        can become the dominant force of your fifties.
+        A difficult Career Palace in your twenties
+        can become the foundation of your most productive years.
+      </p>
+      <p>
+        The cycle you are currently in is shown at the top
+        of your report. The full reading traces how each
+        of your remaining major cycles will unfold —
+        and what the transition between them typically triggers.
+      </p>
+    </section>
+
+    <section class="explainer-section explainer-faq">
+      <h3>Questions People Actually Ask</h3>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Is this the same as Chinese horoscopes —
+          the Year of the Dragon, Year of the Rat?
+        </div>
+        <div class="faq-a">
+          No. Those are based solely on birth year.
+          Zi Wei Dou Shu uses your exact birth date,
+          hour, and location to generate a unique
+          twelve-palace map. Two people born in the
+          same year can have completely different charts.
+          The animal year system is folk astrology.
+          Zi Wei Dou Shu is the imperial court system —
+          the one they actually used to understand fate.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          I got a Zi Wei chart from another site and
+          it was completely different. Why?
+        </div>
+        <div class="faq-a">
+          Several reasons. Different schools of Zi Wei
+          use different calculation methods — particularly
+          around star placement and Four Transformation
+          assignment. The most common error in automated
+          tools is failing to convert birth time to
+          true solar time, which shifts the Life Palace.
+          Our calculator uses traditional methods with
+          solar time correction when a birth location
+          is provided.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          I don't know my exact birth hour.
+          Can I still get a reading?
+        </div>
+        <div class="faq-a">
+          Yes — with a caveat. Your chart above uses
+          the hour you selected. If you are unsure,
+          calculate with the two most likely candidates
+          and see which Life Palace resonates more
+          deeply with your actual experience.
+          For important decisions, a professional
+          rectification reading is worth doing once.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          How is this different from BaZi (Four Pillars)?
+        </div>
+        <div class="faq-a">
+          BaZi reads your elemental constitution —
+          what you are made of. Zi Wei Dou Shu reads
+          your life map — what you will encounter
+          and when. They answer different questions.
+          BaZi tells you your nature. Zi Wei tells you
+          your timing. Serious practitioners use both.
+          If you have only ever done one, the other
+          will show you what has been missing.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          What does the full report include
+          that the free preview doesn't?
+        </div>
+        <div class="faq-a">
+          The free preview covers your Life, Wealth,
+          and one additional palace. The full report
+          covers all twelve palaces with detailed
+          interpretation, your current Major Cycle
+          analysis, a complete 2026 forecast with
+          monthly themes, and Four Transformation
+          breakdowns for every active star.
+          It is delivered as a PDF within 24 hours —
+          written by a human practitioner,
+          not generated by a template.
+        </div>
+      </div>
+
+    </section>
+
+    <section class="explainer-cta">
+      <div class="explainer-cta-inner">
+        <div class="explainer-cta-label">READY TO GO DEEPER</div>
+        <h3>
+          The chart above shows you the map.<br>
+          The reading tells you how to walk it.
+        </h3>
+        <p>
+          Every palace. Every transformation.
+          Every timing window for 2026 —
+          interpreted for your specific constellation
+          by someone who has read over 500 charts.
+        </p>
+        <div class="explainer-cta-buttons">
+          <a href="checkout.html?product=full-chart" class="btn-primary">
+            Order Full 12-Palace Reading — $39
+          </a>
+          <a href="checkout.html?product=life-palace-dive" class="btn-outline">
+            Life Palace Deep Dive — $9.90
+          </a>
+        </div>
+        <p class="explainer-cta-note">
+          PDF delivered within 24 hours ·
+          Human interpretation ·
+          Not AI-generated
+        </p>
+      </div>
+    </section>
+
+  </article>
 </section>
 
 <script type="application/ld+json">
@@ -1669,34 +2647,42 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is birth hour in Zi Wei Dou Shu?",
+      "name": "Is Zi Wei Dou Shu the same as Chinese horoscopes — the Year of the Dragon, Year of the Rat?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Birth hour in Zi Wei Dou Shu is one of twelve two-hour earthly branches (Zi, Chou, Yin, Mao, Chen, Si, Wu, Wei, Shen, You, Xu, Hai). It determines Life Palace placement and star distribution across all twelve palaces."
+        "text": "No. Animal year horoscopes use birth year only. Zi Wei Dou Shu uses exact birth date, hour, and location for a unique twelve-palace map. Two people born in the same year can have completely different charts."
       }
     },
     {
       "@type": "Question",
-      "name": "How accurate is a free Zi Wei Dou Shu calculator?",
+      "name": "Why is my Zi Wei chart different from another site's chart?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A properly built calculator uses lunar calendar conversion and traditional palace placement rules identical to manual chart construction. Accuracy improves when you provide birth location for true solar time correction."
+        "text": "Different schools use different calculation methods. The most common automated error is failing to convert birth time to true solar time, which shifts the Life Palace. Our calculator uses traditional methods with solar time correction when a birth location is provided."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the difference between Zi Wei Dou Shu and Purple Star Astrology?",
+      "name": "I don't know my exact birth hour. Can I still get a reading?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "They are the same system. Zi Wei Dou Shu (紫微斗數) is the Chinese name; Purple Star Astrology is the common English translation, named after the Zi Wei (Purple Star) emperor star at the center of the system."
+        "text": "Yes, with a caveat. Calculate with the two most likely hour candidates and see which Life Palace resonates with your experience. For important decisions, a professional rectification reading is worth doing once."
       }
     },
     {
       "@type": "Question",
-      "name": "Which palaces are most important in a Zi Wei chart?",
+      "name": "How is Zi Wei Dou Shu different from BaZi (Four Pillars)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Life Palace, Wealth Palace, and Career Palace are the three most consulted. The Spouse Palace and Health Palace follow closely. Major Cycle timing determines which palace is most active during each decade of life."
+        "text": "BaZi reads your elemental constitution — what you are made of. Zi Wei Dou Shu reads your life map — what you will encounter and when. BaZi tells you your nature; Zi Wei tells you your timing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the full report include that the free preview doesn't?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The free preview covers Life, Wealth, and one additional palace. The full report covers all twelve palaces, Major Cycle analysis, a complete 2026 forecast with monthly themes, and Four Transformation breakdowns for every active star — delivered as a PDF within 24 hours."
       }
     }
   ]
@@ -1707,7 +2693,7 @@
 <script src="/zwds-core.js?v=20260608b"></script>
 <script src="/js/ziwei-data.js?v=20260608b"></script>
 <script src="/js/zwds-chart-render.js?v=20260608b"></script>
-<script src="/js/free-chart-app.js?v=20260608g"></script>
+<script src="/js/free-chart-app.js?v=20260608i"></script>
 <script src="/js/result-particles.js?v=20260608h"></script>
 
 </body>

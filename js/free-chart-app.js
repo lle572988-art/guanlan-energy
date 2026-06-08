@@ -787,6 +787,10 @@ function populateResultsUI(result, params) {
   renderYearForecast(meta, chartState.readings);
   renderPalaceGroups(chartState.readings);
 
+  window.__chartData = buildChartShareData(result, chartState.readings, meta);
+  renderShareSection(window.__chartData);
+  initShareButtons();
+
   var results = document.getElementById('results-container');
   if (results) results.style.display = 'block';
   showBlock('cta-block');
@@ -1076,7 +1080,107 @@ async function generateAndUpdateAIReadings(result, params) {
   }
 }
 
-// Start on DOM ready
+function getShareTagline(lifeDisplay) {
+  var soul = getSoulParadox(lifeDisplay);
+  var match = soul.match(/^[^.!?]+[.!?]/);
+  if (match) return match[0].trim();
+  return wordTeaser(soul, 12);
+}
+
+function buildChartShareData(result, readings, meta) {
+  var lifeDisplay = resolveLifePalaceDisplay(readings);
+  var branch = getLifeBranch(result, readings);
+  var bureau = formatBureau(result.bureau);
+  var starCn = lifeDisplay.starCn;
+  var starLabel = starCn || (lifeDisplay.mode === 'open' ? '空宫' : '—');
+  return {
+    persona: lifeDisplay.displayName,
+    lifeStarEn: lifeDisplay.displayName,
+    lifeStarCn: starLabel,
+    lifeBranch: branch,
+    element: bureau,
+    tagline: getShareTagline(lifeDisplay)
+  };
+}
+
+function renderShareSection(shareData) {
+  var personaEl = document.getElementById('share-persona');
+  if (personaEl) personaEl.textContent = shareData.persona;
+  setText('share-star-meta', shareData.lifeStarCn + ' · ' + shareData.element + ' · ' + shareData.lifeBranch);
+  var taglineEl = document.getElementById('share-tagline');
+  if (taglineEl) taglineEl.textContent = '"' + shareData.tagline + '"';
+}
+
+function initShareButtons() {
+  var chartData = window.__chartData || {};
+  var persona = chartData.persona || 'The Seeker';
+  var shareText =
+    'I just got my Zi Wei Dou Shu chart — I am ' + persona + '. ' +
+    '"' + (chartData.tagline || 'Your destiny is written in the stars.') + '" ' +
+    'Calculate yours free:';
+  var shareUrl =
+    'https://metaphysicflow.com/free-chart.html' +
+    '?ref=share&from=' + encodeURIComponent(persona);
+
+  var twitterBtn = document.getElementById('twitter-share-btn');
+  if (twitterBtn) {
+    twitterBtn.href =
+      'https://twitter.com/intent/tweet' +
+      '?text=' + encodeURIComponent(shareText) +
+      '&url=' + encodeURIComponent(shareUrl) +
+      '&hashtags=ZiWeiDouShu,PurpleStarAstrology';
+  }
+
+  var waBtn = document.getElementById('whatsapp-share-btn');
+  if (waBtn) {
+    waBtn.href = 'https://wa.me/?text=' + encodeURIComponent(shareText + ' ' + shareUrl);
+  }
+}
+
+function copyChartLink() {
+  var chartData = window.__chartData || {};
+  var persona = chartData.persona || 'The Seeker';
+  var url =
+    'https://metaphysicflow.com/free-chart.html' +
+    '?ref=share&from=' + encodeURIComponent(persona);
+
+  function onCopied() {
+    var btn = document.getElementById('copy-btn');
+    if (!btn) return;
+    var original = btn.innerHTML;
+    btn.innerHTML = '✓ Link Copied!';
+    btn.style.borderColor = 'rgba(109,184,122,0.5)';
+    btn.style.color = '#6DB87A';
+    setTimeout(function() {
+      btn.innerHTML = original;
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }, 2500);
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(onCopied).catch(function() {
+      fallbackCopy(url);
+      onCopied();
+    });
+  } else {
+    fallbackCopy(url);
+    onCopied();
+  }
+}
+
+function fallbackCopy(text) {
+  var el = document.createElement('textarea');
+  el.value = text;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+}
+
+window.copyChartLink = copyChartLink;
+window.initShareButtons = initShareButtons;
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init);
 } else {
