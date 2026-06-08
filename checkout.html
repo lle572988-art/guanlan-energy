@@ -4,8 +4,8 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Secure Checkout | Guanlan Energy</title>
-<meta name="description" content="Complete your Zi Wei Dou Shu reading purchase — Life Palace Deep Dive, Full 12-Palace Matrix, Partner Compatibility, Live Consultation, or Annual Cosmic Alignment."/>
-<link rel="canonical" href="https://guanlanenergy.com/checkout.html"/>
+<meta name="description" content="Complete your Zi Wei Dou Shu reading purchase — Life Palace Deep Dive, Three-Palace Snapshot, Full 12-Palace Matrix, Live Consultation, and more."/>
+<link rel="canonical" href="https://metaphysicflow.com/checkout.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -51,13 +51,14 @@ h1{font-size:26px;font-weight:400;letter-spacing:0.5px;margin-bottom:8px;color:#
   <div class="price" id="product-price">$39.00 <sub>USD</sub></div>
   <ul class="features" id="product-features"></ul>
   <div class="guarantee">🛡 <strong>30-day satisfaction guarantee</strong> — if the reading doesn't shift your perspective, contact us for a full refund.</div>
-  <button class="btn-checkout" id="checkout-btn" type="button">Complete Secure Checkout</button>
+  <button class="btn-checkout" id="checkout-btn" type="button">Continue to Gumroad Checkout</button>
   <p class="error" id="checkout-error"></p>
-  <div class="trust-badges">🔒 Paid via Stripe · No account needed · PDF delivered within 24–48h</div>
+  <div class="trust-badges" id="trust-badges">🔒 Paid via Gumroad · PDF delivered within 24–48h</div>
   <div class="back"><a href="index.html#pricing">← Back to all readings</a></div>
-  <div class="footer">© 2026 Guanlan Energy · Purple Star Astrology</div>
+  <div class="footer">© 2026 Guanlan Energy · Purple Star Astrology · Secure checkout via Gumroad</div>
 </div>
 
+<script src="/js/gumroad-products.js"></script>
 <script>
 var CATALOG = {
   'life-palace-dive': {
@@ -66,7 +67,6 @@ var CATALOG = {
     price: '$9.90',
     desc: 'A dedicated deep-dive into your Life Palace (命宫) — your master star, life mission, and 2026 activation window.',
     features: ['Life Palace full analysis', 'Master star nature & influence', 'Personality patterns & gifts', '8–10 page illustrated PDF', 'Delivered within 24 hours'],
-    gumroad: 'https://lleonard88.gumroad.com/l/acvsfx?wanted=true',
     stripe: 'life-palace-dive'
   },
   'three-palace-snapshot': {
@@ -75,7 +75,6 @@ var CATALOG = {
     price: '$19.00',
     desc: 'A focused reading of your three most actionable palaces — Life, Wealth, and Career — with 2026 activation notes.',
     features: ['Life Palace — core character & mission', 'Wealth Palace — money energy flow', 'Career Palace — professional path', '2026 activation notes for all 3', '12–14 page illustrated PDF · 24h delivery'],
-    gumroad: null,
     stripe: 'three-palace-snapshot'
   },
   'full-chart': {
@@ -84,7 +83,6 @@ var CATALOG = {
     price: '$39.00',
     desc: 'The complete cosmic map — all 12 palaces, Major Cycle, Four Transformations, and your 2026 annual forecast.',
     features: ['All 12 palaces interpreted', 'Major Cycle (大限) analysis', '2026 annual forecast', 'Four Transformations breakdown', '20–25 page illustrated PDF'],
-    gumroad: 'https://lleonard88.gumroad.com/l/tiuyjr?wanted=true',
     stripe: 'full-chart'
   },
   'partner-compatibility': {
@@ -93,7 +91,6 @@ var CATALOG = {
     price: '$59.00',
     desc: 'An in-depth, reciprocal analysis of the Relationship and Spouse palaces across two matching natal charts.',
     features: ['Two-chart reciprocal analysis', 'Spouse & Relationship palace deep dive', 'Attraction & friction patterns', 'Partnership timing windows', 'Comprehensive PDF guide · 48h delivery'],
-    gumroad: null,
     stripe: 'partner-compatibility'
   },
   'live-reading': {
@@ -102,7 +99,6 @@ var CATALOG = {
     price: '$99.00',
     desc: 'A private 30-minute video session — your chart walked through live, with recording and annotated PDF included.',
     features: ['30-minute private Zoom session', 'Your questions answered live', 'Full session recording', 'Annotated chart PDF', '30 days email follow-up'],
-    gumroad: 'https://lleonard88.gumroad.com/l/lozmm?wanted=true',
     stripe: 'live-reading'
   },
   'annual': {
@@ -111,15 +107,19 @@ var CATALOG = {
     price: '$199.00',
     desc: 'Year-round cosmic guidance — quarterly in-depth reports, solar term reminders, and priority access.',
     features: ['Quarterly in-depth reports', 'Solar term reminders', 'Unlimited email Q&A', 'Priority session booking', 'Full year of alignment support'],
-    gumroad: null,
     stripe: 'annual'
   }
 };
+
+function gumroadUrl(productKey) {
+  return window.GUANLAN_GUMROAD && window.GUANLAN_GUMROAD[productKey] ? window.GUANLAN_GUMROAD[productKey] : null;
+}
 
 var params = new URLSearchParams(window.location.search);
 var productKey = params.get('product') || 'full-chart';
 if (!CATALOG[productKey]) productKey = 'full-chart';
 var product = CATALOG[productKey];
+var gumroad = gumroadUrl(productKey);
 
 document.getElementById('tier-label').textContent = product.tier;
 document.getElementById('product-name').textContent = product.name;
@@ -133,14 +133,43 @@ product.features.forEach(function(f) {
   featList.appendChild(li);
 });
 
+var trustEl = document.getElementById('trust-badges');
+var checkoutBtn = document.getElementById('checkout-btn');
+if (gumroad) {
+  trustEl.textContent = '🔒 Paid via Gumroad · PDF delivered within 24–48h';
+  checkoutBtn.textContent = 'Continue to Gumroad Checkout';
+} else {
+  trustEl.textContent = '🔒 Secure checkout · PDF delivered within 24–48h';
+  checkoutBtn.textContent = 'Complete Secure Checkout';
+}
+
+function trackCheckout(productId) {
+  if (window.gtag) {
+    gtag('event', 'begin_checkout', {
+      item_name: productId,
+      item_category: 'ziwei_reading',
+      source_section: 'checkout_page'
+    });
+  }
+  if (window.plausible) plausible('purchase_click', { props: { product: productId, channel: gumroad ? 'gumroad' : 'stripe' } });
+}
+
 document.getElementById('checkout-btn').addEventListener('click', async function() {
   var btn = this;
   var errEl = document.getElementById('checkout-error');
   errEl.style.display = 'none';
+
+  if (gumroad) {
+    trackCheckout(productKey);
+    window.location.href = gumroad;
+    return;
+  }
+
   btn.disabled = true;
   btn.textContent = 'Redirecting to secure checkout…';
 
   try {
+    trackCheckout(productKey);
     var res = await fetch('/api/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -151,17 +180,9 @@ document.getElementById('checkout-btn').addEventListener('click', async function
       window.location.href = data.url;
       return;
     }
-    if (product.gumroad) {
-      window.location.href = product.gumroad;
-      return;
-    }
     throw new Error(data.error || data.detail || 'Checkout unavailable');
   } catch (e) {
-    if (product.gumroad) {
-      window.location.href = product.gumroad;
-      return;
-    }
-    errEl.textContent = e.message || 'Payment service unavailable. Please try again or email us.';
+    errEl.textContent = e.message || 'Payment service unavailable. Please email hello@metaphysicflow.com.';
     errEl.style.display = 'block';
     btn.disabled = false;
     btn.textContent = 'Complete Secure Checkout';

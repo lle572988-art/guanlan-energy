@@ -2936,7 +2936,7 @@ body::before {
           <li>2026 activation preview for your core palace</li>
           <li>8–10 page illustrated PDF</li>
         </ul>
-        <a class="btn-pricing" href="checkout.html?product=life-palace-dive" data-product="life-palace-dive" style="display:inline-block;text-decoration:none;">Get Life Palace Report</a>
+        <a class="btn-pricing gumroad-button" href="https://lleonard88.gumroad.com/l/acvsfx?wanted=true" data-product="life-palace-dive" style="display:inline-block;text-decoration:none;">Get Life Palace Report</a>
       </div>
 
       <!-- Tier 1.5 — Three-Palace Snapshot -->
@@ -2955,7 +2955,7 @@ body::before {
           <li>2026 activation notes for all 3 palaces</li>
           <li>12–14 page illustrated PDF</li>
         </ul>
-        <a class="btn-pricing" href="checkout.html?product=three-palace-snapshot"
+        <a class="btn-pricing gumroad-button" href="https://lleonard88.gumroad.com/l/threepalace?wanted=true"
           data-product="three-palace-snapshot" style="display:inline-block;text-decoration:none;">
           Get Three-Palace Report
         </a>
@@ -2981,7 +2981,7 @@ body::before {
           <li>Career trajectory &amp; wealth timing</li>
           <li>20–25 page illustrated PDF</li>
         </ul>
-        <a class="btn-pricing" href="checkout.html?product=full-chart" data-product="full-chart" style="display:inline-block;text-decoration:none;">Order Full Matrix</a>
+        <a class="btn-pricing gumroad-button" href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" data-product="full-chart" style="display:inline-block;text-decoration:none;">Order Full Matrix</a>
       </div>
 
       <!-- Partner Compatibility -->
@@ -3020,7 +3020,7 @@ body::before {
           <li>Annotated chart PDF included</li>
           <li>30 days email follow-up access</li>
         </ul>
-        <a class="btn-pricing" href="checkout.html?product=live-reading" data-product="live-reading" style="display:inline-block;text-decoration:none;">Book Video Session</a>
+        <a class="btn-pricing gumroad-button" href="https://lleonard88.gumroad.com/l/lozmm?wanted=true" data-product="live-reading" style="display:inline-block;text-decoration:none;">Book Video Session</a>
       </div>
 
       <!-- Tier 4 — Annual -->
@@ -3057,9 +3057,9 @@ body::before {
     ">
       <span>🔒 SSL Encrypted</span>
       <span>·</span>
-      <span>💳 Stripe &amp; PayPal Accepted</span>
+      <span>💳 Secure checkout via Gumroad</span>
       <span>·</span>
-      <span>📄 Instant PDF Delivery</span>
+      <span>📄 PDF delivered within 24–48h</span>
       <span>·</span>
       <span>✉️ Replies Within 24h</span>
     </div>
@@ -3396,7 +3396,8 @@ body::before {
     <span style="font-size:0.68rem;color:var(--silver-dim);letter-spacing:0.15em;">PURPLE STAR ASTROLOGY</span>
   </div>
   <p class="footer-tagline">
-    <em>Let your strongest weapon stand at the front — not hidden behind code</em>
+    <em>Let your strongest weapon stand at the front — not hidden behind code</em><br>
+    <span style="font-size:0.78rem;color:var(--silver-dim);letter-spacing:0.06em;">PDF readings · Secure checkout via Gumroad</span>
   </p>
   <div class="footer-links">
     <a href="/privacy.html">Privacy</a>
@@ -4309,26 +4310,40 @@ window.addEventListener('scroll', function() {
 })();
 </script>
 <script>
-/* ─── CHECKOUT UTM + GA4 ─── */
+/* ─── PRICING UTM + GA4 (Gumroad + checkout fallback) ─── */
 (function() {
-  var links = document.querySelectorAll('a[href*="checkout.html"]');
-  links.forEach(function(link) {
+  function attachPricingLink(link, product, section, channel) {
     var href = link.getAttribute('href') || '';
-    if (href.indexOf('utm_source=') !== -1) return;
-    var product = (href.match(/product=([^&]+)/) || [])[1] || 'unknown';
-    var parent = link.closest('section, header, nav, footer');
-    var section = (parent && parent.id) ? parent.id : 'page';
-    var sep = href.indexOf('?') === -1 ? '?' : '&';
-    link.setAttribute('href', href + sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product));
+    if (href.indexOf('utm_source=') === -1) {
+      var sep = href.indexOf('?') === -1 ? '?' : '&';
+      link.setAttribute('href', href + sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product));
+    }
     link.addEventListener('click', function() {
       if (window.gtag) {
         gtag('event', 'begin_checkout', {
           item_name: product,
           item_category: 'ziwei_reading',
-          source_section: section
+          source_section: section,
+          checkout_channel: channel
         });
       }
+      if (window.plausible) plausible('purchase_click', { props: { product: product, channel: channel } });
     });
+  }
+
+  document.querySelectorAll('a[href*="lleonard88.gumroad.com"]').forEach(function(link) {
+    var product = link.getAttribute('data-product') || 'gumroad';
+    var parent = link.closest('section, header, nav, footer');
+    var section = (parent && parent.id) ? parent.id : 'pricing';
+    attachPricingLink(link, product, section, 'gumroad');
+  });
+
+  document.querySelectorAll('a[href*="checkout.html"]').forEach(function(link) {
+    var href = link.getAttribute('href') || '';
+    var product = (href.match(/product=([^&]+)/) || [])[1] || 'unknown';
+    var parent = link.closest('section, header, nav, footer');
+    var section = (parent && parent.id) ? parent.id : 'page';
+    attachPricingLink(link, product, section, 'stripe_fallback');
   });
 })();
 </script>
