@@ -50,6 +50,7 @@ export function extractCustomFields(body) {
     'variants', 'offer_code', 'test', 'custom_fields', 'shipping_rate', 'affiliate',
     'affiliate_credit_amount_cents', 'is_gift_receiver_purchase', 'referrer', 'ip_country',
     'is_preorder_authorization', 'subscription_id', 'url_params', 'license_key',
+    'guanlan_dob', 'guanlan_hour', 'guanlan_country', 'guanlan_main_star',
   ]);
   const fields = {};
   for (const [k, v] of Object.entries(body || {})) {
@@ -58,4 +59,22 @@ export function extractCustomFields(body) {
     fields[k] = String(v);
   }
   return fields;
+}
+
+/** Birth info from checkout URL params (Gumroad Ping url_params) + optional Gumroad custom fields */
+export function extractBirthContext(body) {
+  const fields = {};
+  let params = {};
+  try {
+    const raw = body?.url_params;
+    params = typeof raw === 'string' ? JSON.parse(raw) : (raw || {});
+  } catch (e) { /* ignore */ }
+
+  if (params.guanlan_dob) fields['Date of birth'] = params.guanlan_dob;
+  if (params.guanlan_hour) fields['Birth hour'] = params.guanlan_hour;
+  if (params.guanlan_country) fields['Birth city / country'] = params.guanlan_country;
+  if (params.guanlan_main_star) fields['Life Palace star'] = params.guanlan_main_star;
+
+  const custom = extractCustomFields(body);
+  return { ...fields, ...custom };
 }

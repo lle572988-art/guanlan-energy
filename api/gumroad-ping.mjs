@@ -4,8 +4,9 @@ import { put, list } from '@vercel/blob';
 import {
   resolveGumroadProduct,
   thankYouUrl,
-  extractCustomFields,
+  extractBirthContext,
 } from './lib/gumroad-catalog.js';
+import { lookupLeadByEmail, leadToBirthFields } from './lib/lead-lookup.js';
 
 const SALES_PATH = 'gumroad-sales.json';
 
@@ -64,7 +65,7 @@ function sellerEmailHtml(product, body, customFields) {
       <strong>Name:</strong> ${body.full_name || '—'}<br>
       <strong>Price:</strong> ${body.price || product.price}<br>
       <strong>Sale ID:</strong> ${body.sale_id || '—'}</p>
-      ${fields ? `<table style="width:100%;border-collapse:collapse;margin-top:12px;">${fields}</table>` : '<p><em>No custom fields — ask buyer for DOB + birth hour.</em></p>'}
+      ${fields ? `<table style="width:100%;border-collapse:collapse;margin-top:12px;">${fields}</table>` : '<p><em>No birth details yet — check Gumroad buyer email or ask buyer to reply with DOB + birth hour.</em></p>'}
       <p style="margin-top:16px;"><a href="https://app.gumroad.com/sales">Open Gumroad Sales →</a></p>
     </div>`;
 }
@@ -129,21 +130,24 @@ export default async function handler(req, res) {
     return res.status(200).send('ok');
   }
 
-  const customFields = extractCustomFields(body);
+  const customFields = extractBirthContext(body);
+  const lead = await lookupLeadByEmail(email);
+  const fromLead = leadToBirthFields(lead);
+  const mergedFields = { ...fromLead, ...customFields };
   const meta = product || { key: 'full-chart', name: body.product_name || 'Zi Wei Reading', price: body.price || '' };
 
   try {
     await sendResend({
       to: email,
       subject: `Your ${meta.name} — order confirmed (PDF in 24–48h)`,
-      html: buyerEmailHtml(meta, email, customFields),
+      html: buyerEmailHtml(meta, email, mergedFields),
     });
 
     const sellerTo = process.env.SELLER_NOTIFY_EMAIL || 'hello@metaphysicflow.com';
     await sendResend({
       to: sellerTo,
       subject: `[Sale] ${meta.name} — ${email}`,
-      html: sellerEmailHtml(meta, body, customFields),
+      html: sellerEmailHtml(meta, body, mergedFields),
     });
 
     await logSale({
@@ -152,7 +156,8 @@ export default async function handler(req, res) {
       product: meta.key,
       productName: meta.name,
       price: body.price,
-      customFields,
+      customFields: mergedFields,
+      birthSource: Object.keys(customFields).length ? 'checkout_url' : (Object.keys(fromLead).length ? 'lead_db' : 'none'),
       at: new Date().toISOString(),
     });
   } catch (err) {

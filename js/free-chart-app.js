@@ -800,6 +800,15 @@ function populateResultsUI(result, params) {
   renderShareSection(window.__chartData);
   initShareButtons();
 
+  try {
+    var stored = JSON.parse(sessionStorage.getItem('guanlan_birth') || '{}');
+    stored.mainStar = window.__chartData.lifeStarEn || window.__chartData.persona || '';
+    if (params.date) stored.dob = String(params.date).replace(/\//g, '-');
+    if (params.hourLabel) stored.hourLabel = params.hourLabel;
+    if (params.country) stored.country = params.country;
+    sessionStorage.setItem('guanlan_birth', JSON.stringify(stored));
+  } catch (e) { /* ignore */ }
+
   var results = document.getElementById('results-container');
   if (results) results.style.display = 'block';
   showBlock('cta-block');
@@ -854,6 +863,15 @@ function init() {
     chartState.hourLabel = params.hourLabel;
     chartState.country = params.country;
     chartState.email = params.email;
+
+    try {
+      sessionStorage.setItem('guanlan_birth', JSON.stringify({
+        dob: String(params.date || '').replace(/\//g, '-'),
+        hourLabel: params.hourLabel || '',
+        country: params.country || '',
+        mainStar: ''
+      }));
+    } catch (e) { /* ignore */ }
 
     if (params.email) {
       const gateEmail = document.getElementById('gate-email');
