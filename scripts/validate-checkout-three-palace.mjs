@@ -18,7 +18,7 @@ const block = catalogMatch[0];
 const checks = [
   [/price:\s*'\$19\.00'/, 'checkout.html price $19.00'],
   [/stripe:\s*'three-palace-snapshot'/, 'checkout.html stripe fallback key'],
-  [/'three-palace-snapshot':\s*'https:\/\/lleonard88\.gumroad\.com\/l\/threepalace/, 'gumroad-products.js $19 URL'],
+  [/'three-palace-snapshot':\s*'https:\/\/lleonard88\.gumroad\.com\/l\/lfoxf/, 'gumroad-products.js $19 URL'],
   [/'three-palace-snapshot':\s*\{[\s\S]*unit_amount:\s*1900/, 'api/checkout.mjs unit_amount 1900'],
   [/name:\s*'Three-Palace Snapshot'/, 'api/checkout.mjs product name'],
   [/Continue to Gumroad Checkout/, 'checkout.html Gumroad-first button copy'],
