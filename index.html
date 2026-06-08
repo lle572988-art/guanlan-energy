@@ -1282,9 +1282,23 @@ footer {
 }
 
 /* ─── RESPONSIVE ─── */
+@media (min-width: 1025px) {
+  .hero-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero-right {
+    order: -1;
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: clamp(0px, 2vw, 24px);
+  }
+  .hero-left {
+    order: 1;
+  }
+}
+
 @media (min-width: 1280px) {
   .hero-container {
-    grid-template-columns: 440px minmax(520px, 1fr);
     gap: 72px;
   }
 }
@@ -1741,6 +1755,18 @@ body::before {
                 </g>
               </svg>
       </div>
+      <p style="
+        text-align:center;
+        font-family:'Cinzel',serif;
+        font-size:0.55rem;
+        letter-spacing:0.18em;
+        color:var(--silver-dim);
+        margin-top:0.8rem;
+        text-transform:uppercase;
+      ">
+        Hover any palace to explore ·
+        Enter your birth data to unlock yours
+      </p>
     </div>
   </div>
 </section>
