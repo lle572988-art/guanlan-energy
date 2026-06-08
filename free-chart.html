@@ -15,6 +15,10 @@
 <meta name="twitter:title" content="Zi Wei Dou Shu Calculator · Free Chart">
 <meta name="twitter:description" content="Generate your Purple Star Astrology chart in 30 seconds.">
 <meta name="twitter:image" content="https://metaphysicflow.com/images/og-chart.jpg">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-T82Z7E5ELB');</script>
+<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -969,7 +973,7 @@
   }
   .cta-secondary-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1px;
     background: rgba(197, 152, 74, 0.08);
   }
@@ -2165,15 +2169,15 @@
     <div id="palace-groups"></div>
     <div id="email-gate-embedded" class="gate-embedded">
       <h2>Unlock Your Full 12-Palace Cosmic Map</h2>
-      <p>Enter your email once here to unlock all remaining palace readings and receive your comprehensive PDF report.</p>
+      <p>Enter your email to unlock all remaining palace readings instantly — free on this page. No paid report required.</p>
       <form id="gate-form" onsubmit="return submitGate(event)">
         <input class="fi" type="text" id="gate-name" placeholder="Your name" autocomplete="name">
         <input class="fi" type="email" id="gate-email" placeholder="Your email address" autocomplete="email" required>
         <button class="btn-gold" type="submit" id="gate-submit-btn">Unlock My Full Chart</button>
       </form>
       <div id="gate-embedded-success" class="gate-embedded-success">
-        <p style="color:#E2C27A;font-size:1.05rem;margin-bottom:0.4rem;">✅ Your full chart is unlocked!</p>
-        <p style="font-size:0.85rem;color:#B0A898;">Your PDF report is being prepared — check your inbox shortly.</p>
+        <p style="color:#E2C27A;font-size:1.05rem;margin-bottom:0.4rem;">✅ All 12 palaces unlocked on this page!</p>
+        <p style="font-size:0.85rem;color:#B0A898;">Scroll up to read Wealth, Career, and every remaining palace.</p>
       </div>
     </div>
   </section>
@@ -2280,6 +2284,17 @@
           </p>
           <div class="cta-s-price">$9.90</div>
           <a href="checkout.html?product=life-palace-dive" class="btn-cta-secondary">Start Here →</a>
+        </div>
+        <div class="cta-secondary-card">
+          <div class="cta-s-label">BEST VALUE</div>
+          <div class="cta-s-name">Three-Palace Snapshot</div>
+          <p class="cta-s-desc">
+            Life, Wealth &amp; Career — the three palaces
+            that shape most daily decisions.
+            12–14 page PDF.
+          </p>
+          <div class="cta-s-price">$19</div>
+          <a href="checkout.html?product=three-palace-snapshot" class="btn-cta-secondary">Get Three-Palace Report →</a>
         </div>
         <div class="cta-secondary-card">
           <div class="cta-s-label">LIVE SESSION</div>
@@ -2669,6 +2684,9 @@
           <a href="checkout.html?product=life-palace-dive" class="btn-outline">
             Life Palace Deep Dive — $9.90
           </a>
+          <a href="checkout.html?product=three-palace-snapshot" class="btn-outline">
+            Three-Palace Snapshot — $19
+          </a>
         </div>
         <p class="explainer-cta-note">
           PDF delivered within 24 hours ·
@@ -2747,8 +2765,32 @@
 <script src="/zwds-core.js?v=20260608b"></script>
 <script src="/js/ziwei-data.js?v=20260608b"></script>
 <script src="/js/zwds-chart-render.js?v=20260608b"></script>
-<script src="/js/free-chart-app.js?v=20260608m"></script>
+<script src="/js/free-chart-app.js?v=20260608n"></script>
 <script src="/js/result-particles.js?v=20260608h"></script>
+<script>
+/* ─── CHECKOUT UTM + GA4 ─── */
+(function() {
+  var links = document.querySelectorAll('a[href*="checkout.html"]');
+  links.forEach(function(link) {
+    var href = link.getAttribute('href') || '';
+    if (href.indexOf('utm_source=') !== -1) return;
+    var product = (href.match(/product=([^&]+)/) || [])[1] || 'unknown';
+    var parent = link.closest('section, header, nav, footer, div');
+    var section = (parent && parent.id) ? parent.id : 'free-chart';
+    var sep = href.indexOf('?') === -1 ? '?' : '&';
+    link.setAttribute('href', href + sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product));
+    link.addEventListener('click', function() {
+      if (window.gtag) {
+        gtag('event', 'begin_checkout', {
+          item_name: product,
+          item_category: 'ziwei_reading',
+          source_section: section
+        });
+      }
+    });
+  });
+})();
+</script>
 
 </body>
 </html>

@@ -14,15 +14,23 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') { res.status(200).end(); return; }
   if (req.method !== 'POST') { res.status(405).json({ error: 'Method not allowed' }); return; }
 
-  const sk = process.env.STRIPE_SECRET_KEY;
+  const sk = (process.env.STRIPE_SECRET_KEY || '').trim();
   if (!sk) {
     res.status(500).json({ error: 'STRIPE_SECRET_KEY not configured' });
     return;
   }
+  if (!/^sk_(live|test)_/.test(sk)) {
+    res.status(500).json({ error: 'STRIPE_SECRET_KEY invalid format' });
+    return;
+  }
 
   try {
-    const stripe = new Stripe(sk);
-    const origin = req.headers.origin || 'https://guanlanenergy.com';
+    const stripe = new Stripe(sk, {
+      apiVersion: '2024-11-20.acacia',
+      maxNetworkRetries: 2,
+      timeout: 20000,
+    });
+    const origin = req.headers.origin || req.headers.referer?.replace(/\/[^/]*$/, '') || 'https://metaphysicflow.com';
     const { product, price, description } = req.body || {};
 
     const products = {
@@ -102,7 +110,10 @@ export default async function handler(req, res) {
     console.log('Stripe session created:', session.id, 'for:', product);
     res.status(200).json({ url: session.url });
   } catch (err) {
-    console.error('Stripe error:', err.message, err.type);
-    res.status(500).json({ error: 'Payment service unavailable', detail: err.message });
+    console.error('Stripe error:', err.type || err.code, err.message);
+    const detail = err.type === 'StripeAuthenticationError'
+      ? 'Stripe API key rejected — rotate STRIPE_SECRET_KEY in Vercel env.'
+      : err.message;
+    res.status(500).json({ error: 'Payment service unavailable', detail });
   }
 }

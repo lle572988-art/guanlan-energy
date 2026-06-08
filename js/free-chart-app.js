@@ -888,6 +888,8 @@ function init() {
 
     hideLoadingScreen();
     populateResultsUI(result, params);
+    if (window.plausible) plausible('chart_ready');
+    if (window.gtag) gtag('event', 'chart_ready', { page: 'free-chart' });
 
   } catch (err) {
     showError(err);
@@ -969,6 +971,8 @@ function submitGate(event) {
   }
 
   captureLead(email, name || 'Chart Reader', 'free-chart-gate');
+  if (window.plausible) plausible('gate_submit');
+  if (window.gtag) gtag('event', 'generate_lead', { method: 'free-chart-gate' });
 
   unlockAllPalaces();
   document.getElementById('gate-form').style.display = 'none';
