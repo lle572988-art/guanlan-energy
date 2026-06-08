@@ -132,19 +132,22 @@ p {
   font-style: italic;
 }
 .nav-links {
-  display: flex; align-items: center; gap: 2.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
   list-style: none;
 }
 .nav-links a {
   font-family: 'Cinzel', serif;
   font-size: 0.78rem;
   letter-spacing: 0.05em;
-  color: rgba(201, 169, 110, 0.55);
+  color: rgba(201, 169, 110, 0.65);
   text-decoration: none;
   text-transform: none;
+  white-space: nowrap;
   transition: color 0.3s;
 }
-.nav-links a:hover { color: var(--gold-accent); }
+.nav-links a:hover { color: rgba(201, 169, 110, 1); }
 .nav-cta {
   font-family: 'Cinzel', serif;
   font-size: 0.65rem;
@@ -154,6 +157,7 @@ p {
   background: var(--gold-accent);
   padding: 0.55rem 1.4rem;
   border-radius: 1px;
+  margin-left: 0.25rem;
   transition: background 0.3s, box-shadow 0.3s !important;
 }
 .nav-cta:hover { background: var(--gold-light) !important; box-shadow: 0 0 16px rgba(201, 169, 110, 0.22) !important; }
@@ -267,7 +271,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5rem 0 4rem;
+  padding: 6rem 0 4rem;
   overflow: hidden;
 }
 
@@ -275,13 +279,13 @@ p {
 .hero-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: start;
+  gap: 5%;
+  align-items: center;
   max-width: 1320px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 5%;
-  min-height: min(100vh, calc(100vh - 7rem));
+  padding: 0 6%;
+  min-height: calc(100vh - 7rem);
 }
 
 .hero-left {
@@ -289,7 +293,7 @@ p {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 520px;
+  max-width: 480px;
   justify-self: start;
 }
 #hero::after {
@@ -306,60 +310,64 @@ p {
 }
 
 .hero-copy {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .hero-eyebrow {
   font-family: 'Cinzel', serif;
-  font-size: 12px;
-  letter-spacing: 0.22em;
-  color: var(--gold-soft);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(201, 169, 110, 0.5);
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  display: flex; align-items: center; gap: 0.7rem;
+  margin-bottom: 2rem;
+  display: block;
   opacity: 0;
   animation: fadeUp 0.8s 0.2s forwards;
 }
 .hero-eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 32px; height: 1px;
-  background: var(--gold-muted);
-  opacity: 1;
+  display: none;
 }
 
 .hero-h1 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 300;
-  line-height: 1.08;
+  line-height: 1.1;
   color: var(--parchment);
   letter-spacing: -0.01em;
-  margin-bottom: 0.65rem;
+  margin-bottom: 1.5rem;
   text-wrap: balance;
   opacity: 0;
   animation: fadeUp 0.8s 0.35s forwards;
 }
 .hero-title-small {
   display: block;
-  font-size: clamp(1.6rem, 2.2vw, 2rem);
-  margin-bottom: 0.1rem;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
 }
 .hero-h1 em,
 .hero-title-large {
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-style: italic;
+  font-weight: 400;
   color: var(--gold-accent);
   display: block;
-  font-size: clamp(2.2rem, 3.2vw, 3rem);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  line-height: 1.1;
 }
 
 .hero-lead {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', Georgia, serif;
   font-size: 1rem;
   font-weight: 400;
   font-style: normal;
-  color: var(--text-dim);
-  line-height: 1.55;
-  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.75;
+  max-width: 440px;
+  margin-bottom: 2rem;
   opacity: 0;
   animation: fadeUp 0.8s 0.45s forwards;
 }
@@ -414,162 +422,163 @@ p {
 
 /* ─── FORM ─── */
 .chart-form {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(201, 169, 110, 0.15);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(201, 169, 110, 0.18);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 2px;
-  padding: 1.5rem;
+  border-radius: 8px;
+  padding: 1.75rem;
   width: 100%;
   max-width: 440px;
   position: relative;
   opacity: 0;
-  animation: fadeUp 0.9s 0.75s forwards;
+  animation: fadeUp 0.9s 0.65s forwards;
 }
 .chart-form::before {
-  content: '';
-  position: absolute; top: -1px; left: 10%; right: 10%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.35), transparent);
+  display: none;
 }
 
 .form-title {
   font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
+  font-size: 10px;
+  letter-spacing: 0.1em;
   color: rgba(201, 169, 110, 0.5);
   text-transform: uppercase;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-row { margin-bottom: 1rem; }
 .form-label {
   display: block;
   font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  color: var(--silver);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.4);
   text-transform: uppercase;
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.35rem;
 }
 .form-input, .form-select {
   width: 100%;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(201, 169, 110, 0.15);
-  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.85);
   font-family: 'EB Garamond', serif;
-  font-size: 1.05rem;
-  padding: 0.72rem 1rem;
-  border-radius: 1px;
+  font-size: 14px;
+  padding: 12px 14px;
+  border-radius: 5px;
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s;
   appearance: none;
 }
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
 .form-input:focus, .form-select:focus {
-  border-color: rgba(201, 169, 110, 0.45);
-  box-shadow: 0 0 0 1px rgba(201, 169, 110, 0.2), 0 0 12px rgba(201, 169, 110, 0.06);
+  border-color: rgba(201, 169, 110, 0.35);
+  box-shadow: none;
   outline: none;
 }
-.form-select { cursor: pointer; }
-.form-select option { background: #0a0a0a; }
+.form-select { cursor: pointer; color: rgba(255, 255, 255, 0.8); }
+.form-select option { background: #0a0a0a; color: #fff; }
 
 .form-hint {
-  font-size: 0.88rem;
+  font-size: 11px;
   font-style: italic;
-  color: var(--text-dim);
-  margin-top: 0.25rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 4px;
+  margin-bottom: 0;
+  line-height: 1.45;
 }
 
 .location-label {
   display: block;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 13px;
-  text-transform: none;
-  letter-spacing: 0.03em;
-  color: rgba(201, 169, 110, 0.5);
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.4);
   line-height: 1.4;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.35rem;
+}
+.location-label .label-optional {
+  color: rgba(201, 169, 110, 0.4);
+  font-size: 10px;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  margin-left: 4px;
+  font-family: 'EB Garamond', serif;
 }
 .location-hint {
-  font-size: 0.82rem;
-  font-style: italic;
-  color: var(--text-dim);
-  margin: 0 0 0.45rem;
-  line-height: 1.45;
+  display: none;
 }
 
 .urgency-bar {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 1rem;
-  padding: 0.5rem 0.9rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(201, 169, 110, 0.1);
-  border-radius: 1px;
-  font-family: 'EB Garamond', serif;
-  font-size: 0.88rem;
-  font-style: italic;
-  letter-spacing: 0.02em;
-  color: var(--text-secondary);
-  animation: fadeUp 0.8s 0.7s both;
+  gap: 8px;
+  margin-bottom: 2rem;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 0;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 12px;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.45);
+  animation: fadeUp 0.8s 0.55s both;
 }
 .urgency-bar-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #4CAF50;
+  background: #4caf7d;
   flex-shrink: 0;
-  box-shadow: 0 0 6px rgba(76, 175, 80, 0.6);
+  box-shadow: none;
   animation: pulse 2s infinite;
 }
 
 .btn-primary {
   white-space: nowrap;
   width: 100%;
-  min-height: 52px;
-  margin-top: 1.4rem;
+  min-height: auto;
+  margin-top: 0.5rem;
   background: var(--gold-accent);
-  color: var(--void);
-  font-family: 'Cinzel', serif;
-  font-size: 16px;
-  letter-spacing: 0.04em;
+  color: #0a0a0a;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: none;
   border: none;
-  padding: 0.85rem 2rem;
-  border-radius: 1px;
+  padding: 15px;
+  border-radius: 5px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
 }
 .btn-primary::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
-  pointer-events: none;
+  display: none;
 }
 .btn-primary:hover {
   background: var(--gold-light);
-  box-shadow: 0 4px 24px rgba(201, 169, 110, 0.28);
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.22);
   transform: translateY(-1px);
 }
 .btn-primary:active { transform: translateY(0); }
 
 .form-sub {
   text-align: center;
-  margin-top: 0.9rem;
-  font-size: 0.78rem;
-  font-style: italic;
-  color: var(--text-dim);
+  margin-top: 0.75rem;
+  font-size: 11px;
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.3);
 }
-.form-sub span { color: var(--gold-muted); }
+.form-sub span { color: rgba(255, 255, 255, 0.3); }
 
 .form-social-proof {
-  margin-top: 1.25rem;
-  padding-top: 1.1rem;
-  border-top: 1px solid rgba(201, 169, 110, 0.15);
-  text-align: left;
+  display: none;
 }
 .form-social-stat {
   font-family: 'EB Garamond', serif;
@@ -610,14 +619,23 @@ p {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: auto;
-  min-height: 0;
-  padding: 0;
+  padding: 2rem 0;
   overflow: visible;
-  align-self: stretch;
+  align-self: center;
+}
+
+.chart-frame {
+  width: 100%;
+  max-width: min(460px, 88%);
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow:
+    0 0 60px rgba(201, 169, 110, 0.06),
+    0 0 120px rgba(201, 169, 110, 0.03);
 }
 
 #zwds-chart {
@@ -630,11 +648,8 @@ p {
 }
 
 .chart-preview {
-  box-shadow:
-    0 0 40px rgba(201, 169, 110, 0.08),
-    0 0 0 1px rgba(201, 169, 110, 0.18),
-    inset 0 0 60px rgba(201, 169, 110, 0.02);
-  border-radius: 2px;
+  box-shadow: none;
+  border-radius: 0;
   animation: chartReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   opacity: 0;
   width: 100%;
@@ -678,13 +693,13 @@ p {
 }
 .chart-hint {
   text-align: center;
-  font-family: 'Cinzel', serif;
-  font-size: 0.55rem;
-  letter-spacing: 0.12em;
-  color: var(--silver-dim);
-  margin-top: 0.8rem;
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.25);
+  margin-top: 1rem;
   text-transform: none;
-  max-width: 100%;
+  max-width: min(460px, 88%);
 }
 
 /* ─── DIVIDER ─── */
@@ -1866,12 +1881,12 @@ footer {
   .hero-container,
   .hero-grid {
     grid-template-columns: 1fr 1fr;
-    align-items: start;
-    gap: 40px;
+    align-items: center;
+    gap: 5%;
     min-height: calc(100vh - 7rem);
   }
   .hero-left {
-    max-width: 520px;
+    max-width: 480px;
   }
   .chart-form {
     max-width: none;
@@ -1880,7 +1895,8 @@ footer {
     margin-bottom: 0.85rem;
   }
   .hero-right {
-    align-items: stretch;
+    align-items: center;
+    justify-content: center;
     overflow: visible;
   }
   #zwds-chart,
@@ -1933,6 +1949,7 @@ footer {
     padding: 0.5rem 0 1.5rem;
   }
   #zwds-chart { display: none !important; transform: none; }
+  .chart-frame { display: none; }
   .chart-preview { transform: none; }
   .chart-mobile-thumb { display: block; }
   .chart-hint { font-size: 0.5rem; letter-spacing: 0.14em; }
@@ -2082,11 +2099,11 @@ body::before {
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#palaces">The 12 Palaces</a></li>
-    <li><a href="#about">The Reader</a></li>
+    <li><a href="#palaces">How It Works</a></li>
+    <li><a href="#about">About</a></li>
     <li><a href="#pricing">Services</a></li>
-    <li><a href="/bazi-calculator.html" style="opacity:0.6">BaZi Calculator</a></li>
-    <li><a href="/blog/">Articles</a></li>
+    <li><a href="/bazi-calculator.html">BaZi Calculator</a></li>
+    <li><a href="/blog/">Journal</a></li>
     <li><a href="#chart-form" class="nav-cta">Get My Chart</a></li>
   </ul>
   <button class="nav-hamburger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-drawer" id="nav-hamburger">
@@ -2096,11 +2113,11 @@ body::before {
 
 <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
-  <a href="#palaces">The 12 Palaces</a>
-  <a href="#about">The Reader</a>
+  <a href="#palaces">How It Works</a>
+  <a href="#about">About</a>
   <a href="#pricing">Services</a>
   <a href="/bazi-calculator.html">BaZi Calculator</a>
-  <a href="/blog/">Articles</a>
+  <a href="/blog/">Journal</a>
   <a href="#chart-form" class="nav-drawer-cta">Get My Chart</a>
 </nav>
 
@@ -2117,21 +2134,21 @@ body::before {
         <span class="hero-title-small">Your</span>
         <em class="hero-title-large">Zi Wei Dou Shu Chart</em>
       </h1>
-      <p class="hero-lead">Real chart calculation and human interpretation — the imperial system, now in English.</p>
+      <p class="hero-lead">The system the Son of Heaven used to read fate —<br>now interpreted in English for the first time.</p>
       </div>
 
       <div class="urgency-bar">
         <span class="urgency-bar-dot" aria-hidden="true"></span>
-        <span id="live-counter">5,000+ people have explored their Purple Star chart</span>
+        <span id="live-counter">5,000+ charts explored worldwide</span>
       </div>
 
       <form id="chart-form" class="chart-form" onsubmit="return handleSubmit(event)">
-        <div class="form-title">Generate My Purple Star Chart</div>
+        <div class="form-title">Generate My Chart</div>
 
         <div class="form-row">
           <label class="form-label" for="dob">Date of Birth</label>
           <input class="form-input" type="date" id="dob" name="dob" autocomplete="bday" aria-required="true" required aria-describedby="dob-hint">
-          <p id="dob-hint" class="form-hint">Your birth date is converted to the lunar calendar for palace placement.</p>
+          <p id="dob-hint" class="form-hint">Converted to lunar calendar for palace placement</p>
         </div>
 
         <div class="form-row">
@@ -2151,19 +2168,17 @@ body::before {
             <option value="xu">戌時 · Xu Hour (19:00 – 21:00)</option>
             <option value="hai">亥時 · Hai Hour (21:00 – 23:00)</option>
           </select>
-          <p id="hour-hint" class="form-hint">Birth hour determines your Life Palace — the core of your chart</p>
+          <p id="hour-hint" class="form-hint">Determines your Life Palace — the core of your chart</p>
         </div>
 
         <div class="form-row">
-          <label class="location-label" for="country" id="country-label">Birth location (recommended)</label>
-          <p class="location-hint" id="country-hint">Used for true solar time accuracy</p>
+          <label class="location-label" for="country" id="country-label">Birth Location <span class="label-optional">recommended</span></label>
           <input class="form-input" type="text" id="country" name="country" placeholder="e.g. London, United Kingdom" autocomplete="country-name" aria-describedby="country-hint">
+          <p class="location-hint" id="country-hint">Used for true solar time accuracy</p>
         </div>
 
-        <button class="btn-primary" type="submit">
-          ◆ Calculate My Fate Map — Free ◆
-        </button>
-        <p class="form-sub">✓ Free chart preview &nbsp;·&nbsp; <span>Unlock full report with email on results page</span> &nbsp;·&nbsp; Results in 30 seconds</p>
+        <button class="btn-primary" type="submit">Calculate My Fate Map — Free</button>
+        <p class="form-sub">Free preview · Full report via email · Results in 30 seconds</p>
         <div class="form-social-proof">
           <div class="form-social-stat">Trusted by 5,000+ chart explorers worldwide</div>
           <div class="form-mini-reviews">
@@ -2185,6 +2200,7 @@ body::before {
 
     <div class="hero-right">
       <img class="chart-mobile-thumb" src="/images/og-chart.jpg" alt="Sample Zi Wei Dou Shu 12-palace chart preview" width="320" height="168" loading="lazy" decoding="async">
+      <div class="chart-frame">
       <div id="zwds-chart" class="chart-preview">
         <svg id="chart-svg" role="img" aria-label="Zi Wei Dou Shu 12-palace natal chart diagram" viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
                 <defs>
@@ -2389,10 +2405,8 @@ body::before {
                 </g>
               </svg>
       </div>
-      <p class="chart-hint">
-        Hover any palace to explore ·
-        Enter your birth data to unlock yours
-      </p>
+      </div>
+      <p class="chart-hint">Hover any palace to explore · Enter birth data to unlock yours</p>
     </div>
   </div>
 </section>

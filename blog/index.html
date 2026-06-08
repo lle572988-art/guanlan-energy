@@ -7,311 +7,386 @@
 <meta name="description" content="Zi Wei Dou Shu (Purple Star Astrology) guides, Feng Shui space optimization, and Five Elements wisdom. Practical Chinese metaphysics for the modern world.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Guanlan Energy">
-<meta property="og:title" content="Guanlan Energy Blog">
+<meta property="og:title" content="Guanlan Energy Journal">
 <meta property="og:description" content="Purple Star Astrology, Feng Shui, Five Elements — practical Chinese metaphysics for modern life.">
 <meta property="og:url" content="https://metaphysicflow.com/blog/">
 <link rel="canonical" href="https://metaphysicflow.com/blog/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?display=swap&family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
- :root {
- --void: #03070F;
- --deep: #060D1A;
- --surface: #0C1628;
- --layer: #111E35;
- --rim: #1A2D4A;
- --gold: #C5984A;
- --gold-light: #E2C27A;
- --gold-dim: #7A5C28;
- --silver: #9BB5CC;
- --silver-dim: #4A6680;
- --parchment: #D4C4A0;
- --text: #C8D8E8;
- --text-dim: #6A8299;
- --r: 0.5rem;
- }
- * { margin: 0; padding: 0; box-sizing: border-box; }
- body {
- font-family: "Inter", -apple-system, sans-serif;
- background: var(--void);
- color: var(--text);
- line-height: 1.6;
- min-height: 100vh;
- }
- nav {
- position: fixed; top: 0; left: 0; right: 0; z-index: 100;
- background: rgba(3,7,15,0.92); backdrop-filter: blur(20px);
- padding: 0.8rem 2rem;
- display: flex; align-items: center; justify-content: space-between;
- border-bottom: 1px solid rgba(197,152,74,0.12);
- }
- nav .logo {
- font-family: "Cinzel", serif;
- font-size: 0.85rem; letter-spacing: 0.15em;
- color: var(--parchment); text-decoration: none;
- }
- nav a { color: var(--text-dim); text-decoration: none; font-size: 0.85rem; transition: color 0.3s; }
- nav a:hover { color: var(--gold-light); }
- .container { max-width: 880px; margin: 0 auto; padding: 5rem 1.5rem 3rem; }
- h1 {
- font-family: "Cormorant Garamond", serif;
- font-size: 2.5rem; font-weight: 300;
- color: var(--parchment); margin-bottom: 0.5rem;
- letter-spacing: 0.02em;
- }
- .subtitle {
- color: var(--text-dim); font-size: 0.95rem;
- margin-bottom: 3rem; border-bottom: 1px solid rgba(197,152,74,0.1);
- padding-bottom: 1.5rem;
- }
- .category-label {
- font-family: "Cinzel", serif;
- font-size: 0.7rem; letter-spacing: 0.2em;
- color: var(--gold-dim); text-transform: uppercase;
- margin: 2.5rem 0 1rem;
- padding-bottom: 0.5rem;
- border-bottom: 1px solid rgba(197,152,74,0.08);
- }
- .article-list { display: grid; gap: 1.2rem; }
- .article-card {
- background: var(--surface); border: 1px solid rgba(197,152,74,0.08);
- border-radius: 6px; padding: 1.2rem 1.5rem;
- transition: border-color 0.3s;
- }
- .article-card:hover { border-color: rgba(197,152,74,0.25); }
- .article-card h2 {
- font-family: "Cormorant Garamond", serif;
- font-size: 1.1rem; font-weight: 400;
- margin-bottom: 0.3rem;
- }
- .article-card h2 a { color: var(--gold); text-decoration: none; }
- .article-card h2 a:hover { color: var(--gold-light); }
- .article-card p {
- font-size: 0.82rem; color: var(--text-dim); line-height: 1.5;
- }
- footer {
- text-align: center; padding: 2rem;
- color: var(--silver-dim); font-size: 0.8rem;
- border-top: 1px solid rgba(197,152,74,0.06);
- }
+:root {
+  --void: #080808;
+  --gold: #C9A96E;
+  --gold-light: #D4BC82;
+  --text: rgba(255, 255, 255, 0.88);
+  --text-dim: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.45);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  background: var(--void);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(8, 8, 8, 0.82);
+  backdrop-filter: blur(12px);
+  padding: 1rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+}
+nav .logo {
+  font-family: Cinzel, serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: rgba(201, 169, 110, 0.55);
+  text-decoration: none;
+}
+nav a.back {
+  color: rgba(201, 169, 110, 0.55);
+  text-decoration: none;
+  font-family: Cinzel, serif;
+  font-size: 0.78rem;
+  transition: color 0.3s;
+}
+nav a.back:hover { color: var(--gold); }
+
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 3rem;
+}
+.page-header { margin-bottom: 2.5rem; }
+h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.02em;
+}
+.subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+}
+
+.section-label {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(201, 169, 110, 0.45);
+  text-transform: uppercase;
+  margin: 2.5rem 0 0.5rem;
+}
+
+.article-list { max-width: 720px; margin: 0 auto; }
+
+.featured-article {
+  padding: 2rem 0 2.5rem;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+  margin-bottom: 0.5rem;
+}
+.featured-article a { text-decoration: none; color: inherit; display: block; }
+.featured-kicker {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(201, 169, 110, 0.5);
+  margin-bottom: 10px;
+}
+.featured-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 1.8rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.featured-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+.featured-excerpt {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 1rem;
+}
+.featured-link {
+  font-family: Cinzel, serif;
+  font-size: 12px;
+  color: rgba(201, 169, 110, 0.7);
+  letter-spacing: 0.06em;
+  transition: color 0.25s;
+}
+.featured-article:hover .featured-link { color: var(--gold); }
+
+.article-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+  background: transparent;
+}
+.article-item a {
+  display: contents;
+  text-decoration: none;
+  color: inherit;
+}
+.article-date {
+  text-align: center;
+  padding-top: 3px;
+}
+.article-date-day {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.4rem;
+  color: rgba(201, 169, 110, 0.6);
+  font-weight: 300;
+  line-height: 1;
+}
+.article-date-month {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 4px;
+}
+.article-date-year {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.2);
+  margin-top: 2px;
+}
+.article-meta {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(201, 169, 110, 0.45);
+  margin-bottom: 6px;
+}
+.article-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 8px;
+  line-height: 1.35;
+  transition: color 0.25s;
+}
+.article-item:hover .article-title { color: var(--gold); }
+.article-excerpt {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.65;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(201, 169, 110, 0.08);
+  margin-top: 2rem;
+}
+
+@media (max-width: 560px) {
+  .article-item {
+    grid-template-columns: 56px 1fr;
+    gap: 1rem;
+  }
+  .article-date-day { font-size: 1.15rem; }
+}
 </style>
 </head>
 <body>
 <nav>
- <a href="/" class="logo">GUANLAN ENERGY</a>
- <a href="/">← Home</a>
+  <a href="/" class="logo">GUANLAN ENERGY</a>
+  <a href="/" class="back">← Home</a>
 </nav>
 
 <div class="container">
- <h1>Guanlan Energy Journal</h1>
- <div class="subtitle">Zi Wei Dou Shu · Feng Shui · Five Elements — practical Chinese metaphysics for modern life.</div>
+  <header class="page-header">
+    <h1>Guanlan Energy Journal</h1>
+    <p class="subtitle">Zi Wei Dou Shu · Feng Shui · Five Elements — practical Chinese metaphysics for modern life.</p>
+  </header>
 
- <div class="article-list">
- <div class="category-label">Purple Star Astrology · Zi Wei Dou Shu</div>
- <div class="article-card">
-  <h2><a href="/blog/what-is-zi-wei-dou-shu.html">What is Zi Wei Dou Shu? A Complete Guide for Beginners</a></h2>
-  <p>Target: what is zi wei dou shu · Featured Snippet candidate. Origins, 12 palaces, 14 main stars, and how Purple Star Astrology works in English.</p>
- </div>
- <div class="article-card">
-  <h2><a href="/blog/zi-wei-dou-shu-vs-bazi.html">Zi Wei Dou Shu vs BaZi: Which Is More Accurate?</a></h2>
-  <p>High-intent comparison: 12 palaces vs eight characters, use cases, and when to use each Chinese astrology system.</p>
- </div>
- <div class="article-card">
-  <h2><a href="/blog/12-palaces-zi-wei-dou-shu-explained.html">The 12 Palaces of Zi Wei Dou Shu Explained</a></h2>
-  <p>Authoritative reference for Life, Wealth, Career, Spouse, Health, Travel, and all twelve palace domains.</p>
- </div>
- <div class="article-card">
-  <h2><a href="/blog/how-to-read-zi-wei-dou-shu-chart.html">How to Read Your Zi Wei Chart: 5 Key Elements</a></h2>
-  <p>Educational guide linking to the free calculator — Life Palace star, Wealth, Career, Four Transformations, Major Cycle.</p>
- </div>
- <div class="article-card">
-  <h2><a href="/blog/2026-zi-wei-dou-shu-annual-forecast.html">2026 Zi Wei Dou Shu Annual Forecast</a></h2>
-  <p>Chinese astrology 2026 · Fire Horse year themes, palace activations, and personalized timing guidance.</p>
- </div>
- <div class="article-card">
-  <h2><a href="/blog/purple-star-astrology-vs-western-astrology.html">Purple Star vs Western Astrology</a></h2>
-  <p>Cross-system comparison for Western astrology readers exploring Zi Wei Dou Shu for the first time.</p>
- </div>
- <div class="category-label">Feng Shui · Five Elements · Space</div>
-<div class="article-card">
- <h2><a href="/blog/14-main-stars-explained.html">14 Main Stars of Purple Star Astrology | Zi Wei Dou Shu Star Guide</a></h2>
- <p>Complete guide to the 14 main stars in Zi Wei Dou Shu: Zi Wei, Tian Fu, Tai Yang, Wu Qu, Tian Tong, Lian Zhen, Tian Ji, </p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/wealth-corner-feng-shui.html">2026 Wealth Activation: Your Southeast Corner De</a></h2>
- <p>The Eight White Star of wealth flies to the southeast in 2026. Is your money corner clean and energized?</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/new-house-moving-feng-shui.html">5 Energy Red Flags to Check Before Moving Into a</a></h2>
- <p>Previous tenant energy, door facing stairs, bedroom over kitchen, missing corners, rushing qi — check these before you m</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/interview-promotion-energy.html">A 3-Day Energy Prep Plan Before Your Interview o</a></h2>
- <p>From clearing your room to creating a mentor corner — use spatial psychology to ace your interview or promotion panel.</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/money-drain-5-feng-shui-signs.html">Always Short on Money? 5 Feng Shui 'Wealth Drain</a></h2>
- <p>Entryway clutter, stove facing door, center toilet, through-draft, beam over bed — your home might be secretly draining </p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/best-colors-for-home-energy-balance-a-five-elements-room-by-.html">Best Colors for Home Energy Balance: A Five Elem</a></h2>
- <p>Best Colors for Home Energy Balance: A Five Elements Room-by-Room Guide Practical insights from Guanlan Energy on Feng S</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/self-cultivation-home-sanctuary.html">Burned Out? 5 Spatial Adjustments to Turn Your H</a></h2>
- <p>A no-screen corner, a sleep sanctuary, scents that heal, indoor plants, and the TV trap — how to make your home recharge</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/home-office-productivity-spatial.html">Can't Focus at Home? It's Not Your Willpower — I</a></h2>
- <p>Living room desk, facing a wall, wrong plants, bad lighting — your home office setup is quietly draining your focus ever</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/sleep-quality-bedroom-feng-shui.html">Can't Sleep? Don't Blame Stress — Your Bedroom L</a></h2>
- <p>Bed position, mirrors, electronics, colors, under-bed storage — 5 overlooked sleep killers hiding in your bedroom.</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/feng-shui-career-acceleration.html">Career Acceleration Through Feng Shui: The 7-Day</a></h2>
- <p>A 7-day energy makeover for your workspace that creates visible career acceleration — from promotion visibility to negot</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/chinese-five-elements-personality-test-discover-your-element.html">Chinese Five Elements Personality Test: Discover</a></h2>
- <p>Chinese Five Elements Personality Test: Discover Your Elemental Type Practical insights from Guanlan Energy on Feng Shui</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/desk-facing-wall-productivity.html">Desk Facing a Wall? Here's How to Fix Your Focus</a></h2>
- <p>Facing a wall kills cognitive range and creative output. These 5 fixes restore your focus without rearranging your entir</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/desk-feng-shui-founders.html">Desk Feng Shui for Founders</a></h2>
- <p>Optimize your founder desk with Feng Shui. Metal-Water wealth vector guide for high-growth entrepreneurs. Boost producti</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/digital-clutter-and-mind-flow.html">Digital Clutter Is Spatial Pollution: Why 46 Ope</a></h2>
- <p>Digital Clutter Is Spatial Pollution: Why 46 Open Tabs Destroy Your Flow State Practical insights from Guanlan Energy on</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/earth-element-home-styling-tips-ground-your-space-with-five-.html">Earth Element Home Styling Tips: Ground Your Spa</a></h2>
- <p>Earth Element Home Styling Tips: Ground Your Space with Five Elements Design Practical insights from Guanlan Energy on F</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/feng-shui-living-room-layout-guide-arrange-your-space-for-fl.html">Feng Shui Living Room Layout Guide: Arrange Your</a></h2>
- <p>Feng Shui Living Room Layout Guide: Arrange Your Space for Flow and Connection Practical insights from Guanlan Energy on</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/feng-shui-colors-office-luck.html">Feng Shui Office Colors: Which Hues Attract Care</a></h2>
- <p>Not all colors support career growth. Red builds momentum, blue deepens authority, and the wrong grey can kill your visi</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/relationship-space-clash.html">Fighting More Since Moving In Together? Your Fur</a></h2>
- <p>Uneven energy, asymmetric nightstands, the kitchen dynamic, sofa positioning, and the missing anchor — is your home maki</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/fire-element-balance-for-better-sleep-calm-your-energy-at-ni.html">Fire Element Balance for Better Sleep: Calm Your</a></h2>
- <p>Fire Element Balance for Better Sleep: Calm Your Energy at Night Practical insights from Guanlan Energy on Feng Shui, Fi</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/five-elements-decor-for-your-office-boost-productivity-with-.html">Five Elements Decor for Your Office: Boost Produ</a></h2>
- <p>Five Elements Decor for Your Office: Boost Productivity with Ancient Chinese Wisdom Practical insights from Guanlan Ener</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/how-to-balance-wood-element-in-your-home-decor-tips-for-grow.html">How to Balance Wood Element in Your Home: Decor </a></h2>
- <p>How to Balance Wood Element in Your Home: Decor Tips for Growth Energy Practical insights from Guanlan Energy on Feng Sh</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/how-to-fix-bad-bedroom-energy-a-five-elements-guide-to-restf.html">How to Fix Bad Bedroom Energy: A Five Elements G</a></h2>
- <p>How to Fix Bad Bedroom Energy: A Five Elements Guide to Restful Sleep Practical insights from Guanlan Energy on Feng Shu</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/stop-office-politics-feng-shui.html">How to Stop Office Politics With Feng Shui: 5 Sp</a></h2>
- <p>Office politics is often a spatial energy problem. These 5 adjustments reduce friction, deflect negative energy, and pro</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/hot-fengshui-modern-five-elements.html">Is "Feng Shui Modern" Missing the Point?</a></h2>
- <p>Is </p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/feng-shui-zoom-meeting-energy.html">Look More Powerful on Zoom: Feng Shui for the Ba</a></h2>
- <p>Your video call background broadcasts energy every meeting. Books signal depth, plants signal growth, and a blank wall s</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/metaphysical-timeline-bazi.html">Metaphysical Timeline & BaZi</a></h2>
- <p>Explore the metaphysical timeline through BaZi. Understand how Chinese astrology maps your life periods, energy cycles, </p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/anxiety-home-five-elements.html">More Exhausted at Home Than at Work? Your Room M</a></h2>
- <p>Too much Fire keeps you wired. Too much Water makes you depressed. Is your home's Five Elements balance working against </p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/silicon-valley-alignment.html">Silicon Valley Alignment Strategy</a></h2>
- <p>Five Elements alignment strategy for Silicon Valley professionals. Balance your Wood, Fire, Earth, Metal, Water energy f</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/feng-shui-ceiling-beam-home-office.html">Sitting Under a Beam Ruins Focus: How to Neutral</a></h2>
- <p>A ceiling beam or air vent above your desk creates measurable cognitive pressure. Three tested fixes that cost under $50</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/office-feng-shui-3-mistakes-en.html">Stuck in a Career Rut? 3 Workspace Red Flags Dra</a></h2>
- <p>Feel like you're hitting invisible walls at work? Three spatial red flags may be draining your career energy. Free local</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/the-psychology-of-minimalist-spaces.html">The Anxiety-Productivity Curve: Why Minimalism A</a></h2>
- <p>The Anxiety-Productivity Curve: Why Minimalism Actually Rewires Your Brain Practical insights from Guanlan Energy on Fen</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/plants-desk-protection-feng-shui.html">The Best Desk Plants for Protection, Focus, and </a></h2>
- <p>Not all plants protect your energy. Snake plants deflect, pothos purifies, and the wrong succulent can actually invite f</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/hot-command-position-five-elements.html">The Command Position Is Real — But Only for Cert</a></h2>
- <p>The Command Position Is Real — But Only for Certain Elements Practical insights from Guanlan Energy on Feng Shui, Five E</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/workspace-command-position.html">The Command Position: Why Your Desk Orientation </a></h2>
- <p>The Command Position: Why Your Desk Orientation Controls Your Flow State Practical insights from Guanlan Energy on Feng </p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/command-position-desk-feng-shui.html">The Command Position: Why Your Desk Should Never</a></h2>
- <p>The Command Position is the single most powerful desk arrangement in Feng Shui — and 90% of people get it wrong. Here's </p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/bedroom-layout-for-deep-sleep.html">The Geometry of Deep Sleep: How Bed Placement Ch</a></h2>
- <p>The Geometry of Deep Sleep: How Bed Placement Changes Your Recovery Practical insights from Guanlan Energy on Feng Shui,</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/home-office-energy-flow.html">The Hidden Energy Drain in Your Home Office: Why</a></h2>
- <p>Your Wi-Fi router, power strip, and smart devices create invisible energy noise. Shield your workspace without giving up</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/office-plant-myth-busting.html">The Office Plant Paradox: Which Plants Actually </a></h2>
- <p>The Office Plant Paradox: Which Plants Actually Energize Your Workspace — and Which Ones Drain It Practical insights fro</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/water-element-decor-create-a-calm-sanctuary-with-five-elemen.html">Water Element Decor: Create a Calm Sanctuary wit</a></h2>
- <p>Water Element Decor: Create a Calm Sanctuary with Five Elements Design Practical insights from Guanlan Energy on Feng Sh</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/what-does-my-birth-element-mean-a-complete-guide-to-your-fiv.html">What Does My Birth Element Mean? A Complete Guid</a></h2>
- <p>What Does My Birth Element Mean? A Complete Guide to Your Five Elements Profile Practical insights from Guanlan Energy o</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/hot-bed-direction-five-elements.html">Your Bed Direction Chart Is Wrong</a></h2>
- <p>Your Bed Direction Chart Is Wrong Practical insights from Guanlan Energy on Feng Shui, Five Elements, and energy alignme</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/feng-shui-career-path-birth-element.html">Your Birth Element Reveals Your Ideal Career Pat</a></h2>
- <p>Each of the Five Elements has a natural career affinity. Fire types lead, Water types strategize, Earth types stabilize.</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/career-blockage-desk-mistakes.html">Your Desk Is Killing Your Promotion: 5 Layout Mi</a></h2>
- <p>Back to door, facing a wall, right-side overload, beam overhead, cluttered under-desk — which one is blocking your caree</p>
- </div>
-<div class="article-card">
- <h2><a href="/blog/office-feng-shui-3-mistakes.html">职场不顺总遇小人？检查你办公桌上的这 3 个风水重灾区</a></h2>
- <p>职场总遇小人背锅？检查办公桌上这 3 个风水重灾区：背对通道、白虎压青龙、尖刺植物。观澜 AI 空间磁场扫描器帮你一键诊断工位能量。</p>
- </div>
- </div>
+  <div id="journal-sections"></div>
 </div>
 
 <footer>Guanlan Energy · Purple Star Astrology</footer>
+
+<script>
+var SECTIONS = [
+  {
+    label: 'Purple Star Astrology · Zi Wei Dou Shu',
+    featured: {
+      url: '/blog/what-is-zi-wei-dou-shu.html',
+      kicker: '✦ FEATURED · PURPLE STAR ASTROLOGY',
+      title: 'What is Zi Wei Dou Shu?',
+      titleAccent: 'A Complete Guide for Beginners',
+      excerpt: 'Origins, 12 palaces, 14 main stars — and how the imperial system of fate-reading is now available in English for the first time.',
+      day: 15, month: 'JAN', year: 2026
+    },
+    articles: [
+      {
+        url: '/blog/zi-wei-dou-shu-vs-bazi.html',
+        title: 'Zi Wei Dou Shu vs BaZi: Which Is More Accurate?',
+        excerpt: 'Twelve palaces versus eight characters — when to use each system, and why serious practitioners often read both.',
+        category: 'PURPLE STAR ASTROLOGY',
+        readMin: 7,
+        day: 8, month: 'JAN', year: 2026
+      },
+      {
+        url: '/blog/12-palaces-zi-wei-dou-shu-explained.html',
+        title: 'The 12 Palaces of Zi Wei Dou Shu Explained',
+        excerpt: 'Life, Wealth, Career, Spouse, Health, Travel, and every other palace domain — with English names and meanings.',
+        category: 'PURPLE STAR ASTROLOGY',
+        readMin: 10,
+        day: 2, month: 'JAN', year: 2026
+      },
+      {
+        url: '/blog/how-to-read-zi-wei-dou-shu-chart.html',
+        title: 'How to Read Your Zi Wei Chart: 5 Key Elements',
+        excerpt: 'Life Palace star, Wealth, Career, Four Transformations, and Major Cycle — the five anchors every reader checks first.',
+        category: 'PURPLE STAR ASTROLOGY',
+        readMin: 8,
+        day: 22, month: 'DEC', year: 2025
+      },
+      {
+        url: '/blog/2026-zi-wei-dou-shu-annual-forecast.html',
+        title: '2026 Zi Wei Dou Shu Annual Forecast',
+        excerpt: 'Fire Horse year themes, palace activations, and how to read your personal timing against the year\'s energy.',
+        category: 'PURPLE STAR ASTROLOGY',
+        readMin: 9,
+        day: 28, month: 'DEC', year: 2025
+      },
+      {
+        url: '/blog/purple-star-astrology-vs-western-astrology.html',
+        title: 'Purple Star vs Western Astrology',
+        excerpt: 'A clear comparison for Western astrology readers exploring Zi Wei Dou Shu for the first time.',
+        category: 'PURPLE STAR ASTROLOGY',
+        readMin: 6,
+        day: 14, month: 'DEC', year: 2025
+      },
+      {
+        url: '/blog/14-main-stars-explained.html',
+        title: '14 Main Stars of Purple Star Astrology Explained',
+        excerpt: 'Zi Wei, Tian Fu, Tai Yang, Wu Qu, and the full roster of major stars — what each one governs in your chart.',
+        category: 'PURPLE STAR ASTROLOGY',
+        readMin: 12,
+        day: 5, month: 'DEC', year: 2025
+      }
+    ]
+  },
+  {
+    label: 'Feng Shui · Five Elements · Space',
+    articles: [
+      { url: '/blog/wealth-corner-feng-shui.html', title: '2026 Wealth Activation: Your Southeast Corner', excerpt: 'The Eight White Star of wealth flies southeast in 2026. Is your money corner clean and energized?', category: 'FENG SHUI', readMin: 5, day: 20, month: 'JAN', year: 2026 },
+      { url: '/blog/new-house-moving-feng-shui.html', title: '5 Energy Red Flags Before Moving Into a New Home', excerpt: 'Previous tenant energy, door facing stairs, bedroom over kitchen — check these before you sign the lease.', category: 'FENG SHUI', readMin: 6, day: 12, month: 'JAN', year: 2026 },
+      { url: '/blog/interview-promotion-energy.html', title: 'A 3-Day Energy Prep Plan Before Your Interview', excerpt: 'Clear your room, activate a mentor corner, and align your space before a high-stakes conversation.', category: 'FENG SHUI', readMin: 5, day: 3, month: 'JAN', year: 2026 },
+      { url: '/blog/money-drain-5-feng-shui-signs.html', title: 'Always Short on Money? 5 Feng Shui Wealth Drains', excerpt: 'Entryway clutter, stove facing door, center toilet, through-draft, beam over bed — signs your home leaks prosperity.', category: 'FENG SHUI', readMin: 6, day: 18, month: 'DEC', year: 2025 },
+      { url: '/blog/seo-best-colors-for-home-energy-balance-a-five-elements-room-by-.html', title: 'Best Colors for Home Energy Balance', excerpt: 'A Five Elements room-by-room guide to color choices that support — rather than fight — your natural energy.', category: 'FIVE ELEMENTS', readMin: 7, day: 10, month: 'DEC', year: 2025 },
+      { url: '/blog/self-cultivation-home-sanctuary.html', title: 'Burned Out? 5 Spatial Adjustments for Recovery', excerpt: 'A no-screen corner, sleep sanctuary, healing scents, and the TV trap — how to make home recharge you.', category: 'FENG SHUI', readMin: 6, day: 1, month: 'DEC', year: 2025 },
+      { url: '/blog/home-office-productivity-spatial.html', title: 'Can\'t Focus at Home? It\'s Your Layout', excerpt: 'Living room desk, facing a wall, wrong plants, bad lighting — spatial fixes that restore deep work.', category: 'FENG SHUI', readMin: 5, day: 24, month: 'NOV', year: 2025 },
+      { url: '/blog/sleep-quality-bedroom-feng-shui.html', title: 'Can\'t Sleep? Check Your Bedroom Layout', excerpt: 'Bed position, mirrors, electronics, colors, and under-bed storage — five overlooked sleep killers.', category: 'FENG SHUI', readMin: 6, day: 16, month: 'NOV', year: 2025 },
+      { url: '/blog/feng-shui-career-acceleration.html', title: 'Career Acceleration Through Feng Shui: 7-Day Makeover', excerpt: 'A week-long workspace reset for promotion visibility, negotiation power, and sustained momentum.', category: 'FENG SHUI', readMin: 7, day: 8, month: 'NOV', year: 2025 },
+      { url: '/blog/seo-chinese-five-elements-personality-test-discover-your-element.html', title: 'Chinese Five Elements Personality Test', excerpt: 'Discover your dominant element and what it reveals about how you work, relate, and recover.', category: 'FIVE ELEMENTS', readMin: 6, day: 30, month: 'OCT', year: 2025 },
+      { url: '/blog/desk-facing-wall-productivity.html', title: 'Desk Facing a Wall? How to Fix Your Focus', excerpt: 'Five fixes that restore cognitive range and creative output without a full office rebuild.', category: 'FENG SHUI', readMin: 4, day: 22, month: 'OCT', year: 2025 },
+      { url: '/blog/desk-feng-shui-founders.html', title: 'Desk Feng Shui for Founders', excerpt: 'Metal-Water wealth vectors and command position for high-growth entrepreneurs who work from one desk.', category: 'FENG SHUI', readMin: 5, day: 14, month: 'OCT', year: 2025 },
+      { url: '/blog/digital-clutter-and-mind-flow.html', title: 'Digital Clutter Is Spatial Pollution', excerpt: 'Why forty-six open tabs destroy flow — and how to clear the invisible noise in your workspace.', category: 'FENG SHUI', readMin: 5, day: 6, month: 'OCT', year: 2025 },
+      { url: '/blog/seo-earth-element-home-styling-tips-ground-your-space-with-five-.html', title: 'Earth Element Home Styling Tips', excerpt: 'Ground your space with texture, weight, and warm neutrals when life feels unstable or scattered.', category: 'FIVE ELEMENTS', readMin: 5, day: 28, month: 'SEP', year: 2025 },
+      { url: '/blog/seo-feng-shui-living-room-layout-guide-arrange-your-space-for-fl.html', title: 'Feng Shui Living Room Layout Guide', excerpt: 'Arrange seating, pathways, and focal points so guests — and energy — move through naturally.', category: 'FENG SHUI', readMin: 7, day: 18, month: 'SEP', year: 2025 },
+      { url: '/blog/feng-shui-colors-office-luck.html', title: 'Feng Shui Office Colors for Career Luck', excerpt: 'Red builds momentum, blue deepens authority, and the wrong grey can kill visibility — choose with intent.', category: 'FENG SHUI', readMin: 5, day: 10, month: 'SEP', year: 2025 },
+      { url: '/blog/relationship-space-clash.html', title: 'Fighting More Since Moving In Together?', excerpt: 'Uneven energy, asymmetric nightstands, and sofa positioning — when your home amplifies conflict.', category: 'FENG SHUI', readMin: 6, day: 2, month: 'SEP', year: 2025 },
+      { url: '/blog/seo-fire-element-balance-for-better-sleep-calm-your-energy-at-ni.html', title: 'Fire Element Balance for Better Sleep', excerpt: 'Calm overstimulated Fire energy at night with color, light, and placement adjustments.', category: 'FIVE ELEMENTS', readMin: 5, day: 25, month: 'AUG', year: 2025 },
+      { url: '/blog/seo-five-elements-decor-for-your-office-boost-productivity-with-.html', title: 'Five Elements Decor for Your Office', excerpt: 'Ancient Chinese wisdom applied to modern desks — balance Wood, Fire, Earth, Metal, and Water at work.', category: 'FIVE ELEMENTS', readMin: 6, day: 15, month: 'AUG', year: 2025 },
+      { url: '/blog/seo-how-to-balance-wood-element-in-your-home-decor-tips-for-grow.html', title: 'How to Balance Wood Element in Your Home', excerpt: 'Decor tips for growth energy when you feel stuck, stagnant, or creatively blocked.', category: 'FIVE ELEMENTS', readMin: 5, day: 5, month: 'AUG', year: 2025 },
+      { url: '/blog/seo-how-to-fix-bad-bedroom-energy-a-five-elements-guide-to-restf.html', title: 'How to Fix Bad Bedroom Energy', excerpt: 'A Five Elements guide to restful sleep when your room feels heavy, restless, or emotionally charged.', category: 'FIVE ELEMENTS', readMin: 6, day: 28, month: 'JUL', year: 2025 },
+      { url: '/blog/stop-office-politics-feng-shui.html', title: 'Stop Office Politics With Feng Shui', excerpt: 'Five spatial adjustments that reduce friction, deflect negative energy, and protect your reputation.', category: 'FENG SHUI', readMin: 5, day: 18, month: 'JUL', year: 2025 },
+      { url: '/blog/hot-fengshui-modern-five-elements.html', title: 'Is "Modern Feng Shui" Missing the Point?', excerpt: 'When aesthetic minimalism strips out the elemental logic that makes placement actually work.', category: 'FENG SHUI', readMin: 6, day: 8, month: 'JUL', year: 2025 },
+      { url: '/blog/feng-shui-zoom-meeting-energy.html', title: 'Look More Powerful on Zoom', excerpt: 'Your background broadcasts authority every meeting — books, plants, blank walls, and what each signals.', category: 'FENG SHUI', readMin: 4, day: 30, month: 'JUN', year: 2025 },
+      { url: '/blog/metaphysical-timeline-bazi.html', title: 'Metaphysical Timeline & BaZi', excerpt: 'How Chinese astrology maps life periods, energy cycles, and the rhythm of major transitions.', category: 'BAZI', readMin: 8, day: 20, month: 'JUN', year: 2025 },
+      { url: '/blog/anxiety-home-five-elements.html', title: 'More Exhausted at Home Than at Work?', excerpt: 'Too much Fire keeps you wired; too much Water pulls you under — read your room\'s elemental balance.', category: 'FIVE ELEMENTS', readMin: 5, day: 10, month: 'JUN', year: 2025 },
+      { url: '/blog/silicon-valley-alignment.html', title: 'Silicon Valley Alignment Strategy', excerpt: 'Five Elements balance for high-performance professionals navigating burnout and hypergrowth.', category: 'FIVE ELEMENTS', readMin: 7, day: 1, month: 'JUN', year: 2025 },
+      { url: '/blog/feng-shui-ceiling-beam-home-office.html', title: 'Sitting Under a Beam Ruins Focus', excerpt: 'Three tested fixes under $50 when a ceiling beam or vent creates cognitive pressure at your desk.', category: 'FENG SHUI', readMin: 4, day: 22, month: 'MAY', year: 2025 },
+      { url: '/blog/office-feng-shui-3-mistakes-en.html', title: 'Stuck in a Career Rut? 3 Workspace Red Flags', excerpt: 'Invisible walls at work often trace back to three spatial red flags draining your career energy.', category: 'FENG SHUI', readMin: 5, day: 12, month: 'MAY', year: 2025 },
+      { url: '/blog/the-psychology-of-minimalist-spaces.html', title: 'The Anxiety-Productivity Curve of Minimalism', excerpt: 'Why empty rooms calm some minds and paralyze others — and how to find your spatial sweet spot.', category: 'FENG SHUI', readMin: 6, day: 2, month: 'MAY', year: 2025 },
+      { url: '/blog/plants-desk-protection-feng-shui.html', title: 'Best Desk Plants for Protection and Focus', excerpt: 'Snake plants deflect, pothos purifies, and the wrong succulent can invite stagnant energy.', category: 'FENG SHUI', readMin: 5, day: 24, month: 'APR', year: 2025 },
+      { url: '/blog/hot-command-position-five-elements.html', title: 'The Command Position Is Real — For Some Elements', excerpt: 'Why desk orientation hits differently depending on your birth element and current luck cycle.', category: 'FENG SHUI', readMin: 6, day: 14, month: 'APR', year: 2025 },
+      { url: '/blog/workspace-command-position.html', title: 'Why Desk Orientation Controls Your Flow State', excerpt: 'The command position explained — sight lines, backing, and the psychology of spatial control.', category: 'FENG SHUI', readMin: 5, day: 4, month: 'APR', year: 2025 },
+      { url: '/blog/command-position-desk-feng-shui.html', title: 'Your Desk Should Never Face the Door Wrong', excerpt: 'The single most powerful desk arrangement in Feng Shui — and why most people get it backwards.', category: 'FENG SHUI', readMin: 5, day: 26, month: 'MAR', year: 2025 },
+      { url: '/blog/bedroom-layout-for-deep-sleep.html', title: 'The Geometry of Deep Sleep', excerpt: 'How bed placement, door sight lines, and headboard support change your nightly recovery.', category: 'FENG SHUI', readMin: 6, day: 16, month: 'MAR', year: 2025 },
+      { url: '/blog/home-office-energy-flow.html', title: 'The Hidden Energy Drain in Your Home Office', excerpt: 'Routers, power strips, and smart devices create invisible noise — shield your workspace without going offline.', category: 'FENG SHUI', readMin: 5, day: 6, month: 'MAR', year: 2025 },
+      { url: '/blog/office-plant-myth-busting.html', title: 'The Office Plant Paradox', excerpt: 'Which plants actually energize your workspace — and which ones quietly drain it.', category: 'FENG SHUI', readMin: 5, day: 24, month: 'FEB', year: 2025 },
+      { url: '/blog/seo-water-element-decor-create-a-calm-sanctuary-with-five-elemen.html', title: 'Water Element Decor for a Calm Sanctuary', excerpt: 'Flow, reflection, and deep blues — design a room that restores rather than disperses your energy.', category: 'FIVE ELEMENTS', readMin: 5, day: 14, month: 'FEB', year: 2025 },
+      { url: '/blog/seo-what-does-my-birth-element-mean-a-complete-guide-to-your-fiv.html', title: 'What Does My Birth Element Mean?', excerpt: 'A complete guide to your Five Elements profile — strengths, blind spots, and balancing strategies.', category: 'FIVE ELEMENTS', readMin: 8, day: 4, month: 'FEB', year: 2025 },
+      { url: '/blog/hot-bed-direction-five-elements.html', title: 'Your Bed Direction Chart Is Wrong', excerpt: 'Generic direction charts ignore your element — why personalized alignment matters for sleep.', category: 'FENG SHUI', readMin: 5, day: 22, month: 'JAN', year: 2025 },
+      { url: '/blog/feng-shui-career-path-birth-element.html', title: 'Your Birth Element Reveals Your Ideal Career Path', excerpt: 'Fire leads, Water strategizes, Earth stabilizes — elemental affinities mapped to modern work.', category: 'FIVE ELEMENTS', readMin: 7, day: 12, month: 'JAN', year: 2025 },
+      { url: '/blog/career-blockage-desk-mistakes.html', title: 'Your Desk Is Killing Your Promotion', excerpt: 'Back to door, facing a wall, beam overhead, cluttered under-desk — five layout mistakes that block ascent.', category: 'FENG SHUI', readMin: 5, day: 2, month: 'JAN', year: 2025 },
+      { url: '/blog/office-feng-shui-3-mistakes.html', title: '职场不顺总遇小人？办公桌上的 3 个风水重灾区', excerpt: '背对通道、白虎压青龙、尖刺植物 — 三个工位能量陷阱及其化解思路。', category: 'FENG SHUI', readMin: 5, day: 15, month: 'DEC', year: 2024 }
+    ]
+  }
+];
+
+function renderArticleItem(article) {
+  return (
+    '<article class="article-item">' +
+      '<a href="' + article.url + '">' +
+        '<div class="article-date">' +
+          '<p class="article-date-day">' + article.day + '</p>' +
+          '<p class="article-date-month">' + article.month + '</p>' +
+          '<p class="article-date-year">' + article.year + '</p>' +
+        '</div>' +
+        '<div class="article-body">' +
+          '<p class="article-meta">' + article.category + ' · ' + article.readMin + ' min read</p>' +
+          '<h2 class="article-title">' + article.title + '</h2>' +
+          '<p class="article-excerpt">' + article.excerpt + '</p>' +
+        '</div>' +
+      '</a>' +
+    '</article>'
+  );
+}
+
+function renderFeatured(featured) {
+  return (
+    '<article class="featured-article">' +
+      '<a href="' + featured.url + '">' +
+        '<p class="featured-kicker">' + featured.kicker + '</p>' +
+        '<h2 class="featured-title">' + featured.title + '<br><em>' + featured.titleAccent + '</em></h2>' +
+        '<p class="featured-excerpt">' + featured.excerpt + '</p>' +
+        '<span class="featured-link">Read article →</span>' +
+      '</a>' +
+    '</article>'
+  );
+}
+
+function renderSections() {
+  var root = document.getElementById('journal-sections');
+  var html = '';
+
+  SECTIONS.forEach(function(section) {
+    html += '<p class="section-label">' + section.label + '</p>';
+    html += '<div class="article-list">';
+    if (section.featured) {
+      html += renderFeatured(section.featured);
+    }
+    section.articles.forEach(function(article) {
+      html += renderArticleItem(article);
+    });
+    html += '</div>';
+  });
+
+  root.innerHTML = html;
+}
+
+renderSections();
+</script>
 </body>
 </html>

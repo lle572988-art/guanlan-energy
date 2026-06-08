@@ -8,160 +8,497 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="BaZi · Five Elements Calculator | Guanlan Energy">
 <meta property="og:description" content="Discover your BaZi five-element energy profile — Wood, Fire, Earth, Metal, Water.">
-<link rel="canonical" href="https://guanlanenergy.com/bazi-calculator.html">
-<link href="https://fonts.googleapis.com/css2?display=swap&family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&family=Cinzel:wght@400;600&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://metaphysicflow.com/bazi-calculator.html">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{--void:#03070F;--deep:#060D1A;--surface:#0C1628;--layer:#111E35;--rim:#1A2D4A;--gold:#C5984A;--gold-light:#E2C27A;--gold-dim:#7A5C28;--silver:#9BB5CC;--silver-dim:#4A6680;--parchment:#D4C4A0;--text:#C8D8E8;--text-dim:#6A8299}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;background:var(--void);color:var(--text);min-height:100vh}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(3,7,15,.92);backdrop-filter:blur(20px);padding:.8rem 2rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(197,152,74,.12)}
-nav .logo{font-family:Cinzel,serif;font-size:.85rem;letter-spacing:.15em;color:var(--parchment);text-decoration:none}
-nav .nav-links{display:flex;gap:1.5rem;list-style:none;align-items:center}
-nav .nav-links a{color:var(--text-dim);text-decoration:none;font-size:.82rem;transition:color .3s}
-nav .nav-links a:hover{color:var(--gold-light)}
-.nav-cta{background:var(--gold);color:var(--void)!important;padding:.4rem 1rem;border-radius:4px;font-size:.78rem;font-weight:500}
-.nav-cta:hover{background:var(--gold-light)!important}
-.hero{max-width:1300px;margin:0 auto;padding:7rem 2rem 3rem;display:grid;grid-template-columns:5fr 7fr;gap:3rem;align-items:start}
-.hero-eyebrow{font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.25em;color:var(--gold-dim);margin-bottom:1rem}
-h1{font-family:Cormorant Garamond,serif;font-size:2.6rem;font-weight:300;color:var(--parchment);line-height:1.2;margin-bottom:.8rem}
-h1 em{color:var(--gold);font-style:italic;font-weight:400}
-.hero-sub{color:var(--text-dim);font-size:.95rem;line-height:1.7;margin-bottom:2rem;max-width:480px}
-.hero-sub strong{color:var(--silver)}
-.form-card{background:var(--surface);border:1px solid rgba(197,152,74,.12);border-radius:12px;padding:2rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.form-card .full{grid-column:1/-1}
-.fl{font-size:.75rem;color:var(--text-dim);letter-spacing:.05em;margin-bottom:.4rem;display:block}
-.fi{width:100%;background:var(--deep);border:1px solid var(--rim);border-radius:6px;padding:.65rem .9rem;color:var(--text);font-size:.85rem;font-family:Inter,sans-serif;outline:none;transition:border-color .3s}
-.fi:focus{border-color:var(--gold)}
-.fi::placeholder{color:var(--silver-dim);opacity:.6}
-select.fi{cursor:pointer}
-select.fi option{background:var(--deep);color:var(--text)}
-.btn{padding:.85rem;background:var(--gold);border:none;border-radius:6px;color:var(--void);font-size:.9rem;font-weight:500;cursor:pointer;transition:background .3s;font-family:Inter,sans-serif;grid-column:1/-1}
-.btn:hover{background:var(--gold-light);box-shadow:0 0 25px rgba(197,152,74,.3)}
-.form-sub{grid-column:1/-1;font-size:.75rem;color:var(--silver-dim);text-align:center;margin-top:.3rem}
-.form-sub span{color:var(--gold-dim)}
-.out{background:var(--surface);border:1px solid rgba(197,152,74,.08);border-radius:12px;padding:2rem;min-height:520px}
-.rt{font-family:Cormorant Garamond,serif;font-size:1.4rem;font-weight:300;color:var(--parchment);text-align:center;margin-bottom:1.5rem}
-.rt em{color:var(--gold);font-style:italic}
-.cols{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:2rem}
-.col{background:var(--deep);border:1px solid rgba(197,152,74,.1);border-radius:8px;padding:1rem;text-align:center}
-.cl{font-family:Cinzel,serif;font-size:.55rem;letter-spacing:.15em;color:var(--gold-dim);margin-bottom:.4rem}
-.cs{font-family:Noto Serif SC,serif;font-size:1.4rem;color:var(--gold-light)}
-.cb{font-family:Noto Serif SC,serif;font-size:1.2rem;color:var(--parchment);margin-left:2px}
-.sec{margin-top:1rem}
-.sec h3{font-family:Cormorant Garamond,serif;font-size:1rem;font-weight:400;color:var(--gold);margin-bottom:.8rem;text-align:center}
-.row{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem}
-.lb{width:48px;font-size:.75rem;color:var(--text-dim);text-align:right;flex-shrink:0}
-.tr{flex:1;height:16px;background:var(--deep);border-radius:8px;overflow:hidden}
-.fl2{height:100%;border-radius:8px;transition:width 1.2s;position:relative;min-width:0}
-.fl2:after{content:attr(data-pct);position:absolute;right:4px;top:50%;transform:translateY(-50%);font-size:.6rem;color:rgba(0,0,0,.7);font-weight:600}
-.pv{width:32px;font-size:.75rem;color:var(--text-dim);text-align:left;flex-shrink:0}
-.bw{background:linear-gradient(90deg,#2D5A27,#4A8C3F)}
-.bf{background:linear-gradient(90deg,#8B3A3A,#D45D5D)}
-.be{background:linear-gradient(90deg,#7A6B3A,#B8A060)}
-.bm{background:linear-gradient(90deg,#4A6B7A,#7AA8C0)}
-.bwa{background:linear-gradient(90deg,#2A4A6B,#4A7AAA)}
-.ph{display:flex;align-items:center;justify-content:center;min-height:400px;color:var(--silver-dim);font-size:.9rem;text-align:center;line-height:1.7}
-.pd{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold-dim);margin-right:6px;animation:pls 1.5s infinite;vertical-align:middle}
-@keyframes pls{0%,100%{opacity:.3}50%{opacity:1}}
-footer{text-align:center;padding:2rem;color:var(--silver-dim);font-size:.8rem;border-top:1px solid rgba(197,152,74,.06);margin-top:2rem}
-@media(max-width:1024px){.hero{grid-template-columns:1fr;padding-top:5rem}.form-card{grid-template-columns:1fr}.form-card .full,.btn,.form-sub{grid-column:1}.out{height:auto}}
+:root {
+  --void: #080808;
+  --gold: #C9A96E;
+  --gold-light: #D4BC82;
+  --gold-muted: rgba(201, 169, 110, 0.45);
+  --text: rgba(255, 255, 255, 0.88);
+  --text-dim: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.45);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  background: var(--void);
+  color: var(--text);
+  min-height: 100vh;
+}
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(8, 8, 8, 0.82);
+  backdrop-filter: blur(12px);
+  padding: 1rem 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.08);
+}
+nav .logo {
+  font-family: Cinzel, serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: rgba(201, 169, 110, 0.55);
+  text-decoration: none;
+}
+nav .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+nav .nav-links a {
+  color: rgba(201, 169, 110, 0.55);
+  text-decoration: none;
+  font-family: Cinzel, serif;
+  font-size: 0.78rem;
+  transition: color 0.3s;
+}
+nav .nav-links a:hover { color: var(--gold); }
+nav .nav-links a.active { color: var(--gold); }
+.nav-cta {
+  background: var(--gold) !important;
+  color: var(--void) !important;
+  padding: 0.45rem 1rem;
+  border-radius: 2px;
+  font-size: 0.72rem !important;
+}
+.nav-cta:hover { background: var(--gold-light) !important; }
+
+.hero {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 7rem 6% 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5%;
+  align-items: center;
+}
+.hero-eyebrow {
+  font-family: Cinzel, serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(201, 169, 110, 0.5);
+  margin-bottom: 1.5rem;
+}
+h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+h1 em { color: var(--gold); font-style: italic; font-weight: 400; }
+.hero-sub {
+  color: var(--text-dim);
+  font-size: 1rem;
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  max-width: 440px;
+}
+.hero-sub strong { color: rgba(255, 255, 255, 0.85); font-weight: 500; }
+
+.form-card {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(201, 169, 110, 0.18);
+  border-radius: 8px;
+  padding: 1.75rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  backdrop-filter: blur(10px);
+}
+.form-card .full { grid-column: 1 / -1; }
+.fl {
+  font-family: Cinzel, serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.35rem;
+  display: block;
+  text-transform: uppercase;
+}
+.fi {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  padding: 12px 14px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  font-family: 'EB Garamond', Georgia, serif;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.fi:focus { border-color: rgba(201, 169, 110, 0.35); }
+.fi::placeholder { color: rgba(255, 255, 255, 0.35); }
+select.fi { cursor: pointer; }
+select.fi option { background: #0a0a0a; color: #fff; }
+.btn {
+  padding: 15px;
+  background: var(--gold);
+  border: none;
+  border-radius: 5px;
+  color: #0a0a0a;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s;
+  font-family: 'EB Garamond', Georgia, serif;
+  grid-column: 1 / -1;
+}
+.btn:hover {
+  background: var(--gold-light);
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.22);
+}
+.form-sub {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  margin-top: 0.25rem;
+}
+.form-sub span { color: rgba(201, 169, 110, 0.45); }
+
+/* ─── Results panel ─── */
+.out {
+  background: transparent;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 10px;
+  padding: 2rem;
+  min-height: 480px;
+  box-shadow:
+    0 0 60px rgba(201, 169, 110, 0.04),
+    0 0 120px rgba(201, 169, 110, 0.02);
+}
+.out-kicker {
+  text-align: center;
+  font-family: Cinzel, serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(201, 169, 110, 0.5);
+  margin-bottom: 1.5rem;
+}
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+.pillar { text-align: center; }
+.pillar-label {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(201, 169, 110, 0.45);
+  margin-bottom: 6px;
+}
+.pillar-box {
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  border-radius: 6px;
+  padding: 12px 6px;
+  background: rgba(201, 169, 110, 0.03);
+}
+.pillar-box--day {
+  border-color: rgba(201, 169, 110, 0.25);
+  background: rgba(201, 169, 110, 0.06);
+}
+.pillar-stem {
+  font-family: 'Noto Serif SC', 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.2;
+}
+.pillar-box--day .pillar-stem { color: var(--gold); }
+.pillar-branch {
+  font-family: 'Noto Serif SC', 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  color: rgba(201, 169, 110, 0.7);
+  line-height: 1.2;
+}
+.pillar-box--day .pillar-branch { color: rgba(201, 169, 110, 0.6); }
+.pillar-meta {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: 5px;
+}
+.pillar-meta--day { color: rgba(201, 169, 110, 0.5); }
+
+.out-divider {
+  border-top: 1px solid rgba(201, 169, 110, 0.1);
+  margin-bottom: 1.5rem;
+}
+.el-section-label {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: rgba(201, 169, 110, 0.45);
+  margin-bottom: 1.25rem;
+}
+.el-rows { display: flex; flex-direction: column; gap: 14px; }
+.el-row { display: flex; align-items: center; gap: 12px; }
+.el-cn {
+  width: 36px;
+  font-family: 'Noto Serif SC', serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: right;
+  flex-shrink: 0;
+}
+.el-track {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.el-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s ease;
+  min-width: 0;
+}
+.el-wood { background: #5a8a5a; }
+.el-fire { background: #a05040; }
+.el-earth { background: #8a7a4a; }
+.el-metal { background: #8a8a8a; }
+.el-water { background: #4a6a8a; }
+.el-pct {
+  width: 28px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.35);
+  text-align: right;
+  flex-shrink: 0;
+}
+.el-pct--zero { color: rgba(255, 255, 255, 0.25); }
+.out-foot {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.2);
+  text-align: center;
+  margin-top: 1.75rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.9rem;
+  text-align: center;
+  line-height: 1.7;
+}
+.pd {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(201, 169, 110, 0.45);
+  margin-right: 6px;
+  animation: pls 1.5s infinite;
+  vertical-align: middle;
+}
+@keyframes pls { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.8rem;
+  border-top: 1px solid rgba(201, 169, 110, 0.08);
+  margin-top: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 5.5rem;
+    gap: 2rem;
+    align-items: start;
+  }
+  .form-card { grid-template-columns: 1fr; }
+  .form-card .full, .btn, .form-sub { grid-column: 1; }
+  .out { min-height: auto; }
+  .pillar-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+@media (max-width: 480px) {
+  .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+  .pillar-stem, .pillar-branch { font-size: 1.35rem; }
+}
 </style>
 </head>
 <body>
 <nav>
-<a href="/" class="logo">GUANLAN ENERGY</a>
-<ul class="nav-links">
-<li><a href="/">Zi Wei Dou Shu</a></li>
-<li><a href="/bazi-calculator.html" style="color:var(--gold)">BaZi Calculator</a></li>
-<li><a href="/blog/">Articles</a></li>
-<li><a href="/#pricing">Services</a></li>
-<li><a href="/#chart-form" class="nav-cta">Get My Chart</a></li>
-</ul>
+  <a href="/" class="logo">GUANLAN ENERGY</a>
+  <ul class="nav-links">
+    <li><a href="/">Zi Wei Dou Shu</a></li>
+    <li><a href="/bazi-calculator.html" class="active">BaZi Calculator</a></li>
+    <li><a href="/blog/">Articles</a></li>
+    <li><a href="/#pricing">Services</a></li>
+    <li><a href="/#chart-form" class="nav-cta">Get My Chart</a></li>
+  </ul>
 </nav>
 
 <div class="hero">
-<div>
-<div class="hero-eyebrow">BAZI · EIGHT CHARACTERS · FIVE ELEMENTS</div>
-<h1>Your <em>Five Elements</em><br>Energy Blueprint</h1>
-<p class="hero-sub">BaZi calculates your unique composition of <strong>Wood, Fire, Earth, Metal, Water</strong> — the five energies shaping your personality, health, and life cycles.</p>
-<div class="form-card">
-<div class="full"><div class="fl">Birth Date</div><input class="fi" type="date" id="d"></div>
-<div><div class="fl">Birth Hour</div><select class="fi" id="h">
-<option value="">Select time</option>
-<option value="23">23-01 ZI</option><option value="1">01-03 CHOU</option>
-<option value="3">03-05 YIN</option><option value="5">05-07 MAO</option>
-<option value="7">07-09 CHEN</option><option value="9">09-11 SI</option>
-<option value="11">11-13 WU</option><option value="13" selected>13-15 WEI</option>
-<option value="15">15-17 SHEN</option><option value="17">17-19 YOU</option>
-<option value="19">19-21 XU</option><option value="21">21-23 HAI</option>
-</select></div>
-<div><div class="fl">Place</div><input class="fi" type="text" placeholder="City" id="p"></div>
-<div><div class="fl">Gender</div><select class="fi" id="g"><option>Male</option><option>Female</option></select></div>
-<button class="btn" onclick="go()">Calculate My Elements</button>
-<div class="form-sub"><span>Free</span> · No sign-up required</div>
-</div></div>
+  <div>
+    <div class="hero-eyebrow">BAZI · EIGHT CHARACTERS · FIVE ELEMENTS</div>
+    <h1>Your <em>Five Elements</em><br>Energy Blueprint</h1>
+    <p class="hero-sub">BaZi calculates your unique composition of <strong>Wood, Fire, Earth, Metal, Water</strong> — the five energies shaping your personality, health, and life cycles.</p>
+    <div class="form-card">
+      <div class="full">
+        <label class="fl" for="d">Birth Date</label>
+        <input class="fi" type="date" id="d">
+      </div>
+      <div>
+        <label class="fl" for="h">Birth Hour</label>
+        <select class="fi" id="h">
+          <option value="">Select time</option>
+          <option value="23">23-01 ZI</option>
+          <option value="1">01-03 CHOU</option>
+          <option value="3">03-05 YIN</option>
+          <option value="5">05-07 MAO</option>
+          <option value="7">07-09 CHEN</option>
+          <option value="9">09-11 SI</option>
+          <option value="11">11-13 WU</option>
+          <option value="13" selected>13-15 WEI</option>
+          <option value="15">15-17 SHEN</option>
+          <option value="17">17-19 YOU</option>
+          <option value="19">19-21 XU</option>
+          <option value="21">21-23 HAI</option>
+        </select>
+      </div>
+      <div>
+        <label class="fl" for="p">Place</label>
+        <input class="fi" type="text" placeholder="City" id="p">
+      </div>
+      <div>
+        <label class="fl" for="g">Gender</label>
+        <select class="fi" id="g"><option>Male</option><option>Female</option></select>
+      </div>
+      <button class="btn" type="button" onclick="go()">Calculate My Elements</button>
+      <div class="form-sub"><span>Free</span> · No sign-up required</div>
+    </div>
+  </div>
 
-<div class="out" id="out">
-<div class="ph">
-<div><span class="pd"></span>Enter birth data above and click Calculate<br><span style="font-size:.8rem;color:var(--silver-dim)">to see your BaZi pillars &amp; five-element profile</span></div>
-</div></div></div>
+  <div class="out" id="out">
+    <div class="ph">
+      <div>
+        <span class="pd"></span>Enter birth data above and click Calculate<br>
+        <span style="font-size:0.8rem;color:rgba(255,255,255,0.2)">to see your BaZi pillars &amp; five-element profile</span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <footer>Guanlan Energy · Purple Star Astrology</footer>
 
 <script>
-var TG=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
-var DZ=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
-var SE={甲:"Wood",乙:"Wood",丙:"Fire",丁:"Fire",戊:"Earth",己:"Earth",庚:"Metal",辛:"Metal",壬:"Water",癸:"Water"};
-var BE={子:"Water",丑:"Earth",寅:"Wood",卯:"Wood",辰:"Earth",巳:"Fire",午:"Fire",未:"Earth",申:"Metal",酉:"Metal",戌:"Earth",亥:"Water"};
-var CNY={1980:16,1981:5,1982:25,1983:13,1984:2,1985:20,1986:9,1987:29,1988:17,1989:6,1990:27,1991:15,1992:4,1993:23,1994:10,1995:31,1996:19,1997:7,1998:28,1999:16,2000:5,2001:24,2002:12,2003:1,2004:22,2005:9,2006:29,2007:18,2008:7,2009:26,2010:14,2011:3,2012:23,2013:10,2014:31,2015:19,2016:8,2017:28,2018:16,2019:5,2020:25,2021:12,2022:1,2023:22,2024:10,2025:29,2026:17,2027:6,2028:26,2029:13,2030:3};
+var TG = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+var DZ = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+var SE = { 甲:"Wood", 乙:"Wood", 丙:"Fire", 丁:"Fire", 戊:"Earth", 己:"Earth", 庚:"Metal", 辛:"Metal", 壬:"Water", 癸:"Water" };
+var BE = { 子:"Water", 丑:"Earth", 寅:"Wood", 卯:"Wood", 辰:"Earth", 巳:"Fire", 午:"Fire", 未:"Earth", 申:"Metal", 酉:"Metal", 戌:"Earth", 亥:"Water" };
+var BRANCH_EN = { 子:"Rat", 丑:"Ox", 寅:"Tiger", 卯:"Rabbit", 辰:"Dragon", 巳:"Snake", 午:"Horse", 未:"Goat", 申:"Monkey", 酉:"Rooster", 戌:"Dog", 亥:"Pig" };
+var EL_CN = { Wood:"木", Fire:"火", Earth:"土", Metal:"金", Water:"水" };
+var EL_CLASS = { Wood:"el-wood", Fire:"el-fire", Earth:"el-earth", Metal:"el-metal", Water:"el-water" };
+var EL_HINT = {
+  Wood: "growth and renewal",
+  Fire: "visibility and momentum",
+  Earth: "stability and endurance",
+  Metal: "precision and boundaries",
+  Water: "strategic patience and intuition"
+};
+var CNY = { 1980:16,1981:5,1982:25,1983:13,1984:2,1985:20,1986:9,1987:29,1988:17,1989:6,1990:27,1991:15,1992:4,1993:23,1994:10,1995:31,1996:19,1997:7,1998:28,1999:16,2000:5,2001:24,2002:12,2003:1,2004:22,2005:9,2006:29,2007:18,2008:7,2009:26,2010:14,2011:3,2012:23,2013:10,2014:31,2015:19,2016:8,2017:28,2018:16,2019:5,2020:25,2021:12,2022:1,2023:22,2024:10,2025:29,2026:17,2027:6,2028:26,2029:13,2030:3 };
 
-function calc(y,m,d,hh){
- var yi=((y-1984)%60+60)%60;
- var yg=TG[yi%10]+DZ[yi%12];
- var sf=new Date(y,0,CNY[y]||1);
- var lm=(m<sf.getMonth()+1||(m==sf.getMonth()+1&&d<sf.getDate()))?m+1:m-sf.getMonth();
- if(lm<=0)lm+=12;
- var mg=TG[((yi%10)%5*2+lm+2)%10]+DZ[(lm+1)%12];
- var df=Math.round((new Date(y,m-1,d)-new Date(2000,0,1))/86400000);
- var dg=TG[(df%10+10)%10]+DZ[(6+df%12+12)%12];
- var hb=Math.floor(hh/2)%12;
- var hg=TG[((((df%10+10)%10)%5)*2+hb)%10]+DZ[hb];
- return [yg,mg,dg,hg];
+function calc(y, m, d, hh) {
+  var yi = ((y - 1984) % 60 + 60) % 60;
+  var yg = TG[yi % 10] + DZ[yi % 12];
+  var sf = new Date(y, 0, CNY[y] || 1);
+  var lm = (m < sf.getMonth() + 1 || (m === sf.getMonth() + 1 && d < sf.getDate())) ? m + 1 : m - sf.getMonth();
+  if (lm <= 0) lm += 12;
+  var mg = TG[((yi % 10) % 5 * 2 + lm + 2) % 10] + DZ[(lm + 1) % 12];
+  var df = Math.round((new Date(y, m - 1, d) - new Date(2000, 0, 1)) / 86400000);
+  var dg = TG[(df % 10 + 10) % 10] + DZ[(6 + df % 12 + 12) % 12];
+  var hb = Math.floor(hh / 2) % 12;
+  var hg = TG[((((df % 10 + 10) % 10) % 5) * 2 + hb) % 10] + DZ[hb];
+  return [yg, mg, dg, hg];
 }
 
-function go(){
- var dv=document.getElementById("d").value;
- var hs=document.getElementById("h").value;
- if(!dv){alert("Select your birth date");return;}
- var sp=dv.split("-");
- var y=parseInt(sp[0]),m=parseInt(sp[1]),d=parseInt(sp[2]),hh=parseInt(hs)||12;
- var gz=calc(y,m,d,hh);
- var ct={Wood:0,Fire:0,Earth:0,Metal:0,Water:0};
- (gz[0]+gz[1]+gz[2]+gz[3]).split("").forEach(function(c){
-  if(SE[c])ct[SE[c]]+=12;
-  else if(BE[c])ct[BE[c]]+=8;
- });
- var t=ct.Wood+ct.Fire+ct.Earth+ct.Metal+ct.Water;
- var pt={};
- ["Wood","Fire","Earth","Metal","Water"].forEach(function(k){pt[k]=t>0?Math.round(ct[k]/t*100):20;});
- show(gz,pt);
+function dominantElement(pt) {
+  var order = ["Wood", "Fire", "Earth", "Metal", "Water"];
+  var best = "Water";
+  var max = -1;
+  order.forEach(function(k) {
+    if (pt[k] > max) { max = pt[k]; best = k; }
+  });
+  return best;
 }
 
-function show(gz,pt){
- var lab=["Year","Month","Day","Hour"];
- var kw=["Wood","Fire","Earth","Metal","Water"];
- var bc=["bw","bf","be","bm","bwa"];
- var h="<div class='rt'>Your <em>Five Elements</em> Profile</div><div class='cols'>";
- for(var i=0;i<4;i++){
-  h+="<div class='col'><div class='cl'>"+lab[i]+"</div><div><span class='cs'>"+gz[i].charAt(0)+"</span><span class='cb'>"+gz[i].charAt(1)+"</span></div></div>";
- }
- h+="</div><div class='sec'><h3>Elemental Energy</h3>";
- for(var i=0;i<5;i++){
-  var k=kw[i],v=pt[k]||0;
-  h+="<div class='row'><div class='lb'>"+k+"</div><div class='tr'><div class='fl2 "+bc[i]+"' style='width:"+v+"%' data-pct='"+v+"%'></div></div><div class='pv'>"+v+"%</div></div>";
- }
- h+="</div>";
- document.getElementById("out").innerHTML=h;
+function dayInsight(dayStem, pt) {
+  var dayEl = SE[dayStem] || "Earth";
+  var dom = dominantElement(pt);
+  return "Day master: " + dayEl + " · Strong " + dom.toLowerCase() + " presence suggests " + EL_HINT[dom];
+}
+
+function go() {
+  var dv = document.getElementById("d").value;
+  var hs = document.getElementById("h").value;
+  if (!dv) { alert("Select your birth date"); return; }
+  var sp = dv.split("-");
+  var y = parseInt(sp[0], 10);
+  var m = parseInt(sp[1], 10);
+  var d = parseInt(sp[2], 10);
+  var hh = parseInt(hs, 10) || 12;
+  var gz = calc(y, m, d, hh);
+  var ct = { Wood:0, Fire:0, Earth:0, Metal:0, Water:0 };
+  (gz[0] + gz[1] + gz[2] + gz[3]).split("").forEach(function(c) {
+    if (SE[c]) ct[SE[c]] += 12;
+    else if (BE[c]) ct[BE[c]] += 8;
+  });
+  var t = ct.Wood + ct.Fire + ct.Earth + ct.Metal + ct.Water;
+  var pt = {};
+  ["Wood", "Fire", "Earth", "Metal", "Water"].forEach(function(k) {
+    pt[k] = t > 0 ? Math.round(ct[k] / t * 100) : 0;
+  });
+  show(gz, pt);
+}
+
+function show(gz, pt) {
+  var labels = ["YEAR", "MONTH", "DAY", "HOUR"];
+  var order = ["Wood", "Fire", "Earth", "Metal", "Water"];
+  var dayStem = gz[2].charAt(0);
+  var html = "<p class='out-kicker'>YOUR BAZI · 八字命盘</p><div class='pillar-grid'>";
+
+  for (var i = 0; i < 4; i++) {
+    var stem = gz[i].charAt(0);
+    var branch = gz[i].charAt(1);
+    var isDay = i === 2;
+    var stemEl = SE[stem] || "";
+    var branchEn = BRANCH_EN[branch] || "";
+    html += "<div class='pillar'>";
+    html += "<p class='pillar-label'>" + labels[i] + "</p>";
+    html += "<div class='pillar-box" + (isDay ? " pillar-box--day" : "") + "'>";
+    html += "<p class='pillar-stem'>" + stem + "</p>";
+    html += "<p class='pillar-branch'>" + branch + "</p>";
+    html += "</div>";
+    html += "<p class='pillar-meta" + (isDay ? " pillar-meta--day" : "") + "'>";
+    html += isDay ? ("Self · " + branchEn) : (stemEl + " · " + branchEn);
+    html += "</p></div>";
+  }
+
+  html += "</div><div class='out-divider'></div>";
+  html += "<p class='el-section-label'>ELEMENTAL BALANCE · 五行分布</p><div class='el-rows'>";
+
+  for (var j = 0; j < 5; j++) {
+    var key = order[j];
+    var val = pt[key] || 0;
+    html += "<div class='el-row'>";
+    html += "<span class='el-cn'>" + EL_CN[key] + "</span>";
+    html += "<div class='el-track'><div class='el-fill " + EL_CLASS[key] + "' style='width:" + val + "%'></div></div>";
+    html += "<span class='el-pct" + (val === 0 ? " el-pct--zero" : "") + "'>" + val + "%</span>";
+    html += "</div>";
+  }
+
+  html += "</div><p class='out-foot'>" + dayInsight(dayStem, pt) + "</p>";
+  document.getElementById("out").innerHTML = html;
 }
 </script>
 </body>
