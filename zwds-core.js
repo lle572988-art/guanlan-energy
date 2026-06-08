@@ -186,7 +186,6 @@ function getFourHua(yearStem, majorStars) {
 
 // ─── 主计算入口 ───
 function calculateChart(solarYear, solarMonth, solarDay, hourIndex, gender) {
-  console.log("calculateChart called: " + solarYear + "/" + solarMonth + "/" + solarDay);
   // 1. 公历→农历
   var lunar = solarToLunar(solarYear, solarMonth, solarDay);
   if (!lunar) return null;
