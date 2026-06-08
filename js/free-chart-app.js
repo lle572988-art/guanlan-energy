@@ -166,7 +166,7 @@ function getParams() {
 
 // ─── STATE ───
 let chartState = {
-  birthDate: '', year: 0, month: 0, day: 0, hourIndex: 0, hourLabel: '', country: '',
+  birthDate: '', year: 0, month: 0, day: 0, hourIndex: 0, hourLabel: '', country: '', email: '',
   result: null, chartData: null, readings: [], activeCard: null, unlocked: false
 };
 
@@ -853,6 +853,7 @@ function init() {
     chartState.hourIndex = params.hour;
     chartState.hourLabel = params.hourLabel;
     chartState.country = params.country;
+    chartState.email = params.email;
 
     if (params.email) {
       const gateEmail = document.getElementById('gate-email');
@@ -911,19 +912,11 @@ function hideEmbeddedGate() {
   }
 }
 
-function submitGate(event) {
-  if (event) event.preventDefault();
-  var name = document.getElementById('gate-name').value.trim();
-  var email = document.getElementById('gate-email').value.trim();
-  var btn = document.getElementById('gate-submit-btn');
-  if (!email) { alert('Please enter your email.'); return false; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email.'); return false; }
+function isValidEmail(email) {
+  return !!email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
 
-  if (btn) {
-    btn.disabled = true;
-    btn.textContent = 'Unlocking your chart…';
-  }
-
+function buildLeadPayload(email, name, source) {
   var lifeDisplay = chartState.readings ? resolveLifePalaceDisplay(chartState.readings) : null;
   var lifeStarCn = lifeDisplay && lifeDisplay.starCn ? lifeDisplay.starCn : '';
   var mainStarEn = lifeStarCn && STAR_EN[lifeStarCn]
@@ -936,10 +929,10 @@ function submitGate(event) {
     if (chartSvg.length > 50000) chartSvg = chartSvg.slice(0, 50000);
   }
 
-  var payload = {
+  return {
     name: name || 'Chart Reader',
     email: email,
-    source: 'free-chart-gate',
+    source: source,
     page: '/free-chart.html',
     dob: chartState.birthDate,
     hour: chartState.hourIndex,
@@ -949,14 +942,33 @@ function submitGate(event) {
     chartSvg: chartSvg,
     pdfReady: true
   };
+}
 
-  fetch('/api/collect-lead', {
+function captureLead(email, name, source) {
+  var payload = buildLeadPayload(email, name, source);
+  return fetch('/api/collect-lead', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
   }).catch(function() {
     console.log('Lead captured (offline):', JSON.stringify(payload));
   });
+}
+
+function submitGate(event) {
+  if (event) event.preventDefault();
+  var name = document.getElementById('gate-name').value.trim();
+  var email = document.getElementById('gate-email').value.trim();
+  var btn = document.getElementById('gate-submit-btn');
+  if (!email) { alert('Please enter your email.'); return false; }
+  if (!isValidEmail(email)) { alert('Please enter a valid email.'); return false; }
+
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Unlocking your chart…';
+  }
+
+  captureLead(email, name || 'Chart Reader', 'free-chart-gate');
 
   unlockAllPalaces();
   document.getElementById('gate-form').style.display = 'none';

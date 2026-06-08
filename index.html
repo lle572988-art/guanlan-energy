@@ -509,7 +509,7 @@ p {
   font-family: 'EB Garamond', serif;
 }
 .location-hint {
-  display: none;
+  display: block;
 }
 
 .urgency-bar {
@@ -578,7 +578,9 @@ p {
 .form-sub span { color: rgba(255, 255, 255, 0.3); }
 
 .form-social-proof {
-  display: none;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(201, 169, 110, 0.12);
 }
 .form-social-stat {
   font-family: 'EB Garamond', serif;
@@ -686,10 +688,10 @@ p {
   display: none;
   width: 100%;
   max-width: 320px;
+  border-radius: 6px;
+  box-shadow: 0 0 40px rgba(201, 169, 110, 0.12);
   margin: 0 auto;
-  border-radius: 2px;
   border: 1px solid rgba(201, 169, 110, 0.28);
-  box-shadow: 0 0 40px rgba(201, 169, 110, 0.15);
 }
 .chart-hint {
   text-align: center;
@@ -1613,6 +1615,42 @@ section {
   margin-right: auto;
 }
 
+/* FIX-06: Guarantee + Scarcity */
+.guarantee-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(201, 169, 110, 0.12);
+  border-radius: 2px;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-style: italic;
+}
+.guarantee-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+.guarantee-bar strong { color: rgba(255,255,255,0.75); font-style: normal; }
+
+.scarcity-badge {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  color: var(--void);
+  background: rgba(201, 169, 110, 0.75);
+  padding: 0.2rem 0.55rem;
+  border-radius: 1px;
+  text-transform: uppercase;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
 /* SVG palace tooltips */
 #zwds-chart { cursor: default; }
 .palace-hit {
@@ -2139,7 +2177,7 @@ body::before {
 
       <div class="urgency-bar">
         <span class="urgency-bar-dot" aria-hidden="true"></span>
-        <span id="live-counter">5,000+ charts explored worldwide</span>
+        <span id="live-counter">5,000+ chart previews generated worldwide</span>
       </div>
 
       <form id="chart-form" class="chart-form" onsubmit="return handleSubmit(event)">
@@ -2177,10 +2215,27 @@ body::before {
           <p class="location-hint" id="country-hint">Used for true solar time accuracy</p>
         </div>
 
+        <!-- EMAIL FIELD — FIX-01 -->
+        <div class="form-row">
+          <label class="form-label" for="email">Email Address</label>
+          <input
+            class="form-input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your@email.com"
+            autocomplete="email"
+            required
+            aria-required="true"
+            aria-describedby="email-hint"
+          >
+          <p id="email-hint" class="form-hint">Your chart preview is sent here · No spam ever</p>
+        </div>
+
         <button class="btn-primary" type="submit">Calculate My Fate Map — Free</button>
-        <p class="form-sub">Free preview · Full report via email · Results in 30 seconds</p>
+        <p class="form-sub">✓ Free chart &nbsp;·&nbsp; <span>Delivered to your email</span> &nbsp;·&nbsp; Results in 30 seconds</p>
         <div class="form-social-proof">
-          <div class="form-social-stat">Trusted by 5,000+ chart explorers worldwide</div>
+          <div class="form-social-stat">500+ professional readings delivered · 5,000+ previews generated</div>
           <div class="form-mini-reviews">
             <p class="mini-review"><span class="mini-review-stars">★★★★★</span>"Nothing came close to this — patterns I hadn't articulated to myself." <cite>— Sarah M., San Francisco</cite></p>
             <p class="mini-review"><span class="mini-review-stars">★★★★★</span>"The 2026 forecast was uncomfortably accurate." <cite>— Maya R., Toronto</cite></p>
@@ -2199,7 +2254,17 @@ body::before {
     </div>
 
     <div class="hero-right">
-      <img class="chart-mobile-thumb" src="/images/og-chart.jpg" alt="Sample Zi Wei Dou Shu 12-palace chart preview" width="320" height="168" loading="lazy" decoding="async">
+      <img
+        class="chart-mobile-thumb"
+        src="/images/chart-mobile-preview.jpg"
+        alt="Sample Zi Wei Dou Shu 12-palace chart — Life, Wealth, and Career palaces highlighted"
+        width="320"
+        height="320"
+        loading="lazy"
+        decoding="async"
+        style="aspect-ratio:1/1; object-fit:cover;"
+        onerror="this.src='/images/og-chart.jpg'; this.style.aspectRatio='16/9';"
+      >
       <div class="chart-frame">
       <div id="zwds-chart" class="chart-preview">
         <svg id="chart-svg" role="img" aria-label="Zi Wei Dou Shu 12-palace natal chart diagram" viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
@@ -2785,7 +2850,7 @@ body::before {
         <div class="pricing-price">
           <span class="price-dollar">$</span>99.00
         </div>
-        <div class="pricing-delivery">30-min Zoom · Recording included</div>
+        <div class="pricing-delivery">30-min Zoom · Recording included <span class="scarcity-badge">3 spots this week</span></div>
         <ul class="pricing-features">
           <li class="highlight">30-minute private video session</li>
           <li class="highlight">Your specific questions answered live</li>
@@ -2794,7 +2859,7 @@ body::before {
           <li>Annotated chart PDF included</li>
           <li>30 days email follow-up access</li>
         </ul>
-        <a class="btn-pricing" href="checkout.html?product=live-reading" data-product="live-reading">Book Video Session</a>
+        <a class="btn-pricing" href="checkout.html?product=live-reading" data-product="live-reading" style="display:inline-block;text-decoration:none;">Book Video Session</a>
       </div>
 
       <!-- Tier 4 — Annual -->
@@ -2813,6 +2878,54 @@ body::before {
           <li>Priority booking for all sessions throughout the year</li>
         </ul>
         <a class="btn-pricing" href="checkout.html?product=annual" data-product="annual">Start Annual Plan</a>
+      </div>
+    </div>
+
+    <!-- FIX-06: Guarantee Bar -->
+    <div class="guarantee-bar reveal">
+      <span class="guarantee-icon">🛡</span>
+      <span><strong>100% Satisfaction Guarantee</strong> — if your reading doesn't resonate, I'll refund you in full within 7 days. No questions asked.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FIX-10: Visible FAQ for SEO Rich Snippets -->
+<section id="faq" style="padding:5rem 0; position:relative; z-index:1;">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Common Questions</div>
+      <h2 class="section-heading">Frequently Asked <em>Questions</em></h2>
+    </div>
+    <div style="max-width:720px; margin-top:2rem;" class="reveal">
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--parchment);margin-bottom:0.5rem;">
+          Is Zi Wei Dou Shu more accurate than BaZi?
+        </h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0;">
+            BaZi and Zi Wei Dou Shu serve different purposes. BaZi reveals your elemental composition and 10-year luck cycles in eight characters. Zi Wei maps twelve life domains with star-level detail — career, wealth, relationships, health, and more — each receiving a unique constellation. Many serious practitioners use both together for the most complete picture of timing and character.
+          </p>
+        </div>
+      </div>
+      <div class="faq-item" style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,169,110,0.15);" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--parchment);margin-bottom:0.5rem;">
+          Why do I need my exact birth hour for a Zi Wei chart?
+        </h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0;">
+            The birth hour determines which of the twelve palaces becomes your Life Palace — the anchor for the entire chart. A difference of one two-hour branch shifts every star placement and changes the reading entirely. Our calculator uses the traditional Chinese two-hour branch system (Zi, Chou, Yin…), which applies regardless of where in the world you were born.
+          </p>
+        </div>
+      </div>
+      <div class="faq-item" style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,169,110,0.15);" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h3 itemprop="name" style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--parchment);margin-bottom:0.5rem;">
+          How do I get a free Zi Wei Dou Shu chart?
+        </h3>
+        <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0;">
+            Enter your date of birth, birth hour (two-hour branch), and email address in the form at the top of this page. Your personalized 12-palace chart preview generates in under 30 seconds and is delivered to your inbox — free, with Life, Wealth, and Career palace highlights included.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -2886,10 +2999,10 @@ body::before {
     <em>Let your strongest weapon stand at the front — not hidden behind code</em>
   </p>
   <div class="footer-links">
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">Contact</a>
-    <a href="#">Reddit</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="mailto:hello@metaphysicflow.com">Contact</a>
+    <a href="https://www.reddit.com/r/ziwei/" target="_blank" rel="noopener">Reddit</a>
   </div>
 </footer>
 
@@ -2931,6 +3044,13 @@ body::before {
     if (!shouldAnimate()) {
       animId = null;
       return;
+    }
+    // 滚动时每 3 帧才重绘一次，节省 GPU
+    if (window.__isScrolling && window.__isScrolling()) {
+      if (Math.round(t * 100) % 3 !== 0) {
+        animId = requestAnimationFrame(draw);
+        return;
+      }
     }
     ctx.clearRect(0, 0, W, H);
     t += 0.008;
@@ -3083,6 +3203,20 @@ body::before {
   startChartAnim();
 })();
 
+/* FIX-11: Unified RAF Scheduler */
+(function() {
+  var isScrolling = false;
+  var scrollTimer = null;
+
+  window.addEventListener('scroll', function() {
+    isScrolling = true;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() { isScrolling = false; }, 200);
+  }, { passive: true });
+
+  window.__isScrolling = function() { return isScrolling; };
+})();
+
 /* ─── MOBILE NAV ─── */
 (function() {
   var hamburger = document.getElementById('nav-hamburger');
@@ -3204,8 +3338,10 @@ function handleSubmit(event) {
 
   const dobInput = form.querySelector('#dob');
   const hourSelect = form.querySelector('#hour');
+  const emailInput = form.querySelector('#email');
 
   let valid = true;
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!dobInput || !dobInput.value) {
     if (dobInput) dobInput.style.borderColor = 'red';
     valid = false;
@@ -3217,6 +3353,15 @@ function handleSubmit(event) {
     valid = false;
   } else if (hourSelect) {
     hourSelect.style.borderColor = '';
+  }
+  if (!emailInput || !emailInput.value || !emailRegex.test(emailInput.value)) {
+    if (emailInput) {
+      emailInput.style.borderColor = 'rgba(255,100,100,0.7)';
+      emailInput.focus();
+    }
+    valid = false;
+  } else if (emailInput) {
+    emailInput.style.borderColor = '';
   }
   if (!valid) return false;
 
@@ -3234,12 +3379,34 @@ function handleSubmit(event) {
   const hourIndex = hourMap[hourValue] ?? 6;
   const hourLabel = hourSelect.options[hourSelect.selectedIndex]?.text || '';
   const country = (form.querySelector('#country')?.value || '').trim();
+  const email = (form.querySelector('#email')?.value || '').trim();
+
+  if (email) {
+    fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        source: 'hero_form',
+        dob: dobInput.value,
+        hour: hourValue,
+        country: country
+      })
+    }).catch(function() {
+      try {
+        const saved = JSON.parse(localStorage.getItem('pending_leads') || '[]');
+        saved.push({ email, source: 'hero_form', ts: Date.now() });
+        localStorage.setItem('pending_leads', JSON.stringify(saved));
+      } catch (e) { /* private mode */ }
+    });
+  }
 
   const params = new URLSearchParams({
     date: dobInput.value,
     hour: hourIndex,
     hourLabel: hourLabel,
-    country: country
+    country: country,
+    email: email
   });
 
   setTimeout(function() {
@@ -3252,7 +3419,7 @@ function handleSubmit(event) {
 (function() {
   var counter = document.getElementById('live-counter');
   if (!counter) return;
-  counter.textContent = '5,000+ people have explored their Purple Star chart';
+  counter.textContent = '5,000+ chart previews generated worldwide';
 })();
 
 /* ─── NAV SCROLL EFFECT ─── */
@@ -3330,15 +3497,15 @@ window.addEventListener('scroll', () => {
         "name": "Is Zi Wei Dou Shu more accurate than BaZi?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "BaZi and Zi Wei Dou Shu serve different purposes. BaZi reveals your elemental composition and 10-year luck cycles. Zi Wei Dou Shu maps twelve life domains with star-level detail. Many practitioners use both together for the most complete picture."
+          "text": "BaZi and Zi Wei Dou Shu serve different purposes. BaZi reveals your elemental composition and 10-year luck cycles in eight characters. Zi Wei maps twelve life domains with star-level detail — career, wealth, relationships, health, and more — each receiving a unique constellation. Many serious practitioners use both together for the most complete picture of timing and character."
         }
       },
       {
         "@type": "Question",
-        "name": "What is Purple Star Astrology?",
+        "name": "Why do I need my exact birth hour for a Zi Wei chart?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Purple Star Astrology is the English name for Zi Wei Dou Shu (紫微斗數), a Chinese natal chart system that places stars across twelve palaces based on your birth date, hour, and calendar conversion to the lunar system."
+          "text": "The birth hour determines which of the twelve palaces becomes your Life Palace — the anchor for the entire chart. A difference of one two-hour branch shifts every star placement and changes the reading entirely. Our calculator uses the traditional Chinese two-hour branch system (Zi, Chou, Yin…), which applies regardless of where in the world you were born."
         }
       },
       {
@@ -3346,15 +3513,7 @@ window.addEventListener('scroll', () => {
         "name": "How do I get a free Zi Wei Dou Shu chart?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Enter your date of birth and birth hour on our homepage calculator. Your personalized 12-palace chart generates instantly at free-chart.html with Life, Wealth, and Career palace previews."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why do I need my birth hour for a Zi Wei chart?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "The birth hour determines which palace becomes your Life Palace and how all stars are distributed across the board. A difference of one two-hour branch can change your entire chart structure."
+          "text": "Enter your date of birth, birth hour (two-hour branch), and email address in the form at the top of this page. Your personalized 12-palace chart preview generates in under 30 seconds and is delivered to your inbox — free, with Life, Wealth, and Career palace highlights included."
         }
       }
     ]
@@ -3378,8 +3537,40 @@ window.addEventListener('scroll', () => {
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://metaphysicflow.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Free Zi Wei Dou Shu Chart",
+        "item": "https://metaphysicflow.com/free-chart.html"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Guanlan Energy — Purple Star Astrology",
+    "url": "https://metaphysicflow.com",
+    "description": "Free Zi Wei Dou Shu chart calculator and professional reading in English.",
+    "publisher": {
+      "@type": "Person",
+      "name": "Guanlan Energy"
+    }
+  }
+  </script>
   <script defer src="https://gumroad.com/js/gumroad.js"></script>
-  <script defer src="/js/cookie-consent.js"></script>
 
 <!-- EXIT INTENT POPUP -->
 <div id="exit-popup" style="
@@ -3480,10 +3671,26 @@ function closeExitPopup() {
 function handleExitCapture(e) {
   e.preventDefault();
   const email = document.getElementById('exit-email').value;
+  if (!email) return;
+
+  function saveLeadLocally(emailAddr, src) {
+    try {
+      const existing = JSON.parse(localStorage.getItem('pending_leads') || '[]');
+      existing.push({ email: emailAddr, source: src, coupon: 'STAR5', ts: Date.now() });
+      localStorage.setItem('pending_leads', JSON.stringify(existing));
+    } catch (err) {}
+  }
+
   fetch('/api/subscribe', {
-    method:'POST', headers:{'Content-Type':'application/json'},
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, source: 'exit_popup', coupon: 'STAR5' })
-  }).catch(function(){});
+  }).then(function(res) {
+    if (!res.ok) saveLeadLocally(email, 'exit_popup');
+  }).catch(function() {
+    saveLeadLocally(email, 'exit_popup');
+  });
+
   document.getElementById('exit-popup').innerHTML =
     '<div style="padding:3rem;text-align:center;color:var(--gold);font-family:Cinzel,serif;font-size:0.8rem;letter-spacing:0.15em;">✓ CHECK YOUR EMAIL — YOUR CHART IS ON THE WAY</div>';
   setTimeout(closeExitPopup, 3000);
@@ -3502,6 +3709,44 @@ window.addEventListener('scroll', function() {
     bar.style.transform = 'translateY(100%)';
   }
 }, { passive: true });
+</script>
+<script>
+/* COOKIE CONSENT — FIX-07 */
+(function() {
+  var KEY = 'guanlan_cookie_consent';
+  var stored = localStorage.getItem(KEY);
+  if (stored === 'accepted' || stored === 'rejected') return;
+
+  var banner = document.getElementById('cookie-consent');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'cookie-consent';
+    banner.innerHTML = [
+      '<div class="cookie-consent-inner">',
+        '<p>We use cookies to improve your experience and understand chart usage patterns. ',
+        '<a href="/privacy.html">Privacy Policy</a></p>',
+        '<div class="cookie-consent-actions">',
+          '<button id="cookie-reject">Decline</button>',
+          '<button id="cookie-accept">Accept</button>',
+        '</div>',
+      '</div>'
+    ].join('');
+    document.body.appendChild(banner);
+  }
+  banner.style.display = 'block';
+
+  function dismiss(choice) {
+    localStorage.setItem(KEY, choice);
+    banner.style.transform = 'translateY(120%)';
+    banner.style.transition = 'transform 0.4s ease';
+    setTimeout(function() { banner.style.display = 'none'; }, 450);
+  }
+
+  var acceptBtn = document.getElementById('cookie-accept');
+  var rejectBtn = document.getElementById('cookie-reject');
+  if (acceptBtn) acceptBtn.addEventListener('click', function() { dismiss('accepted'); });
+  if (rejectBtn) rejectBtn.addEventListener('click', function() { dismiss('rejected'); });
+})();
 </script>
 </body>
 </html>
