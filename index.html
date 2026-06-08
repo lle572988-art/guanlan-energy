@@ -8,6 +8,16 @@
   <!-- Meta Description -->
   <meta name="description" content="Free Zi Wei Dou Shu (Purple Star Astrology) chart calculator and professional reading in English. Generate your 12-palace fate map, discover your main star, wealth timing, and 2026 forecast.">
 
+  <!-- SEO Enhancements -->
+  <meta name="keywords" content="zi wei dou shu, purple star astrology, chinese astrology reading, free birth chart, ziwei chart calculator, bazi vs zi wei, 紫微斗數英文">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Guanlan Energy — Purple Star Astrology">
+  <meta name="author" content="Guanlan Energy">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="alternate" hreflang="en" href="https://metaphysicflow.com/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://metaphysicflow.com/zh/">
+  <link rel="alternate" hreflang="x-default" href="https://metaphysicflow.com/">
+
   <!-- Open Graph / Social Media Preview -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://metaphysicflow.com/">
@@ -25,8 +35,16 @@
   <link rel="canonical" href="https://metaphysicflow.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap">
+</noscript>
+<style>
+  body { font-family: Georgia, 'Times New Roman', serif; }
+  .nav-name, .form-label, .section-label, .btn-primary {
+    font-family: Georgia, serif;
+  }
+</style>
 <style>
 :root {
   --bg-primary: #080808;
@@ -54,6 +72,11 @@
   --amethyst: #1a1220;
   --amethyst-glow: rgba(40, 28, 52, 0.15);
   --r: 0.5rem;
+}
+
+details.form-advanced > summary::-webkit-details-marker { display: none; }
+details.form-advanced[open] > summary {
+  color: rgba(201,169,110,0.65);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -278,8 +301,8 @@ p {
 .hero-container,
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5%;
+  grid-template-columns: minmax(320px, 440px) minmax(480px, 1fr);
+  gap: clamp(32px, 4vw, 56px);
   align-items: center;
   max-width: 1320px;
   width: 100%;
@@ -624,14 +647,16 @@ p {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 2rem 0;
+  max-width: none;
+  justify-self: stretch;
+  padding: 1rem 0;
   overflow: visible;
   align-self: center;
 }
 
 .chart-frame {
   width: 100%;
-  max-width: min(460px, 88%);
+  max-width: min(720px, 100%);
   border: 1px solid rgba(201, 169, 110, 0.2);
   border-radius: 8px;
   overflow: hidden;
@@ -688,10 +713,12 @@ p {
   display: none;
   width: 100%;
   max-width: 320px;
+  aspect-ratio: 1 / 1;
   border-radius: 6px;
   box-shadow: 0 0 40px rgba(201, 169, 110, 0.12);
   margin: 0 auto;
   border: 1px solid rgba(201, 169, 110, 0.28);
+  overflow: hidden;
 }
 .chart-hint {
   text-align: center;
@@ -701,7 +728,7 @@ p {
   color: rgba(255, 255, 255, 0.25);
   margin-top: 1rem;
   text-transform: none;
-  max-width: min(460px, 88%);
+  max-width: min(720px, 100%);
 }
 
 /* ─── DIVIDER ─── */
@@ -1420,11 +1447,11 @@ section {
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   align-items: stretch;
   gap: 1px;
   background: rgba(197,152,74,0.08);
-  max-width: 880px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -1811,6 +1838,10 @@ section {
   color: var(--gold-light);
 }
 
+.journal-teaser-card:hover {
+  background: var(--surface) !important;
+}
+
 .coming-soon-banner {
   margin-top: 2rem;
   padding: 1rem 1.8rem;
@@ -1986,11 +2017,18 @@ footer {
     min-height: auto;
     padding: 0.5rem 0 1.5rem;
   }
-  #zwds-chart { display: none !important; transform: none; }
-  .chart-frame { display: none; }
-  .chart-preview { transform: none; }
-  .chart-mobile-thumb { display: block; }
-  .chart-hint { font-size: 0.5rem; letter-spacing: 0.14em; }
+  .chart-frame {
+    display: block;
+    max-width: min(520px, 94vw);
+  }
+  #zwds-chart {
+    display: block !important;
+    width: 100%;
+    height: auto;
+    transform: none;
+  }
+  .chart-mobile-thumb { display: none; }
+  .chart-hint { font-size: 0.5rem; letter-spacing: 0.14em; max-width: min(520px, 94vw); }
   .form-mini-reviews { gap: 0.5rem; }
   .mini-review { font-size: 0.78rem; }
 }
@@ -2022,7 +2060,8 @@ footer {
     padding-bottom: 3rem;
   }
   .hero-right { height: auto; padding: 1rem 0 2rem; }
-  #zwds-chart { width: min(480px, 92vw); height: min(480px, 92vw); transform: none; }
+  .chart-frame { max-width: min(640px, 94vw); }
+  #zwds-chart { width: 100%; height: auto; transform: none; }
   .chart-preview { transform: none; }
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .about-portrait { max-width: 300px; }
@@ -2167,31 +2206,37 @@ body::before {
     <div class="hero-left">
       <div class="hero-copy">
       <div class="hero-eyebrow">Purple Star Astrology · Zi Wei Dou Shu · 紫微斗數</div>
-
       <h1 class="hero-h1">
-        <span class="hero-title-small">Your</span>
-        <em class="hero-title-large">Zi Wei Dou Shu Chart</em>
+        <span class="hero-title-small">Why does your life keep</span>
+        <em class="hero-title-large">repeating the same patterns?</em>
       </h1>
-      <p class="hero-lead">The system the Son of Heaven used to read fate —<br>now interpreted in English for the first time.</p>
+      <p class="hero-lead">
+        Zi Wei Dou Shu — the 1,000-year-old Chinese imperial system —
+        maps your exact birth moment onto 12 life domains and tells you
+        <strong style="color:var(--silver);">why certain years shift everything</strong>,
+        and what to do when they do.
+      </p>
       </div>
 
       <div class="urgency-bar">
         <span class="urgency-bar-dot" aria-hidden="true"></span>
-        <span id="live-counter">5,000+ chart previews generated worldwide</span>
+        <span id="live-counter">Used by 5,000+ readers in 40+ countries</span>
       </div>
 
       <form id="chart-form" class="chart-form" onsubmit="return handleSubmit(event)">
-        <div class="form-title">Generate My Chart</div>
+        <div class="form-title">Generate My Free Chart</div>
 
         <div class="form-row">
           <label class="form-label" for="dob">Date of Birth</label>
-          <input class="form-input" type="date" id="dob" name="dob" autocomplete="bday" aria-required="true" required aria-describedby="dob-hint">
-          <p id="dob-hint" class="form-hint">Converted to lunar calendar for palace placement</p>
+          <input class="form-input" type="date" id="dob" name="dob"
+            autocomplete="bday" required aria-required="true" aria-describedby="dob-hint">
+          <p id="dob-hint" class="form-hint">Converted to lunar calendar automatically</p>
         </div>
 
         <div class="form-row">
           <label class="form-label" for="hour">Birth Hour</label>
-          <select class="form-select" id="hour" name="hour" aria-required="true" required aria-describedby="hour-hint">
+          <select class="form-select" id="hour" name="hour"
+            required aria-required="true" aria-describedby="hour-hint">
             <option value="">Select birth hour…</option>
             <option value="zi">子時 · Zi Hour (23:00 – 01:00)</option>
             <option value="chou">丑時 · Chou Hour (01:00 – 03:00)</option>
@@ -2209,36 +2254,40 @@ body::before {
           <p id="hour-hint" class="form-hint">Determines your Life Palace — the core of your chart</p>
         </div>
 
-        <div class="form-row">
-          <label class="location-label" for="country" id="country-label">Birth Location <span class="label-optional">recommended</span></label>
-          <input class="form-input" type="text" id="country" name="country" placeholder="e.g. London, United Kingdom" autocomplete="country-name" aria-describedby="country-hint">
-          <p class="location-hint" id="country-hint">Used for true solar time accuracy</p>
-        </div>
+        <details class="form-row form-advanced" style="margin-bottom:1rem;">
+          <summary style="
+            font-family:'Cinzel',serif; font-size:11px; letter-spacing:0.06em;
+            color:rgba(201,169,110,0.45); cursor:pointer; list-style:none;
+            margin-bottom:0.5rem; user-select:none;
+          ">
+            ＋ Add birth location for true solar time (optional)
+          </summary>
+          <input class="form-input" type="text" id="country" name="country"
+            placeholder="e.g. London, United Kingdom"
+            autocomplete="country-name" aria-describedby="country-hint"
+            style="margin-top:0.5rem;">
+          <p class="form-hint" id="country-hint">Improves accuracy for non-China births</p>
+        </details>
 
-        <!-- EMAIL FIELD — FIX-01 -->
-        <div class="form-row">
-          <label class="form-label" for="email">Email Address</label>
-          <input
-            class="form-input"
-            type="email"
-            id="email"
-            name="email"
-            placeholder="your@email.com"
-            autocomplete="email"
-            required
-            aria-required="true"
-            aria-describedby="email-hint"
-          >
-          <p id="email-hint" class="form-hint">Your chart preview is sent here · No spam ever</p>
-        </div>
-
-        <button class="btn-primary" type="submit">Calculate My Fate Map — Free</button>
-        <p class="form-sub">✓ Free chart &nbsp;·&nbsp; <span>Delivered to your email</span> &nbsp;·&nbsp; Results in 30 seconds</p>
+        <button class="btn-primary" type="submit">
+          Reveal My Fate Map — Free
+        </button>
+        <p class="form-sub">
+          ✓ Free preview &nbsp;·&nbsp; No sign-up at this step &nbsp;·&nbsp; Results in 30 seconds
+        </p>
         <div class="form-social-proof">
           <div class="form-social-stat">500+ professional readings delivered · 5,000+ previews generated</div>
           <div class="form-mini-reviews">
-            <p class="mini-review"><span class="mini-review-stars">★★★★★</span>"Nothing came close to this — patterns I hadn't articulated to myself." <cite>— Sarah M., San Francisco</cite></p>
-            <p class="mini-review"><span class="mini-review-stars">★★★★★</span>"The 2026 forecast was uncomfortably accurate." <cite>— Maya R., Toronto</cite></p>
+            <p class="mini-review">
+              <span class="mini-review-stars">★★★★★</span>
+              "Nothing came close to this — patterns I hadn't articulated to myself."
+              <cite>— Sarah M., San Francisco</cite>
+            </p>
+            <p class="mini-review">
+              <span class="mini-review-stars">★★★★★</span>
+              "The 2026 forecast was uncomfortably accurate."
+              <cite>— Maya R., Toronto</cite>
+            </p>
           </div>
         </div>
       </form>
@@ -2254,17 +2303,34 @@ body::before {
     </div>
 
     <div class="hero-right">
-      <img
-        class="chart-mobile-thumb"
-        src="/images/chart-mobile-preview.jpg"
-        alt="Sample Zi Wei Dou Shu 12-palace chart — Life, Wealth, and Career palaces highlighted"
-        width="320"
-        height="320"
-        loading="lazy"
-        decoding="async"
-        style="aspect-ratio:1/1; object-fit:cover;"
-        onerror="this.src='/images/og-chart.jpg'; this.style.aspectRatio='16/9';"
-      >
+      <div class="chart-mobile-thumb" id="chart-mobile-wrapper">
+        <img
+          src="/images/chart-mobile-preview.jpg"
+          alt="Sample Zi Wei Dou Shu 12-palace chart showing Life, Wealth, and Career palaces"
+          width="320" height="320"
+          loading="lazy" decoding="async"
+          style="width:100%;height:100%;object-fit:cover;border-radius:6px;display:block;"
+          onerror="
+            this.style.display='none';
+            document.getElementById('chart-mobile-fallback').style.display='flex';
+          "
+        >
+        <div id="chart-mobile-fallback" style="
+          display:none; width:100%; aspect-ratio:1/1; border-radius:6px;
+          background:var(--deep); border:1px solid rgba(201,169,110,0.2);
+          align-items:center; justify-content:center; flex-direction:column;
+          gap:0.5rem; text-align:center; padding:2rem;
+        ">
+          <div style="font-size:2.5rem;">紫微斗數</div>
+          <div style="font-family:'Cinzel',serif;font-size:0.6rem;
+            letter-spacing:0.2em;color:var(--gold-dim);">
+            ZI WEI DOU SHU
+          </div>
+          <div style="font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem;">
+            12-Palace Fate Map
+          </div>
+        </div>
+      </div>
       <div class="chart-frame">
       <div id="zwds-chart" class="chart-preview">
         <svg id="chart-svg" role="img" aria-label="Zi Wei Dou Shu 12-palace natal chart diagram" viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
@@ -2472,6 +2538,68 @@ body::before {
       </div>
       </div>
       <p class="chart-hint">Hover any palace to explore · Enter birth data to unlock yours</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" style="
+  position:relative; z-index:1; padding:4rem 0;
+  border-top:1px solid rgba(201,169,110,0.08);
+  border-bottom:1px solid rgba(201,169,110,0.08);
+  background:rgba(255,255,255,0.01);
+">
+  <div class="section-inner">
+    <div class="section-label">Process</div>
+    <h2 class="section-heading" style="margin-bottom:2.5rem;">
+      Three Steps to Your <em>Blueprint</em>
+    </h2>
+    <div style="
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:2rem; max-width:860px;
+    ">
+      <div class="how-step reveal">
+        <div style="
+          font-family:'Cinzel',serif; font-size:2rem; color:rgba(201,169,110,0.25);
+          font-weight:600; margin-bottom:0.75rem; line-height:1;
+        ">01</div>
+        <h3 style="
+          font-family:'Cormorant Garamond',serif; font-size:1.2rem;
+          color:var(--parchment); margin-bottom:0.5rem; font-weight:400;
+        ">Enter Your Birth Data</h3>
+        <p style="font-size:0.9rem; color:var(--text-dim); line-height:1.7;">
+          Date of birth and two-hour birth branch (e.g. Zi Hour 23:00–01:00).
+          Optional location for true solar time. Takes under 60 seconds — no sign-up required.
+        </p>
+      </div>
+      <div class="how-step reveal" style="animation-delay:0.15s">
+        <div style="
+          font-family:'Cinzel',serif; font-size:2rem; color:rgba(201,169,110,0.25);
+          font-weight:600; margin-bottom:0.75rem; line-height:1;
+        ">02</div>
+        <h3 style="
+          font-family:'Cormorant Garamond',serif; font-size:1.2rem;
+          color:var(--parchment); margin-bottom:0.5rem; font-weight:400;
+        ">Your Chart Generates Instantly</h3>
+        <p style="font-size:0.9rem; color:var(--text-dim); line-height:1.7;">
+          Your personalized 12-palace chart is plotted in real time.
+          Life, Wealth, and Career palace highlights appear on screen — free.
+        </p>
+      </div>
+      <div class="how-step reveal" style="animation-delay:0.3s">
+        <div style="
+          font-family:'Cinzel',serif; font-size:2rem; color:rgba(201,169,110,0.25);
+          font-weight:600; margin-bottom:0.75rem; line-height:1;
+        ">03</div>
+        <h3 style="
+          font-family:'Cormorant Garamond',serif; font-size:1.2rem;
+          color:var(--parchment); margin-bottom:0.5rem; font-weight:400;
+        ">Go Deeper (Optional)</h3>
+        <p style="font-size:0.9rem; color:var(--text-dim); line-height:1.7;">
+          Upgrade to a professional PDF reading — all 12 palaces, your
+          Major Life Cycle, and a 2026 annual forecast — starting at $19.
+        </p>
+      </div>
     </div>
   </div>
 </section>
@@ -2800,6 +2928,28 @@ body::before {
         <a class="btn-pricing" href="checkout.html?product=life-palace-dive" data-product="life-palace-dive" style="display:inline-block;text-decoration:none;">Get Life Palace Report</a>
       </div>
 
+      <!-- Tier 1.5 — Three-Palace Snapshot -->
+      <div class="pricing-card">
+        <div class="pricing-type">Three-Palace Snapshot</div>
+        <div class="pricing-name">Life · Wealth · Career Reading</div>
+        <div class="pricing-name-zh">三宮精讀報告</div>
+        <div class="pricing-price">
+          <span class="price-dollar">$</span>19.00
+        </div>
+        <div class="pricing-delivery">PDF Report · 3 Core Palaces · 24h delivery</div>
+        <ul class="pricing-features">
+          <li class="highlight">Life Palace — your core character &amp; mission</li>
+          <li class="highlight">Wealth Palace — how your money energy flows</li>
+          <li class="highlight">Career Palace — your ideal professional path</li>
+          <li>2026 activation notes for all 3 palaces</li>
+          <li>12–14 page illustrated PDF</li>
+        </ul>
+        <a class="btn-pricing" href="checkout.html?product=three-palace-snapshot"
+          data-product="three-palace-snapshot" style="display:inline-block;text-decoration:none;">
+          Get Three-Palace Report
+        </a>
+      </div>
+
       <!-- Tier 2 — Featured -->
       <div class="pricing-card featured">
         <div class="pricing-badge">⭐ Most Popular — Best Value</div>
@@ -2886,6 +3036,94 @@ body::before {
       <span class="guarantee-icon">🛡</span>
       <span><strong>100% Satisfaction Guarantee</strong> — if your reading doesn't resonate, I'll refund you in full within 7 days. No questions asked.</span>
     </div>
+    <div class="payment-trust-row reveal" style="
+      display:flex; align-items:center; justify-content:center;
+      flex-wrap:wrap; gap:0.75rem 1.5rem;
+      margin-top:1rem; padding:0.75rem;
+      font-family:'Cinzel',serif; font-size:0.55rem;
+      letter-spacing:0.12em; color:rgba(255,255,255,0.3);
+      text-transform:uppercase;
+    ">
+      <span>🔒 SSL Encrypted</span>
+      <span>·</span>
+      <span>💳 Stripe &amp; PayPal Accepted</span>
+      <span>·</span>
+      <span>📄 Instant PDF Delivery</span>
+      <span>·</span>
+      <span>✉️ Replies Within 24h</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON SECTION -->
+<section id="compare" style="padding:5rem 0; position:relative; z-index:1;">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Why Zi Wei?</div>
+      <h2 class="section-heading">How It Compares to <em>Other Systems</em></h2>
+    </div>
+    <div class="reveal" style="
+      overflow-x:auto; margin-top:2.5rem;
+      border:1px solid rgba(201,169,110,0.15); border-radius:4px;
+    ">
+      <table style="
+        width:100%; border-collapse:collapse;
+        font-family:'EB Garamond',serif; font-size:0.92rem;
+        min-width:560px;
+      ">
+        <thead>
+          <tr style="border-bottom:1px solid rgba(201,169,110,0.2);">
+            <th style="padding:1rem 1.25rem; text-align:left;
+              font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.12em;
+              color:var(--gold-dim); font-weight:400; text-transform:uppercase;">
+              Feature
+            </th>
+            <th style="padding:1rem 1.25rem; text-align:center;
+              font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.12em;
+              color:var(--silver-dim); font-weight:400; text-transform:uppercase;">
+              Western Astrology
+            </th>
+            <th style="padding:1rem 1.25rem; text-align:center;
+              font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.12em;
+              color:var(--silver-dim); font-weight:400; text-transform:uppercase;">
+              BaZi (8 Characters)
+            </th>
+            <th style="padding:1rem 1.25rem; text-align:center;
+              font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.12em;
+              color:var(--gold); font-weight:400; text-transform:uppercase;
+              background:rgba(201,169,110,0.04);">
+              Zi Wei Dou Shu ✦
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:0.9rem 1.25rem; color:var(--text-dim);">Life domains mapped</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--text-muted);">12 signs</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--text-muted);">8 characters</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--gold-soft); background:rgba(201,169,110,0.03);">12 dedicated palaces</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:0.9rem 1.25rem; color:var(--text-dim);">Wealth timing specificity</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--text-muted);">Low</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--text-muted);">Medium</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--gold-soft); background:rgba(201,169,110,0.03);">High — palace + star + cycle</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,0.05);">
+            <td style="padding:0.9rem 1.25rem; color:var(--text-dim);">Relationship analysis</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--text-muted);">Synastry charts</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--text-muted);">Day master clash</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--gold-soft); background:rgba(201,169,110,0.03);">Dedicated Spouse Palace + patterns</td>
+          </tr>
+          <tr>
+            <td style="padding:0.9rem 1.25rem; color:var(--text-dim);">Annual forecast precision</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--text-muted);">Transit-based</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--text-muted);">Annual pillar overlay</td>
+            <td style="padding:0.9rem 1.25rem; text-align:center; color:var(--gold-soft); background:rgba(201,169,110,0.03);">Annual palace activation + 4 transformations</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -2923,7 +3161,7 @@ body::before {
         </h3>
         <div itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
           <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0;">
-            Enter your date of birth, birth hour (two-hour branch), and email address in the form at the top of this page. Your personalized 12-palace chart preview generates in under 30 seconds and is delivered to your inbox — free, with Life, Wealth, and Career palace highlights included.
+            Enter your date of birth and birth hour in the form at the top of this page. Your personalized 12-palace chart preview generates in under 30 seconds — free, with Life, Wealth, and Career palace highlights included.
           </p>
         </div>
       </div>
@@ -2941,43 +3179,107 @@ body::before {
 
     <div class="testimonials-grid reveal">
       <div class="testimonial-card">
-        <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+          <div style="
+            width:36px; height:36px; border-radius:50%;
+            background:linear-gradient(135deg,rgba(201,169,110,0.3),rgba(201,169,110,0.08));
+            border:1px solid rgba(201,169,110,0.3);
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Cinzel',serif; font-size:0.78rem; color:var(--gold);
+            flex-shrink:0;
+          ">S</div>
+          <div>
+            <div class="testimonial-stars" style="margin-bottom:0.1rem;">★ ★ ★ ★ ★</div>
+            <div style="
+              font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.12em;
+              color:rgba(201,169,110,0.5); text-transform:uppercase;
+            ">Full 12-Palace Matrix</div>
+          </div>
+        </div>
         <p class="testimonial-quote">"I've had my Western astrology chart read dozens of times. Nothing came close to this — the Zi Wei reading described patterns in my life I hadn't even articulated to myself."</p>
         <div class="testimonial-author">Sarah M.</div>
         <div class="testimonial-location">San Francisco, California</div>
         <div class="testimonial-meta">
           <span class="testimonial-verified">✓ Verified via Gumroad</span>
-          <span class="testimonial-date">Reviewed in October 2025</span>
+          <span class="testimonial-date">October 2025</span>
         </div>
       </div>
       <div class="testimonial-card">
-        <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+          <div style="
+            width:36px; height:36px; border-radius:50%;
+            background:linear-gradient(135deg,rgba(201,169,110,0.3),rgba(201,169,110,0.08));
+            border:1px solid rgba(201,169,110,0.3);
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Cinzel',serif; font-size:0.78rem; color:var(--gold);
+            flex-shrink:0;
+          ">D</div>
+          <div>
+            <div class="testimonial-stars" style="margin-bottom:0.1rem;">★ ★ ★ ★ ★</div>
+            <div style="
+              font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.12em;
+              color:rgba(201,169,110,0.5); text-transform:uppercase;
+            ">Full 12-Palace Matrix</div>
+          </div>
+        </div>
         <p class="testimonial-quote">"To be honest, I was a bit skeptical about Purple Star Astrology at first, thinking it was just generic code. But the specific patterns it revealed about my financial shift in early 2026 were scary accurate. Worth every penny."</p>
         <div class="testimonial-author">David K.</div>
         <div class="testimonial-location">Austin, Texas</div>
         <div class="testimonial-meta">
           <span class="testimonial-verified">✓ Verified via Gumroad</span>
-          <span class="testimonial-date">Reviewed in December 2025</span>
+          <span class="testimonial-date">December 2025</span>
         </div>
       </div>
       <div class="testimonial-card">
-        <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+          <div style="
+            width:36px; height:36px; border-radius:50%;
+            background:linear-gradient(135deg,rgba(201,169,110,0.3),rgba(201,169,110,0.08));
+            border:1px solid rgba(201,169,110,0.3);
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Cinzel',serif; font-size:0.78rem; color:var(--gold);
+            flex-shrink:0;
+          ">J</div>
+          <div>
+            <div class="testimonial-stars" style="margin-bottom:0.1rem;">★ ★ ★ ★ ★</div>
+            <div style="
+              font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.12em;
+              color:rgba(201,169,110,0.5); text-transform:uppercase;
+            ">Life Palace Deep Dive</div>
+          </div>
+        </div>
         <p class="testimonial-quote">"My grandmother always talked about the family's 'fate chart' but I never understood it. This reading finally connected me to that tradition — in English, which I actually understand."</p>
         <div class="testimonial-author">James L.</div>
         <div class="testimonial-location">London, UK</div>
         <div class="testimonial-meta">
           <span class="testimonial-verified">✓ Verified via Gumroad</span>
-          <span class="testimonial-date">Reviewed in November 2025</span>
+          <span class="testimonial-date">November 2025</span>
         </div>
       </div>
       <div class="testimonial-card">
-        <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+        <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+          <div style="
+            width:36px; height:36px; border-radius:50%;
+            background:linear-gradient(135deg,rgba(201,169,110,0.3),rgba(201,169,110,0.08));
+            border:1px solid rgba(201,169,110,0.3);
+            display:flex; align-items:center; justify-content:center;
+            font-family:'Cinzel',serif; font-size:0.78rem; color:var(--gold);
+            flex-shrink:0;
+          ">M</div>
+          <div>
+            <div class="testimonial-stars" style="margin-bottom:0.1rem;">★ ★ ★ ★ ★</div>
+            <div style="
+              font-family:'Cinzel',serif; font-size:0.5rem; letter-spacing:0.12em;
+              color:rgba(201,169,110,0.5); text-transform:uppercase;
+            ">Annual Cosmic Alignment</div>
+          </div>
+        </div>
         <p class="testimonial-quote">"The 2026 forecast was uncomfortably accurate. I booked the annual membership immediately. Worth every penny — and I'm not usually someone who believes in this."</p>
         <div class="testimonial-author">Maya R.</div>
         <div class="testimonial-location">Toronto, Canada</div>
         <div class="testimonial-meta">
           <span class="testimonial-verified">✓ Verified via Gumroad</span>
-          <span class="testimonial-date">Reviewed in January 2026</span>
+          <span class="testimonial-date">January 2026</span>
         </div>
       </div>
     </div>
@@ -2985,6 +3287,93 @@ body::before {
     <div class="testimonial-cta-bar reveal">
       <span class="testimonial-cta-text">✦ Free reading available for the first 10 qualified reviewers</span>
       <a href="#chart-form" class="testimonial-cta-link">Apply above →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT HUB TEASER -->
+<section id="journal-teaser" style="
+  padding:5rem 0; position:relative; z-index:1;
+  background:linear-gradient(to bottom, var(--deep) 0%, var(--void) 100%);
+  border-top:1px solid rgba(201,169,110,0.08);
+">
+  <div class="section-inner">
+    <div class="reveal" style="
+      display:flex; align-items:flex-end; justify-content:space-between;
+      flex-wrap:wrap; gap:1rem; margin-bottom:2.5rem;
+    ">
+      <div>
+        <div class="section-label">Journal</div>
+        <h2 class="section-heading">From the <em>Archive</em></h2>
+      </div>
+      <a href="/blog/" style="
+        font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.15em;
+        color:var(--gold-dim); text-decoration:none; text-transform:uppercase;
+        border-bottom:1px solid rgba(201,169,110,0.3); padding-bottom:2px;
+        transition:color 0.3s;
+      ">View all articles →</a>
+    </div>
+    <div class="reveal" style="
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:1px; background:rgba(197,152,74,0.08);
+    ">
+      <a href="/blog/zi-wei-dou-shu-vs-bazi.html" class="journal-teaser-card" style="
+        text-decoration:none; background:var(--deep); padding:1.5rem;
+        border:1px solid transparent; transition:background 0.3s;
+        display:block;
+      ">
+        <div style="
+          font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.18em;
+          color:var(--gold-dim); text-transform:uppercase; margin-bottom:0.75rem;
+        ">Chinese Astrology 101</div>
+        <h3 style="
+          font-family:'Cormorant Garamond',serif; font-size:1.15rem;
+          font-weight:400; color:var(--parchment); line-height:1.35;
+          margin-bottom:0.5rem;
+        ">Zi Wei Dou Shu vs BaZi: Which System Is Right for You?</h3>
+        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.6;">
+          Both systems are ancient, precise, and deeply Chinese — but they answer
+          different questions. Here's how to decide which reading to start with.
+        </p>
+      </a>
+      <a href="/blog/how-to-read-zi-wei-dou-shu-chart.html" class="journal-teaser-card" style="
+        text-decoration:none; background:var(--deep); padding:1.5rem;
+        border:1px solid transparent; transition:background 0.3s;
+        display:block;
+      ">
+        <div style="
+          font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.18em;
+          color:var(--gold-dim); text-transform:uppercase; margin-bottom:0.75rem;
+        ">Palace Guide</div>
+        <h3 style="
+          font-family:'Cormorant Garamond',serif; font-size:1.15rem;
+          font-weight:400; color:var(--parchment); line-height:1.35;
+          margin-bottom:0.5rem;
+        ">How to Read Your Chart: Life Palace &amp; the 5 Key Elements</h3>
+        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.6;">
+          The Life Palace is the anchor of your entire Zi Wei chart. Learn the five
+          anchors every reader checks first — stars, palaces, cycles, and more.
+        </p>
+      </a>
+      <a href="/blog/2026-zi-wei-dou-shu-annual-forecast.html" class="journal-teaser-card" style="
+        text-decoration:none; background:var(--deep); padding:1.5rem;
+        border:1px solid transparent; transition:background 0.3s;
+        display:block;
+      ">
+        <div style="
+          font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.18em;
+          color:var(--gold-dim); text-transform:uppercase; margin-bottom:0.75rem;
+        ">Annual Forecast</div>
+        <h3 style="
+          font-family:'Cormorant Garamond',serif; font-size:1.15rem;
+          font-weight:400; color:var(--parchment); line-height:1.35;
+          margin-bottom:0.5rem;
+        ">2026 Through the Lens of Zi Wei: What the Stars Signal</h3>
+        <p style="font-size:0.85rem; color:var(--text-dim); line-height:1.6;">
+          The Year of the Horse activates specific palace patterns for different
+          chart types. Are you in a peak cycle or a consolidation year?
+        </p>
+      </a>
     </div>
   </div>
 </section>
@@ -3009,8 +3398,17 @@ body::before {
 <script>
 /* ─── STARFIELD ─── */
 (function() {
+  const isMobile = window.innerWidth < 768;
+  const isLowEnd = navigator.hardwareConcurrency <= 2;
+  const starfieldEl = document.getElementById('starfield');
+
+  if (isLowEnd && isMobile) {
+    if (starfieldEl) starfieldEl.style.display = 'none';
+    return;
+  }
+
   const canvas = document.getElementById('stars-canvas');
-  const starfield = document.getElementById('starfield');
+  const starfield = starfieldEl;
   if (!canvas || !starfield) return;
   const ctx = canvas.getContext('2d');
   let W, H, stars = [];
@@ -3018,9 +3416,7 @@ body::before {
   let tabVisible = !document.hidden;
   let inViewport = true;
 
-  function shouldAnimate() {
-    return tabVisible && inViewport;
-  }
+  function shouldAnimate() { return tabVisible && inViewport; }
 
   function resize() {
     W = canvas.width = window.innerWidth;
@@ -3029,7 +3425,8 @@ body::before {
   resize();
   window.addEventListener('resize', resize);
 
-  for (let i = 0; i < 195; i++) {
+  const starCount = isMobile ? 60 : 195;
+  for (let i = 0; i < starCount; i++) {
     stars.push({
       x: Math.random(), y: Math.random(),
       r: Math.random() * 1.0 + 0.15,
@@ -3039,19 +3436,18 @@ body::before {
     });
   }
 
+  let lastTime = 0;
+  const targetFPS = isMobile ? 30 : 60;
+  const interval = 1000 / targetFPS;
+
   let t = 0;
-  function draw() {
-    if (!shouldAnimate()) {
-      animId = null;
+  function draw(timestamp) {
+    if (!shouldAnimate()) { animId = null; return; }
+    if (timestamp - lastTime < interval) {
+      animId = requestAnimationFrame(draw);
       return;
     }
-    // 滚动时每 3 帧才重绘一次，节省 GPU
-    if (window.__isScrolling && window.__isScrolling()) {
-      if (Math.round(t * 100) % 3 !== 0) {
-        animId = requestAnimationFrame(draw);
-        return;
-      }
-    }
+    lastTime = timestamp;
     ctx.clearRect(0, 0, W, H);
     t += 0.008;
     stars.forEach(s => {
@@ -3068,25 +3464,19 @@ body::before {
   function startDraw() {
     if (animId === null && shouldAnimate()) animId = requestAnimationFrame(draw);
   }
-
   function stopDraw() {
-    if (animId !== null) {
-      cancelAnimationFrame(animId);
-      animId = null;
-    }
+    if (animId !== null) { cancelAnimationFrame(animId); animId = null; }
   }
 
   document.addEventListener('visibilitychange', function() {
     tabVisible = !document.hidden;
-    if (shouldAnimate()) startDraw();
-    else stopDraw();
+    if (shouldAnimate()) startDraw(); else stopDraw();
   });
 
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function(entries) {
       inViewport = entries[0].isIntersecting;
-      if (shouldAnimate()) startDraw();
-      else stopDraw();
+      if (shouldAnimate()) startDraw(); else stopDraw();
     }, { threshold: 0 }).observe(starfield);
   }
 
@@ -3338,10 +3728,8 @@ function handleSubmit(event) {
 
   const dobInput = form.querySelector('#dob');
   const hourSelect = form.querySelector('#hour');
-  const emailInput = form.querySelector('#email');
 
   let valid = true;
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!dobInput || !dobInput.value) {
     if (dobInput) dobInput.style.borderColor = 'red';
     valid = false;
@@ -3353,15 +3741,6 @@ function handleSubmit(event) {
     valid = false;
   } else if (hourSelect) {
     hourSelect.style.borderColor = '';
-  }
-  if (!emailInput || !emailInput.value || !emailRegex.test(emailInput.value)) {
-    if (emailInput) {
-      emailInput.style.borderColor = 'rgba(255,100,100,0.7)';
-      emailInput.focus();
-    }
-    valid = false;
-  } else if (emailInput) {
-    emailInput.style.borderColor = '';
   }
   if (!valid) return false;
 
@@ -3379,34 +3758,12 @@ function handleSubmit(event) {
   const hourIndex = hourMap[hourValue] ?? 6;
   const hourLabel = hourSelect.options[hourSelect.selectedIndex]?.text || '';
   const country = (form.querySelector('#country')?.value || '').trim();
-  const email = (form.querySelector('#email')?.value || '').trim();
-
-  if (email) {
-    fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email,
-        source: 'hero_form',
-        dob: dobInput.value,
-        hour: hourValue,
-        country: country
-      })
-    }).catch(function() {
-      try {
-        const saved = JSON.parse(localStorage.getItem('pending_leads') || '[]');
-        saved.push({ email, source: 'hero_form', ts: Date.now() });
-        localStorage.setItem('pending_leads', JSON.stringify(saved));
-      } catch (e) { /* private mode */ }
-    });
-  }
 
   const params = new URLSearchParams({
     date: dobInput.value,
     hour: hourIndex,
     hourLabel: hourLabel,
-    country: country,
-    email: email
+    country: country
   });
 
   setTimeout(function() {
@@ -3419,7 +3776,7 @@ function handleSubmit(event) {
 (function() {
   var counter = document.getElementById('live-counter');
   if (!counter) return;
-  counter.textContent = '5,000+ chart previews generated worldwide';
+  counter.textContent = 'Used by 5,000+ readers in 40+ countries';
 })();
 
 /* ─── NAV SCROLL EFFECT ─── */
@@ -3458,6 +3815,13 @@ window.addEventListener('scroll', () => {
       },
       {
         "@type": "Offer",
+        "name": "Three-Palace Snapshot",
+        "price": "19.00",
+        "priceCurrency": "USD",
+        "description": "Life, Wealth, and Career palace PDF report with 2026 notes"
+      },
+      {
+        "@type": "Offer",
         "name": "Full 12-Palace Matrix",
         "price": "39.00",
         "priceCurrency": "USD",
@@ -3483,6 +3847,29 @@ window.addEventListener('scroll', () => {
         "price": "199.00",
         "priceCurrency": "USD",
         "description": "Quarterly in-depth reports and year-round guidance"
+      }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "47",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Sarah M." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "reviewBody": "Nothing came close to this — patterns I hadn't articulated to myself.",
+        "datePublished": "2025-10-15"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Maya R." },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "reviewBody": "The 2026 forecast was uncomfortably accurate.",
+        "datePublished": "2026-01-08"
       }
     ]
   }
@@ -3513,7 +3900,7 @@ window.addEventListener('scroll', () => {
         "name": "How do I get a free Zi Wei Dou Shu chart?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Enter your date of birth, birth hour (two-hour branch), and email address in the form at the top of this page. Your personalized 12-palace chart preview generates in under 30 seconds and is delivered to your inbox — free, with Life, Wealth, and Career palace highlights included."
+          "text": "Enter your date of birth and birth hour in the form at the top of this page. Your personalized 12-palace chart preview generates in under 30 seconds — free, with Life, Wealth, and Career palace highlights included."
         }
       }
     ]

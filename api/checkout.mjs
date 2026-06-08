@@ -31,6 +31,11 @@ export default async function handler(req, res) {
         description: 'Dedicated Life Palace (命宫) deep analysis — master star nature, life mission, and 2026 activation preview. 8–10 page illustrated PDF.',
         unit_amount: 990,
       },
+      'three-palace-snapshot': {
+        name: 'Three-Palace Snapshot',
+        description: 'Life, Wealth, and Career palace reading with 2026 activation notes — 12–14 page illustrated PDF.',
+        unit_amount: 1900,
+      },
       'starter': {
         name: 'Life Palace Deep Dive',
         description: 'Dedicated Life Palace (命宫) deep analysis — 8–10 page illustrated PDF.',
@@ -69,7 +74,7 @@ export default async function handler(req, res) {
       };
     } else {
       return res.status(400).json({
-        error: 'Please specify a product (life-palace-dive, full-chart, partner-compatibility, live-reading, annual) or provide price in cents.',
+        error: 'Please specify a product (life-palace-dive, three-palace-snapshot, full-chart, partner-compatibility, live-reading, annual) or provide price in cents.',
       });
     }
 
