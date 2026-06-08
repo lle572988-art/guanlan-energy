@@ -707,21 +707,15 @@
     margin-bottom: 2rem;
   }
   .share-card {
-    background: linear-gradient(135deg, var(--surface), var(--deep));
-    border: 1px solid rgba(197, 152, 74, 0.25);
+    background: transparent;
+    border: 1px solid rgba(201, 169, 110, 0.2);
     padding: 2rem;
     margin-bottom: 1.5rem;
     position: relative;
     overflow: hidden;
   }
   .share-card::before {
-    content: '';
-    position: absolute;
-    top: -1px;
-    left: 10%;
-    right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    display: none;
   }
   .share-card-brand {
     font-family: 'Cinzel', serif;
@@ -783,13 +777,14 @@
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s;
-    border: 1px solid rgba(197, 152, 74, 0.3);
-    color: var(--gold);
+    border: 1px solid rgba(201, 169, 110, 0.3);
+    color: rgba(201, 169, 110, 0.8);
     background: transparent;
   }
   .share-btn:hover {
-    background: rgba(197, 152, 74, 0.08);
-    border-color: var(--gold);
+    background: rgba(201, 169, 110, 0.06);
+    border-color: rgba(201, 169, 110, 0.45);
+    color: rgba(201, 169, 110, 1);
   }
   .share-friend-hook {
     margin-top: 1.5rem;
@@ -1661,22 +1656,39 @@
     text-transform: uppercase;
   }
   .hook-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
     font-weight: 300;
-    line-height: 1.1;
+    line-height: 1.05;
     color: var(--parchment);
     max-width: 900px;
     margin: 0;
   }
-  .hook-title em { font-style: italic; color: var(--gold-light); }
+  .hook-title-lead {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .hook-title-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 400;
+    color: #C9A96E;
+    line-height: 1.05;
+  }
   .hook-blurb {
     max-width: 600px;
+    margin: 0 auto;
     font-family: 'EB Garamond', Georgia, serif;
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: var(--text-dim);
-    margin: 0;
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.75);
   }
   .hook-sihua-badges {
     display: flex;
@@ -1698,14 +1710,18 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border: 1px solid rgba(201, 148, 58, 0.2);
-    margin-top: 1rem;
-    overflow: hidden;
+    gap: 0;
+    border: none;
+    margin-top: 1.25rem;
+    overflow: visible;
+    max-width: 720px;
+    width: 100%;
   }
   .hook-stat {
     flex: 1 1 140px;
-    padding: 1rem 2rem;
-    border-right: 1px solid rgba(201, 148, 58, 0.15);
+    padding: 0.75rem 1.5rem 0;
+    border: none;
+    border-top: 1px solid rgba(201, 169, 110, 0.2);
     text-align: center;
   }
   .hook-stat:last-child { border-right: none; }
@@ -1806,14 +1822,14 @@
     gap: 1.25rem;
   }
   .pillar-card {
-    background: var(--surface);
-    border: 1px solid var(--navy-border);
+    background: transparent;
+    border: 1px solid rgba(201, 169, 110, 0.15);
     padding: 2rem 1.75rem;
     position: relative;
   }
   .pillar-card.featured {
-    border-color: rgba(212,168,85,0.5);
-    background: linear-gradient(145deg, rgba(212,168,85,0.08), var(--surface));
+    border-color: rgba(201, 169, 110, 0.22);
+    background: transparent;
   }
   .pillar-badge {
     position: absolute;
@@ -1852,7 +1868,7 @@
     z-index: 1;
     width: 100%;
     box-sizing: border-box;
-    background: linear-gradient(180deg, var(--deep) 0%, var(--void) 100%);
+    background: transparent;
     padding: 4rem 1.5rem;
     text-align: center;
   }
@@ -1875,28 +1891,32 @@
     margin: 0 auto 2rem;
   }
   .window-card {
-    border: 1px solid var(--navy-border);
+    border: 1px solid rgba(201, 169, 110, 0.15);
     padding: 1.5rem 1.25rem;
-    background: rgba(15,14,24,0.5);
+    background: transparent;
   }
   .window-card.featured {
-    border-color: rgba(212,168,85,0.45);
-    background: rgba(212,168,85,0.06);
+    border-color: rgba(201, 169, 110, 0.22);
+    background: transparent;
   }
   .window-card .month {
     font-family: 'Cinzel', serif;
     font-size: 0.58rem;
     letter-spacing: 0.18em;
-    color: var(--text-dim);
+    color: rgba(255, 255, 255, 0.3);
     margin-bottom: 0.5rem;
   }
   .window-card .theme {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond', Georgia, serif;
     font-size: 1.35rem;
-    color: var(--gold-light);
+    color: rgba(201, 169, 110, 0.85);
     margin-bottom: 0.5rem;
   }
-  .window-card p { font-size: 0.95rem; line-height: 1.6; color: var(--text); }
+  .window-card p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.75);
+  }
   .forecast-cta p.gold-italic {
     color: var(--gold-light);
     font-style: italic;
@@ -1922,58 +1942,70 @@
     background: var(--gold-light);
     box-shadow: 0 4px 24px rgba(212,168,85,0.35);
   }
-  .palace-group { margin-bottom: 3rem; }
+  .palace-group { margin-bottom: 4rem; }
   .group-title {
     font-family: 'Cinzel', serif;
     font-size: 0.72rem;
     letter-spacing: 0.28em;
-    color: var(--gold);
-    margin-bottom: 1.25rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--navy-border);
+    color: rgba(201, 169, 110, 0.4);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    padding: 0;
+    border: none;
   }
   .palace-life-card {
-    background: var(--surface);
-    border: 1px solid var(--navy-border);
-    padding: 1.75rem;
-    margin-bottom: 1rem;
+    background: transparent;
+    border: none;
+    border-left: 1px solid rgba(201, 169, 110, 0.2);
+    padding: 0 0 0 2rem;
+    margin-bottom: 3rem;
   }
-  .palace-life-card.expanded { border-color: rgba(212,168,85,0.35); }
+  .palace-life-card:last-child { margin-bottom: 0; }
+  .palace-life-card.expanded { border-left-color: rgba(201, 169, 110, 0.28); }
   .palace-life-card.locked .palace-full-body { display: none; }
   .topic-tag {
     font-family: 'Cinzel', serif;
-    font-size: 0.55rem;
-    letter-spacing: 0.2em;
-    color: var(--text-dim);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.3);
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
   }
   .palace-life-card .star-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    color: var(--gold-light);
-    margin-bottom: 0.6rem;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: rgba(201, 169, 110, 0.85);
+    margin-bottom: 0.75rem;
   }
   .palace-life-card .teaser {
-    font-size: 1rem;
-    line-height: 1.65;
-    color: var(--text);
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.75);
     margin-bottom: 1rem;
   }
   .palace-life-card .palace-full-body {
     display: none;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--navy-border);
-    font-size: 1rem;
-    line-height: 1.75;
-    color: var(--text);
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(255, 255, 255, 0.75);
   }
-  .palace-life-card .palace-full-body p { margin-bottom: 1rem; }
+  .palace-life-card .palace-full-body p {
+    margin-bottom: 1.25rem;
+  }
   .palace-life-card .palace-full-body p:last-child { margin-bottom: 0; }
   .palace-year-2026 {
-    color: var(--gold-light);
+    color: rgba(201, 169, 110, 0.7);
     font-style: italic;
-    margin-top: 1rem;
+    font-size: 15px;
+    line-height: 1.7;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(201, 169, 110, 0.1);
   }
   .palace-life-card.expanded .palace-full-body { display: block; }
   .palace-life-card .card-action {
@@ -1997,8 +2029,7 @@
     .hook-topbar-label { font-size: 0.5rem; letter-spacing: 0.18em; white-space: normal; text-align: center; }
     .hook-footer { padding: 0 1.5rem 2rem; }
     .hook-stats { flex-direction: column; }
-    .hook-stat { border-right: none; border-bottom: 1px solid rgba(201, 148, 58, 0.15); }
-    .hook-stat:last-child { border-bottom: none; }
+    .hook-stat { border-right: none; }
   }
 
 </style>
@@ -2082,7 +2113,10 @@
     </div>
     <div class="hook-core">
       <div class="hook-meta" id="hook-meta">—</div>
-      <h1 class="hook-title" id="hook-title">You are<br><em>The Seeker</em></h1>
+      <h1 class="hook-title" id="hook-title">
+        <span class="hook-title-lead">You are</span>
+        <em class="hook-title-name">The Seeker</em>
+      </h1>
       <p class="hook-blurb" id="hook-blurb">Your chart is being calculated…</p>
       <div class="hook-sihua-badges" id="hook-sihua-badges"></div>
       <div class="hook-stats" id="hook-stats">
@@ -2713,7 +2747,7 @@
 <script src="/zwds-core.js?v=20260608b"></script>
 <script src="/js/ziwei-data.js?v=20260608b"></script>
 <script src="/js/zwds-chart-render.js?v=20260608b"></script>
-<script src="/js/free-chart-app.js?v=20260608i"></script>
+<script src="/js/free-chart-app.js?v=20260608k"></script>
 <script src="/js/result-particles.js?v=20260608h"></script>
 
 </body>

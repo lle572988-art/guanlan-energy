@@ -531,15 +531,24 @@ function lifePalaceTeaser(display, reading) {
   return wordTeaser(display.tagline || display.description, 15);
 }
 
+function formatBodyParagraphs(body) {
+  if (!body) return '';
+  var parts = body.split(/\n\s*\n/).map(function(p) { return p.trim(); }).filter(Boolean);
+  if (parts.length <= 1) {
+    return '<p>' + body.trim() + '</p>';
+  }
+  return parts.map(function(p) { return '<p>' + p + '</p>'; }).join('');
+}
+
 function readingYear2026Html(reading) {
   if (!reading || !reading.year2026) return '';
-  return '<p class="palace-year-2026">✦ 2026: ' + reading.year2026 + '</p>';
+  return '<p class="palace-year-2026">✦ ' + reading.year2026 + '</p>';
 }
 
 function palaceExpandedBody(reading) {
   if (!reading) return '';
   var html = '';
-  if (reading.body) html += '<p>' + reading.body + '</p>';
+  if (reading.body) html += formatBodyParagraphs(reading.body);
   html += readingYear2026Html(reading);
   html += renderSihuaBlock(reading);
   return html;
@@ -622,7 +631,7 @@ function renderIdentityHook(result, readings, meta) {
 
   var titleEl = document.getElementById('hook-title');
   if (titleEl) {
-    titleEl.innerHTML = 'You are<br><em>' + lifeDisplay.displayName + '</em>';
+    titleEl.innerHTML = '<span class="hook-title-lead">You are</span><em class="hook-title-name">' + lifeDisplay.displayName + '</em>';
   }
 
   setText('hook-blurb', getSoulParadox(lifeDisplay));
