@@ -29,21 +29,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --void: #121E32;
-  --deep: #182840;
-  --surface: #223552;
-  --layer: #2A4060;
-  --rim: #345070;
-  --gold: #D4A855;
-  --gold-light: #F0D48A;
-  --gold-dim: #9A7840;
-  --silver: #C0D4E8;
-  --silver-dim: #7A9AB8;
-  --amethyst: #6E4A8E;
-  --amethyst-glow: rgba(110, 74, 142, 0.2);
-  --parchment: #F0E6CC;
-  --text: #E8F0FA;
-  --text-dim: #A8C0D8;
+  --void: #050508;
+  --deep: #09080F;
+  --surface: #0F0E18;
+  --layer: #141222;
+  --rim: #1E1A30;
+  --gold: #C9943A;
+  --gold-light: #E8C87A;
+  --gold-dim: #6B4E1E;
+  --silver: #A8C4D8;
+  --silver-dim: #4A6070;
+  --text: #C8D4E0;
+  --text-dim: #6A8A9A;
+  --parchment: #E2D4B8;
+  --amethyst: #3D2655;
+  --amethyst-glow: rgba(61, 38, 85, 0.3);
   --r: 0.5rem;
 }
 
@@ -53,6 +53,11 @@ html { scroll-behavior: smooth; }
 
 body {
   background: var(--void);
+  background-image: radial-gradient(
+    ellipse at 30% 20%,
+    rgba(61, 38, 85, 0.08) 0%,
+    transparent 60%
+  );
   color: var(--text);
   font-family: 'EB Garamond', Georgia, serif;
   font-size: 19px;

@@ -180,9 +180,114 @@ function isPalaceLocked(index) {
 
 const STAR_ARCHETYPE = {
   '紫微': 'Emperor', '天機': 'Strategist', '太陽': 'Illuminator', '武曲': 'Commander',
-  '天同': 'Harmonizer', '廉貞': 'Integrity Keeper', '天府': 'Steward', '太陰': 'Keeper',
-  '貪狼': 'Magnet', '巨門': 'Truth-Seeker', '天相': 'Mediator', '天梁': 'Sage',
-  '七殺': 'Warrior', '破軍': 'Renegade'
+  '天同': 'Harmonizer', '廉貞': 'Maverick', '天府': 'Guardian', '太陰': 'Keeper',
+  '貪狼': 'Magnetist', '巨門': 'Oracle', '天相': 'Diplomat', '天梁': 'Elder',
+  '七殺': 'Pioneer', '破軍': 'Transformer'
+};
+
+const SIHUA_COPY = {
+  '命宮': {
+    '化禄': 'Fortune flows toward you naturally in this cycle — not because you chase it, but because you have finally stopped blocking it. This is your year to receive.',
+    '化权': 'You are being handed authority you did not ask for. The question is not whether you can handle it — the stars already decided you can. The question is whether you will step forward or shrink.',
+    '化科': 'Your reputation is being rewritten right now. People in positions of influence are noticing you in ways you cannot yet see. Do not downplay yourself in the next 12 months.',
+    '化忌': 'There is a version of you that keeps getting in your own way. This cycle forces a reckoning with that pattern — painful, necessary, and ultimately liberating.'
+  },
+  '財帛宮': {
+    '化禄': 'Money is genuinely trying to find you right now. The pattern blocking it is not external — check where you are unconsciously turning away abundance.',
+    '化权': 'Your earning power is at a peak, but only if you control the terms. Working for someone else\'s vision will cost you. This cycle rewards those who negotiate.',
+    '化科': 'Wealth comes through knowledge and reputation — what you know is worth more than what you do. Charge accordingly.',
+    '化忌': 'A financial leak exists somewhere you are not looking. It is not a crisis — but it will become one if you do not trace it to the source before year\'s end.'
+  },
+  '夫妻宮': {
+    '化禄': 'A relationship enters a season of genuine ease — not because problems disappeared, but because both people are finally ready to stop fighting and start building.',
+    '化权': 'Power dynamics in your closest relationship are shifting. Someone is pulling back. Someone else is stepping forward. Neither person is wrong — but the silence between you is getting expensive.',
+    '化科': 'You are most attractive right now when you are most yourself. Stop editing your intelligence for anyone.',
+    '化忌': 'The relationship that is causing the most friction right now is the one most worth examining — not necessarily ending. But it needs truth, not management.'
+  },
+  '官祿宮': {
+    '化禄': 'Career momentum is real and building. The move you have been hesitating to make — the timing is closer than you think.',
+    '化权': 'Leadership is being thrust upon you whether you wanted it or not. How you carry it in the next 18 months will define your professional identity for a decade.',
+    '化科': 'Your work is being seen by people who matter. This is not the time for modesty — it is the time for precision. Every output carries your name further.',
+    '化忌': 'A career path you have been loyal to is quietly closing. The stars are not punishing you — they are redirecting you toward something that actually fits.'
+  }
+};
+
+const STAR_SOUL_COPY = {
+  '紫微': {
+    title: 'The Emperor',
+    soul: 'You were not built to follow instructions — you were built to write them. The discomfort you feel in rooms where someone else leads is not arrogance. It is misalignment. Your deepest challenge is not ambition. It is learning to lead without making everyone around you feel small.',
+    shadow: 'The Emperor\'s shadow: you carry the weight of being needed so well that no one sees when you are breaking.'
+  },
+  '天機': {
+    title: 'The Strategist',
+    soul: 'Your mind never fully stops. Even in rest, part of you is calculating, adjusting, preparing for outcomes that haven\'t happened yet. This is your gift and your exhaustion. You are three conversations ahead of the room — and completely alone in that position.',
+    shadow: 'The Strategist\'s shadow: you plan for every possibility except the one where you simply let someone else take care of you.'
+  },
+  '太陽': {
+    title: 'The Illuminator',
+    soul: 'You give warmth so naturally that people forget you need it too. Rooms genuinely change when you enter — and you have spent years pretending you don\'t know this. Your real work is not shining brighter. It is learning to receive what you so freely give to others.',
+    shadow: 'The Illuminator\'s shadow: you are so good at making others feel seen that you have forgotten what it feels like to be seen yourself.'
+  },
+  '武曲': {
+    title: 'The Commander',
+    soul: 'Sentiment does not move you — results do. You respect people who do what they say and say what they mean. Most people in your life cannot meet that standard, and you have long since stopped expecting them to. Your loneliness is not from lack of connection — it is from the distance between your standards and everyone else\'s execution.',
+    shadow: 'The Commander\'s shadow: efficiency has become your armor. The things you cannot measure, you have taught yourself not to need.'
+  },
+  '天同': {
+    title: 'The Harmonizer',
+    soul: 'You carry peace like a gift — walking into tension and quietly dissolving it before anyone notices you did the work. But harmony purchased at the cost of your own truth is not peace. It is avoidance wearing a calm face. The conflict you keep not having is the one your life most needs.',
+    shadow: 'The Harmonizer\'s shadow: you are so skilled at not rocking the boat that you have forgotten you were born to sail your own.'
+  },
+  '廉貞': {
+    title: 'The Maverick',
+    soul: 'Rules have always felt like suggestions to you — not because you are reckless, but because you can see the logic behind them and know when it no longer applies. You have been called difficult by people who were simply uncomfortable with someone who would not perform compliance. Your edge is real. So is your loyalty to the few who earn it.',
+    shadow: 'The Maverick\'s shadow: you have mistaken rebellion for freedom so many times that sometimes you destroy good things just to prove you can.'
+  },
+  '天府': {
+    title: 'The Guardian',
+    soul: 'You build things that last — relationships, systems, trust, institutions. While others chase what is exciting, you are laying foundations that will matter in twenty years. The frustration is that almost no one sees the work while it is happening. The satisfaction is that everyone benefits from it when it is done.',
+    shadow: 'The Guardian\'s shadow: you have given so much stability to others that you have never asked who is holding you.'
+  },
+  '太陰': {
+    title: 'The Keeper',
+    soul: 'You feel everything that happens in a room — including the things no one says out loud. This makes you extraordinarily perceptive and quietly exhausted. You have learned to make yourself smaller to avoid overwhelming people with your depth. But the right people will not need you to be smaller. They will rise to meet you.',
+    shadow: 'The Keeper\'s shadow: you absorb so much of what others feel that you sometimes cannot locate where they end and you begin.'
+  },
+  '貪狼': {
+    title: 'The Magnetist',
+    soul: 'You attract what you focus on — which means your desires are not wishes, they are forces. The life you have right now is a precise reflection of what you have truly wanted, not what you have said you wanted. This is the most confronting thing the stars can say to someone like you — and the most empowering.',
+    shadow: 'The Magnetist\'s shadow: you are so drawn to intensity that stillness feels like dying. But what you are looking for has always lived in the quiet.'
+  },
+  '巨門': {
+    title: 'The Oracle',
+    soul: 'You say what others cannot bring themselves to — and they hate you for it until they realize you were right. You have always seen the gap between what people perform and what they actually feel. This is your gift and your isolation. The truth is expensive, and you have been paying that price longer than anyone knows.',
+    shadow: 'The Oracle\'s shadow: you are so fluent in other people\'s hidden truths that you have become a stranger to your own.'
+  },
+  '天相': {
+    title: 'The Diplomat',
+    soul: 'You make the complicated feel manageable — for everyone around you. You translate between people who cannot hear each other, hold space for contradictions that would break others, and carry the invisible weight of keeping things functional. The cost is that no one ever asks how you are carrying all of this.',
+    shadow: 'The Diplomat\'s shadow: you are so good at finding the middle ground that you have forgotten you are allowed to have a side.'
+  },
+  '天梁': {
+    title: 'The Elder',
+    soul: 'Wisdom arrived in you early — which meant you spent your youth feeling like you did not belong with people your age. You are the one others come to when things fall apart, and you carry that responsibility with a gravity that is both your purpose and your burden. What you have not yet learned is how to let someone carry you.',
+    shadow: 'The Elder\'s shadow: you have been the wise one for so long that asking for help feels like a betrayal of who you are supposed to be.'
+  },
+  '七殺': {
+    title: 'The Pioneer',
+    soul: 'Comfort has never been your destination — it is where you go when you are recovering from the last frontier. You were built for terrain that does not exist yet, which means you are always a little out of place in the world as it is. The loneliness of that is real. So is the fact that you would not trade it for anything.',
+    shadow: 'The Pioneer\'s shadow: you have mistaken intensity for meaning for so long that rest feels like failure.'
+  },
+  '破軍': {
+    title: 'The Transformer',
+    soul: 'Nothing stays the same when you decide to move. You have dismantled more versions of yourself than most people build in a lifetime — not because you are unstable, but because you are incapable of staying in a form that no longer fits. The people who cannot keep up call this chaos. The people who understand you call it evolution.',
+    shadow: 'The Transformer\'s shadow: you are so practiced at leaving what no longer serves you that sometimes you leave before you have found out what it could have become.'
+  },
+  '__empty__': {
+    title: 'The Open Path',
+    soul: 'An empty Life Palace is not a gap — it is a canvas. Your character is not fixed by a single star but shaped by every force in your chart working together. You are defined not by what you were born with but by every choice you make in response to what life brings. This is rarer than any star placement. And far more powerful.',
+    shadow: 'The Open Path\'s shadow: without a fixed star to orbit, you sometimes drift into other people\'s stories and forget to write your own.'
+  }
 };
 
 const TOPIC_TAGS = {
@@ -219,12 +324,245 @@ const IDENTITY_BLURBS = {
 
 const BUREAU_EN = { '金': 'Metal', '木': 'Wood', '水': 'Water', '火': 'Fire', '土': 'Earth' };
 
+const LIFE_OPPOSITE_INDEX = 6;
+
+const OPEN_PATH = {
+  displayName: STAR_SOUL_COPY['__empty__'].title,
+  tagline: 'Your destiny is not written in a single star — it is shaped by every palace around you.',
+  description: STAR_SOUL_COPY['__empty__'].soul
+};
+
+const SIHUA_TYPE_META = {
+  '化禄': { en: 'LU', word: 'Flow', reading: 'Prosperity activates here — resources, opportunities, and ease tend to gather when you lean into this domain rather than force it.' },
+  '化权': { en: 'QUAN', word: 'Command', reading: 'Authority concentrates in this palace — decisions you make here carry extra weight; use that leverage deliberately, not reactively.' },
+  '化科': { en: 'KE', word: 'Grace', reading: 'Recognition and refinement flow through this area — your reputation grows through craft, credibility, and how gracefully you handle visibility.' },
+  '化忌': { en: 'JI', word: 'Friction', reading: 'A fixed point of tension lives here — not punishment, but a recurring lesson that demands honesty until the pattern is understood and integrated.' }
+};
+
+const CYCLE_THEMES = {
+  '紫微': 'A decade to claim legitimate authority — the question is not whether you are capable, but whether you will stop waiting for permission.',
+  '天機': 'A decade of strategic reinvention — your mind is the engine; choose one direction long enough for brilliance to compound.',
+  '太陽': 'A decade of visible ascent — what you build now will be seen; make sure it reflects who you actually are.',
+  '武曲': 'A decade of material execution — results reward decisive action; hesitation is the only real enemy.',
+  '天同': 'A decade of emotional consolidation — simplify, restore, and let comfort become a foundation rather than an escape.',
+  '廉貞': 'A decade of moral reckoning — integrity tested in public becomes the legacy you cannot outrun.',
+  '天府': 'A decade of accumulation and stewardship — what you gather now must be managed with wisdom, not fear.',
+  '太陰': 'A decade of inner deepening — intuition sharpens; the world you build in private becomes your public edge.',
+  '貪狼': 'A decade of expansion and desire — appetite opens doors, but discipline decides which ones stay open.',
+  '巨門': 'A decade of truth-telling — what you name clearly loses its power to haunt you from the shadows.',
+  '天相': 'A decade of alliance and balance — who you stand beside matters as much as what you stand for.',
+  '天梁': 'A decade of protection and legacy — you are called to shield others while finally protecting your own path.',
+  '七殺': 'A decade of confrontation and conquest — pressure forges you; choose battles that are worth the person you become.',
+  '破軍': 'A decade of necessary upheaval — what breaks now clears space for a self you have not yet met.'
+};
+
+function parseHuaEntry(entry) {
+  if (!entry) return null;
+  var types = ['化禄', '化权', '化科', '化忌'];
+  for (var i = 0; i < types.length; i++) {
+    if (entry.indexOf(types[i]) >= 0) {
+      return { star: entry.replace(types[i], ''), type: types[i] };
+    }
+  }
+  return null;
+}
+
+function getLifeBranch(result, readings) {
+  var stemBranch = (result && result.lifeStemBranch) || (readings[0] && readings[0].stemBranch) || '';
+  return stemBranch.slice(-1) || '—';
+}
+
+function getStarSoulCopy(starCn) {
+  if (!starCn) return STAR_SOUL_COPY['__empty__'];
+  return STAR_SOUL_COPY[starCn] || null;
+}
+
+function getStarSoulTitle(starCn, isOpen) {
+  if (isOpen) return STAR_SOUL_COPY['__empty__'].title;
+  var copy = getStarSoulCopy(starCn);
+  return copy ? copy.title : ('The ' + getArchetype(starCn));
+}
+
+function getSihuaReading(palaceCn, huaType) {
+  if (SIHUA_COPY[palaceCn] && SIHUA_COPY[palaceCn][huaType]) {
+    return SIHUA_COPY[palaceCn][huaType];
+  }
+  var meta = SIHUA_TYPE_META[huaType];
+  return meta ? meta.reading : '';
+}
+
+function getSoulParadox(lifeDisplay) {
+  if (lifeDisplay.mode === 'open') {
+    return STAR_SOUL_COPY['__empty__'].soul;
+  }
+  var copy = getStarSoulCopy(lifeDisplay.starCn);
+  if (copy) {
+    if (lifeDisplay.mode === 'borrowed') {
+      return 'Your Life Palace borrows its light from the palace opposite — yet the paradox remains yours: ' + copy.soul;
+    }
+    return copy.soul;
+  }
+  return lifeDisplay.description || lifePalaceHookBlurb(lifeDisplay);
+}
+
+function getCycleProphecy(cycleRange, lifeDisplay) {
+  var copy = lifeDisplay.mode === 'open'
+    ? STAR_SOUL_COPY['__empty__']
+    : getStarSoulCopy(lifeDisplay.starCn);
+  if (copy && copy.shadow) {
+    return copy.shadow;
+  }
+  var starCn = lifeDisplay && lifeDisplay.starCn;
+  var theme = (starCn && CYCLE_THEMES[starCn]) || 'This cycle asks you to consolidate what you have learned and act with deliberate clarity.';
+  if (cycleRange && cycleRange !== '—') {
+    return 'Ages ' + cycleRange + ': ' + theme;
+  }
+  return theme;
+}
+
+function renderSihuaBadgeHtml(parsed) {
+  if (!parsed) return '';
+  var meta = SIHUA_TYPE_META[parsed.type];
+  if (!meta) return '';
+  return '<div class="sihua-badge">✦ ' + parsed.star + parsed.type + ' · ' + meta.word + '</div>';
+}
+
+function renderSihuaBadges(huaList) {
+  if (!huaList || !huaList.length) return '';
+  return huaList.map(function(entry) {
+    return renderSihuaBadgeHtml(parseHuaEntry(entry));
+  }).join('');
+}
+
+function renderSihuaBlock(reading) {
+  var huaList = (reading && reading.hua) || [];
+  if (!huaList.length) return '';
+  var palaceCn = reading.palaceCn || '';
+  var items = huaList.map(function(entry) {
+    var parsed = parseHuaEntry(entry);
+    if (!parsed) return '';
+    var meta = SIHUA_TYPE_META[parsed.type];
+    if (!meta) return '';
+    var text = getSihuaReading(palaceCn, parsed.type);
+    return ''
+      + '<div class="sihua-item">'
+      + '<span class="sihua-tag">' + parsed.type + ' ' + meta.en + '</span>'
+      + '<p>' + text + '</p>'
+      + '</div>';
+  }).join('');
+  if (!items) return '';
+  return ''
+    + '<div class="sihua-block">'
+    + '<div class="sihua-block-title">FOUR TRANSFORMATIONS · 四化</div>'
+    + items
+    + '</div>';
+}
+
+function resolveLifePalaceDisplay(readings) {
+  var life = readings && readings[0];
+  var lifeStars = (life && life.majorStars) || [];
+
+  if (lifeStars.length > 0) {
+    var starCn = lifeStars[0];
+    var nativeSoul = getStarSoulCopy(starCn);
+    return {
+      mode: 'native',
+      displayName: getStarSoulTitle(starCn),
+      tagline: null,
+      description: nativeSoul ? nativeSoul.soul : getIdentityBlurb(starCn, life),
+      starCn: starCn,
+      reading: life,
+      tag: starCn + ' · Life Palace'
+    };
+  }
+
+  var opposite = readings && readings[LIFE_OPPOSITE_INDEX];
+  var oppStars = (opposite && opposite.majorStars) || [];
+  if (oppStars.length > 0) {
+    var borrowedCn = oppStars[0];
+    var oppLabel = opposite.palaceEn.split('&')[0].trim();
+    var borrowedSoul = getStarSoulCopy(borrowedCn);
+    return {
+      mode: 'borrowed',
+      displayName: getStarSoulTitle(borrowedCn),
+      tagline: 'Your Life Palace holds no major star — your core nature is read through the mirror of your ' + oppLabel + ' Palace.',
+      description: borrowedSoul ? borrowedSoul.soul : getIdentityBlurb(borrowedCn, opposite),
+      starCn: borrowedCn,
+      reading: opposite,
+      tag: borrowedCn + ' · Borrowed from ' + oppLabel
+    };
+  }
+
+  return {
+    mode: 'open',
+    displayName: STAR_SOUL_COPY['__empty__'].title,
+    tagline: OPEN_PATH.tagline,
+    description: STAR_SOUL_COPY['__empty__'].soul,
+    starCn: null,
+    reading: life,
+    tag: 'Life Palace · Open Chart'
+  };
+}
+
+function getEffectiveLifeStarCn(readings) {
+  var display = resolveLifePalaceDisplay(readings);
+  return display.starCn || '';
+}
+
+function lifePalaceHookBlurb(display) {
+  if (display.mode === 'native') return display.description;
+  if (display.tagline && display.description) {
+    return display.tagline + ' ' + wordTeaser(display.description, 28);
+  }
+  return display.tagline || display.description || '';
+}
+
+function lifePalaceCardTitle(display) {
+  if (display.mode === 'native' || display.mode === 'borrowed') {
+    return display.displayName;
+  }
+  return display.displayName;
+}
+
+function lifePalaceTeaser(display, reading) {
+  if (display.mode === 'native') {
+    return wordTeaser(reading.hook || pillarBody(reading), 15);
+  }
+  return wordTeaser(display.tagline || display.description, 15);
+}
+
+function readingYear2026Html(reading) {
+  if (!reading || !reading.year2026) return '';
+  return '<p class="palace-year-2026">✦ 2026: ' + reading.year2026 + '</p>';
+}
+
+function palaceExpandedBody(reading) {
+  if (!reading) return '';
+  var html = '';
+  if (reading.body) html += '<p>' + reading.body + '</p>';
+  html += readingYear2026Html(reading);
+  html += renderSihuaBlock(reading);
+  return html;
+}
+
+function lifePalaceFullHtml(display, reading) {
+  if (display.mode === 'open') {
+    return display.description ? '<p>' + display.description + '</p>' : '';
+  }
+  if (display.mode === 'borrowed') {
+    return palaceExpandedBody(reading);
+  }
+  return palaceExpandedBody(reading);
+}
+
 function getArchetype(starCn) {
-  return STAR_ARCHETYPE[starCn] || STAR_NATURE[starCn] || 'Seeker';
+  var copy = STAR_SOUL_COPY[starCn];
+  if (copy && copy.title) return copy.title.replace(/^The /, '');
+  return STAR_NATURE[starCn] || 'Seeker';
 }
 
 function starEnShort(starCn) {
-  if (!starCn || !STAR_EN[starCn]) return 'Open Palace';
+  if (!starCn || !STAR_EN[starCn]) return '';
   return STAR_EN[starCn].split('·')[0].trim();
 }
 
@@ -269,32 +607,73 @@ function getForecastWindows(meta, lifeReading) {
 // ─── RENDER ───
 
 function renderIdentityHook(result, readings, meta) {
-  var lifeStar = (readings[0] && readings[0].majorStars[0]) || '';
-  var archetype = getArchetype(lifeStar);
+  var lifeDisplay = resolveLifePalaceDisplay(readings);
+  var branch = getLifeBranch(result, readings);
+  var bureau = formatBureau(result.bureau);
+  var cycle = (result.palaces[0] && result.palaces[0].bigCycle) || '—';
+  var starCn = lifeDisplay.starCn;
+  var starLabel = starCn || (lifeDisplay.mode === 'open' ? '空宫' : '—');
+  var starEn = lifeDisplay.mode === 'open'
+    ? 'Open Path'
+    : getStarSoulTitle(lifeDisplay.starCn);
+
+  setText('hook-watermark', branch);
+  setText('hook-meta', starLabel + ' · ' + branch + ' · ' + bureau);
+
   var titleEl = document.getElementById('hook-title');
   if (titleEl) {
-    titleEl.innerHTML = 'You are<br><em>The ' + archetype + '</em>';
+    titleEl.innerHTML = 'You are<br><em>' + lifeDisplay.displayName + '</em>';
   }
-  setText('hook-blurb', getIdentityBlurb(lifeStar, readings[0]));
-  setText('hs-element', formatBureau(result.bureau));
-  setText('hs-life', result.lifeStemBranch || (readings[0] && readings[0].stemBranch) || '—');
-  var cycle = (result.palaces[0] && result.palaces[0].bigCycle) || '—';
+
+  setText('hook-blurb', getSoulParadox(lifeDisplay));
+
+  var badgesEl = document.getElementById('hook-sihua-badges');
+  if (badgesEl) {
+    var lifeHua = (readings[0] && readings[0].hua) || [];
+    if (!lifeHua.length && lifeDisplay.mode === 'borrowed' && readings[6]) {
+      lifeHua = readings[6].hua || [];
+    }
+    badgesEl.innerHTML = renderSihuaBadges(lifeHua);
+  }
+
+  setText('hs-element', bureau);
+  setText('hs-life', branch + ' · ' + starEn);
   setText('hs-cycle', cycle);
   setText('hs-2026', meta.theme2026 || '—');
+
+  var cycleEl = document.getElementById('hook-cycle-prophecy');
+  if (cycleEl) {
+    cycleEl.textContent = '"' + getCycleProphecy(cycle, lifeDisplay) + '"';
+  }
 }
 
 function renderPillarCard(config) {
   var reading = config.reading;
   var card = document.createElement('div');
   card.className = 'pillar-card' + (config.featured ? ' featured' : '');
-  var starCn = (reading.majorStars && reading.majorStars[0]) || '';
+  var title;
+  var body;
+  var tag;
+  if (config.isLifePillar && config.readings) {
+    var lifeDisplay = resolveLifePalaceDisplay(config.readings);
+    title = lifePalaceCardTitle(lifeDisplay);
+    body = lifeDisplay.mode === 'native'
+      ? pillarBody(reading)
+      : (lifeDisplay.description || pillarBody(lifeDisplay.reading));
+    tag = lifeDisplay.tag;
+  } else {
+    var starCn = (reading.majorStars && reading.majorStars[0]) || '';
+    title = starCn ? starEnShort(starCn) : 'No Major Star';
+    body = pillarBody(reading);
+    tag = (starCn || reading.stemBranch) + ' · ' + reading.palaceEn.split('&')[0].trim();
+  }
   card.innerHTML = ''
     + (config.featured ? '<div class="pillar-badge">HIGH IMPACT</div>' : '')
     + '<div class="pillar-icon">' + config.icon + '</div>'
     + '<div class="pillar-label">' + config.label + '</div>'
-    + '<h3>' + (starCn ? starEnShort(starCn) : 'Open Palace') + '</h3>'
-    + '<p>' + pillarBody(reading) + '</p>'
-    + '<div class="pillar-tag">' + (starCn || reading.stemBranch) + ' · ' + reading.palaceEn.split('&')[0].trim() + '</div>';
+    + '<h3>' + title + '</h3>'
+    + '<p>' + body + '</p>'
+    + '<div class="pillar-tag">' + tag + '</div>';
   return card;
 }
 
@@ -303,7 +682,7 @@ function renderThreePillars(readings) {
   if (!grid || !readings.length) return;
   grid.innerHTML = '';
   grid.appendChild(renderPillarCard({
-    icon: '☽', label: 'WHO YOU ARE', reading: readings[0], featured: false
+    icon: '☽', label: 'WHO YOU ARE', reading: readings[0], featured: false, isLifePillar: true, readings: readings
   }));
   grid.appendChild(renderPillarCard({
     icon: '◆', label: 'HOW YOU ATTRACT WEALTH', reading: readings[4], featured: true
@@ -328,21 +707,24 @@ function renderYearForecast(meta, readings) {
   });
 }
 
-function renderPalaceLifeCard(reading, index) {
+function renderPalaceLifeCard(reading, index, readings) {
   var locked = isPalaceLocked(index);
+  var lifeDisplay = index === 0 ? resolveLifePalaceDisplay(readings) : null;
   var starCn = (reading.majorStars && reading.majorStars[0]) || '';
   var card = document.createElement('div');
   card.className = 'palace-life-card' + (locked ? ' locked' : '');
   card.id = 'palace-card-' + index;
-  var teaser = wordTeaser(reading.hook || pillarBody(reading), 15);
-  var fullHtml = ''
-    + (reading.hook ? '<p><em>"' + reading.hook + '"</em></p>' : '')
-    + (reading.body ? '<p>' + reading.body + '</p>' : '')
-    + (reading.year2026 ? '<p style="color:var(--gold-light);font-style:italic;margin-top:1rem">✦ 2026: ' + reading.year2026 + '</p>' : '');
+  var title = lifeDisplay ? lifePalaceCardTitle(lifeDisplay) : (starCn ? starEnShort(starCn) : 'No Major Star');
+  var teaser = lifeDisplay
+    ? lifePalaceTeaser(lifeDisplay, lifeDisplay.reading)
+    : wordTeaser(reading.hook || pillarBody(reading), 15);
+  var fullHtml = lifeDisplay
+    ? lifePalaceFullHtml(lifeDisplay, lifeDisplay.reading)
+    : palaceExpandedBody(reading);
   var btnLabel = locked ? 'Unlock — Free with Email' : 'Reveal Full Reading';
   card.innerHTML = ''
     + '<div class="topic-tag">' + (TOPIC_TAGS[reading.palaceCn] || reading.palaceEn.toUpperCase()) + '</div>'
-    + '<h3 class="star-name">' + (starCn ? starEnShort(starCn) : 'Open Palace') + '</h3>'
+    + '<h3 class="star-name">' + title + '</h3>'
     + '<p class="teaser">' + teaser + '</p>'
     + '<div class="palace-full-body" id="palace-body-' + index + '">' + fullHtml + '</div>'
     + '<button type="button" class="card-action" data-index="' + index + '">' + btnLabel + '</button>';
@@ -374,7 +756,7 @@ function renderPalaceGroups(readings) {
     section.className = 'palace-group';
     section.innerHTML = '<div class="group-title">' + group.title + '</div>';
     group.indices.forEach(function(idx) {
-      if (readings[idx]) section.appendChild(renderPalaceLifeCard(readings[idx], idx));
+      if (readings[idx]) section.appendChild(renderPalaceLifeCard(readings[idx], idx, readings));
     });
     container.appendChild(section);
   });
@@ -397,7 +779,7 @@ function renderChartSvg(result) {
 
 function populateResultsUI(result, params) {
   chartState.readings = getChartReading(result);
-  var lifeStarCn = result.palaces[0] && result.palaces[0].majorStars && result.palaces[0].majorStars[0];
+  var lifeStarCn = getEffectiveLifeStarCn(chartState.readings);
   var meta = getChartMeta(result, lifeStarCn);
 
   renderIdentityHook(result, chartState.readings, meta);
@@ -421,18 +803,29 @@ function updatePalaceTocActive() { /* removed sidebar */ }
 function renderPalaceToc() { /* removed sidebar */ }
 
 function refreshPalaceCard(index) {
-  var reading = chartState.readings && chartState.readings[index];
+  var readings = chartState.readings;
+  var reading = readings && readings[index];
   if (!reading) return;
   var card = document.getElementById('palace-card-' + index);
   if (!card) return;
+  var lifeDisplay = index === 0 ? resolveLifePalaceDisplay(readings) : null;
+  var titleEl = card.querySelector('.star-name');
+  if (titleEl) {
+    titleEl.textContent = lifeDisplay
+      ? lifePalaceCardTitle(lifeDisplay)
+      : ((reading.majorStars && reading.majorStars[0]) ? starEnShort(reading.majorStars[0]) : 'No Major Star');
+  }
   var teaserEl = card.querySelector('.teaser');
-  if (teaserEl) teaserEl.textContent = wordTeaser(reading.hook || pillarBody(reading), 15);
+  if (teaserEl) {
+    teaserEl.textContent = lifeDisplay
+      ? lifePalaceTeaser(lifeDisplay, lifeDisplay.reading)
+      : wordTeaser(reading.hook || pillarBody(reading), 15);
+  }
   var bodyEl = document.getElementById('palace-body-' + index);
   if (bodyEl) {
-    bodyEl.innerHTML = ''
-      + (reading.hook ? '<p><em>"' + reading.hook + '"</em></p>' : '')
-      + (reading.body ? '<p>' + reading.body + '</p>' : '')
-      + (reading.year2026 ? '<p style="color:var(--gold-light);font-style:italic;margin-top:1rem">✦ 2026: ' + reading.year2026 + '</p>' : '');
+    bodyEl.innerHTML = lifeDisplay
+      ? lifePalaceFullHtml(lifeDisplay, lifeDisplay.reading)
+      : palaceExpandedBody(reading);
   }
 }
 
@@ -518,14 +911,11 @@ function submitGate(event) {
     btn.textContent = 'Unlocking your chart…';
   }
 
-  var lifeStarCn =
-    chartState.result &&
-    chartState.result.palaces[0] &&
-    chartState.result.palaces[0].majorStars &&
-    chartState.result.palaces[0].majorStars[0];
+  var lifeDisplay = chartState.readings ? resolveLifePalaceDisplay(chartState.readings) : null;
+  var lifeStarCn = lifeDisplay && lifeDisplay.starCn ? lifeDisplay.starCn : '';
   var mainStarEn = lifeStarCn && STAR_EN[lifeStarCn]
     ? STAR_EN[lifeStarCn].split('·')[0].trim()
-    : '';
+    : (lifeDisplay && lifeDisplay.mode === 'open' ? 'The Open Path' : '');
   var chartSvg = '';
   var svgEl = document.getElementById('chart-svg');
   if (svgEl) {
@@ -617,19 +1007,25 @@ var AI_READINGS_CACHE = {};
 async function generateAndUpdateAIReadings(result, params) {
   if (!result || !result.palaces) return;
 
-  var lifeStarCn = (result.palaces[0] && result.palaces[0].majorStars && result.palaces[0].majorStars[0]) || '紫微';
+  var lifeDisplay = chartState.readings ? resolveLifePalaceDisplay(chartState.readings) : null;
+  var lifeStarCn = (lifeDisplay && lifeDisplay.starCn) || '';
 
   var blurbEl = document.getElementById('hook-blurb');
-  var currentBlurb = blurbEl ? blurbEl.textContent : '';
-  if (!currentBlurb || currentBlurb.indexOf('being calculated') !== -1) {
+  if (lifeDisplay && lifeDisplay.mode === 'native' && lifeStarCn && blurbEl) {
     generateMasterReading(lifeStarCn, params.date, params.hourLabel).then(function(text) {
-      if (text && blurbEl) blurbEl.textContent = text;
+      /* keep SOUL_PARADOX as primary hook copy */
+      if (text && blurbEl && !blurbEl.textContent) blurbEl.textContent = text;
     });
   }
 
   for (var i = 0; i < result.palaces.length; i++) {
     (function(idx) {
       setTimeout(async function() {
+        if (idx === 0) {
+          var ld = chartState.readings ? resolveLifePalaceDisplay(chartState.readings) : null;
+          if (ld && ld.mode !== 'native') return;
+        }
+
         var palace = result.palaces[idx];
         var majorStars = palace.majorStars || [];
         var starCn = majorStars.length > 0 ? majorStars[0] : '—';
@@ -647,7 +1043,7 @@ async function generateAndUpdateAIReadings(result, params) {
             starData,
             params.date,
             params.hourLabel,
-            lifeStarCn
+            lifeStarCn || '—'
           );
           var parsed = parseReading(raw);
 
@@ -657,12 +1053,19 @@ async function generateAndUpdateAIReadings(result, params) {
             chartState.readings[idx].year2026 = parsed.year2026;
           }
 
-          if (idx === 0) {
-            var lifeStar = (chartState.readings[0] && chartState.readings[0].majorStars[0]) || '';
-            setText('hook-blurb', getIdentityBlurb(lifeStar, chartState.readings[0]));
+          if (idx === 0 && chartState.readings) {
+            renderIdentityHook(chartState.result, chartState.readings, getChartMeta(chartState.result, getEffectiveLifeStarCn(chartState.readings)));
           }
           if (idx === 0 || idx === 4 || idx === 2) {
             renderThreePillars(chartState.readings);
+          }
+          if (idx === LIFE_OPPOSITE_INDEX && chartState.readings) {
+            var borrowedLife = resolveLifePalaceDisplay(chartState.readings);
+            if (borrowedLife.mode === 'borrowed') {
+              renderIdentityHook(chartState.result, chartState.readings, getChartMeta(chartState.result, getEffectiveLifeStarCn(chartState.readings)));
+              renderThreePillars(chartState.readings);
+              refreshPalaceCard(0);
+            }
           }
           refreshPalaceCard(idx);
         } catch (e) {

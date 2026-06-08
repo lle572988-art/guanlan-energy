@@ -20,19 +20,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --void: #121E32;
-    --deep: #182840;
-    --surface: #223552;
-    --layer: #2A4060;
-    --rim: #345070;
-    --gold: #D4A855;
-    --gold-light: #F0D48A;
-    --gold-dim: #9A7840;
-    --silver: #C0D4E8;
-    --silver-dim: #7A9AB8;
-    --parchment: #F0E6CC;
-    --text: #E8F0FA;
-    --text-dim: #A8C0D8;
+    --void: #050508;
+    --deep: #09080F;
+    --surface: #0F0E18;
+    --layer: #141222;
+    --rim: #1E1A30;
+    --gold: #C9943A;
+    --gold-light: #E8C87A;
+    --gold-dim: #6B4E1E;
+    --silver: #A8C4D8;
+    --silver-dim: #4A6070;
+    --text: #C8D4E0;
+    --text-dim: #6A8A9A;
+    --parchment: #E2D4B8;
+    --amethyst: #3D2655;
+    --amethyst-glow: rgba(61, 38, 85, 0.3);
     --text-primary: var(--text);
     --text-muted: var(--text-dim);
     --text-gold: var(--gold-light);
@@ -46,6 +48,11 @@
 
   body {
     background: var(--void);
+    background-image: radial-gradient(
+      ellipse at 30% 20%,
+      rgba(61, 38, 85, 0.08) 0%,
+      transparent 60%
+    );
     color: var(--text);
     font-family: 'EB Garamond', Georgia, serif;
     font-size: 19px;
@@ -73,7 +80,7 @@
     justify-content: space-between;
     padding: 1.2rem 3rem;
     border-bottom: 1px solid rgba(197, 152, 74, 0.12);
-    background: linear-gradient(to bottom, rgba(18,30,50,0.96) 0%, rgba(18,30,50,0.88) 100%);
+    background: linear-gradient(to bottom, rgba(5,5,8,0.96) 0%, rgba(5,5,8,0.88) 100%);
     backdrop-filter: blur(8px);
   }
 
@@ -1030,79 +1037,215 @@
     z-index: 0;
   }
   #chart-decor svg { width: 100%; height: 100%; }
-  #results-container { max-width: 920px; padding: 0 1.5rem 5rem; }
+  #results-container { max-width: none; padding: 0 0 5rem; }
+  #three-pillars, #year-forecast, #twelve-palaces, #cta-block {
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
   #identity-hook {
     min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto 1fr;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    width: 100%;
+  }
+  #result-particles {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hook-watermark {
+    position: absolute;
+    right: -5%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 40vw;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.03;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+  .hook-topbar,
+  .hook-core,
+  .hook-footer {
+    position: relative;
+    z-index: 1;
+  }
+  .hook-topbar {
+    padding: 6rem 4rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.5;
+  }
+  .hook-topbar-line {
+    flex: 1;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.3;
+  }
+  .hook-topbar-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .hook-core {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 6rem 1.5rem 4rem;
-    position: relative;
-    z-index: 1;
+    padding: 0 2rem;
+    gap: 1.5rem;
   }
-  .hook-eyebrow {
+  .hook-meta {
     font-family: 'Cinzel', serif;
-    font-size: 0.72rem;
-    letter-spacing: 0.32em;
-    color: var(--gold);
+    font-size: 0.62rem;
+    letter-spacing: 0.4em;
+    color: var(--gold-dim);
     text-transform: uppercase;
-    margin-bottom: 2rem;
   }
   .hook-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    font-size: clamp(3rem, 6vw, 5.5rem);
     font-weight: 300;
-    line-height: 1.15;
+    line-height: 1.1;
     color: var(--parchment);
-    margin-bottom: 1.5rem;
+    max-width: 900px;
+    margin: 0;
   }
   .hook-title em { font-style: italic; color: var(--gold-light); }
   .hook-blurb {
-    max-width: 560px;
-    font-size: 1.15rem;
-    line-height: 1.85;
-    color: var(--silver);
-    margin-bottom: 2.5rem;
+    max-width: 600px;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+    margin: 0;
+  }
+  .hook-sihua-badges {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 0.5rem;
+  }
+  .hook-sihua-badges:empty { display: none; }
+  .sihua-badge {
+    border: 1px solid rgba(201, 148, 58, 0.35);
+    padding: 0.4rem 1rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    color: var(--gold-light);
   }
   .hook-stats {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border: 1px solid rgba(212,168,85,0.35);
-    margin-bottom: 3rem;
+    border: 1px solid rgba(201, 148, 58, 0.2);
+    margin-top: 1rem;
+    overflow: hidden;
   }
   .hook-stat {
     flex: 1 1 140px;
-    padding: 1rem 1.25rem;
-    border-right: 1px solid rgba(212,168,85,0.2);
-    font-family: 'Cinzel', serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    color: var(--gold-light);
-    line-height: 1.5;
+    padding: 1rem 2rem;
+    border-right: 1px solid rgba(201, 148, 58, 0.15);
+    text-align: center;
   }
   .hook-stat:last-child { border-right: none; }
-  .hook-stat span {
-    display: block;
-    font-family: 'EB Garamond', serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.04em;
-    color: var(--text-dim);
-    margin-top: 0.35rem;
-    text-transform: none;
+  .hook-stat-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
+    color: var(--silver-dim);
+    margin-bottom: 0.35rem;
+  }
+  .hook-stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    line-height: 1.3;
+  }
+  .hook-footer {
+    padding: 0 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .hook-cycle-prophecy {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--gold-dim);
+    text-align: center;
+    max-width: 520px;
+    line-height: 1.6;
+    margin: 0;
   }
   .hook-scroll {
     font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     letter-spacing: 0.2em;
-    color: var(--gold);
+    color: var(--silver-dim);
+    text-decoration: none;
     animation: hookBounce 2s ease-in-out infinite;
   }
   @keyframes hookBounce {
     0%, 100% { transform: translateY(0); opacity: 0.7; }
     50% { transform: translateY(6px); opacity: 1; }
+  }
+  .sihua-block {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(201, 148, 58, 0.15);
+  }
+  .sihua-block-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+    margin-bottom: 0.8rem;
+  }
+  .sihua-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+  }
+  .sihua-item:last-child { margin-bottom: 0; }
+  .sihua-tag {
+    background: rgba(201, 148, 58, 0.12);
+    border: 1px solid rgba(201, 148, 58, 0.3);
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    color: var(--gold);
+    padding: 0.3rem 0.6rem;
+    flex-shrink: 0;
+    letter-spacing: 0.1em;
+  }
+  .sihua-item p {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin: 0;
   }
   #three-pillars, #year-forecast, #twelve-palaces {
     position: relative;
@@ -1187,7 +1330,7 @@
   .window-card {
     border: 1px solid var(--navy-border);
     padding: 1.5rem 1.25rem;
-    background: rgba(34,53,82,0.5);
+    background: rgba(15,14,24,0.5);
   }
   .window-card.featured {
     border-color: rgba(212,168,85,0.45);
@@ -1274,9 +1417,16 @@
     margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid var(--navy-border);
-    font-size: 1.02rem;
-    line-height: 1.8;
+    font-size: 1rem;
+    line-height: 1.75;
     color: var(--text);
+  }
+  .palace-life-card .palace-full-body p { margin-bottom: 1rem; }
+  .palace-life-card .palace-full-body p:last-child { margin-bottom: 0; }
+  .palace-year-2026 {
+    color: var(--gold-light);
+    font-style: italic;
+    margin-top: 1rem;
   }
   .palace-life-card.expanded .palace-full-body { display: block; }
   .palace-life-card .card-action {
@@ -1297,8 +1447,11 @@
   .palace-life-card.expanded .card-action { display: none; }
   @media (max-width: 768px) {
     #chart-decor { display: none; }
+    .hook-topbar { padding: 5rem 1.5rem 0; }
+    .hook-topbar-label { font-size: 0.5rem; letter-spacing: 0.18em; white-space: normal; text-align: center; }
+    .hook-footer { padding: 0 1.5rem 2rem; }
     .hook-stats { flex-direction: column; }
-    .hook-stat { border-right: none; border-bottom: 1px solid rgba(212,168,85,0.2); }
+    .hook-stat { border-right: none; border-bottom: 1px solid rgba(201, 148, 58, 0.15); }
     .hook-stat:last-child { border-bottom: none; }
   }
 
@@ -1374,16 +1527,41 @@
 <div id="results-container">
 
   <section id="identity-hook">
-    <div class="hook-eyebrow">YOUR PURPLE STAR BLUEPRINT</div>
-    <h1 class="hook-title" id="hook-title">You are<br><em>The Seeker</em></h1>
-    <p class="hook-blurb" id="hook-blurb">Your chart is being calculated…</p>
-    <div class="hook-stats" id="hook-stats">
-      <div class="hook-stat">FIVE ELEMENTS<span id="hs-element">—</span></div>
-      <div class="hook-stat">LIFE PALACE<span id="hs-life">—</span></div>
-      <div class="hook-stat">MAJOR CYCLE<span id="hs-cycle">—</span></div>
-      <div class="hook-stat">2026 THEME<span id="hs-2026">—</span></div>
+    <canvas id="result-particles" aria-hidden="true"></canvas>
+    <div class="hook-watermark" id="hook-watermark" aria-hidden="true">命</div>
+    <div class="hook-topbar">
+      <div class="hook-topbar-line"></div>
+      <span class="hook-topbar-label">YOUR PURPLE STAR BLUEPRINT · 紫微斗數命盤</span>
+      <div class="hook-topbar-line"></div>
     </div>
-    <a class="hook-scroll" href="#three-pillars">↓ Read Your Full Blueprint</a>
+    <div class="hook-core">
+      <div class="hook-meta" id="hook-meta">—</div>
+      <h1 class="hook-title" id="hook-title">You are<br><em>The Seeker</em></h1>
+      <p class="hook-blurb" id="hook-blurb">Your chart is being calculated…</p>
+      <div class="hook-sihua-badges" id="hook-sihua-badges"></div>
+      <div class="hook-stats" id="hook-stats">
+        <div class="hook-stat">
+          <div class="hook-stat-label">FIVE ELEMENTS</div>
+          <div class="hook-stat-value" id="hs-element">—</div>
+        </div>
+        <div class="hook-stat">
+          <div class="hook-stat-label">LIFE PALACE</div>
+          <div class="hook-stat-value" id="hs-life">—</div>
+        </div>
+        <div class="hook-stat">
+          <div class="hook-stat-label">CURRENT CYCLE</div>
+          <div class="hook-stat-value" id="hs-cycle">—</div>
+        </div>
+        <div class="hook-stat">
+          <div class="hook-stat-label">2026 THEME</div>
+          <div class="hook-stat-value" id="hs-2026">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="hook-footer">
+      <p class="hook-cycle-prophecy" id="hook-cycle-prophecy">—</p>
+      <a class="hook-scroll" href="#three-pillars">↓ READ YOUR FULL BLUEPRINT</a>
+    </div>
   </section>
 
   <section id="three-pillars">
@@ -1529,7 +1707,8 @@
 <script src="/zwds-core.js?v=20260608b"></script>
 <script src="/js/ziwei-data.js?v=20260608b"></script>
 <script src="/js/zwds-chart-render.js?v=20260608b"></script>
-<script src="/js/free-chart-app.js?v=20260608c"></script>
+<script src="/js/free-chart-app.js?v=20260608g"></script>
+<script src="/js/result-particles.js?v=20260608h"></script>
 
 </body>
 </html>
