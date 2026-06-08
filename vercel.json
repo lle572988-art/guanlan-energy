@@ -74,7 +74,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!hubs/|blog/|scan/|longtail/|images/|pages/|api/|[a-z]+\\.\\w+).*)",
+      "source": "/((?!hubs/|blog/|scan/|longtail/|images/|pages/|api/|js/|[a-z0-9_-]+\\.[a-z0-9]+).*)",
       "destination": "/index.html"
     }
   ],
