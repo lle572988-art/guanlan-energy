@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Thank You · Guanlan Energy</title>
+<meta name="robots" content="noindex"/>
+<link rel="canonical" href="https://metaphysicflow.com/thank-you.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-T82Z7E5ELB');</script>
+<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  background:#06100c;color:#f0ebe0;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  padding:48px 20px;
+}
+.wrap{max-width:560px;width:100%;text-align:center}
+.logo{font-family:'Cinzel',serif;font-size:11px;color:#c9a84c;letter-spacing:3px;text-transform:uppercase;margin-bottom:24px}
+h1{font-size:28px;font-weight:400;color:#e8d4a0;margin-bottom:12px}
+.sub{font-size:15px;color:rgba(240,235,224,0.6);line-height:1.75;margin-bottom:28px}
+.product-pill{
+  display:inline-block;margin-bottom:28px;padding:0.45rem 1rem;
+  border:1px solid rgba(201,168,76,0.35);color:#c9a84c;
+  font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;
+}
+.steps{text-align:left;margin:0 auto 28px;padding:22px 24px;border:1px solid rgba(201,168,76,0.15);background:rgba(12,22,40,0.5)}
+.steps h2{font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.18em;color:rgba(201,168,76,0.7);text-transform:uppercase;margin-bottom:14px}
+.steps ol{padding-left:1.2rem}
+.steps li{font-size:15px;color:rgba(240,235,224,0.72);margin-bottom:10px;line-height:1.6}
+.steps li:last-child{margin-bottom:0}
+.note{font-size:13px;color:rgba(240,235,224,0.45);line-height:1.65;margin-bottom:24px}
+.btn-home{
+  display:inline-block;padding:14px 28px;background:#c9a84c;color:#06100c;
+  font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;border-radius:2px;transition:background .2s;
+}
+.btn-home:hover{background:#e8d4a0}
+.footer{margin-top:40px;font-size:11px;color:rgba(240,235,224,0.3)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">Guanlan Energy</div>
+  <h1>Thank you — payment received</h1>
+  <p class="sub">Your order is confirmed. Your personalized PDF reading is now in our fulfillment queue.</p>
+  <div class="product-pill" id="product-label">Zi Wei Dou Shu Reading</div>
+  <div class="steps">
+    <h2>What happens next</h2>
+    <ol>
+      <li><strong>Check your inbox</strong> — Gumroad sends a receipt immediately.</li>
+      <li><strong>Confirm birth details</strong> — if you did not include date of birth and birth hour at checkout, reply to the receipt email with both (and city/country if known).</li>
+      <li><strong>Receive your PDF</strong> — human-written report delivered within <strong>24–48 hours</strong>.</li>
+    </ol>
+  </div>
+  <p class="note">Questions? Email <a href="mailto:hello@metaphysicflow.com" style="color:#c9a84c">hello@metaphysicflow.com</a> with your Gumroad receipt.</p>
+  <a class="btn-home" href="/free-chart.html">Back to My Chart</a>
+  <div class="footer">© 2026 Guanlan Energy · Purple Star Astrology</div>
+</div>
+<script>
+(function() {
+  var labels = {
+    'life-palace-dive': 'Life Palace Deep Dive · $9.90',
+    'three-palace-snapshot': 'Three-Palace Snapshot · $19',
+    'full-chart': 'Full 12-Palace Matrix · $39',
+    'live-reading': 'Live Video Consultation · $99',
+    'partner-compatibility': 'Partner Compatibility · $59',
+    'annual': 'Annual Cosmic Alignment · $199'
+  };
+  var params = new URLSearchParams(window.location.search);
+  var product = params.get('product') || '';
+  var el = document.getElementById('product-label');
+  if (el && labels[product]) el.textContent = labels[product];
+  if (window.gtag) gtag('event', 'purchase', { item_name: product || 'gumroad', item_category: 'ziwei_reading' });
+  if (window.plausible) plausible('purchase_complete', { props: { product: product || 'unknown' } });
+})();
+</script>
+</body>
+</html>

@@ -2159,7 +2159,7 @@
     <div class="forecast-windows" id="forecast-windows"></div>
     <div class="forecast-cta">
       <p class="gold-italic">Your full 2026 forecast covers all 12 lunar months with specific timing windows for action.</p>
-      <a class="btn-gold" href="checkout.html?product=full-chart">Unlock My Full 2026 Forecast — $39</a>
+      <a class="btn-gold" href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" data-product="full-chart">Unlock My Full 2026 Forecast — $39</a>
       <p class="fine-print">Includes all 12 palaces · PDF delivered in 24h</p>
     </div>
   </section>
@@ -2267,7 +2267,7 @@
           </div>
           <div class="cta-primary-right">
             <div class="cta-price"><span class="price-currency">$</span>39</div>
-            <a href="checkout.html?product=full-chart" class="btn-cta-primary" data-product="full-chart">Order My Full Reading</a>
+            <a href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" class="btn-cta-primary" data-product="full-chart">Order My Full Reading</a>
             <div class="cta-guarantee">PDF in 24h · Human-written · Not AI-generated</div>
           </div>
         </div>
@@ -2283,7 +2283,7 @@
             8–10 pages. Perfect first reading.
           </p>
           <div class="cta-s-price">$9.90</div>
-          <a href="checkout.html?product=life-palace-dive" class="btn-cta-secondary">Start Here →</a>
+          <a href="https://lleonard88.gumroad.com/l/acvsfx?wanted=true" class="btn-cta-secondary" data-product="life-palace-dive">Start Here →</a>
         </div>
         <div class="cta-secondary-card">
           <div class="cta-s-label">BEST VALUE</div>
@@ -2294,7 +2294,7 @@
             12–14 page PDF.
           </p>
           <div class="cta-s-price">$19</div>
-          <a href="checkout.html?product=three-palace-snapshot" class="btn-cta-secondary">Get Three-Palace Report →</a>
+          <a href="https://lleonard88.gumroad.com/l/lfoxf?wanted=true" class="btn-cta-secondary" data-product="three-palace-snapshot">Get Three-Palace Report →</a>
         </div>
         <div class="cta-secondary-card">
           <div class="cta-s-label">LIVE SESSION</div>
@@ -2305,7 +2305,7 @@
             Recording included.
           </p>
           <div class="cta-s-price">$99</div>
-          <a href="checkout.html?product=live-reading" class="btn-cta-secondary">Book Session →</a>
+          <a href="https://lleonard88.gumroad.com/l/lozmm?wanted=true" class="btn-cta-secondary" data-product="live-reading">Book Session →</a>
         </div>
       </div>
     </section>
@@ -2678,13 +2678,13 @@
           by someone who has read over 500 charts.
         </p>
         <div class="explainer-cta-buttons">
-          <a href="checkout.html?product=full-chart" class="btn-primary">
+          <a href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" class="btn-primary" data-product="full-chart">
             Order Full 12-Palace Reading — $39
           </a>
-          <a href="checkout.html?product=life-palace-dive" class="btn-outline">
+          <a href="https://lleonard88.gumroad.com/l/acvsfx?wanted=true" class="btn-outline" data-product="life-palace-dive">
             Life Palace Deep Dive — $9.90
           </a>
-          <a href="checkout.html?product=three-palace-snapshot" class="btn-outline">
+          <a href="https://lleonard88.gumroad.com/l/lfoxf?wanted=true" class="btn-outline" data-product="three-palace-snapshot">
             Three-Palace Snapshot — $19
           </a>
         </div>
@@ -2768,26 +2768,32 @@
 <script src="/js/free-chart-app.js?v=20260608n"></script>
 <script src="/js/result-particles.js?v=20260608h"></script>
 <script>
-/* ─── CHECKOUT UTM + GA4 ─── */
+/* ─── PRICING UTM + GA4 (Gumroad) ─── */
 (function() {
-  var links = document.querySelectorAll('a[href*="checkout.html"]');
-  links.forEach(function(link) {
+  function attachPricingLink(link, product, section) {
     var href = link.getAttribute('href') || '';
-    if (href.indexOf('utm_source=') !== -1) return;
-    var product = (href.match(/product=([^&]+)/) || [])[1] || 'unknown';
-    var parent = link.closest('section, header, nav, footer, div');
-    var section = (parent && parent.id) ? parent.id : 'free-chart';
-    var sep = href.indexOf('?') === -1 ? '?' : '&';
-    link.setAttribute('href', href + sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product));
+    if (href.indexOf('utm_source=') === -1) {
+      var sep = href.indexOf('?') === -1 ? '?' : '&';
+      link.setAttribute('href', href + sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product));
+    }
     link.addEventListener('click', function() {
       if (window.gtag) {
         gtag('event', 'begin_checkout', {
           item_name: product,
           item_category: 'ziwei_reading',
-          source_section: section
+          source_section: section,
+          checkout_channel: 'gumroad'
         });
       }
+      if (window.plausible) plausible('purchase_click', { props: { product: product, channel: 'gumroad' } });
     });
+  }
+
+  document.querySelectorAll('a[href*="lleonard88.gumroad.com"]').forEach(function(link) {
+    var product = link.getAttribute('data-product') || 'gumroad';
+    var parent = link.closest('section, header, nav, footer, div');
+    var section = (parent && parent.id) ? parent.id : 'free-chart';
+    attachPricingLink(link, product, section);
   });
 })();
 </script>
