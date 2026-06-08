@@ -178,173 +178,209 @@ function isPalaceLocked(index) {
   return !chartState.unlocked && !isFreePalace(index);
 }
 
+const STAR_ARCHETYPE = {
+  '紫微': 'Emperor', '天機': 'Strategist', '太陽': 'Illuminator', '武曲': 'Commander',
+  '天同': 'Harmonizer', '廉貞': 'Integrity Keeper', '天府': 'Steward', '太陰': 'Keeper',
+  '貪狼': 'Magnet', '巨門': 'Truth-Seeker', '天相': 'Mediator', '天梁': 'Sage',
+  '七殺': 'Warrior', '破軍': 'Renegade'
+};
+
+const TOPIC_TAGS = {
+  '命宮': 'CORE SELF', '財帛宮': 'WEALTH & RESOURCES', '官祿宮': 'CAREER & STATUS',
+  '夫妻宮': 'PARTNERSHIP', '子女宮': 'CREATIVITY & LEGACY', '疾厄宮': 'HEALTH & VITALITY',
+  '福德宮': 'INNER PEACE', '遷移宮': 'TRAVEL & ABROAD', '田宅宮': 'HOME & PROPERTY',
+  '交友宮': 'NETWORK & ALLIES', '兄弟宮': 'PEERS & SIBLINGS', '父母宮': 'ANCESTRY & GUIDANCE'
+};
+
+const PALACE_GROUPS = [
+  { title: 'IDENTITY', indices: [0] },
+  { title: 'MONEY & CAREER', indices: [4, 8] },
+  { title: 'LOVE & RELATIONSHIPS', indices: [2, 3] },
+  { title: 'WELLBEING', indices: [5, 10] },
+  { title: 'YOUR WORLD', indices: [6, 9, 7, 1, 11] }
+];
+
+const IDENTITY_BLURBS = {
+  '紫微': 'You were born to lead without asking permission. Others sense a quiet authority in you before you speak — and they rarely forget it once you do.',
+  '天機': 'Your mind works like a compass, always finding true north even in chaos. You see patterns others miss and adapt faster than most people can react.',
+  '太陽': 'You carry a warmth that illuminates every room you enter. Recognition follows you — not because you chase it, but because your presence demands it.',
+  '武曲': 'You are built for decisive action and tangible results. When others hesitate, you move — and that momentum is your greatest asset.',
+  '天同': 'You bring ease to difficult situations and calm to restless people. Your gift is making life feel livable, even when the world feels heavy.',
+  '廉貞': 'You hold your principles with fierce loyalty. Integrity is not a value you discuss — it is the standard you live by, even when it costs you.',
+  '天府': 'You are a natural steward of resources, people, and trust. Abundance flows toward you because you know how to hold it without wasting it.',
+  '太陰': 'You feel deeply and perceive what remains unspoken. Your intuition is not a guess — it is a finely tuned instrument you have learned to trust.',
+  '貪狼': 'You attract opportunity through charisma and sheer appetite for life. Where you focus your desire, doors tend to open.',
+  '巨門': 'You pursue truth with relentless curiosity. Surface answers never satisfy you — you need to understand what is really happening beneath.',
+  '天相': 'You are the bridge between opposing forces. Diplomacy comes naturally because you genuinely see merit on every side of an argument.',
+  '天梁': 'You carry old-soul wisdom and a protective instinct for others. People come to you in crisis because you make them feel safe.',
+  '七殺': 'You thrive under pressure and rise when others retreat. Courage is not the absence of fear for you — it is action in spite of it.',
+  '破軍': 'You are the agent of necessary change. What others resist breaking, you rebuild — stronger, cleaner, and more honestly aligned.'
+};
+
+const BUREAU_EN = { '金': 'Metal', '木': 'Wood', '水': 'Water', '火': 'Fire', '土': 'Earth' };
+
+function getArchetype(starCn) {
+  return STAR_ARCHETYPE[starCn] || STAR_NATURE[starCn] || 'Seeker';
+}
+
+function starEnShort(starCn) {
+  if (!starCn || !STAR_EN[starCn]) return 'Open Palace';
+  return STAR_EN[starCn].split('·')[0].trim();
+}
+
+function formatBureau(bureau) {
+  if (!bureau) return '—';
+  var m = String(bureau).match(/([金木水火土])(\d)/);
+  if (!m) return bureau;
+  return (BUREAU_EN[m[1]] || m[1]) + ' ' + m[2];
+}
+
+function wordTeaser(text, maxWords) {
+  if (!text) return '';
+  var words = text.replace(/\s+/g, ' ').trim().split(' ');
+  if (words.length <= maxWords) return text;
+  return words.slice(0, maxWords).join(' ') + '…';
+}
+
+function pillarBody(reading) {
+  var body = reading.body || reading.hook || '';
+  if (body.length > 320) return body.substring(0, 317) + '…';
+  return body || 'The stars in this domain reveal a pattern uniquely yours.';
+}
+
+function getIdentityBlurb(starCn, reading) {
+  if (reading && reading.hook && reading.body) {
+    return reading.hook + ' ' + wordTeaser(reading.body, 28);
+  }
+  if (reading && reading.hook) return reading.hook;
+  return IDENTITY_BLURBS[starCn] || 'You carry a distinctive cosmic signature — one the stars have been writing since your first breath.';
+}
+
+function getForecastWindows(meta, lifeReading) {
+  var theme = meta.theme2026 || 'Expansion';
+  var yr = lifeReading && lifeReading.year2026 ? lifeReading.year2026 : '';
+  return [
+    { months: 'Jan — Apr', theme: 'Foundation', line: yr || 'Early 2026 asks you to consolidate what you have built and clarify your next move.', featured: false },
+    { months: 'May — Aug', theme: theme, line: 'Your peak window — the stars align for bold moves in ' + theme.toLowerCase() + ' and visible progress.', featured: true },
+    { months: 'Sep — Dec', theme: 'Harvest', line: 'Results from earlier efforts crystallize. Protect gains and prepare for the next cycle.' }
+  ];
+}
+
 // ─── RENDER ───
 
-function renderPalaceCard(reading, index) {
-  if (!reading) return document.createElement('div');
+function renderIdentityHook(result, readings, meta) {
+  var lifeStar = (readings[0] && readings[0].majorStars[0]) || '';
+  var archetype = getArchetype(lifeStar);
+  var titleEl = document.getElementById('hook-title');
+  if (titleEl) {
+    titleEl.innerHTML = 'You are<br><em>The ' + archetype + '</em>';
+  }
+  setText('hook-blurb', getIdentityBlurb(lifeStar, readings[0]));
+  setText('hs-element', formatBureau(result.bureau));
+  setText('hs-life', result.lifeStemBranch || (readings[0] && readings[0].stemBranch) || '—');
+  var cycle = (result.palaces[0] && result.palaces[0].bigCycle) || '—';
+  setText('hs-cycle', cycle);
+  setText('hs-2026', meta.theme2026 || '—');
+}
 
-  const locked = isPalaceLocked(index);
-  const card = document.createElement('div');
-  card.className = 'palace-card' + (locked ? ' palace-locked' : ' palace-free');
-  card.id = 'card-' + index;
-
-  const stars = reading.majorStars || [];
-  const hua = reading.hua || [];
-  const hasStars = stars.length > 0;
-
-  const h = reading.hook || '';
-  const body = reading.body || '';
-  const previewLimit = locked ? 90 : 220;
-  const fullPreview = locked ? h : (h + (body ? ' ' + body : ''));
-  const preview = fullPreview
-    ? (fullPreview.length > previewLimit ? fullPreview.substring(0, previewLimit) + String.fromCharCode(8230) : fullPreview)
-    : '';
-
-  const huaHTML = hua.length > 0
-    ? '<span style="display:inline-block;margin-top:4px;font-size:10px;color:#C9A84C;letter-spacing:0.5px">' + String.fromCharCode(10024) + ' ' + hua.join(' · ') + '</span>'
-    : '';
-
+function renderPillarCard(config) {
+  var reading = config.reading;
+  var card = document.createElement('div');
+  card.className = 'pillar-card' + (config.featured ? ' featured' : '');
+  var starCn = (reading.majorStars && reading.majorStars[0]) || '';
   card.innerHTML = ''
-    + '<div class="palace-number">PALACE ' + reading.roman + '</div>'
-    + '<div class="palace-chinese">' + reading.palaceCn + '</div>'
-    + '<div class="palace-english">' + reading.palaceEn + '</div>'
-    + (hasStars
-        ? '<div class="palace-star">' + reading.starEn.split('·')[0].trim() + '</div><div class="palace-star-chinese">' + stars.join(' · ') + '</div>'
-        : '<div class="palace-star" style="color:#8B8070;font-style:italic">No major star</div><div class="palace-star-chinese">' + reading.stemBranch + '</div>')
-    + huaHTML
-    + '<div class="palace-locked-content">'
-    + '<div class="palace-preview">' + preview + '</div>'
-    + '<div class="palace-read-more">READ FULL READING'
-    + '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#C9A84C" stroke-width="1" stroke-linecap="round"/></svg></div>'
-    + '</div>';
-
-  card.addEventListener('click', function() { toggleCard(index); });
+    + (config.featured ? '<div class="pillar-badge">HIGH IMPACT</div>' : '')
+    + '<div class="pillar-icon">' + config.icon + '</div>'
+    + '<div class="pillar-label">' + config.label + '</div>'
+    + '<h3>' + (starCn ? starEnShort(starCn) : 'Open Palace') + '</h3>'
+    + '<p>' + pillarBody(reading) + '</p>'
+    + '<div class="pillar-tag">' + (starCn || reading.stemBranch) + ' · ' + reading.palaceEn.split('&')[0].trim() + '</div>';
   return card;
 }
 
-function renderExpandedPanel(reading, index) {
-  if (!reading) return document.createElement('div');
-
-  const locked = isPalaceLocked(index);
-  const panel = document.createElement('div');
-  panel.className = 'palace-expanded' + (locked ? ' palace-locked' : '');
-  panel.id = 'expanded-' + index;
-  
-  const stars = reading.majorStars || [];
-  const aux = reading.auxiliaryStars || [];
-  const hasStars = stars.length > 0;
-  const hua = reading.hua || [];
-  
-  const auxHTML = aux.length > 0 
-    ? '<div style="font-size:0.85rem;color:#8B8070;margin-top:0.5rem">辅星: ' + aux.join(' · ') + ' | 宫干: ' + reading.stemBranch + '</div>'
-    : '<div style="font-size:0.85rem;color:#8B8070;margin-top:0.5rem">宫干: ' + reading.stemBranch + '</div>';
-  
-  const huaBlock = hua.length > 0
-    ? '<p style="margin-top:1rem;color:#C9A84C;font-style:italic;font-size:0.95rem">' + String.fromCharCode(10024) + ' 四化: ' + hua.join(' · ') + '</p>'
-    : '';
-  
-  var hookText = reading.hook || '';
-  var bodyText = reading.body || '';
-  var yearText = reading.year2026 || '';
-  
-  panel.innerHTML = ''
-    + '<div class="expanded-header">'
-    + '<div class="expanded-title-block">'
-    + '<div class="palace-chinese">' + reading.palaceCn + '</div>'
-    + '<div class="palace-english" style="margin:0.25rem 0 0.5rem">' + reading.palaceEn + '</div>'
-    + (hasStars
-        ? '<div class="expanded-star-full"><span>' + reading.starEn.split('·')[0].trim() + '</span> · ' + reading.nature + '</div>'
-        : '<div class="expanded-star-full" style="color:#8B8070">空宫 · ' + reading.stemBranch + '</div>')
-    + auxHTML
-    + '</div>'
-    + '<button class="close-btn" onclick="closeCard(' + index + ')">CLOSE ' + String.fromCharCode(10005) + '</button>'
-    + '</div>'
-    + '<div class="expanded-body palace-locked-content">'
-    + '<p class="hook">"' + hookText + '"</p>'
-    + (bodyText ? '<p>' + bodyText + '</p>' : '')
-    + huaBlock
-    + (yearText ? '<p style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,168,76,0.15);color:#C9A84C;font-style:italic">' + String.fromCharCode(10024) + ' 2026: ' + yearText + '</p>' : '')
-    + '</div>';
-  
-  return panel;
+function renderThreePillars(readings) {
+  var grid = document.getElementById('pillars-grid');
+  if (!grid || !readings.length) return;
+  grid.innerHTML = '';
+  grid.appendChild(renderPillarCard({
+    icon: '☽', label: 'WHO YOU ARE', reading: readings[0], featured: false
+  }));
+  grid.appendChild(renderPillarCard({
+    icon: '◆', label: 'HOW YOU ATTRACT WEALTH', reading: readings[4], featured: true
+  }));
+  grid.appendChild(renderPillarCard({
+    icon: '♡', label: 'HOW YOU LOVE', reading: readings[2], featured: false
+  }));
 }
 
-function toggleCard(index) {
-  if (chartState.activeCard === index) {
-    closeCard(index);
+function renderYearForecast(meta, readings) {
+  var container = document.getElementById('forecast-windows');
+  if (!container) return;
+  container.innerHTML = '';
+  getForecastWindows(meta, readings[0]).forEach(function(w) {
+    var card = document.createElement('div');
+    card.className = 'window-card' + (w.featured ? ' featured' : '');
+    card.innerHTML = ''
+      + '<div class="month">' + w.months + '</div>'
+      + '<div class="theme">' + w.theme + '</div>'
+      + '<p>' + w.line + '</p>';
+    container.appendChild(card);
+  });
+}
+
+function renderPalaceLifeCard(reading, index) {
+  var locked = isPalaceLocked(index);
+  var starCn = (reading.majorStars && reading.majorStars[0]) || '';
+  var card = document.createElement('div');
+  card.className = 'palace-life-card' + (locked ? ' locked' : '');
+  card.id = 'palace-card-' + index;
+  var teaser = wordTeaser(reading.hook || pillarBody(reading), 15);
+  var fullHtml = ''
+    + (reading.hook ? '<p><em>"' + reading.hook + '"</em></p>' : '')
+    + (reading.body ? '<p>' + reading.body + '</p>' : '')
+    + (reading.year2026 ? '<p style="color:var(--gold-light);font-style:italic;margin-top:1rem">✦ 2026: ' + reading.year2026 + '</p>' : '');
+  var btnLabel = locked ? 'Unlock — Free with Email' : 'Reveal Full Reading';
+  card.innerHTML = ''
+    + '<div class="topic-tag">' + (TOPIC_TAGS[reading.palaceCn] || reading.palaceEn.toUpperCase()) + '</div>'
+    + '<h3 class="star-name">' + (starCn ? starEnShort(starCn) : 'Open Palace') + '</h3>'
+    + '<p class="teaser">' + teaser + '</p>'
+    + '<div class="palace-full-body" id="palace-body-' + index + '">' + fullHtml + '</div>'
+    + '<button type="button" class="card-action" data-index="' + index + '">' + btnLabel + '</button>';
+  card.querySelector('.card-action').addEventListener('click', function() {
+    handlePalaceAction(index);
+  });
+  if (!locked) {
+    card.classList.add('expanded');
+  }
+  return card;
+}
+
+function handlePalaceAction(index) {
+  if (isPalaceLocked(index)) {
+    var gate = document.getElementById('email-gate-embedded');
+    if (gate) gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
-  if (chartState.activeCard !== null) {
-    closeCard(chartState.activeCard, false);
-  }
-  chartState.activeCard = index;
-  
-  const card = document.getElementById('card-' + index);
-  if (card) card.classList.add('active');
-  
-  const oldExpanded = document.getElementById('expanded-' + index);
-  if (oldExpanded) oldExpanded.remove();
-  
-  const panel = renderExpandedPanel(chartState.readings[index], index);
-  panel.classList.add('open');
-  
-  if (card) {
-    card.after(panel);
-    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-  updatePalaceTocActive(index);
+  var card = document.getElementById('palace-card-' + index);
+  if (card) card.classList.toggle('expanded');
 }
 
-function closeCard(index, updateState) {
-  if (updateState === undefined) updateState = true;
-  const card = document.getElementById('card-' + index);
-  if (card) card.classList.remove('active');
-  const panel = document.getElementById('expanded-' + index);
-  if (panel) panel.remove();
-  if (updateState) chartState.activeCard = null;
-  updatePalaceTocActive(null);
-}
-
-function updatePalaceTocActive(index) {
-  var toc = document.getElementById('palace-toc');
-  if (!toc) return;
-  var links = toc.querySelectorAll('a');
-  for (var i = 0; i < links.length; i++) {
-    links[i].classList.toggle('active', index !== null && i === index);
-  }
-}
-
-function renderPalaceToc() {
-  var toc = document.getElementById('palace-toc');
-  if (!toc || !chartState.readings) return;
-
-  toc.innerHTML = '<div class="palace-toc-label">Palace Index</div>';
-
-  chartState.readings.forEach(function(reading, index) {
-    var a = document.createElement('a');
-    a.href = '#card-' + index;
-    a.textContent = reading.roman + '. ' + reading.palaceEn.split('&')[0].trim();
-    if (isPalaceLocked(index)) a.classList.add('locked');
-    a.addEventListener('click', function(e) {
-      e.preventDefault();
-      var card = document.getElementById('card-' + index);
-      if (card) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        toggleCard(index);
-      }
+function renderPalaceGroups(readings) {
+  var container = document.getElementById('palace-groups');
+  if (!container) return;
+  container.innerHTML = '';
+  PALACE_GROUPS.forEach(function(group) {
+    var section = document.createElement('div');
+    section.className = 'palace-group';
+    section.innerHTML = '<div class="group-title">' + group.title + '</div>';
+    group.indices.forEach(function(idx) {
+      if (readings[idx]) section.appendChild(renderPalaceLifeCard(readings[idx], idx));
     });
-    toc.appendChild(a);
+    container.appendChild(section);
   });
-
-  toc.classList.add('visible');
 }
 
-function setChartStatus(loadingVisible, readyVisible) {
-  var loadingEl = document.getElementById('chart-loading');
-  var readyEl = document.getElementById('chart-ready');
-  if (loadingEl) loadingEl.style.display = loadingVisible ? 'block' : 'none';
-  if (readyEl) readyEl.style.display = readyVisible ? 'block' : 'none';
-}
+function setChartStatus() { /* decorative chart — no status badges */ }
 
 function hideLoadingScreen() {
   var loadingScreen = document.getElementById('loading-screen');
@@ -361,56 +397,47 @@ function renderChartSvg(result) {
 
 function populateResultsUI(result, params) {
   chartState.readings = getChartReading(result);
-
   var lifeStarCn = result.palaces[0] && result.palaces[0].majorStars && result.palaces[0].majorStars[0];
-  var ds = document.getElementById('disp-star');
-  if (ds) ds.textContent = (lifeStarCn && STAR_EN[lifeStarCn]) ? STAR_EN[lifeStarCn].split('·')[0].trim() : 'Zi Wei';
+  var meta = getChartMeta(result, lifeStarCn);
 
-  var ftMeta = getChartMeta(result, lifeStarCn);
-  setText('ft-element', ftMeta.element);
-  setText('ft-cycle', result.yearStemBranch || '');
-  setText('ft-2026', ftMeta.theme2026);
-  setText('ft-strength', ftMeta.strength);
-  showFlex('fortune-strip');
-
-  var starData = lifeStarCn && STAR_EN[lifeStarCn] ? STAR_EN[lifeStarCn] : 'Zi Wei';
-  setText('mb-name', starData.split('·')[0].trim());
-  setText('mb-chinese', (lifeStarCn || '紫微') + ' · ' + (result.bureau || '') + ' · 命宫' + (result.lifeStemBranch || ''));
-
-  if (chartState.readings && chartState.readings[0]) {
-    setText('mb-essence', chartState.readings[0].hook || 'Your destiny is written in the stars.');
-  } else {
-    setText('mb-essence', 'Your destiny is written in the stars.');
-  }
-  showBlock('master-banner');
-  showFlex('grid-label');
-
-  var grid = document.getElementById('palace-grid');
-  if (grid) {
-    grid.innerHTML = '';
-    if (chartState.readings) {
-      for (var i = 0; i < chartState.readings.length; i++) {
-        grid.appendChild(renderPalaceCard(chartState.readings[i], i));
-      }
-    }
-  }
-
-  renderPalaceToc();
-  showBlock('cta-block');
+  renderIdentityHook(result, chartState.readings, meta);
+  renderThreePillars(chartState.readings);
+  renderYearForecast(meta, chartState.readings);
+  renderPalaceGroups(chartState.readings);
 
   var results = document.getElementById('results-container');
   if (results) results.style.display = 'block';
+  showBlock('cta-block');
 
-  // 🦞 小龙虾：异步触发 Claude AI 解盘补全，不阻塞页面
   setTimeout(function() {
     generateAndUpdateAIReadings(result, params);
   }, 800);
 }
 
+function closeCard() { /* legacy noop */ }
+
+function updatePalaceTocActive() { /* removed sidebar */ }
+
+function renderPalaceToc() { /* removed sidebar */ }
+
+function refreshPalaceCard(index) {
+  var reading = chartState.readings && chartState.readings[index];
+  if (!reading) return;
+  var card = document.getElementById('palace-card-' + index);
+  if (!card) return;
+  var teaserEl = card.querySelector('.teaser');
+  if (teaserEl) teaserEl.textContent = wordTeaser(reading.hook || pillarBody(reading), 15);
+  var bodyEl = document.getElementById('palace-body-' + index);
+  if (bodyEl) {
+    bodyEl.innerHTML = ''
+      + (reading.hook ? '<p><em>"' + reading.hook + '"</em></p>' : '')
+      + (reading.body ? '<p>' + reading.body + '</p>' : '')
+      + (reading.year2026 ? '<p style="color:var(--gold-light);font-style:italic;margin-top:1rem">✦ 2026: ' + reading.year2026 + '</p>' : '');
+  }
+}
+
 // ─── MAIN ───
 function init() {
-  setChartStatus(true, false);
-
   try {
     const params = getParams();
     chartState.birthDate = params.date;
@@ -433,28 +460,6 @@ function init() {
     const loadingStatus = document.getElementById('loading-status');
     if (loadingStatus) loadingStatus.textContent = 'CALCULATING LIFE PALACE · 命宮';
 
-    const dd = document.getElementById('disp-date');
-    if (dd) dd.textContent = params.date;
-    const dh = document.getElementById('disp-hour');
-    if (dh) {
-      dh.textContent = params.hourLabel
-        ? params.hourLabel.split('·')[0].trim()
-        : (HOUR_LABELS[params.hour] ? HOUR_LABELS[params.hour].split('·')[0].trim() : '午时');
-    }
-
-    if (params.country) {
-      const badge = document.getElementById('birth-display');
-      if (badge && !document.getElementById('disp-country')) {
-        const divider = document.createElement('div');
-        divider.className = 'birth-divider';
-        const item = document.createElement('div');
-        item.className = 'birth-item';
-        item.innerHTML = '<div class="birth-label">BIRTH LOCATION</div><div class="birth-value" id="disp-country">' + params.country + '</div>';
-        badge.appendChild(divider);
-        badge.appendChild(item);
-      }
-    }
-
     if (!window.zwdsCore || typeof window.zwdsCore.calculateChart !== 'function') {
       throw new Error('Chart engine failed to load.');
     }
@@ -474,16 +479,10 @@ function init() {
       throw new Error('Failed to render the 12-palace chart diagram.');
     }
 
-    setChartStatus(false, true);
     hideLoadingScreen();
     populateResultsUI(result, params);
 
-    setTimeout(function() {
-      setChartStatus(false, false);
-    }, 400);
-
   } catch (err) {
-    setChartStatus(false, false);
     showError(err);
   }
 }
@@ -491,11 +490,9 @@ function init() {
 function unlockAllPalaces() {
   chartState.unlocked = true;
   document.body.classList.add('chart-unlocked');
-  document.querySelectorAll('.palace-locked').forEach(function(el) {
-    el.classList.remove('palace-locked');
-    el.classList.add('unlocked');
-  });
-  renderPalaceToc();
+  if (chartState.readings && chartState.readings.length) {
+    renderPalaceGroups(chartState.readings);
+  }
 }
 
 function hideEmbeddedGate() {
@@ -601,7 +598,6 @@ function getChartMeta(result, lifeStarCn) {
 }
 
 function showError(err) {
-  setChartStatus(false, false);
   var screen = document.getElementById('loading-screen');
   if (screen) {
     screen.innerHTML = ''
@@ -620,21 +616,17 @@ var AI_READINGS_CACHE = {};
 
 async function generateAndUpdateAIReadings(result, params) {
   if (!result || !result.palaces) return;
-  
+
   var lifeStarCn = (result.palaces[0] && result.palaces[0].majorStars && result.palaces[0].majorStars[0]) || '紫微';
-  
-  // 为主星生成 essence（如果还没内容）
-  var mbEl = document.getElementById('mb-essence');
-  var currentEssence = mbEl ? mbEl.textContent : '';
-  if (!currentEssence || currentEssence === 'Your destiny is written in the stars.') {
+
+  var blurbEl = document.getElementById('hook-blurb');
+  var currentBlurb = blurbEl ? blurbEl.textContent : '';
+  if (!currentBlurb || currentBlurb.indexOf('being calculated') !== -1) {
     generateMasterReading(lifeStarCn, params.date, params.hourLabel).then(function(text) {
-      if (text && mbEl) {
-        mbEl.textContent = text;
-      }
+      if (text && blurbEl) blurbEl.textContent = text;
     });
   }
-  
-  // 逐个宫位生成 AI 深度解读
+
   for (var i = 0; i < result.palaces.length; i++) {
     (function(idx) {
       setTimeout(async function() {
@@ -643,12 +635,11 @@ async function generateAndUpdateAIReadings(result, params) {
         var starCn = majorStars.length > 0 ? majorStars[0] : '—';
         var starData = STAR_EN[starCn] || starCn;
         var palaceName = palace.name || '';
-        
-        // 只有静态库没有深度 body 时才触发 AI
+
         var existing = chartState.readings && chartState.readings[idx];
         var existingBody = existing ? (existing.body || '') : '';
         if (existingBody && existingBody.length > 80) return;
-        
+
         try {
           var raw = await generatePalaceReading(
             palaceName,
@@ -659,35 +650,25 @@ async function generateAndUpdateAIReadings(result, params) {
             lifeStarCn
           );
           var parsed = parseReading(raw);
-          
-          // 更新 chartState
+
           if (chartState.readings && chartState.readings[idx]) {
             chartState.readings[idx].hook = parsed.hook;
             chartState.readings[idx].body = parsed.body;
             chartState.readings[idx].year2026 = parsed.year2026;
           }
-          
-          // 更新卡片预览
-          var previewEl = document.querySelector('#card-' + idx + ' .palace-preview');
-          if (previewEl && parsed.hook) {
-            previewEl.textContent = parsed.hook.length > 90
-              ? parsed.hook.substring(0, 87) + '...'
-              : parsed.hook;
+
+          if (idx === 0) {
+            var lifeStar = (chartState.readings[0] && chartState.readings[0].majorStars[0]) || '';
+            setText('hook-blurb', getIdentityBlurb(lifeStar, chartState.readings[0]));
           }
-          
-          // 如果该宫位当前是展开状态，刷新展开面板
-          if (chartState.activeCard === idx) {
-            var oldPanel = document.getElementById('expanded-' + idx);
-            if (oldPanel) {
-              var newPanel = renderExpandedPanel(chartState.readings[idx], idx);
-              newPanel.classList.add('open');
-              oldPanel.replaceWith(newPanel);
-            }
+          if (idx === 0 || idx === 4 || idx === 2) {
+            renderThreePillars(chartState.readings);
           }
+          refreshPalaceCard(idx);
         } catch (e) {
-          // 静默失败，保持静态数据
+          /* keep static readings */
         }
-      }, idx * 1200); // 每个间隔1.2秒，避免并发限流
+      }, idx * 1200);
     })(i);
   }
 }
