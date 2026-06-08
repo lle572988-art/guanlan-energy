@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Gumroad 一键配置 · Guanlan Energy</title>
+<meta name="robots" content="noindex"/>
+<style>
+  body { font-family: -apple-system, sans-serif; background: #06100c; color: #f0ebe0; max-width: 640px; margin: 0 auto; padding: 2rem 1.25rem; line-height: 1.7; }
+  h1 { color: #e8d4a0; font-size: 1.4rem; }
+  h2 { color: #c9a84c; font-size: 1rem; margin-top: 2rem; }
+  code, .url-box { background: #0c1628; border: 1px solid rgba(201,168,76,0.3); padding: 0.75rem 1rem; display: block; word-break: break-all; font-size: 0.85rem; margin: 0.75rem 0; }
+  a { color: #c9a84c; }
+  .btn { display: inline-block; margin-top: 0.5rem; padding: 10px 18px; background: #c9a84c; color: #06100c; text-decoration: none; font-weight: 600; border: none; cursor: pointer; border-radius: 2px; }
+  .step { background: rgba(12,22,40,0.6); border-left: 3px solid #c9a84c; padding: 1rem 1.25rem; margin: 1rem 0; }
+  .ok { color: #7dcea0; }
+  .warn { color: #e8b86d; font-size: 0.9rem; }
+</style>
+</head>
+<body>
+  <h1>Gumroad 购买闭环 — 只需 2 步</h1>
+  <p class="warn">网站已自动处理：付完款跳转 thank-you 页、买家确认邮件、卖家订单通知。你只需在 Gumroad 粘贴下面 1 个 URL。</p>
+
+  <h2>第 1 步：开启 Ping（约 30 秒）</h2>
+  <div class="step">
+    <p>1. 打开 <a href="https://app.gumroad.com/settings" target="_blank" rel="noopener">Gumroad Settings</a></p>
+    <p>2. 左侧或页面中找到 <strong>Advanced</strong>（高级）</p>
+    <p>3. 找到 <strong>Ping</strong> 输入框</p>
+    <p>4. 粘贴下面整段 URL → Save</p>
+  </div>
+  <code id="ping-url">https://metaphysicflow.com/api/gumroad-ping</code>
+  <button class="btn" type="button" id="copy-ping">复制 Ping URL</button>
+  <p id="copy-status"></p>
+
+  <h2>第 2 步：Checkout 自定义字段（收出生信息，可选但强烈建议）</h2>
+  <div class="step">
+    <p>1. Gumroad 左侧 <strong>Checkout</strong> → <strong>Checkout form</strong></p>
+    <p>2. 点 <strong>+ Add custom field</strong>，添加 3 个 Text 字段（可勾选 Required）：</p>
+    <ul>
+      <li>Date of birth (YYYY-MM-DD)</li>
+      <li>Birth hour (e.g. Zi Hour 23:00–01:00)</li>
+      <li>Birth city / country (optional)</li>
+    </ul>
+    <p>3. Apply to → 选 All products → Save changes</p>
+  </div>
+
+  <h2>已自动生效（无需再配）</h2>
+  <ul>
+    <li class="ok">首页 / 结果页点击购买 → Gumroad 弹窗结账（金色按钮，无粉色）</li>
+    <li class="ok">付完款 → 自动跳转 <a href="/thank-you.html?product=three-palace-snapshot">thank-you 页</a></li>
+    <li class="ok">Ping 开启后 → 买家收确认邮件 + 你收订单通知邮件</li>
+  </ul>
+
+  <p style="margin-top:2rem;"><a href="/">← 返回首页</a></p>
+  <script>
+    document.getElementById('copy-ping').addEventListener('click', function() {
+      var t = document.getElementById('ping-url').textContent;
+      navigator.clipboard.writeText(t).then(function() {
+        document.getElementById('copy-status').textContent = '已复制！去 Gumroad Advanced → Ping 粘贴即可。';
+      });
+    });
+  </script>
+</body>
+</html>

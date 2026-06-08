@@ -102,6 +102,10 @@
     "api/collect-lead.js": {
       "maxDuration": 15,
       "includeFiles": "api/lib/**"
+    },
+    "api/gumroad-ping.mjs": {
+      "maxDuration": 15,
+      "includeFiles": "api/lib/**"
     }
   }
 }

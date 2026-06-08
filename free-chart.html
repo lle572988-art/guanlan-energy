@@ -2767,36 +2767,8 @@
 <script src="/js/zwds-chart-render.js?v=20260608b"></script>
 <script src="/js/free-chart-app.js?v=20260608n"></script>
 <script src="/js/result-particles.js?v=20260608h"></script>
-<script>
-/* ─── PRICING UTM + GA4 (Gumroad) ─── */
-(function() {
-  function attachPricingLink(link, product, section) {
-    var href = link.getAttribute('href') || '';
-    if (href.indexOf('utm_source=') === -1) {
-      var sep = href.indexOf('?') === -1 ? '?' : '&';
-      link.setAttribute('href', href + sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product));
-    }
-    link.addEventListener('click', function() {
-      if (window.gtag) {
-        gtag('event', 'begin_checkout', {
-          item_name: product,
-          item_category: 'ziwei_reading',
-          source_section: section,
-          checkout_channel: 'gumroad'
-        });
-      }
-      if (window.plausible) plausible('purchase_click', { props: { product: product, channel: 'gumroad' } });
-    });
-  }
-
-  document.querySelectorAll('a[href*="lleonard88.gumroad.com"]').forEach(function(link) {
-    var product = link.getAttribute('data-product') || 'gumroad';
-    var parent = link.closest('section, header, nav, footer, div');
-    var section = (parent && parent.id) ? parent.id : 'free-chart';
-    attachPricingLink(link, product, section);
-  });
-})();
-</script>
+<script defer src="https://gumroad.com/js/gumroad.js"></script>
+<script defer src="/js/gumroad-checkout.js"></script>
 
 </body>
 </html>

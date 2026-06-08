@@ -4121,7 +4121,6 @@ window.addEventListener('scroll', () => {
     }
   }
   </script>
-  <script defer src="https://gumroad.com/js/gumroad.js"></script>
 
 <!-- EXIT INTENT POPUP -->
 <div id="exit-popup" style="
@@ -4320,41 +4319,22 @@ window.addEventListener('scroll', function() {
   if (rejectBtn) rejectBtn.addEventListener('click', function() { dismiss('rejected'); });
 })();
 </script>
+<script defer src="https://gumroad.com/js/gumroad.js"></script>
+<script defer src="/js/gumroad-checkout.js"></script>
 <script>
-/* ─── PRICING UTM + GA4 (Gumroad + checkout fallback) ─── */
+/* Stripe fallback links ($59 / $199) */
 (function() {
-  function attachPricingLink(link, product, section, channel) {
-    var href = link.getAttribute('href') || '';
-    if (href.indexOf('utm_source=') === -1) {
-      var sep = href.indexOf('?') === -1 ? '?' : '&';
-      link.setAttribute('href', href + sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product));
-    }
-    link.addEventListener('click', function() {
-      if (window.gtag) {
-        gtag('event', 'begin_checkout', {
-          item_name: product,
-          item_category: 'ziwei_reading',
-          source_section: section,
-          checkout_channel: channel
-        });
-      }
-      if (window.plausible) plausible('purchase_click', { props: { product: product, channel: channel } });
-    });
-  }
-
-  document.querySelectorAll('a[href*="lleonard88.gumroad.com"]').forEach(function(link) {
-    var product = link.getAttribute('data-product') || 'gumroad';
-    var parent = link.closest('section, header, nav, footer');
-    var section = (parent && parent.id) ? parent.id : 'pricing';
-    attachPricingLink(link, product, section, 'gumroad');
-  });
-
   document.querySelectorAll('a[href*="checkout.html"]').forEach(function(link) {
     var href = link.getAttribute('href') || '';
+    if (href.indexOf('utm_source=') !== -1) return;
     var product = (href.match(/product=([^&]+)/) || [])[1] || 'unknown';
     var parent = link.closest('section, header, nav, footer');
     var section = (parent && parent.id) ? parent.id : 'page';
-    attachPricingLink(link, product, section, 'stripe_fallback');
+    var sep = href.indexOf('?') === -1 ? '?' : '&';
+    link.setAttribute('href', href + sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product));
+    link.addEventListener('click', function() {
+      if (window.gtag) gtag('event', 'begin_checkout', { item_name: product, item_category: 'ziwei_reading', checkout_channel: 'stripe_fallback' });
+    });
   });
 })();
 </script>

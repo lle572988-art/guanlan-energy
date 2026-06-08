@@ -1,4 +1,4 @@
-/** Primary checkout URLs — Gumroad. Update slug after publishing new products. */
+/** Primary checkout URLs — Gumroad. See /gumroad-setup.html for Ping setup. */
 window.GUANLAN_GUMROAD = {
   'life-palace-dive': 'https://lleonard88.gumroad.com/l/acvsfx?wanted=true',
   'three-palace-snapshot': 'https://lleonard88.gumroad.com/l/lfoxf?wanted=true',
@@ -6,7 +6,6 @@ window.GUANLAN_GUMROAD = {
   'live-reading': 'https://lleonard88.gumroad.com/l/lozmm?wanted=true'
 };
 
-/** Paste into Gumroad → Product → Settings → Redirect after purchase */
 window.GUANLAN_GUMROAD_THANK_YOU = {
   'life-palace-dive': 'https://metaphysicflow.com/thank-you.html?product=life-palace-dive',
   'three-palace-snapshot': 'https://metaphysicflow.com/thank-you.html?product=three-palace-snapshot',
