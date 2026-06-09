@@ -2259,6 +2259,18 @@ body::before {
   border: 1px solid var(--gold);
   color: var(--void);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  #outer-ring,
+  #inner-ring,
+  .nav-sigil g,
+  #palaces-content .palace-spotlight > rect:first-child,
+  .urgency-bar-dot,
+  .reveal {
+    animation: none !important;
+    transition: none !important;
+  }
+}
 </style>
 </head>
 <body>
@@ -2978,7 +2990,11 @@ body::before {
           <div class="portrait-corner bl"></div>
           <div class="portrait-corner br"></div>
           <div class="portrait-photo">
-            <img src="/images/reader-photo.jpg" alt="The Purple Star Reader" style="width:100%;height:100%;object-fit:cover;">
+            <img src="/images/reader-photo.jpg"
+                 alt="Purple Star Astrology reader — bilingual Zi Wei Dou Shu practitioner"
+                 width="896" height="1184"
+                 loading="lazy" decoding="async"
+                 style="width:100%;height:100%;object-fit:cover;">
           </div>
         </div>
         <div class="about-caption">
