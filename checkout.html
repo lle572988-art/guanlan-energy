@@ -161,7 +161,15 @@ document.getElementById('checkout-btn').addEventListener('click', async function
 
   if (gumroad) {
     trackCheckout(productKey);
-    window.location.href = gumroad;
+    var thankYou = 'https://metaphysicflow.com/thank-you.html?product=' + encodeURIComponent(productKey);
+    var checkoutUrl = gumroad + (gumroad.indexOf('?') === -1 ? '?' : '&') +
+      'redirect_url=' + encodeURIComponent(thankYou);
+    var win = window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
+    if (!win) window.location.href = gumroad;
+    else {
+      btn.textContent = 'Checkout opened in new tab — close it anytime';
+      btn.disabled = false;
+    }
     return;
   }
 

@@ -1,5 +1,5 @@
 /**
- * Gumroad overlay checkout + birth context in URL (no Gumroad custom fields needed).
+ * Gumroad checkout in a new tab — site stays open; birth context in URL for Ping.
  */
 (function() {
   var PERMALINK_TO_PRODUCT = {
@@ -11,7 +11,7 @@
 
   var THANK_YOU = 'https://metaphysicflow.com/thank-you.html';
   var STORAGE_KEY = 'guanlan_birth';
-  var bypassModal = false;
+  var bannerTimer = null;
 
   var HOUR_OPTIONS = [
     '子時 · Zi (23:00–01:00)', '丑時 · Chou (01:00–03:00)', '寅時 · Yin (03:00–05:00)',
@@ -71,35 +71,86 @@
     return out;
   }
 
+  function appendThankYouRedirect(href, productKey) {
+    if (!productKey || productKey === 'gumroad') return href;
+    var redirect = THANK_YOU + '?product=' + encodeURIComponent(productKey);
+    var sep = href.indexOf('?') === -1 ? '?' : '&';
+    return href + sep + 'redirect_url=' + encodeURIComponent(redirect);
+  }
+
   function productFromHref(href) {
     var m = (href || '').match(/\/l\/([^/?]+)/);
     return m ? PERMALINK_TO_PRODUCT[m[1]] : null;
   }
 
-  function redirectAfterSale(data) {
-    var productKey = null;
-    try {
-      if (data.product && data.product.short_url) {
-        productKey = PERMALINK_TO_PRODUCT[data.product.short_url.split('/').pop()];
-      }
-      if (!productKey && data.product && data.product.permalink) {
-        productKey = PERMALINK_TO_PRODUCT[data.product.permalink];
-      }
-    } catch (e) { /* ignore */ }
+  function ensureCheckoutBanner() {
+    if (document.getElementById('guanlan-checkout-banner')) return;
 
-    var url = THANK_YOU + (productKey ? '?product=' + encodeURIComponent(productKey) : '');
-    if (window.gtag) gtag('event', 'purchase', { item_name: productKey || 'gumroad', item_category: 'ziwei_reading' });
-    if (window.plausible) plausible('purchase_complete', { props: { product: productKey || 'unknown', channel: 'gumroad_overlay' } });
-    window.location.replace(url);
+    var style = document.createElement('style');
+    style.textContent =
+      '#guanlan-checkout-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;' +
+      'background:linear-gradient(180deg,rgba(6,16,12,0) 0%,rgba(6,16,12,.96) 18%,#0c1628 100%);' +
+      'border-top:1px solid rgba(201,168,76,.35);padding:1rem 1.25rem 1.25rem;transform:translateY(110%);' +
+      'transition:transform .35s ease;font-family:-apple-system,BlinkMacSystemFont,sans-serif}' +
+      '#guanlan-checkout-banner.show{transform:translateY(0)}' +
+      '#guanlan-checkout-banner .inner{max-width:720px;margin:0 auto;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}' +
+      '#guanlan-checkout-banner p{flex:1;min-width:200px;margin:0;font-size:.875rem;color:rgba(240,235,224,.82);line-height:1.45}' +
+      '#guanlan-checkout-banner a{color:#c9a84c;text-decoration:none;font-weight:600}' +
+      '#guanlan-checkout-banner .btn-home{display:inline-block;padding:.55rem .9rem;background:#c9a84c;color:#06100c;' +
+      'font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-weight:700}' +
+      '#guanlan-checkout-banner .btn-dismiss{background:transparent;border:1px solid rgba(74,102,128,.45);' +
+      'color:rgba(240,235,224,.55);padding:.5rem .75rem;cursor:pointer;font-size:.75rem}';
+    document.head.appendChild(style);
+
+    var bar = document.createElement('div');
+    bar.id = 'guanlan-checkout-banner';
+    bar.setAttribute('role', 'status');
+    bar.innerHTML =
+      '<div class="inner">' +
+        '<p><strong>Checkout opened in a new tab.</strong> Close that tab anytime to cancel — this page stays here.</p>' +
+        '<a class="btn-home" href="/">Back to home</a>' +
+        '<button type="button" class="btn-dismiss" aria-label="Dismiss">Dismiss</button>' +
+      '</div>';
+    document.body.appendChild(bar);
+
+    bar.querySelector('.btn-dismiss').addEventListener('click', function() {
+      bar.classList.remove('show');
+    });
   }
 
-  window.addEventListener('message', function(ev) {
-    if (!ev.data || typeof ev.data !== 'string') return;
-    try {
-      var data = JSON.parse(ev.data);
-      if (data.post_message_name === 'sale') redirectAfterSale(data);
-    } catch (e) { /* not gumroad */ }
-  });
+  function showCheckoutBanner() {
+    ensureCheckoutBanner();
+    var bar = document.getElementById('guanlan-checkout-banner');
+    bar.classList.add('show');
+    if (bannerTimer) clearTimeout(bannerTimer);
+    bannerTimer = setTimeout(function() {
+      bar.classList.remove('show');
+    }, 45000);
+  }
+
+  function trackCheckoutClick(product, section) {
+    if (window.gtag) {
+      gtag('event', 'begin_checkout', {
+        item_name: product,
+        item_category: 'ziwei_reading',
+        source_section: section,
+        checkout_channel: 'gumroad_new_tab'
+      });
+    }
+    if (window.plausible) {
+      plausible('purchase_click', { props: { product: product, channel: 'gumroad_new_tab' } });
+    }
+  }
+
+  function openCheckout(url, product, section) {
+    var win = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!win) {
+      window.location.href = url;
+      return;
+    }
+    showCheckoutBanner();
+    trackCheckoutClick(product, section);
+  }
 
   function ensureModal() {
     if (document.getElementById('guanlan-birth-modal')) return;
@@ -123,17 +174,17 @@
     wrap.innerHTML =
       '<div class="panel" role="dialog" aria-labelledby="guanlan-birth-title">' +
         '<h3 id="guanlan-birth-title">Birth details for your reading</h3>' +
-        '<p>We need your birth date and hour to write your chart. This takes 10 seconds — then checkout opens.</p>' +
+        '<p>We need your birth date and hour to write your chart. Checkout opens in a <strong>separate tab</strong> — close it anytime to come back here.</p>' +
         '<label for="guanlan-birth-dob">Date of birth</label>' +
         '<input id="guanlan-birth-dob" type="date" required />' +
         '<label for="guanlan-birth-hour">Birth hour (Chinese double-hour)</label>' +
         '<select id="guanlan-birth-hour" required>' +
-          HOUR_OPTIONS.map(function(h, i) { return '<option value="' + h + '">' + h + '</option>'; }).join('') +
+          HOUR_OPTIONS.map(function(h) { return '<option value="' + h + '">' + h + '</option>'; }).join('') +
         '</select>' +
         '<label for="guanlan-birth-country">Birth city / country (optional)</label>' +
         '<input id="guanlan-birth-country" type="text" placeholder="e.g. San Francisco, USA" />' +
         '<div class="actions">' +
-          '<button type="button" class="btn-gold" id="guanlan-birth-submit">Continue to checkout</button>' +
+          '<button type="button" class="btn-gold" id="guanlan-birth-submit">Open checkout</button>' +
           '<button type="button" class="btn-ghost" id="guanlan-birth-cancel">Cancel</button>' +
         '</div>' +
       '</div>';
@@ -141,11 +192,10 @@
 
     document.getElementById('guanlan-birth-cancel').addEventListener('click', function() {
       wrap.classList.remove('open');
-      wrap._pendingLink = null;
     });
   }
 
-  function showBirthModal(link, onDone) {
+  function showBirthModal(product, section, baseHref, onReady) {
     ensureModal();
     var modal = document.getElementById('guanlan-birth-modal');
     var existing = getBirthPrefill();
@@ -156,7 +206,6 @@
     if (existing.hourLabel) hourEl.value = existing.hourLabel;
     if (existing.country) countryEl.value = existing.country;
 
-    modal._pendingLink = link;
     modal.classList.add('open');
 
     var submit = document.getElementById('guanlan-birth-submit');
@@ -171,14 +220,15 @@
       saveBirth(birth);
       modal.classList.remove('open');
       submit.removeEventListener('click', handler);
-      onDone(birth, link);
+      onReady(birth);
     };
     submit.addEventListener('click', handler);
   }
 
-  function buildLinkHref(link, birth, product, section) {
-    var href = link.getAttribute('data-gumroad-base') || link.getAttribute('href') || '';
+  function buildCheckoutUrl(baseHref, birth, product, section) {
+    var href = baseHref || '';
     href = appendGuanlanParams(href, birth);
+    href = appendThankYouRedirect(href, product);
     if (href.indexOf('utm_source=') === -1) {
       var sep = href.indexOf('?') === -1 ? '?' : '&';
       href += sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product);
@@ -187,43 +237,40 @@
   }
 
   function attachPricingLink(link, product, section, birth) {
-    var base = link.getAttribute('href') || '';
-    link.setAttribute('data-gumroad-base', base.split('&guanlan_')[0].split('?guanlan_')[0]);
-    link.setAttribute('href', buildLinkHref(link, birth, product, section));
+    var base = link.getAttribute('data-gumroad-base') || link.getAttribute('href') || '';
+    base = base.split('&guanlan_')[0].split('?guanlan_')[0].split('&redirect_url=')[0].split('?redirect_url=')[0];
+    link.setAttribute('data-gumroad-base', base);
+    link.setAttribute('href', buildCheckoutUrl(base, birth, product, section));
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
 
     link.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      function proceed(withBirth) {
+        var url = buildCheckoutUrl(base, withBirth, product, section);
+        link.setAttribute('href', url);
+        openCheckout(url, product, section);
+      }
+
       var current = getBirthPrefill();
-      if (!bypassModal && !hasBirth(current)) {
-        e.preventDefault();
-        e.stopPropagation();
-        showBirthModal(link, function(updated) {
-          link.setAttribute('href', buildLinkHref(link, updated, product, section));
-          bypassModal = true;
-          link.click();
-          bypassModal = false;
-        });
+      if (!hasBirth(current)) {
+        showBirthModal(product, section, base, proceed);
         return false;
       }
 
-      if (window.gtag) {
-        gtag('event', 'begin_checkout', {
-          item_name: product,
-          item_category: 'ziwei_reading',
-          source_section: section,
-          checkout_channel: 'gumroad_overlay'
-        });
-      }
-      if (window.plausible) plausible('purchase_click', { props: { product: product, channel: 'gumroad_overlay' } });
+      proceed(current);
+      return false;
     });
   }
 
   function initGumroadLinks() {
     var birth = getBirthPrefill();
     document.querySelectorAll('a[href*="lleonard88.gumroad.com"]').forEach(function(link) {
-      if (!link.getAttribute('data-gumroad-overlay-checkout')) {
-        link.setAttribute('data-gumroad-overlay-checkout', 'true');
-        link.setAttribute('data-gumroad-single-product', 'true');
-      }
+      link.removeAttribute('data-gumroad-overlay-checkout');
+      link.removeAttribute('data-gumroad-single-product');
+      link.classList.remove('gumroad-button');
+
       var product = link.getAttribute('data-product') || productFromHref(link.getAttribute('href')) || 'gumroad';
       var parent = link.closest('section, header, nav, footer, div');
       var section = (parent && parent.id) ? parent.id : 'page';
