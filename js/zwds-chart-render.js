@@ -53,11 +53,19 @@
   }
 
   function addText(parent, ns, x, y, text, size, fill, glow) {
+    var scale = (typeof window !== 'undefined' && window.innerWidth <= 768) ? 1.35 : 1;
+    var mobile = scale > 1;
+    var mobileFill = fill;
+    if (mobile) {
+      if (fill === '#7A5C28') mobileFill = '#ecd89a';
+      else if (fill === '#9BB5CC') mobileFill = '#d4e4f2';
+      else if (fill === '#C5984A' || fill === '#E2C27A') mobileFill = '#f2da98';
+    }
     var t = document.createElementNS(ns, 'text');
     t.setAttribute('x', String(x));
     t.setAttribute('y', String(y));
-    t.setAttribute('font-size', String(size));
-    t.setAttribute('fill', fill);
+    t.setAttribute('font-size', String(Math.round(size * scale * 10) / 10));
+    t.setAttribute('fill', mobileFill);
     if (glow) t.setAttribute('filter', 'url(#softglow)');
     t.textContent = text;
     parent.appendChild(t);

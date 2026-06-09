@@ -2030,10 +2030,54 @@
   .palace-life-card.expanded .card-action { display: none; }
   @media (max-width: 768px) {
     .hook-topbar { padding: 5rem 1.5rem 0; }
-    .hook-topbar-label { font-size: 0.5rem; letter-spacing: 0.18em; white-space: normal; text-align: center; }
+    .hook-topbar-label { font-size: 0.62rem; letter-spacing: 0.14em; white-space: normal; text-align: center; }
     .hook-footer { padding: 0 1.5rem 2rem; }
     .hook-stats { flex-direction: column; }
     .hook-stat { border-right: none; }
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --bg-primary: #161b26;
+      --bg-card: #1e2433;
+      --void: #161b26;
+      --deep: #1a2030;
+      --surface: #222836;
+      --text-primary: #f5f2eb;
+      --text-secondary: rgba(245, 242, 235, 0.92);
+      --text-muted: rgba(245, 242, 235, 0.72);
+      --silver-dim: rgba(220, 228, 240, 0.82);
+      --gold-soft: #e8cc88;
+      --parchment: #f0e8d8;
+    }
+
+    body {
+      background: var(--bg-primary);
+      background-image: none;
+      font-size: 18px;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    p, .palace-preview-body, .palace-reading-body, .hook-body {
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
+    }
+
+    .site-nav {
+      background: rgba(22, 27, 38, 0.96);
+      padding: 1rem 1.25rem;
+    }
+
+    .palace-name-zh { font-size: 0.82rem; }
+    .palace-name-en, .palace-label { font-size: 0.72rem; color: rgba(255,255,255,0.78); }
+    .palace-stars, .palace-star-line { font-size: 0.95rem; font-weight: 500; }
+    .palace-card { min-height: 160px; padding: 1.35rem 1.15rem; }
+    .palace-toc a { font-size: 0.62rem; }
+    .fortune-label { font-size: 0.62rem; }
+    .btn-primary, .btn-secondary, .btn-gold { font-size: 0.72rem; padding: 1rem 1.75rem; }
+    .identity-hook-title, .hook-title { font-weight: 500; }
   }
 
 </style>

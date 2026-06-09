@@ -2047,9 +2047,112 @@ footer {
     transform: none;
   }
   .chart-mobile-thumb { display: none; }
-  .chart-hint { font-size: 0.5rem; letter-spacing: 0.14em; max-width: min(520px, 94vw); }
+  .chart-hint { font-size: 0.85rem; letter-spacing: 0.04em; max-width: min(520px, 94vw); color: rgba(255,255,255,0.5); }
   .form-mini-reviews { gap: 0.5rem; }
-  .mini-review { font-size: 0.78rem; }
+  .mini-review { font-size: 0.88rem; }
+}
+
+/* ─── MOBILE READABILITY (brightness, type, chart, no sticky bar) ─── */
+@media (max-width: 768px) {
+  :root {
+    --bg-primary: #161b26;
+    --bg-card: #1e2433;
+    --void: #161b26;
+    --deep: #1a2030;
+    --surface: #222836;
+    --layer: #262d3d;
+    --text-primary: #f5f2eb;
+    --text-secondary: rgba(245, 242, 235, 0.92);
+    --text-muted: rgba(245, 242, 235, 0.72);
+    --silver-dim: rgba(220, 228, 240, 0.82);
+    --gold-soft: #e8cc88;
+    --parchment: #f0e8d8;
+  }
+
+  body {
+    background: var(--bg-primary);
+    background-image: none;
+    font-size: 18px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  p, .hero-body, .feature-item, .pricing-features li, .testimonial-quote {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+  }
+
+  .hero-h1 { font-weight: 500; }
+  .hero-title-small { font-size: 1rem; font-weight: 400; color: rgba(255,255,255,0.72); }
+  .hero-lead, .hero-subtitle { font-size: 1.08rem; color: rgba(255,255,255,0.84); font-weight: 400; }
+  .hero-body { font-size: 1.02rem; }
+  .section-heading { font-weight: 500; }
+  .palace-name-en, .palace-label, .palace-num, .cred-label, .stat-label {
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .site-nav { background: rgba(22, 27, 38, 0.96); padding: 1rem 1.25rem; }
+
+  .chart-frame {
+    background: linear-gradient(160deg, #252d42 0%, #1a2030 100%);
+    border-color: rgba(201, 169, 110, 0.5);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+  }
+
+  #chart-svg {
+    background: #1e2436;
+  }
+
+  #chart-svg #palaces-content {
+    transform: scale(1.5);
+    transform-origin: 280px 280px;
+  }
+
+  #chart-svg #palace-grid text {
+    font-size: 14px !important;
+    fill: #e8cc88 !important;
+    opacity: 1 !important;
+  }
+
+  #chart-svg #palaces-content text {
+    opacity: 1 !important;
+    font-weight: 500;
+  }
+
+  #chart-svg #palaces-content text[fill="#7A5C28"],
+  #chart-svg #palaces-content text[fill="#7a5c28"] {
+    fill: #ecd89a !important;
+  }
+
+  #chart-svg #palaces-content text[fill="#9BB5CC"],
+  #chart-svg #palaces-content text[fill="#9bb5cc"] {
+    fill: #d4e4f2 !important;
+  }
+
+  #chart-svg #palaces-content text[fill="#C5984A"],
+  #chart-svg #palaces-content text[fill="#E2C27A"],
+  #chart-svg #palaces-content text[fill="#D4C4A0"],
+  #chart-svg #palaces-content text[fill="#c5984a"],
+  #chart-svg #palaces-content text[fill="#e2c27a"],
+  #chart-svg #palaces-content text[fill="#d4c4a0"] {
+    fill: #f2da98 !important;
+  }
+
+  #chart-svg line,
+  #chart-svg rect[stroke],
+  #chart-svg circle[stroke] {
+    stroke-opacity: 0.7 !important;
+  }
+
+  .palace-name-zh { font-size: 0.82rem; color: var(--gold-soft); }
+  .palace-name-en { font-size: 0.72rem; }
+  .palace-stars { font-size: 0.98rem; font-weight: 500; }
+  .palace-preview-body { font-size: 0.98rem; color: rgba(255,255,255,0.88); }
+
+  #sticky-cta { display: none !important; }
+
+  #hero { padding-bottom: 2rem; }
 }
 
 @media (max-width: 1024px) {
@@ -4200,11 +4303,21 @@ window.addEventListener('scroll', () => {
     ">
     Get My Free Chart →
   </button>
-  <button onclick="this.parentElement.style.transform='translateY(100%)'"
+  <button type="button" onclick="dismissStickyCta()"
     style="background:transparent;border:none;color:var(--silver-dim);
       font-size:1.1rem;cursor:pointer;flex-shrink:0;">×</button>
 </div>
 
+<script>
+function dismissStickyCta() {
+  var bar = document.getElementById('sticky-cta');
+  if (bar) bar.style.transform = 'translateY(100%)';
+  try {
+    if (window.__storage) window.__storage.set('stickyCtaDismissed', '1');
+    else sessionStorage.setItem('stickyCtaDismissed', '1');
+  } catch (e) {}
+}
+</script>
 <script>
 // Exit Intent Logic
 let exitShown = false;
@@ -4252,6 +4365,15 @@ document.getElementById('exit-popup').addEventListener('click', function(e){
 window.addEventListener('scroll', function() {
   const bar = document.getElementById('sticky-cta');
   if (!bar) return;
+  var dismissed = false;
+  try {
+    dismissed = (window.__storage && window.__storage.get('stickyCtaDismissed') === '1') ||
+      sessionStorage.getItem('stickyCtaDismissed') === '1';
+  } catch (e) {}
+  if (dismissed || window.innerWidth <= 768) {
+    bar.style.transform = 'translateY(100%)';
+    return;
+  }
   if (window.scrollY > 600) {
     bar.style.transform = 'translateY(0)';
   } else {
