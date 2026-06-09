@@ -1,5 +1,6 @@
 /**
- * Gumroad checkout in a new tab — site stays open; birth context in URL for Ping.
+ * Gumroad overlay checkout → auto thank-you redirect (no Gumroad dashboard config).
+ * Top escape bar lets buyers close checkout and stay on site.
  */
 (function() {
   var PERMALINK_TO_PRODUCT = {
@@ -11,7 +12,6 @@
 
   var THANK_YOU = 'https://metaphysicflow.com/thank-you.html';
   var STORAGE_KEY = 'guanlan_birth';
-  var bannerTimer = null;
 
   var HOUR_OPTIONS = [
     '子時 · Zi (23:00–01:00)', '丑時 · Chou (01:00–03:00)', '寅時 · Yin (03:00–05:00)',
@@ -71,66 +71,86 @@
     return out;
   }
 
-  function appendThankYouRedirect(href, productKey) {
-    if (!productKey || productKey === 'gumroad') return href;
-    var redirect = THANK_YOU + '?product=' + encodeURIComponent(productKey);
-    var sep = href.indexOf('?') === -1 ? '?' : '&';
-    return href + sep + 'redirect_url=' + encodeURIComponent(redirect);
-  }
-
   function productFromHref(href) {
     var m = (href || '').match(/\/l\/([^/?]+)/);
     return m ? PERMALINK_TO_PRODUCT[m[1]] : null;
   }
 
-  function ensureCheckoutBanner() {
-    if (document.getElementById('guanlan-checkout-banner')) return;
+  function redirectAfterSale(data) {
+    hideEscapeBar();
+    var productKey = null;
+    try {
+      if (data.product && data.product.short_url) {
+        productKey = PERMALINK_TO_PRODUCT[data.product.short_url.split('/').pop()];
+      }
+      if (!productKey && data.product && data.product.permalink) {
+        productKey = PERMALINK_TO_PRODUCT[data.product.permalink];
+      }
+    } catch (e) { /* ignore */ }
+
+    var url = THANK_YOU + (productKey ? '?product=' + encodeURIComponent(productKey) : '');
+    if (window.gtag) gtag('event', 'purchase', { item_name: productKey || 'gumroad', item_category: 'ziwei_reading' });
+    if (window.plausible) plausible('purchase_complete', { props: { product: productKey || 'unknown', channel: 'gumroad_overlay' } });
+    window.location.replace(url);
+  }
+
+  window.addEventListener('message', function(ev) {
+    if (!ev.data || typeof ev.data !== 'string') return;
+    try {
+      var data = JSON.parse(ev.data);
+      if (data.post_message_name === 'sale') redirectAfterSale(data);
+    } catch (e) { /* not gumroad */ }
+  });
+
+  function closeGumroadOverlay() {
+    document.querySelectorAll('iframe[src*="gumroad"]').forEach(function(el) {
+      var p = el.parentElement;
+      el.remove();
+      if (p && p.className && String(p.className).indexOf('gumroad') !== -1) p.remove();
+    });
+    document.querySelectorAll('[class*="gumroad"]').forEach(function(el) {
+      if (el.id === 'guanlan-checkout-escape') return;
+      if (el.tagName === 'IFRAME' || /overlay|modal|popup/i.test(String(el.className))) {
+        el.remove();
+      }
+    });
+    document.body.style.overflow = '';
+    hideEscapeBar();
+  }
+
+  function ensureEscapeBar() {
+    if (document.getElementById('guanlan-checkout-escape')) return;
 
     var style = document.createElement('style');
     style.textContent =
-      '#guanlan-checkout-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;' +
-      'background:linear-gradient(180deg,rgba(6,16,12,0) 0%,rgba(6,16,12,.96) 18%,#0c1628 100%);' +
-      'border-top:1px solid rgba(201,168,76,.35);padding:1rem 1.25rem 1.25rem;transform:translateY(110%);' +
-      'transition:transform .35s ease;font-family:-apple-system,BlinkMacSystemFont,sans-serif}' +
-      '#guanlan-checkout-banner.show{transform:translateY(0)}' +
-      '#guanlan-checkout-banner .inner{max-width:720px;margin:0 auto;display:flex;gap:.75rem;align-items:center;flex-wrap:wrap}' +
-      '#guanlan-checkout-banner p{flex:1;min-width:200px;margin:0;font-size:.875rem;color:rgba(240,235,224,.82);line-height:1.45}' +
-      '#guanlan-checkout-banner a{color:#c9a84c;text-decoration:none;font-weight:600}' +
-      '#guanlan-checkout-banner .btn-home{display:inline-block;padding:.55rem .9rem;background:#c9a84c;color:#06100c;' +
-      'font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;font-weight:700}' +
-      '#guanlan-checkout-banner .btn-dismiss{background:transparent;border:1px solid rgba(74,102,128,.45);' +
-      'color:rgba(240,235,224,.55);padding:.5rem .75rem;cursor:pointer;font-size:.75rem}';
+      '#guanlan-checkout-escape{position:fixed;top:0;left:0;right:0;z-index:2147483646;display:none;' +
+      'background:#161b26;border-bottom:1px solid rgba(201,168,76,.45);padding:.7rem 1rem;' +
+      'font-family:-apple-system,BlinkMacSystemFont,sans-serif;text-align:center}' +
+      '#guanlan-checkout-escape.show{display:block}' +
+      '#guanlan-checkout-escape p{margin:0;font-size:.82rem;color:rgba(240,235,224,.85);line-height:1.45}' +
+      '#guanlan-checkout-escape button{margin-top:.45rem;background:transparent;border:1px solid rgba(201,168,76,.5);' +
+      'color:#e8cc88;padding:.45rem .9rem;font-size:.72rem;letter-spacing:.06em;cursor:pointer}';
     document.head.appendChild(style);
 
     var bar = document.createElement('div');
-    bar.id = 'guanlan-checkout-banner';
-    bar.setAttribute('role', 'status');
+    bar.id = 'guanlan-checkout-escape';
     bar.innerHTML =
-      '<div class="inner">' +
-        '<p><strong>Checkout opened in a new tab.</strong> Close that tab anytime to cancel. ' +
-        'After payment, tap <a id="guanlan-checkout-thankyou" href="/thank-you.html">Order confirmed → next steps</a>.</p>' +
-        '<a class="btn-home" href="/">Back to home</a>' +
-        '<button type="button" class="btn-dismiss" aria-label="Dismiss">Dismiss</button>' +
-      '</div>';
+      '<p>Secure checkout open — tap <strong>✕</strong> on the popup to cancel, or:</p>' +
+      '<button type="button" id="guanlan-checkout-escape-btn">← Stay on site (close checkout)</button>';
     document.body.appendChild(bar);
-
-    bar.querySelector('.btn-dismiss').addEventListener('click', function() {
-      bar.classList.remove('show');
-    });
+    document.getElementById('guanlan-checkout-escape-btn').addEventListener('click', closeGumroadOverlay);
   }
 
-  function showCheckoutBanner(productKey) {
-    ensureCheckoutBanner();
-    var bar = document.getElementById('guanlan-checkout-banner');
-    var ty = document.getElementById('guanlan-checkout-thankyou');
-    if (ty && productKey && productKey !== 'gumroad') {
-      ty.href = THANK_YOU + '?product=' + encodeURIComponent(productKey);
-    }
-    bar.classList.add('show');
-    if (bannerTimer) clearTimeout(bannerTimer);
-    bannerTimer = setTimeout(function() {
-      bar.classList.remove('show');
-    }, 45000);
+  function showEscapeBar() {
+    ensureEscapeBar();
+    document.getElementById('guanlan-checkout-escape').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hideEscapeBar() {
+    var bar = document.getElementById('guanlan-checkout-escape');
+    if (bar) bar.classList.remove('show');
+    document.body.style.overflow = '';
   }
 
   function trackCheckoutClick(product, section) {
@@ -139,22 +159,12 @@
         item_name: product,
         item_category: 'ziwei_reading',
         source_section: section,
-        checkout_channel: 'gumroad_new_tab'
+        checkout_channel: 'gumroad_overlay'
       });
     }
     if (window.plausible) {
-      plausible('purchase_click', { props: { product: product, channel: 'gumroad_new_tab' } });
+      plausible('purchase_click', { props: { product: product, channel: 'gumroad_overlay' } });
     }
-  }
-
-  function openCheckout(url, product, section) {
-    var win = window.open(url, '_blank', 'noopener,noreferrer');
-    if (!win) {
-      window.location.href = url;
-      return;
-    }
-    showCheckoutBanner(product);
-    trackCheckoutClick(product, section);
   }
 
   function ensureModal() {
@@ -162,7 +172,7 @@
 
     var style = document.createElement('style');
     style.textContent =
-      '#guanlan-birth-modal{position:fixed;inset:0;z-index:10000;background:rgba(3,7,15,.88);display:none;align-items:center;justify-content:center;padding:1rem}' +
+      '#guanlan-birth-modal{position:fixed;inset:0;z-index:2147483647;background:rgba(3,7,15,.88);display:none;align-items:center;justify-content:center;padding:1rem}' +
       '#guanlan-birth-modal.open{display:flex}' +
       '#guanlan-birth-modal .panel{max-width:420px;width:100%;background:#0c1628;border:1px solid rgba(201,168,76,.35);padding:1.75rem;color:#f0ebe0;font-family:Georgia,serif}' +
       '#guanlan-birth-modal h3{margin:0 0 .5rem;font-weight:400;color:#e8d4a0;font-size:1.35rem}' +
@@ -179,7 +189,7 @@
     wrap.innerHTML =
       '<div class="panel" role="dialog" aria-labelledby="guanlan-birth-title">' +
         '<h3 id="guanlan-birth-title">Birth details for your reading</h3>' +
-        '<p>We need your birth date and hour to write your chart. Checkout opens in a <strong>separate tab</strong> — close it anytime to come back here.</p>' +
+        '<p>Quick step before checkout — then pay in the popup. Close it anytime to stay here.</p>' +
         '<label for="guanlan-birth-dob">Date of birth</label>' +
         '<input id="guanlan-birth-dob" type="date" required />' +
         '<label for="guanlan-birth-hour">Birth hour (Chinese double-hour)</label>' +
@@ -189,7 +199,7 @@
         '<label for="guanlan-birth-country">Birth city / country (optional)</label>' +
         '<input id="guanlan-birth-country" type="text" placeholder="e.g. San Francisco, USA" />' +
         '<div class="actions">' +
-          '<button type="button" class="btn-gold" id="guanlan-birth-submit">Open checkout</button>' +
+          '<button type="button" class="btn-gold" id="guanlan-birth-submit">Continue to checkout</button>' +
           '<button type="button" class="btn-ghost" id="guanlan-birth-cancel">Cancel</button>' +
         '</div>' +
       '</div>';
@@ -200,7 +210,7 @@
     });
   }
 
-  function showBirthModal(product, section, baseHref, onReady) {
+  function showBirthModal(onReady) {
     ensureModal();
     var modal = document.getElementById('guanlan-birth-modal');
     var existing = getBirthPrefill();
@@ -210,22 +220,20 @@
     if (existing.dob) dobEl.value = existing.dob;
     if (existing.hourLabel) hourEl.value = existing.hourLabel;
     if (existing.country) countryEl.value = existing.country;
-
     modal.classList.add('open');
 
     var submit = document.getElementById('guanlan-birth-submit');
     var handler = function() {
       if (!dobEl.value) { dobEl.focus(); return; }
-      var birth = {
+      saveBirth({
         dob: dobEl.value,
         hourLabel: hourEl.value,
         country: (countryEl.value || '').trim(),
         mainStar: (existing && existing.mainStar) || (window.__chartData && window.__chartData.lifeStarEn) || ''
-      };
-      saveBirth(birth);
+      });
       modal.classList.remove('open');
       submit.removeEventListener('click', handler);
-      onReady(birth);
+      onReady();
     };
     submit.addEventListener('click', handler);
   }
@@ -240,41 +248,67 @@
     return href;
   }
 
+  function openOverlayCheckout(url) {
+    showEscapeBar();
+    var a = document.createElement('a');
+    a.href = url;
+    a.setAttribute('data-gumroad-overlay-checkout', 'true');
+    a.setAttribute('data-gumroad-single-product', 'true');
+    a.style.position = 'fixed';
+    a.style.left = '-9999px';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+
+  window.GuanlanGumroad = {
+    openCheckout: function(url, product, section) {
+      section = section || 'checkout';
+      product = product || 'gumroad';
+      function launch() {
+        var finalUrl = buildCheckoutUrl(url, getBirthPrefill(), product, section);
+        trackCheckoutClick(product, section);
+        openOverlayCheckout(finalUrl);
+      }
+      if (!hasBirth(getBirthPrefill())) {
+        showBirthModal(launch);
+        return;
+      }
+      launch();
+    }
+  };
+
   function attachPricingLink(link, product, section, birth) {
     var base = link.getAttribute('data-gumroad-base') || link.getAttribute('href') || '';
-    base = base.split('&guanlan_')[0].split('?guanlan_')[0].split('&redirect_url=')[0].split('?redirect_url=')[0];
+    base = base.split('&guanlan_')[0].split('?guanlan_')[0];
     link.setAttribute('data-gumroad-base', base);
     link.setAttribute('href', buildCheckoutUrl(base, birth, product, section));
-    link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
+    link.setAttribute('data-gumroad-overlay-checkout', 'true');
+    link.setAttribute('data-gumroad-single-product', 'true');
+    link.removeAttribute('target');
+    link.classList.remove('gumroad-button');
 
     link.addEventListener('click', function(e) {
-      e.preventDefault();
-
-      function proceed(withBirth) {
-        var url = buildCheckoutUrl(base, withBirth, product, section);
-        link.setAttribute('href', url);
-        openCheckout(url, product, section);
-      }
-
-      var current = getBirthPrefill();
-      if (!hasBirth(current)) {
-        showBirthModal(product, section, base, proceed);
+      if (!hasBirth(getBirthPrefill())) {
+        e.preventDefault();
+        e.stopPropagation();
+        showBirthModal(function() {
+          link.setAttribute('href', buildCheckoutUrl(base, getBirthPrefill(), product, section));
+          showEscapeBar();
+          trackCheckoutClick(product, section);
+          openOverlayCheckout(link.getAttribute('href'));
+        });
         return false;
       }
-
-      proceed(current);
-      return false;
+      link.setAttribute('href', buildCheckoutUrl(base, getBirthPrefill(), product, section));
+      showEscapeBar();
+      trackCheckoutClick(product, section);
     });
   }
 
   function initGumroadLinks() {
     var birth = getBirthPrefill();
     document.querySelectorAll('a[href*="lleonard88.gumroad.com"]').forEach(function(link) {
-      link.removeAttribute('data-gumroad-overlay-checkout');
-      link.removeAttribute('data-gumroad-single-product');
-      link.classList.remove('gumroad-button');
-
       var product = link.getAttribute('data-product') || productFromHref(link.getAttribute('href')) || 'gumroad';
       var parent = link.closest('section, header, nav, footer, div');
       var section = (parent && parent.id) ? parent.id : 'page';

@@ -58,6 +58,8 @@ h1{font-size:26px;font-weight:400;letter-spacing:0.5px;margin-bottom:8px;color:#
   <div class="footer">© 2026 Guanlan Energy · Purple Star Astrology · Secure checkout via Gumroad</div>
 </div>
 
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<script src="/js/gumroad-checkout.js"></script>
 <script src="/js/gumroad-products.js"></script>
 <script>
 var CATALOG = {
@@ -161,14 +163,10 @@ document.getElementById('checkout-btn').addEventListener('click', async function
 
   if (gumroad) {
     trackCheckout(productKey);
-    var thankYou = 'https://metaphysicflow.com/thank-you.html?product=' + encodeURIComponent(productKey);
-    var checkoutUrl = gumroad + (gumroad.indexOf('?') === -1 ? '?' : '&') +
-      'utm_source=site&utm_medium=checkout_page&utm_campaign=' + encodeURIComponent(productKey);
-    var win = window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
-    if (!win) window.location.href = gumroad;
-    else {
-      btn.textContent = 'Checkout opened in new tab — close it anytime';
-      btn.disabled = false;
+    if (window.GuanlanGumroad) {
+      window.GuanlanGumroad.openCheckout(gumroad, productKey, 'checkout_page');
+    } else {
+      window.location.href = gumroad;
     }
     return;
   }
