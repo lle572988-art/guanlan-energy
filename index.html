@@ -855,12 +855,56 @@ section {
   box-shadow: 0 0 24px rgba(201, 169, 110, 0.08);
 }
 .palace-preview.locked {
-  opacity: 0.35;
-  filter: blur(1px);
+  opacity: 1;
+  position: relative;
+  pointer-events: auto;
+  cursor: pointer;
+  overflow: hidden;
+}
+.palace-preview.locked .palace-stars,
+.palace-preview.locked .palace-preview-body {
+  filter: blur(5px);
+  user-select: none;
+  -webkit-user-select: none;
+  transition: filter 0.3s;
   pointer-events: none;
 }
+.palace-preview.locked::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 8, 8, 0) 0%,
+    rgba(8, 8, 8, 0.35) 35%,
+    rgba(8, 8, 8, 0.85) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
 .palace-preview.locked:hover { background: var(--deep); }
-.unlock-badge { display: none; }
+.unlock-badge {
+  display: flex;
+  position: absolute;
+  bottom: 0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--gold-accent);
+  color: #080808;
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 1px;
+  white-space: nowrap;
+  z-index: 2;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.unlock-badge:hover { background: var(--gold-light); }
 .palace-name-zh {
   font-size: 0.68rem;
   color: var(--gold-dim);
@@ -2263,9 +2307,21 @@ body::before {
   .nav-sigil g,
   #palaces-content .palace-spotlight > rect:first-child,
   .urgency-bar-dot,
-  .reveal {
+  .reveal,
+  .chart-preview {
     animation: none !important;
     transition: none !important;
+  }
+  .chart-preview {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  #starfield {
+    display: none !important;
   }
 }
 </style>
@@ -2842,7 +2898,7 @@ body::before {
         </p>
       </div>
 
-      <div class="palace-preview palace-card locked">
+      <div class="palace-preview palace-card locked" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
         <span class="palace-name-en">Spouse Palace</span>
         <div class="palace-stars">
           <span class="star-main">Tian Ji · Strategist</span><br>
@@ -2851,9 +2907,10 @@ body::before {
         <p class="palace-preview-body">
           Partnership patterns, attraction style, and the dynamics governing your closest bond.
         </p>
+        <div class="unlock-badge" role="button" aria-label="Unlock Spouse Palace reading">◆ Unlock from $19</div>
       </div>
 
-      <div class="palace-preview palace-card locked">
+      <div class="palace-preview palace-card locked" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
         <span class="palace-name-en">Health Palace</span>
         <div class="palace-stars">
           <span class="star-main">Tan Lang · Desire Star</span><br>
@@ -2862,9 +2919,10 @@ body::before {
         <p class="palace-preview-body">
           Constitutional tendencies, vulnerability periods, and how wellbeing connects to your life path.
         </p>
+        <div class="unlock-badge" role="button" aria-label="Unlock Health Palace reading">◆ Unlock from $19</div>
       </div>
 
-      <div class="palace-preview palace-card locked">
+      <div class="palace-preview palace-card locked" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
         <span class="palace-name-en">Travel Palace</span>
         <div class="palace-stars">
           <span class="star-main">Po Jun · Breaker</span><br>
@@ -2873,6 +2931,7 @@ body::before {
         <p class="palace-preview-body">
           Luck away from home, relocation potential, and fortune in outside environments.
         </p>
+        <div class="unlock-badge" role="button" aria-label="Unlock Travel Palace reading">◆ Unlock from $19</div>
       </div>
     </div>
 
@@ -3579,11 +3638,12 @@ window.__session = (function() {
 
 /* ─── STARFIELD ─── */
 (function() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = window.innerWidth < 768;
   const isLowEnd = navigator.hardwareConcurrency <= 2;
   const starfieldEl = document.getElementById('starfield');
 
-  if (isLowEnd && isMobile) {
+  if (prefersReducedMotion || (isLowEnd && isMobile)) {
     if (starfieldEl) starfieldEl.style.display = 'none';
     return;
   }
@@ -3964,7 +4024,11 @@ function handleSubmit(event) {
   const hourValue = hourSelect.value;
   const hourIndex = hourMap[hourValue] ?? 6;
   const hourLabel = hourSelect.options[hourSelect.selectedIndex]?.text || '';
-  const country = (form.querySelector('#country')?.value || '').trim();
+  const country = (form.querySelector('#country')?.value || '')
+    .trim()
+    .replace(/[<>"'&;`\\]/g, '')
+    .replace(/\s{2,}/g, ' ')
+    .substring(0, 80);
 
   const params = new URLSearchParams({
     date: dobInput.value,
@@ -4535,7 +4599,11 @@ window.addEventListener('scroll', function() {
 
   var banner = document.getElementById('cookie-consent');
   if (!banner) return;
-  banner.style.display = 'block';
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      banner.style.display = 'block';
+    });
+  });
 
   function dismiss(choice) {
     window.__storage.set(KEY, choice);
@@ -4554,18 +4622,36 @@ window.addEventListener('scroll', function() {
 <script defer src="https://gumroad.com/js/gumroad.js"></script>
 <script defer src="/js/gumroad-checkout.js"></script>
 <script>
-/* Stripe fallback links ($59 / $199) */
+/* Pricing CTA UTM + analytics (Gumroad + Stripe fallback) */
 (function() {
-  document.querySelectorAll('a[href*="checkout.html"]').forEach(function(link) {
+  document.querySelectorAll('a[href*="gumroad.com"], a[href*="checkout.html"]').forEach(function(link) {
     var href = link.getAttribute('href') || '';
     if (href.indexOf('utm_source=') !== -1) return;
-    var product = (href.match(/product=([^&]+)/) || [])[1] || 'unknown';
-    var parent = link.closest('section, header, nav, footer');
-    var section = (parent && parent.id) ? parent.id : 'page';
+
+    var product = link.getAttribute('data-product') ||
+      (href.match(/product=([^&]+)/) || href.match(/gumroad\.com\/l\/([^?]+)/) || [])[1] ||
+      'unknown';
+    var parent = link.closest('section[id], section, header, nav, footer');
+    var section = (parent && parent.id) ? parent.id : (parent ? parent.tagName.toLowerCase() : 'page');
+    var channel = href.indexOf('gumroad.com') !== -1 ? 'gumroad' : 'stripe_fallback';
     var sep = href.indexOf('?') === -1 ? '?' : '&';
-    link.setAttribute('href', href + sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product));
+    link.setAttribute('href', href + sep +
+      'utm_source=site&utm_medium=cta&utm_campaign=pricing' +
+      '&utm_content=' + encodeURIComponent(section + '_' + product) +
+      '&utm_term=' + channel);
+
+    if (channel !== 'stripe_fallback') return;
+    if (link.dataset.guanlanUtmBound === '1') return;
+    link.dataset.guanlanUtmBound = '1';
     link.addEventListener('click', function() {
-      if (window.gtag) gtag('event', 'begin_checkout', { item_name: product, item_category: 'ziwei_reading', checkout_channel: 'stripe_fallback' });
+      var props = {
+        item_name: product,
+        item_category: 'ziwei_reading',
+        checkout_channel: channel,
+        section_origin: section
+      };
+      if (window.gtag) gtag('event', 'begin_checkout', props);
+      if (window.plausible) plausible('checkout_click', { props: props });
     });
   });
 })();

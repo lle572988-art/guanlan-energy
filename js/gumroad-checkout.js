@@ -243,7 +243,8 @@
     href = appendGuanlanParams(href, birth);
     if (href.indexOf('utm_source=') === -1) {
       var sep = href.indexOf('?') === -1 ? '?' : '&';
-      href += sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product);
+      href += sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' +
+        encodeURIComponent(section + '_' + product) + '&utm_term=gumroad';
     }
     return href;
   }
