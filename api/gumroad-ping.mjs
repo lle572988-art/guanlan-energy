@@ -32,9 +32,10 @@ async function sendResend({ to, subject, html }) {
   return true;
 }
 
-function buyerEmailHtml(product, email, customFields) {
+function buyerEmailHtml(product, email, birthFields) {
   const thanks = thankYouUrl(product.key);
-  const fieldLines = Object.entries(customFields)
+  const hasBirth = birthFields['Date of birth'] && birthFields['Birth hour'];
+  const fieldLines = Object.entries(birthFields)
     .map(([k, v]) => `<li><strong>${k}:</strong> ${v}</li>`)
     .join('');
 
@@ -44,7 +45,9 @@ function buyerEmailHtml(product, email, customFields) {
       <h1 style="color:#e8d4a0;font-size:1.6rem;font-weight:400;">Thank you for your purchase</h1>
       <p><strong>${product.name}</strong> (${product.price}) — order confirmed.</p>
       <p>Your personalized PDF reading will be delivered to <strong>${email}</strong> within <strong>24–48 hours</strong>.</p>
-      ${fieldLines ? `<ul style="color:rgba(240,235,224,0.75);">${fieldLines}</ul>` : `
+      ${hasBirth ? `
+        <p style="margin-top:1rem;color:rgba(240,235,224,0.75);">We received your birth details:</p>
+        <ul style="color:rgba(240,235,224,0.75);">${fieldLines}</ul>` : `
         <p style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);padding:1rem;">
           <strong>Action needed:</strong> Reply to this email with your <strong>date of birth</strong>, <strong>birth hour</strong> (e.g. Zi Hour 23:00–01:00), and birth city if known.
         </p>`}
@@ -53,8 +56,8 @@ function buyerEmailHtml(product, email, customFields) {
     </div>`;
 }
 
-function sellerEmailHtml(product, body, customFields) {
-  const fields = Object.entries(customFields)
+function sellerEmailHtml(product, body, birthFields) {
+  const fields = Object.entries(birthFields)
     .map(([k, v]) => `<tr><td style="padding:6px 12px;border-bottom:1px solid #333;color:#999;">${k}</td><td style="padding:6px 12px;border-bottom:1px solid #333;">${v}</td></tr>`)
     .join('');
 
@@ -65,7 +68,7 @@ function sellerEmailHtml(product, body, customFields) {
       <strong>Name:</strong> ${body.full_name || '—'}<br>
       <strong>Price:</strong> ${body.price || product.price}<br>
       <strong>Sale ID:</strong> ${body.sale_id || '—'}</p>
-      ${fields ? `<table style="width:100%;border-collapse:collapse;margin-top:12px;">${fields}</table>` : '<p><em>No birth details yet — check Gumroad buyer email or ask buyer to reply with DOB + birth hour.</em></p>'}
+      ${fields ? `<p style="margin-top:12px;color:#c9a84c;font-size:12px;letter-spacing:1px;">BIRTH DETAILS FOR READING</p><table style="width:100%;border-collapse:collapse;margin-top:8px;">${fields}</table>` : '<p><em>No birth details — ask buyer to reply with DOB + birth hour.</em></p>'}
       <p style="margin-top:16px;"><a href="https://app.gumroad.com/sales">Open Gumroad Sales →</a></p>
     </div>`;
 }
