@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/lle572988-art/guanlan-energy/issues"
   },
-  "homepage": "https://github.com/lle572988-art/guanlan-energy#readme"
+  "homepage": "https://github.com/lle572988-art/guanlan-energy#readme",
+  "devDependencies": {
+    "docx": "^9.7.1"
+  }
 }
