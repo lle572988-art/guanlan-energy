@@ -129,12 +129,20 @@ function getChartReading(engineResult) {
 const HOUR_BRANCHES = ['zi','chou','yin','mao','chen','si','wu','wei','shen','you','xu','hai'];
 const HOUR_BRANCH_TO_INDEX = { zi:0, chou:1, yin:2, mao:3, chen:4, si:5, wu:6, wei:7, shen:8, you:9, xu:10, hai:11 };
 
+function sanitizeCountryInput(value) {
+  return String(value || '')
+    .trim()
+    .replace(/[<>"'&;`\\]/g, '')
+    .replace(/\s{2,}/g, ' ')
+    .substring(0, 80);
+}
+
 // ─── URL PARAMS ───
 function getParams() {
   const p = new URLSearchParams(window.location.search);
   const rawDate = p.get('dob') || p.get('date') || '';
   const rawHour = (p.get('hour') || '').trim();
-  const country = p.get('country') || '';
+  const country = sanitizeCountryInput(p.get('country') || '');
   const email = (p.get('email') || '').trim();
 
   let hour = 6;

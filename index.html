@@ -106,7 +106,7 @@ body {
 }
 
 .site-wrapper {
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   z-index: 0;
 }
@@ -3782,6 +3782,8 @@ window.__session = (function() {
   // Add random twinkling star overlay inside the chart area
   const overlayG = document.getElementById('star-overlay');
   const chartStars = [];
+  const chartPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   for (let i = 0; i < 28; i++) {
     // Random points inside the outer rect area but outside the center
     let x, y;
@@ -3806,7 +3808,7 @@ window.__session = (function() {
   let chartTabVisible = !document.hidden;
 
   function animateChartStars() {
-    if (!chartTabVisible) {
+    if (chartPrefersReducedMotion || !chartTabVisible) {
       chartAnimId = null;
       return;
     }
@@ -3819,6 +3821,10 @@ window.__session = (function() {
   }
 
   function startChartAnim() {
+    if (chartPrefersReducedMotion) {
+      chartStars.forEach(function(s) { s.el.setAttribute('opacity', '0.08'); });
+      return;
+    }
     if (chartAnimId === null && chartTabVisible) chartAnimId = requestAnimationFrame(animateChartStars);
   }
 
@@ -4622,9 +4628,9 @@ window.addEventListener('scroll', function() {
 <script defer src="https://gumroad.com/js/gumroad.js"></script>
 <script defer src="/js/gumroad-checkout.js"></script>
 <script>
-/* Pricing CTA UTM + analytics (Gumroad + Stripe fallback) */
+/* Stripe fallback UTM + analytics — Gumroad UTM lives in gumroad-checkout.js only */
 (function() {
-  document.querySelectorAll('a[href*="gumroad.com"], a[href*="checkout.html"]').forEach(function(link) {
+  document.querySelectorAll('a[href*="checkout.html"]').forEach(function(link) {
     var href = link.getAttribute('href') || '';
     if (href.indexOf('utm_source=') !== -1) return;
 
@@ -4633,14 +4639,13 @@ window.addEventListener('scroll', function() {
       'unknown';
     var parent = link.closest('section[id], section, header, nav, footer');
     var section = (parent && parent.id) ? parent.id : (parent ? parent.tagName.toLowerCase() : 'page');
-    var channel = href.indexOf('gumroad.com') !== -1 ? 'gumroad' : 'stripe_fallback';
+    var channel = 'stripe_fallback';
     var sep = href.indexOf('?') === -1 ? '?' : '&';
     link.setAttribute('href', href + sep +
       'utm_source=site&utm_medium=cta&utm_campaign=pricing' +
       '&utm_content=' + encodeURIComponent(section + '_' + product) +
       '&utm_term=' + channel);
 
-    if (channel !== 'stripe_fallback') return;
     if (link.dataset.guanlanUtmBound === '1') return;
     link.dataset.guanlanUtmBound = '1';
     link.addEventListener('click', function() {
