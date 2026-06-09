@@ -3884,6 +3884,29 @@ window.__session = (function() {
 })();
 
 /* ─── FORM SUBMIT ─── */
+function showFieldError(inputEl, msg) {
+  if (!inputEl) return;
+  inputEl.style.borderColor = 'rgba(220, 80, 60, 0.8)';
+  inputEl.setAttribute('aria-invalid', 'true');
+  var errEl = document.getElementById(inputEl.id + '-error');
+  if (!errEl) {
+    errEl = document.createElement('p');
+    errEl.id = inputEl.id + '-error';
+    errEl.setAttribute('role', 'alert');
+    errEl.style.cssText = 'font-size:11px;color:rgba(220,80,60,0.9);margin-top:4px;';
+    inputEl.parentNode.insertBefore(errEl, inputEl.nextSibling);
+  }
+  errEl.textContent = msg;
+}
+
+function clearFieldError(inputEl) {
+  if (!inputEl) return;
+  inputEl.style.borderColor = '';
+  inputEl.removeAttribute('aria-invalid');
+  var errEl = document.getElementById(inputEl.id + '-error');
+  if (errEl) errEl.textContent = '';
+}
+
 function handleSubmit(event) {
   event.preventDefault();
 
@@ -3896,16 +3919,16 @@ function handleSubmit(event) {
 
   let valid = true;
   if (!dobInput || !dobInput.value) {
-    if (dobInput) dobInput.style.borderColor = 'red';
+    showFieldError(dobInput, 'Please enter your date of birth.');
     valid = false;
-  } else if (dobInput) {
-    dobInput.style.borderColor = '';
+  } else {
+    clearFieldError(dobInput);
   }
   if (!hourSelect || !hourSelect.value) {
-    if (hourSelect) hourSelect.style.borderColor = 'red';
+    showFieldError(hourSelect, 'Please select your birth hour.');
     valid = false;
-  } else if (hourSelect) {
-    hourSelect.style.borderColor = '';
+  } else {
+    clearFieldError(hourSelect);
   }
   if (!valid) return false;
 
@@ -4227,6 +4250,19 @@ window.addEventListener('scroll', () => {
   }
   </script>
 
+<!-- COOKIE CONSENT -->
+<div id="cookie-consent" style="display:none;" role="dialog" aria-label="Cookie consent">
+  <div class="cookie-consent-inner">
+    <p>We use cookies to improve your experience and understand chart usage patterns.
+      <a href="/privacy.html">Privacy Policy</a>
+    </p>
+    <div class="cookie-consent-actions">
+      <button type="button" id="cookie-reject">Decline</button>
+      <button type="button" id="cookie-accept">Accept</button>
+    </div>
+  </div>
+</div>
+
 <!-- EXIT INTENT POPUP -->
 <div id="exit-popup" style="
   display:none; position:fixed; inset:0; z-index:9000;
@@ -4335,31 +4371,101 @@ function closeExitPopup() {
 }
 function handleExitCapture(e) {
   e.preventDefault();
-  const email = document.getElementById('exit-email').value;
-  if (!email) return;
+  const email = document.getElementById('exit-email').value.trim();
+  if (!email || email.indexOf('@') === -1) return;
 
   function saveLeadLocally(emailAddr, src) {
     try {
       const existing = JSON.parse(window.__storage.get('pending_leads') || '[]');
       existing.push({ email: emailAddr, source: src, coupon: 'STAR5', ts: Date.now() });
       window.__storage.set('pending_leads', JSON.stringify(existing));
-    } catch (err) {}
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  function showExitSuccess() {
+    document.getElementById('exit-popup').innerHTML =
+      '<div style="padding:3rem;text-align:center;color:var(--gold);font-family:Cinzel,serif;font-size:0.8rem;letter-spacing:0.15em;">✓ CHECK YOUR EMAIL — YOUR CHART IS ON THE WAY</div>';
+    setTimeout(closeExitPopup, 3000);
+  }
+
+  function showExitError() {
+    var popup = document.getElementById('exit-popup');
+    var err = document.getElementById('exit-email-error');
+    if (!err) {
+      err = document.createElement('p');
+      err.id = 'exit-email-error';
+      err.setAttribute('role', 'alert');
+      err.style.cssText = 'font-size:0.78rem;color:rgba(220,80,60,0.9);margin-top:0.75rem;';
+      var form = popup.querySelector('form');
+      if (form) form.appendChild(err);
+    }
+    err.textContent = 'Could not save your email. Please try again or contact hello@metaphysicflow.com.';
+  }
+
+  var submitBtn = e.target.querySelector('button[type="submit"]');
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
   }
 
   fetch('/api/subscribe', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, source: 'exit_popup', coupon: 'STAR5' })
-  }).then(function(res) {
-    if (!res.ok) saveLeadLocally(email, 'exit_popup');
-  }).catch(function() {
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({ email: email, source: 'exit_popup', coupon: 'STAR5' })
+  })
+  .then(function(res) {
+    if (res.ok) return { ok: true };
+    return fetch('/api/collect-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        source: 'exit_popup',
+        page: window.location.pathname,
+        ts: new Date().toISOString(),
+        ref: document.referrer || 'direct'
+      })
+    }).then(function(r) { return { ok: r.ok }; });
+  })
+  .catch(function() {
+    return fetch('/api/collect-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        email: email,
+        source: 'exit_popup',
+        page: window.location.pathname,
+        ts: new Date().toISOString(),
+        ref: document.referrer || 'direct'
+      })
+    }).then(function(r) { return { ok: r.ok }; })
+      .catch(function() { return { ok: false }; });
+  })
+  .then(function(result) {
     saveLeadLocally(email, 'exit_popup');
+    if (result && result.ok) {
+      if (window.plausible) plausible('email_subscribe', { props: { source: 'exit_popup' } });
+      showExitSuccess();
+    } else {
+      showExitError();
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send My Chart';
+      }
+    }
   });
-
-  document.getElementById('exit-popup').innerHTML =
-    '<div style="padding:3rem;text-align:center;color:var(--gold);font-family:Cinzel,serif;font-size:0.8rem;letter-spacing:0.15em;">✓ CHECK YOUR EMAIL — YOUR CHART IS ON THE WAY</div>';
-  setTimeout(closeExitPopup, 3000);
 }
+
+window.extractLeads = function() {
+  try {
+    return JSON.parse(window.__storage.get('pending_leads') || '[]');
+  } catch (e) {
+    return [];
+  }
+};
 document.getElementById('exit-popup').addEventListener('click', function(e){
   if(e.target === this) closeExitPopup();
 });
@@ -4412,21 +4518,7 @@ window.addEventListener('scroll', function() {
   if (stored === 'accepted' || stored === 'rejected') return;
 
   var banner = document.getElementById('cookie-consent');
-  if (!banner) {
-    banner = document.createElement('div');
-    banner.id = 'cookie-consent';
-    banner.innerHTML = [
-      '<div class="cookie-consent-inner">',
-        '<p>We use cookies to improve your experience and understand chart usage patterns. ',
-        '<a href="/privacy.html">Privacy Policy</a></p>',
-        '<div class="cookie-consent-actions">',
-          '<button id="cookie-reject">Decline</button>',
-          '<button id="cookie-accept">Accept</button>',
-        '</div>',
-      '</div>'
-    ].join('');
-    document.body.appendChild(banner);
-  }
+  if (!banner) return;
   banner.style.display = 'block';
 
   function dismiss(choice) {
