@@ -129,8 +129,8 @@ function getChartReading(engineResult) {
 const HOUR_BRANCHES = ['zi','chou','yin','mao','chen','si','wu','wei','shen','you','xu','hai'];
 const HOUR_BRANCH_TO_INDEX = { zi:0, chou:1, yin:2, mao:3, chen:4, si:5, wu:6, wei:7, shen:8, you:9, xu:10, hai:11 };
 
-function sanitizeCountryInput(value) {
-  return String(value || '')
+function sanitizeCountryInput(raw) {
+  return String(raw || '')
     .trim()
     .replace(/[<>"'&;`\\]/g, '')
     .replace(/\s{2,}/g, ' ')
@@ -456,7 +456,7 @@ function renderSihuaBlock(reading) {
       + '<div class="sihua-item">'
       + '<span class="sihua-tag">' + parsed.type + ' ' + meta.en + '</span>'
       + '<p>' + text + '</p>'
-      + '</div>';
+    + '</div>';
   }).join('');
   if (!items) return '';
   return ''
@@ -1061,7 +1061,7 @@ var AI_READINGS_CACHE = {};
 
 async function generateAndUpdateAIReadings(result, params) {
   if (!result || !result.palaces) return;
-
+  
   var lifeDisplay = chartState.readings ? resolveLifePalaceDisplay(chartState.readings) : null;
   var lifeStarCn = (lifeDisplay && lifeDisplay.starCn) || '';
 
@@ -1072,7 +1072,7 @@ async function generateAndUpdateAIReadings(result, params) {
       if (text && blurbEl && !blurbEl.textContent) blurbEl.textContent = text;
     });
   }
-
+  
   for (var i = 0; i < result.palaces.length; i++) {
     (function(idx) {
       setTimeout(async function() {
@@ -1086,11 +1086,11 @@ async function generateAndUpdateAIReadings(result, params) {
         var starCn = majorStars.length > 0 ? majorStars[0] : '—';
         var starData = STAR_EN[starCn] || starCn;
         var palaceName = palace.name || '';
-
+        
         var existing = chartState.readings && chartState.readings[idx];
         var existingBody = existing ? (existing.body || '') : '';
         if (existingBody && existingBody.length > 80) return;
-
+        
         try {
           var raw = await generatePalaceReading(
             palaceName,
@@ -1101,13 +1101,13 @@ async function generateAndUpdateAIReadings(result, params) {
             lifeStarCn || '—'
           );
           var parsed = parseReading(raw);
-
+          
           if (chartState.readings && chartState.readings[idx]) {
             chartState.readings[idx].hook = parsed.hook;
             chartState.readings[idx].body = parsed.body;
             chartState.readings[idx].year2026 = parsed.year2026;
           }
-
+          
           if (idx === 0 && chartState.readings) {
             renderIdentityHook(chartState.result, chartState.readings, getChartMeta(chartState.result, getEffectiveLifeStarCn(chartState.readings)));
           }

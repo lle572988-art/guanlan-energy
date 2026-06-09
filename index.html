@@ -3782,8 +3782,6 @@ window.__session = (function() {
   // Add random twinkling star overlay inside the chart area
   const overlayG = document.getElementById('star-overlay');
   const chartStars = [];
-  const chartPrefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   for (let i = 0; i < 28; i++) {
     // Random points inside the outer rect area but outside the center
     let x, y;
@@ -3802,13 +3800,14 @@ window.__session = (function() {
     chartStars.push({ el: circle, phase: Math.random() * Math.PI * 2, speed: Math.random() * 0.03 + 0.01 });
   }
 
-  // Animate twinkling (pause when tab hidden)
+  // Animate twinkling (pause when tab hidden; skip when reduced motion)
   let t = 0;
   let chartAnimId = null;
   let chartTabVisible = !document.hidden;
+  const chartReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function animateChartStars() {
-    if (chartPrefersReducedMotion || !chartTabVisible) {
+    if (chartReducedMotion || !chartTabVisible) {
       chartAnimId = null;
       return;
     }
@@ -3821,7 +3820,7 @@ window.__session = (function() {
   }
 
   function startChartAnim() {
-    if (chartPrefersReducedMotion) {
+    if (chartReducedMotion) {
       chartStars.forEach(function(s) { s.el.setAttribute('opacity', '0.08'); });
       return;
     }
@@ -4628,7 +4627,7 @@ window.addEventListener('scroll', function() {
 <script defer src="https://gumroad.com/js/gumroad.js"></script>
 <script defer src="/js/gumroad-checkout.js"></script>
 <script>
-/* Stripe fallback UTM + analytics — Gumroad UTM lives in gumroad-checkout.js only */
+/* Pricing CTA UTM + analytics — Stripe fallback only; Gumroad via gumroad-checkout.js */
 (function() {
   document.querySelectorAll('a[href*="checkout.html"]').forEach(function(link) {
     var href = link.getAttribute('href') || '';
