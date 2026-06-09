@@ -2119,6 +2119,21 @@ footer {
     --silver-dim: rgba(220, 228, 240, 0.82);
     --gold-soft: #e8cc88;
     --parchment: #f0e8d8;
+    --btn-text: #080808;
+  }
+
+  body::before {
+    opacity: 0.4;
+  }
+
+  .btn-primary,
+  .btn-pricing,
+  .btn-gold,
+  .btn-preview-cta,
+  #pricing .btn-pricing,
+  .nav-cta,
+  .unlock-badge {
+    color: var(--btn-text) !important;
   }
 
   body {
@@ -3591,7 +3606,7 @@ body::before {
     <a href="/privacy.html">Privacy</a>
     <a href="/terms.html">Terms</a>
     <a href="mailto:hello@metaphysicflow.com">Email</a>
-    <a href="https://wa.me/8613983664891?text=Hi%2C%20I%20have%20a%20question%20about%20Guanlan%20Energy." target="_blank" rel="noopener" data-guanlan-wa="1">WhatsApp</a>
+    <a href="#" data-guanlan-wa-cta="default" target="_blank" rel="noopener">WhatsApp</a>
     <a href="https://www.reddit.com/r/ziwei/" target="_blank" rel="noopener">Reddit</a>
   </div>
 </footer>
@@ -4013,8 +4028,11 @@ function handleSubmit(event) {
   }
   if (!valid) return false;
 
-  if (window.plausible) plausible('form_submit');
-  if (window.gtag) gtag('event', 'generate_lead', { event_category: 'hero_form' });
+  if (window.trackEvent) trackEvent('form_submit', { source: 'hero_form' });
+  else {
+    if (window.plausible) plausible('form_submit');
+    if (window.gtag) gtag('event', 'generate_lead', { event_category: 'hero_form' });
+  }
 
   submitBtn.disabled = true;
   submitBtn.style.cursor = 'wait';
@@ -4532,7 +4550,8 @@ function handleExitCapture(e) {
   .then(function(result) {
     saveLeadLocally(email, 'exit_popup');
     if (result && result.ok) {
-      if (window.plausible) plausible('email_subscribe', { props: { source: 'exit_popup' } });
+      if (window.trackEvent) trackEvent('email_subscribe', { source: 'exit_popup' });
+      else if (window.plausible) plausible('email_subscribe', { props: { source: 'exit_popup' } });
       showExitSuccess();
     } else {
       showExitError();
@@ -4575,22 +4594,40 @@ window.addEventListener('scroll', function() {
 }, { passive: true });
 </script>
 <script>
-/* ─── HOMEPAGE FUNNEL (Plausible) ─── */
+/* Unified custom analytics (GA4 + Plausible) — pageviews stay per-tool by design */
+window.trackEvent = function(name, props) {
+  props = props || {};
+  if (window.plausible) {
+    try { plausible(name, { props: props }); } catch (e) {}
+  }
+  if (window.gtag) {
+    var ga4Map = {
+      form_view: 'view_item',
+      form_start: 'begin_checkout',
+      form_submit: 'generate_lead',
+      checkout_click: 'begin_checkout',
+      purchase_click: 'begin_checkout',
+      email_subscribe: 'sign_up'
+    };
+    try { gtag('event', ga4Map[name] || name, props); } catch (e) {}
+  }
+};
+</script>
+<script>
+/* ─── HOMEPAGE FUNNEL ─── */
 (function() {
   var form = document.getElementById('chart-form');
   if (!form) return;
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function(entries) {
-      if (entries[0].isIntersecting) {
-        if (window.plausible) plausible('form_view');
-      }
+      if (entries[0].isIntersecting) trackEvent('form_view');
     }, { threshold: 0.3 }).observe(form);
   }
   var started = false;
   form.addEventListener('focusin', function() {
-    if (!started && window.plausible) {
+    if (!started) {
       started = true;
-      plausible('form_start');
+      trackEvent('form_start');
     }
   });
 })();
@@ -4624,7 +4661,39 @@ window.addEventListener('scroll', function() {
   if (rejectBtn) rejectBtn.addEventListener('click', function() { dismiss('rejected'); });
 })();
 </script>
-<script defer src="https://gumroad.com/js/gumroad.js"></script>
+<script>
+/* Lazy-load Gumroad overlay JS near pricing / first scroll */
+(function() {
+  var loading = null;
+  window.__loadGumroadScript = function(cb) {
+    if (window.Gumroad) {
+      if (cb) cb();
+      return loading || Promise.resolve();
+    }
+    if (!loading) {
+      loading = new Promise(function(resolve) {
+        var s = document.createElement('script');
+        s.src = 'https://gumroad.com/js/gumroad.js';
+        s.onload = resolve;
+        s.onerror = resolve;
+        document.head.appendChild(s);
+      });
+    }
+    return loading.then(function() { if (cb) cb(); });
+  };
+  var pricing = document.getElementById('pricing');
+  if (pricing && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) window.__loadGumroadScript();
+    }, { rootMargin: '200px' }).observe(pricing);
+  } else {
+    setTimeout(function() { window.__loadGumroadScript(); }, 3000);
+  }
+  window.addEventListener('scroll', function onFirstScroll() {
+    window.__loadGumroadScript();
+  }, { once: true, passive: true });
+})();
+</script>
 <script defer src="/js/gumroad-checkout.js"></script>
 <script>
 /* Pricing CTA UTM + analytics — Stripe fallback only; Gumroad via gumroad-checkout.js */
@@ -4648,14 +4717,12 @@ window.addEventListener('scroll', function() {
     if (link.dataset.guanlanUtmBound === '1') return;
     link.dataset.guanlanUtmBound = '1';
     link.addEventListener('click', function() {
-      var props = {
+      trackEvent('checkout_click', {
         item_name: product,
         item_category: 'ziwei_reading',
         checkout_channel: channel,
         section_origin: section
-      };
-      if (window.gtag) gtag('event', 'begin_checkout', props);
-      if (window.plausible) plausible('checkout_click', { props: props });
+      });
     });
   });
 })();

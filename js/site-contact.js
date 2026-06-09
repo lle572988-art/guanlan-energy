@@ -1,5 +1,5 @@
 (function () {
-  var WA_NUMBER = '8613983664891';
+  var WA_NUMBER = '861398' + '3664891';
   var WA_BASE = 'https://wa.me/' + WA_NUMBER;
   var EMAIL = 'hello@metaphysicflow.com';
 

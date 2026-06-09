@@ -2109,24 +2109,24 @@
 <!-- Hidden chart SVG — used for PDF/email export only -->
 <div id="chart-decor" aria-hidden="true">
   <svg id="chart-svg" role="presentation" viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <filter id="softglow">
-        <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-        <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-      </filter>
-    </defs>
-    <circle cx="280" cy="280" r="260" fill="rgba(201,168,76,0.04)"/>
-    <rect x="60" y="60" width="440" height="440" fill="none" stroke="#C9A84C" stroke-width="0.6" opacity="0.35"/>
-    <rect x="170" y="170" width="220" height="220" fill="none" stroke="#C9A84C" stroke-width="0.5" opacity="0.25"/>
-    <line x1="170" y1="60" x2="170" y2="500" stroke="#C9A84C" stroke-width="0.4" opacity="0.25"/>
-    <line x1="390" y1="60" x2="390" y2="500" stroke="#C9A84C" stroke-width="0.4" opacity="0.25"/>
-    <line x1="60" y1="170" x2="500" y2="170" stroke="#C9A84C" stroke-width="0.4" opacity="0.25"/>
-    <line x1="60" y1="390" x2="500" y2="390" stroke="#C9A84C" stroke-width="0.4" opacity="0.25"/>
-    <text x="280" y="276" text-anchor="middle" font-family="serif" font-size="13" fill="#C9A84C" opacity="0.65">紫微斗數</text>
-    <text x="280" y="296" text-anchor="middle" font-family="serif" font-size="7" fill="#9BB5CC" opacity="0.5">ZI WEI DOU SHU</text>
-    <g id="palaces-content" font-family="serif"></g>
-  </svg>
-</div>
+      <defs>
+        <filter id="softglow">
+          <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+          <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <circle cx="280" cy="280" r="260" fill="rgba(201,168,76,0.04)"/>
+      <rect x="60" y="60" width="440" height="440" fill="none" stroke="#C9A84C" stroke-width="0.6" opacity="0.35"/>
+      <rect x="170" y="170" width="220" height="220" fill="none" stroke="#C9A84C" stroke-width="0.5" opacity="0.25"/>
+      <line x1="170" y1="60" x2="170" y2="500" stroke="#C9A84C" stroke-width="0.4" opacity="0.25"/>
+      <line x1="390" y1="60" x2="390" y2="500" stroke="#C9A84C" stroke-width="0.4" opacity="0.25"/>
+      <line x1="60" y1="170" x2="500" y2="170" stroke="#C9A84C" stroke-width="0.4" opacity="0.25"/>
+      <line x1="60" y1="390" x2="500" y2="390" stroke="#C9A84C" stroke-width="0.4" opacity="0.25"/>
+      <text x="280" y="276" text-anchor="middle" font-family="serif" font-size="13" fill="#C9A84C" opacity="0.65">紫微斗數</text>
+      <text x="280" y="296" text-anchor="middle" font-family="serif" font-size="7" fill="#9BB5CC" opacity="0.5">ZI WEI DOU SHU</text>
+      <g id="palaces-content" font-family="serif"></g>
+    </svg>
+  </div>
 
 <!-- LOADING -->
 <div id="loading-screen">
@@ -2171,19 +2171,19 @@
         <div class="hook-stat">
           <div class="hook-stat-label">FIVE ELEMENTS</div>
           <div class="hook-stat-value" id="hs-element">—</div>
-        </div>
+    </div>
         <div class="hook-stat">
           <div class="hook-stat-label">LIFE PALACE</div>
           <div class="hook-stat-value" id="hs-life">—</div>
-        </div>
+    </div>
         <div class="hook-stat">
           <div class="hook-stat-label">CURRENT CYCLE</div>
           <div class="hook-stat-value" id="hs-cycle">—</div>
-        </div>
+    </div>
         <div class="hook-stat">
           <div class="hook-stat-label">2026 THEME</div>
           <div class="hook-stat-value" id="hs-2026">—</div>
-        </div>
+  </div>
       </div>
     </div>
     <div class="hook-footer">
@@ -2205,7 +2205,7 @@
       <p class="gold-italic">Your full 2026 forecast covers all 12 lunar months with specific timing windows for action.</p>
       <a class="btn-gold" href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" data-product="full-chart">Unlock My Full 2026 Forecast — $39</a>
       <p class="fine-print">Includes all 12 palaces · PDF delivered in 24h</p>
-    </div>
+  </div>
   </section>
 
   <section id="twelve-palaces">
@@ -2233,19 +2233,19 @@
         <div class="share-eyebrow">SHARE YOUR BLUEPRINT</div>
         <h3>Someone in your life needs to see this.</h3>
         <p>You already know who came to mind just now.</p>
-      </div>
+  </div>
 
       <div class="share-card" id="share-card">
         <div class="share-card-inner">
           <div class="share-card-brand">GUANLAN ENERGY · 紫微斗數</div>
           <div class="share-card-title">
             I am <em id="share-persona">The Seeker</em>
-          </div>
+    </div>
           <div class="share-card-star" id="share-star-meta">—</div>
           <div class="share-card-tagline" id="share-tagline">"Your destiny is written in the stars."</div>
           <div class="share-card-url">metaphysicflow.com</div>
-        </div>
-      </div>
+  </div>
+</div>
 
       <div class="share-buttons">
         <button class="share-btn share-btn--copy" type="button" onclick="copyChartLink()" id="copy-btn">

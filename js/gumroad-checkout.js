@@ -154,13 +154,18 @@
   }
 
   function trackCheckoutClick(product, section) {
+    var props = {
+      item_name: product,
+      item_category: 'ziwei_reading',
+      source_section: section,
+      checkout_channel: 'gumroad_overlay'
+    };
+    if (window.trackEvent) {
+      window.trackEvent('checkout_click', props);
+      return;
+    }
     if (window.gtag) {
-      gtag('event', 'begin_checkout', {
-        item_name: product,
-        item_category: 'ziwei_reading',
-        source_section: section,
-        checkout_channel: 'gumroad_overlay'
-      });
+      gtag('event', 'begin_checkout', props);
     }
     if (window.plausible) {
       plausible('purchase_click', { props: { product: product, channel: 'gumroad_overlay' } });
@@ -250,16 +255,23 @@
   }
 
   function openOverlayCheckout(url) {
-    showEscapeBar();
-    var a = document.createElement('a');
-    a.href = url;
-    a.setAttribute('data-gumroad-overlay-checkout', 'true');
-    a.setAttribute('data-gumroad-single-product', 'true');
-    a.style.position = 'fixed';
-    a.style.left = '-9999px';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    function launch() {
+      showEscapeBar();
+      var a = document.createElement('a');
+      a.href = url;
+      a.setAttribute('data-gumroad-overlay-checkout', 'true');
+      a.setAttribute('data-gumroad-single-product', 'true');
+      a.style.position = 'fixed';
+      a.style.left = '-9999px';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+    if (window.__loadGumroadScript) {
+      window.__loadGumroadScript(launch);
+      return;
+    }
+    launch();
   }
 
   window.GuanlanGumroad = {
