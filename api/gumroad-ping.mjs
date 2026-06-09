@@ -32,6 +32,21 @@ async function sendResend({ to, subject, html }) {
   return true;
 }
 
+function sellerNotifyRecipients() {
+  const raw = process.env.SELLER_NOTIFY_EMAIL
+    || 'lle572988@gmail.com,hello@metaphysicflow.com';
+  return [...new Set(
+    raw.split(',').map((s) => s.trim().toLowerCase()).filter(Boolean)
+  )];
+}
+
+async function notifySeller(meta, body, birthFields) {
+  const subject = `[Sale] ${meta.name} — ${body.email || 'buyer'}`;
+  const html = sellerEmailHtml(meta, body, birthFields);
+  const recipients = sellerNotifyRecipients();
+  await Promise.all(recipients.map((to) => sendResend({ to, subject, html })));
+}
+
 function buyerEmailHtml(product, email, birthFields) {
   const thanks = thankYouUrl(product.key);
   const hasBirth = birthFields['Date of birth'] && birthFields['Birth hour'];
@@ -146,12 +161,7 @@ export default async function handler(req, res) {
       html: buyerEmailHtml(meta, email, mergedFields),
     });
 
-    const sellerTo = process.env.SELLER_NOTIFY_EMAIL || 'hello@metaphysicflow.com';
-    await sendResend({
-      to: sellerTo,
-      subject: `[Sale] ${meta.name} — ${email}`,
-      html: sellerEmailHtml(meta, body, mergedFields),
-    });
+    await notifySeller(meta, body, mergedFields);
 
     await logSale({
       saleId: body.sale_id,

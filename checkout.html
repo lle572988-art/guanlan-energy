@@ -163,7 +163,7 @@ document.getElementById('checkout-btn').addEventListener('click', async function
     trackCheckout(productKey);
     var thankYou = 'https://metaphysicflow.com/thank-you.html?product=' + encodeURIComponent(productKey);
     var checkoutUrl = gumroad + (gumroad.indexOf('?') === -1 ? '?' : '&') +
-      'redirect_url=' + encodeURIComponent(thankYou);
+      'utm_source=site&utm_medium=checkout_page&utm_campaign=' + encodeURIComponent(productKey);
     var win = window.open(checkoutUrl, '_blank', 'noopener,noreferrer');
     if (!win) window.location.href = gumroad;
     else {

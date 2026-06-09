@@ -107,7 +107,8 @@
     bar.setAttribute('role', 'status');
     bar.innerHTML =
       '<div class="inner">' +
-        '<p><strong>Checkout opened in a new tab.</strong> Close that tab anytime to cancel — this page stays here.</p>' +
+        '<p><strong>Checkout opened in a new tab.</strong> Close that tab anytime to cancel. ' +
+        'After payment, tap <a id="guanlan-checkout-thankyou" href="/thank-you.html">Order confirmed → next steps</a>.</p>' +
         '<a class="btn-home" href="/">Back to home</a>' +
         '<button type="button" class="btn-dismiss" aria-label="Dismiss">Dismiss</button>' +
       '</div>';
@@ -118,9 +119,13 @@
     });
   }
 
-  function showCheckoutBanner() {
+  function showCheckoutBanner(productKey) {
     ensureCheckoutBanner();
     var bar = document.getElementById('guanlan-checkout-banner');
+    var ty = document.getElementById('guanlan-checkout-thankyou');
+    if (ty && productKey && productKey !== 'gumroad') {
+      ty.href = THANK_YOU + '?product=' + encodeURIComponent(productKey);
+    }
     bar.classList.add('show');
     if (bannerTimer) clearTimeout(bannerTimer);
     bannerTimer = setTimeout(function() {
@@ -148,7 +153,7 @@
       window.location.href = url;
       return;
     }
-    showCheckoutBanner();
+    showCheckoutBanner(product);
     trackCheckoutClick(product, section);
   }
 
@@ -228,7 +233,6 @@
   function buildCheckoutUrl(baseHref, birth, product, section) {
     var href = baseHref || '';
     href = appendGuanlanParams(href, birth);
-    href = appendThankYouRedirect(href, product);
     if (href.indexOf('utm_source=') === -1) {
       var sep = href.indexOf('?') === -1 ? '?' : '&';
       href += sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' + encodeURIComponent(section + '_' + product);
