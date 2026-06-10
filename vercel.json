@@ -101,11 +101,11 @@
     },
     "api/collect-lead.js": {
       "maxDuration": 15,
-      "includeFiles": "api/lib/**"
+      "includeFiles": "server/lib/**"
     },
     "api/gumroad-ping.mjs": {
       "maxDuration": 15,
-      "includeFiles": "api/lib/**"
+      "includeFiles": "server/lib/**"
     }
   }
 }

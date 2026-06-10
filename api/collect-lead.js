@@ -3,10 +3,10 @@
 // GET  — list stored leads (admin)
 
 import { put, list } from '@vercel/blob';
-import { enrichLead, validateLeadPayload } from './lib/lead-enrichment.js';
-import { syncLeadToEsp } from './lib/esp-adapters.js';
-import { generateChartPDF } from './lib/generate-chart-pdf.js';
-import { getEspConfig } from './lib/esp-config.js';
+import { enrichLead, validateLeadPayload } from '../server/lib/lead-enrichment.js';
+import { syncLeadToEsp } from '../server/lib/esp-adapters.js';
+import { generateChartPDF } from '../server/lib/generate-chart-pdf.js';
+import { getEspConfig } from '../server/lib/esp-config.js';
 
 const BLOB_PATH = 'leads.json';
 

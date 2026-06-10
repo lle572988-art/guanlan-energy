@@ -5,8 +5,8 @@ import {
   resolveGumroadProduct,
   thankYouUrl,
   extractBirthContext,
-} from './lib/gumroad-catalog.js';
-import { lookupLeadByEmail, leadToBirthFields } from './lib/lead-lookup.js';
+} from '../server/lib/gumroad-catalog.js';
+import { lookupLeadByEmail, leadToBirthFields } from '../server/lib/lead-lookup.js';
 
 const SALES_PATH = 'gumroad-sales.json';
 
