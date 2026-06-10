@@ -6,6 +6,9 @@ Disallow: /admin/
 # 全量站点地图
 Sitemap: https://metaphysicflow.com/sitemap.xml
 
+# LLM / AI crawler hints
+# https://metaphysicflow.com/llms.txt
+
 # IndexNow 发现端点
 Sitemap: https://metaphysicflow.com/indexnow-links.xml
 

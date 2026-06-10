@@ -273,6 +273,77 @@ main {
 
 .faq-answer p { margin: 0; }
 
+.faq-tool-note {
+  margin-top: 0.85rem !important;
+  padding-top: 0.85rem;
+  border-top: 1px dashed rgba(201, 169, 110, 0.12);
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.faq-tool-note a {
+  color: var(--gold-soft);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+}
+
+.faq-compare {
+  margin-top: 2.5rem;
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--border);
+  background: rgba(16, 22, 38, 0.55);
+}
+
+.faq-compare h2 {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.faq-compare > p {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.compare-table-wrap { overflow-x: auto; }
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.compare-table th,
+.compare-table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(201, 169, 110, 0.1);
+  text-align: left;
+  vertical-align: top;
+}
+
+.compare-table th {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(201, 169, 110, 0.06);
+}
+
+.compare-table td { color: var(--text-secondary); }
+
+.compare-table td:first-child {
+  font-weight: 500;
+  color: var(--parchment);
+  white-space: nowrap;
+}
+
 .faq-inline-cta {
   text-align: center;
   margin: 2rem 0 0.5rem;
@@ -426,6 +497,7 @@ footer {
       <summary>What is Zi Wei Dou Shu (Purple Star Astrology)?</summary>
       <div class="faq-answer">
         <p>Zi Wei Dou Shu, commonly known as Purple Star Astrology, is a 1,000-year-old Chinese metaphysical system that maps an individual's destiny using a 12-Palace Matrix based on their exact lunar birth chart. Led by the sovereign Purple Star (Zi Wei), it analyzes psychological archetypes, career paths, and lifelong wealth cycles.</p>
+        <p class="faq-tool-note">Guanlan Energy's free calculator plots all <strong>14 major stars</strong> across <strong>12 palaces</strong> in under 10 seconds. <a href="/free-chart.html">Generate your chart →</a></p>
       </div>
     </details>
 
@@ -433,6 +505,7 @@ footer {
       <summary>How does a Zi Wei Dou Shu calculator work?</summary>
       <div class="faq-answer">
         <p>A Zi Wei Dou Shu calculator works by converting an individual's Western solar birth data (Year, Month, Day, and Hour) into the traditional Chinese Lunar Calendar. It then programmatically plots 14 Major Stars and auxiliary stars into a 12-quadrant rectangular grid, calibrated to true solar time to determine planetary alignments and lifetime luck pillars.</p>
+        <p class="faq-tool-note">The <a href="/free-chart.html">MetaphysicFlow calculator</a> handles solar-to-lunar conversion and double-hour (Shi Chen) mapping automatically — no manual almanac lookup.</p>
       </div>
     </details>
 
@@ -440,6 +513,7 @@ footer {
       <summary>What is the Life Palace (Ming Gong) in Purple Star Astrology?</summary>
       <div class="faq-answer">
         <p>The Life Palace (Ming Gong) is the structural anchor of a Zi Wei Dou Shu chart, representing an individual's core persona, innate talents, and baseline destiny layout. It acts as the master operating system through which the other 11 palaces (such as Wealth, Career, and Spouse) filter reality.</p>
+        <p class="faq-tool-note">Your Life Palace major star appears instantly in the <a href="/free-chart.html">free chart preview</a> — the anchor palace that drives all other 11 houses.</p>
       </div>
     </details>
 
@@ -447,8 +521,52 @@ footer {
       <summary>How does Zi Wei Dou Shu differ from Bazi?</summary>
       <div class="faq-answer">
         <p>Zi Wei Dou Shu differs from Bazi (Four Pillars of Destiny) in its structural resolution. Bazi analyzes the macro balance of the Five Elements (Wu Xing) and Yin-Yang based on 8 characters to chart overall capacity. In contrast, Zi Wei Dou Shu operates like a detailed psychological script, mapping specific micro life events across a 12-house matrix using individual star archetypes.</p>
+        <p class="faq-tool-note">See the structured comparison table below, or read the <a href="/blog/zi-wei-dou-shu-vs-bazi.html">full Zi Wei vs Bazi guide</a>.</p>
       </div>
     </details>
+  </section>
+
+  <section class="faq-compare" aria-labelledby="compare-heading">
+    <h2 id="compare-heading">Zi Wei Dou Shu vs Bazi</h2>
+    <p>Side-by-side comparison — two imperial Chinese systems, different structural resolution.</p>
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th scope="col">Aspect</th>
+            <th scope="col">Bazi (Four Pillars)</th>
+            <th scope="col">Zi Wei Dou Shu (Purple Star)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Core input</td>
+            <td>8 characters from birth year, month, day, hour</td>
+            <td>Lunar birth chart + 12 palaces + 14 major stars</td>
+          </tr>
+          <tr>
+            <td>Primary lens</td>
+            <td>Five Elements (Wu Xing) balance and Yin-Yang capacity</td>
+            <td>Star archetypes across a 12-house life matrix</td>
+          </tr>
+          <tr>
+            <td>Resolution</td>
+            <td>Macro luck cycles and elemental strength/weakness</td>
+            <td>Micro life events: career, wealth, spouse, health per palace</td>
+          </tr>
+          <tr>
+            <td>Metaphor</td>
+            <td>Engine blueprint — raw capacity and timing</td>
+            <td>In-car navigation — psychological script and turning points</td>
+          </tr>
+          <tr>
+            <td>Best for</td>
+            <td>Elemental balance, day-master strength, 10-year luck pillars</td>
+            <td>Personality archetypes, palace-specific forecasts, star interactions</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <p class="faq-inline-cta">Ready to see your own chart? <a href="/free-chart.html">Generate a free Purple Star natal board →</a></p>
