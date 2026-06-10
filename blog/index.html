@@ -83,7 +83,65 @@ h1 {
   color: rgba(201, 169, 110, 0.45);
   text-transform: uppercase;
   margin: 2.5rem 0 0.5rem;
+  scroll-margin-top: 5rem;
 }
+
+.journal-toc {
+  margin-bottom: 2rem;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid rgba(201, 169, 110, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+}
+.journal-toc-title {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(201, 169, 110, 0.5);
+  margin-bottom: 0.75rem;
+}
+.journal-toc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+.journal-toc-links a {
+  font-size: 0.88rem;
+  color: rgba(201, 169, 110, 0.75);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.journal-toc-links a:hover { color: var(--gold); }
+
+.main-stars-quick {
+  margin: 1rem 0 1.5rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(201, 169, 110, 0.1);
+  background: rgba(255, 255, 255, 0.015);
+}
+.main-stars-quick-title {
+  font-family: Cinzel, serif;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(201, 169, 110, 0.45);
+  margin-bottom: 0.65rem;
+}
+.main-stars-quick ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.35rem 1rem;
+}
+.main-stars-quick a {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  line-height: 1.45;
+}
+.main-stars-quick a:hover { color: var(--gold); }
 
 .article-list { max-width: 720px; margin: 0 auto; }
 
@@ -217,10 +275,26 @@ footer {
     <p class="subtitle">Zi Wei Dou Shu · Feng Shui · Five Elements — practical Chinese metaphysics for modern life.</p>
   </header>
 
+  <nav class="journal-toc" aria-label="Journal directory">
+    <p class="journal-toc-title">Browse the journal</p>
+    <div class="journal-toc-links">
+      <a href="#section-purple-star">Purple Star Astrology</a>
+      <a href="#section-main-stars">14 Main Stars</a>
+      <a href="#section-guides">Guides &amp; Tools</a>
+      <a href="#section-feng-shui">Feng Shui · Five Elements</a>
+    </div>
+  </nav>
+
   <div id="journal-sections"></div>
 </div>
 
-<footer>Guanlan Energy · Purple Star Astrology</footer>
+<footer>
+  <span>Guanlan Energy · Purple Star Astrology</span>
+  <div class="footer-links" style="margin-top:0.75rem;display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;">
+    <a href="/" style="color:rgba(201,169,110,0.45);text-decoration:none;font-size:0.78rem;font-family:Cinzel,serif;">Home</a>
+    <a href="https://goldenrod-fin-d3b.notion.site/Zi-Wei-Dou-Shu-Free-Chart-Calculator-Guide-2026-bbfac057b73d45dc98ce6ff0a804c148" target="_blank" rel="noopener" style="color:rgba(201,169,110,0.45);text-decoration:none;font-size:0.78rem;font-family:Cinzel,serif;">Community Guide</a>
+  </div>
+</footer>
 
 <script>
 var SECTIONS = [
@@ -462,9 +536,10 @@ var SECTIONS = [
   }
 ];
 
-function renderArticleItem(article) {
+function renderArticleItem(article, extraAttrs) {
+  extraAttrs = extraAttrs || '';
   return (
-    '<article class="article-item">' +
+    '<article class="article-item"' + extraAttrs + '>' +
       '<a href="' + article.url + '">' +
         '<div class="article-date">' +
           '<p class="article-date-day">' + article.day + '</p>' +
@@ -494,18 +569,44 @@ function renderFeatured(featured) {
   );
 }
 
+function renderMainStarsQuickNav() {
+  var stars = SECTIONS[0].articles.filter(function (a) { return a.category === 'MAIN STARS'; });
+  if (!stars.length) return '';
+  var links = stars.map(function (star) {
+    return '<li><a href="' + star.url + '">' + star.title.replace(' Star Meaning: ', ' · ').replace(' Star Meaning', '') + '</a></li>';
+  }).join('');
+  return (
+    '<nav id="section-main-stars" class="main-stars-quick" aria-label="14 Main Stars">' +
+      '<p class="main-stars-quick-title">14 Main Stars · 十四主星</p>' +
+      '<ul>' + links + '</ul>' +
+    '</nav>'
+  );
+}
+
 function renderSections() {
   var root = document.getElementById('journal-sections');
   var html = '';
+  var mainStarsNavDone = false;
+  var guidesAnchorDone = false;
 
-  SECTIONS.forEach(function(section) {
-    html += '<p class="section-label">' + section.label + '</p>';
+  SECTIONS.forEach(function(section, sectionIndex) {
+    var sectionId = sectionIndex === 0 ? 'section-purple-star' : 'section-feng-shui';
+    html += '<p class="section-label" id="' + sectionId + '">' + section.label + '</p>';
     html += '<div class="article-list">';
     if (section.featured) {
       html += renderFeatured(section.featured);
     }
     section.articles.forEach(function(article) {
-      html += renderArticleItem(article);
+      if (sectionIndex === 0 && article.category === 'MAIN STARS' && !mainStarsNavDone) {
+        html += renderMainStarsQuickNav();
+        mainStarsNavDone = true;
+      }
+      var extra = '';
+      if (sectionIndex === 0 && article.category !== 'MAIN STARS' && !guidesAnchorDone) {
+        extra = ' id="section-guides"';
+        guidesAnchorDone = true;
+      }
+      html += renderArticleItem(article, extra);
     });
     html += '</div>';
   });

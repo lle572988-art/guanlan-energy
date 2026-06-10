@@ -181,6 +181,19 @@
     injectFloatingButton();
     initCtas();
     wrapInlineButtons();
+    maybeLoadBlogChrome();
+  }
+
+  function maybeLoadBlogChrome() {
+    var path = window.location.pathname || '';
+    if (path.indexOf('/blog/') !== 0) return;
+    if (path === '/blog/' || path === '/blog/index.html') return;
+    if (document.querySelector('script[data-guanlan-blog-chrome]')) return;
+    var s = document.createElement('script');
+    s.src = '/js/blog-article-chrome.js';
+    s.defer = true;
+    s.setAttribute('data-guanlan-blog-chrome', '1');
+    document.body.appendChild(s);
   }
 
   if (document.readyState === 'loading') {
