@@ -10,9 +10,14 @@
     "seo:multiply": "node scripts/build-infinite-matrix.js",
     "seo:transit": "node scripts/build-transit-matrix.js",
     "seo:generate": "SEO_DATA=../data/infinite-matrix.json node scripts/generate-pages.js && node scripts/generate-transit-pages.js",
+    "seo:inject": "node ../scripts/inject-conversion-widget.js",
     "seo:silo": "node scripts/silo-link-architect.js",
     "seo:parasite": "node scripts/parasite-content-spinner.js",
     "seo:sitemap": "SEO_DATA=../data/infinite-matrix.json node scripts/update-sitemap-links.js && SEO_DATA=../data/transit-matrix.json node scripts/update-sitemap-links.js",
-    "seo:blast": "npm run seo:multiply && npm run seo:transit && npm run seo:generate && npm run seo:silo && npm run seo:parasite && npm run seo:sitemap"
+    "seo:blast": "npm run seo:multiply && npm run seo:transit && npm run seo:generate && npm run seo:inject && npm run seo:silo && npm run seo:parasite && npm run seo:sitemap",
+    "seo:force-index": "node scripts/force-google-index.js"
+  },
+  "dependencies": {
+    "googleapis": "^173.0.0"
   }
 }
