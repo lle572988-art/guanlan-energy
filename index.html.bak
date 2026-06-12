@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="referrer" content="strict-origin-when-cross-origin"/>
+<title>Guanlan Energy | Modern Five Elements & Cosmic Blueprint Analysis</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-T82Z7E5ELB');
+
+// === UTM Capture & Engagement Events ===
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var utmSource = params.get('utm_source');
+  if (utmSource) {
+    gtag('event', 'traffic_source', {
+      'utm_source': utmSource,
+      'utm_medium': params.get('utm_medium') || '(none)',
+      'utm_campaign': params.get('utm_campaign') || '(none)'
+    });
+  }
+  setTimeout(function(){
+    if (!document.hidden) {
+      gtag('event', 'user_engagement');
+    }
+  }, 10000);
+  var scrolled = false;
+  window.addEventListener('scroll', function(){
+    if (!scrolled && window.scrollY > 200) {
+      scrolled = true;
+      gtag('event', 'scroll', { 'scroll_depth': Math.round(window.scrollY / window.innerHeight * 100) + '%' });
+    }
+  }, { once: true });
+})();
+</script>
+<meta name="description" content="Discover your Five Elements energy blueprint. Free birth date analysis reveals your Wood, Fire, Earth, Metal, Water balance — elemental personality, lucky colors, career fortune, and your complete Wu Xing chart. Ancient Zi Wei Dou Shu wisdom meets modern cosmic alignment."/>
+<script src="https://gumroad.com/js/gumroad-embed.js"></script>
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-T82Z7E5ELB');
+
+// === UTM Capture & Engagement Events ===
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var utmSource = params.get('utm_source');
+  if (utmSource) {
+    gtag('event', 'traffic_source', {
+      'utm_source': utmSource,
+      'utm_medium': params.get('utm_medium') || '(none)',
+      'utm_campaign': params.get('utm_campaign') || '(none)'
+    });
+  }
+  // Fire engagement event after 10s of page focus
+  setTimeout(function(){
+    if (!document.hidden) {
+      gtag('event', 'user_engagement');
+    }
+  }, 10000);
+  // Scroll depth tracking
+  var scrolled = false;
+  window.addEventListener('scroll', function(){
+    if (!scrolled && window.scrollY > 200) {
+      scrolled = true;
+      gtag('event', 'scroll', { 'scroll_depth': Math.round(window.scrollY / window.innerHeight * 100) + '%' });
+    }
+  }, { once: true });
+})();
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+SC:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#06100c;--ink2:#0d1f17;
+  --gold:#c9a84c;--gold2:#e8d4a0;--gold3:rgba(201,168,76,.12);
+  --jade:#2d5a3d;--jade2:#1a3828;
+  --text:#f0ebe0;--muted:rgba(240,235,224,.55);
+  --wood:#4a7c59;--fire:#c0392b;--earth:#c9a84c;--metal:#b0b8c1;--water:#2c5f8a;
+  --seal:#c23a2b;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'EB Garamond','Noto Serif SC',serif;
+  background:var(--ink);color:var(--text);
+  overflow-x:hidden;line-height:1.85;font-size:16px;
+}
+.bg-layer{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse 80% 60% at 10% 10%,rgba(45,90,61,.2) 0%,transparent 60%),
+             radial-gradient(ellipse 60% 80% at 90% 90%,rgba(201,168,76,.06) 0%,transparent 55%),
+             var(--ink);
+}
+.taiji-bg{
+  position:fixed;inset:0;z-index:2;pointer-events:none;opacity:0.03;
+  background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiB2aWV3Qm94PSIwIDAgMjAwIDIwMCI+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwIiBjeT0iNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M5YTg0YyIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmY+");
+}
+nav{
+  position:sticky;top:0;z-index:9999;
+  background:rgba(6,16,12,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(201,168,76,.12);padding:18px 0;
+}
+.nav-inner{
+  width:min(1200px,90%);margin:auto;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer}
+.nav-logo svg{animation:spin 25s linear infinite}
+.nav-name{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:2px;color:var(--gold);font-weight:400}
+.nav-sub{font-size:9px;letter-spacing:4px;color:var(--muted);margin-top:2px;text-transform:uppercase}
+.nav-links{display:flex;gap:36px;align-items:center}
+.nav-links a{
+  color:var(--muted);text-decoration:none;font-size:14px;
+  letter-spacing:2px;font-family:'Cormorant Garamond',serif;transition:.3s;position:relative;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-6px;left:50%;width:0;height:1px;
+  background:var(--gold);transition:.3s;transform:translateX(-50%);
+}
+.nav-links a:hover::after{width:80%}
+.hamburger{
+  display:none;flex-direction:column;gap:6px;background:none;border:none;cursor:pointer;padding:4px;
+}
+.hamburger span{display:block;width:24px;height:1px;background:var(--gold);transition:.3s}
+.mobile-menu{
+  display:none;position:fixed;top:70px;left:0;width:100%;background:rgba(6,16,12,.98);
+  border-bottom:1px solid rgba(201,168,76,.15);z-index:9998;flex-direction:column;
+  align-items:center;padding:30px 0;gap:24px;box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:var(--text);text-decoration:none;font-size:18px;letter-spacing:2px}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+}
+.wrap{position:relative;z-index:10;width:min(1200px,90%);margin:auto;padding-bottom:100px}
+.hero{
+  min-height:85vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:60px 0;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:999px;
+  border:1px solid rgba(201,168,76,.25);background:rgba(201,168,76,.04);
+  font-size:11px;letter-spacing:3px;color:var(--gold);margin-bottom:28px;text-transform:uppercase;
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(40px,6vw,76px);
+  font-weight:300;letter-spacing:2px;line-height:1.15;margin-bottom:20px;color:var(--text);
+}
+.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-desc{font-size:18px;color:var(--muted);max-width:640px;margin:0 auto 45px;font-weight:300}
+.form-card{
+  background:rgba(13,31,23,.75);border:1px solid rgba(201,168,76,.16);
+  border-radius:24px;padding:40px;max-width:540px;width:100%;
+  backdrop-filter:blur(20px);box-shadow:0 20px 50px rgba(0,0,0,.4);
+  text-align:left;margin:0 auto;position:relative;
+}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold2);margin-bottom:6px;text-align:center;letter-spacing:1px}
+.form-subtitle{font-size:13px;color:var(--muted);margin-bottom:30px;text-align:center}
+.field{margin-bottom:22px}
+.field label{display:block;font-size:11px;letter-spacing:2px;color:rgba(201,168,76,.7);margin-bottom:8px;text-transform:uppercase}
+.field input, .field select{
+  width:100%;padding:14px 16px;border-radius:10px;border:1px solid rgba(201,168,76,.15);
+  background:rgba(6,16,12,.7);color:var(--text);font-size:15px;outline:none;transition:.3s;
+  font-family:inherit;
+}
+.field input:focus, .field select:focus{border-color:var(--gold);box-shadow:0 0 8px rgba(201,168,76,.25)}
+.fields-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.submit-btn{
+  width:100%;padding:16px;border-radius:999px;border:none;
+  background:linear-gradient(135deg, rgba(201,168,76,.3), rgba(45,90,61,.4));
+  border:1px solid rgba(201,168,76,.4);color:var(--gold2);
+  font-family:'Cormorant Garamond',serif;font-size:17px;letter-spacing:2px;
+  cursor:pointer;transition:.3s;margin-top:10px;font-weight:500;
+}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(201,168,76,.2)}
+.loading-overlay{
+  display:none;position:fixed;inset:0;background:rgba(6,16,12,.96);
+  z-index:10000;align-items:center;justify-content:center;flex-direction:column;
+}
+.loading-overlay.show{display:flex}
+.loading-icon{width:60px;height:60px;margin-bottom:24px;animation:spin 4s linear infinite}
+.loading-text{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);letter-spacing:2px;margin-bottom:20px}
+.loading-steps{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.lstep{font-size:14px;color:rgba(240,235,224,.3);transition:.4s}
+.lstep.active{color:var(--gold);font-weight:bold}
+.lstep.done{color:rgba(240,235,224,.6)}
+
+#results{display:none;padding-top:100px;margin-top:-50px}
+.report-header{
+  text-align:center;padding:50px 30px;background:rgba(13,31,23,.4);
+  border:1px solid rgba(201,168,76,.12);border-radius:24px;margin-bottom:32px;
+}
+.report-badge{
+  display:inline-block;padding:4px 14px;border-radius:999px;
+  border:1px solid var(--el-color, var(--gold));color:var(--el-color, var(--gold));
+  font-size:11px;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase;font-weight:500;
+}
+.report-main-title{font-family:'Cormorant Garamond',serif;font-size:38px;color:var(--text);margin-bottom:12px}
+.report-subtitle{font-size:15px;color:var(--gold2);letter-spacing:1px}
+.chart-block{
+  background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);
+  border-radius:20px;padding:36px;margin-bottom:32px;
+}
+.block-title{
+  font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--gold);
+  letter-spacing:2px;margin-bottom:24px;display:flex;align-items:center;gap:10px;text-transform:uppercase;
+}
+.block-title::after{content:'';flex:1;height:1px;background:rgba(201,168,76,.15)}
+.bar-group{display:flex;flex-direction:column;gap:18px}
+.bar-row{display:flex;align-items:center;gap:16px}
+.bar-label{width:90px;font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:1px}
+.bar-track{flex:1;height:10px;background:rgba(255,255,255,.05);border-radius:999px;overflow:hidden}
+.bar-fill{height:100%;border-radius:999px;width:0;transition:width 1.5s ease-out}
+.bar-val{width:40px;text-align:right;font-size:14px;color:var(--muted)}
+.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+@media(max-width:768px){.analysis-grid{grid-template-columns:1fr}}
+.analysis-card{
+  background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);
+  border-radius:20px;padding:28px;transition:.3s;
+}
+.analysis-card:hover{border-color:rgba(201,168,76,.3);transform:translateY(-2px)}
+.card-head{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold2);margin-bottom:12px}
+.card-text{font-size:15px;color:rgba(240,235,224,.75);line-height:1.75;text-align:justify}
+.lucky-banner{
+  background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);
+  border-radius:20px;padding:30px;margin-bottom:40px;
+}
+.lucky-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);text-align:center;margin-bottom:20px;letter-spacing:2px}
+.lucky-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+@media(max-width:560px){.lucky-grid{grid-template-columns:1fr 1fr}}
+.lucky-item{background:rgba(6,16,12,.5);padding:16px;border-radius:12px;border:1px solid rgba(201,168,76,.08)}
+.lucky-name{font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:4px;text-transform:uppercase}
+.lucky-value{font-size:16px;color:var(--text);font-weight:500}
+.premium-cta{
+  text-align:center;background:linear-gradient(180deg, rgba(201,168,76,.08) 0%, rgba(13,31,23,.9) 100%);
+  border:2px solid var(--gold);border-radius:28px;padding:50px 40px;position:relative;overflow:hidden;
+}
+.premium-cta::before{
+  content:'';position:absolute;top:0;left:-50%;width:200%;height:100%;
+  background:linear-gradient(to right, transparent, rgba(255,255,255,0.03), transparent);
+  transform:skewX(-30deg);animation:shine 6s infinite linear;
+}
+@keyframes shine {0% {left: -50%} 100% {left: 150%}}
+.cta-badge{color:var(--seal);font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:3px;font-weight:bold;margin-bottom:12px}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold2);margin-bottom:16px;letter-spacing:1px}
+.cta-desc{font-size:15.5px;color:var(--muted);max-width:680px;margin:0 auto 30px;line-height:1.75}
+.cta-btn{
+  display:inline-block;padding:18px 48px;border-radius:999px;background:var(--gold);
+  color:var(--ink);text-decoration:none;font-family:'Cormorant Garamond',serif;font-weight:600;
+  font-size:16px;letter-spacing:2px;box-shadow:0 10px 30px rgba(201,168,76,0.3);transition:.3s;
+}
+.cta-btn:hover{transform:translateY(-3px);background:var(--gold2);box-shadow:0 15px 40px rgba(201,168,76,0.5)}
+
+/* 订阅弹窗样式 */
+.subscribe-overlay{
+  position:fixed;inset:0;background:rgba(6,16,12,.85);backdrop-filter:blur(10px);
+  z-index:100000;display:none;align-items:center;justify-content:center;padding:20px;
+}
+.subscribe-overlay.open{display:flex}
+.subscribe-card{
+  background:var(--ink2);border:1px solid var(--gold);border-radius:24px;
+  padding:40px;max-width:460px;width:100%;text-align:center;position:relative;
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+.close-popup{
+  position:absolute;top:20px;right:20px;background:none;border:none;
+  color:var(--muted);font-size:24px;cursor:pointer;transition:.3s;
+}
+.close-popup:hover{color:var(--gold)}
+.popup-badge{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.popup-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--text);margin-bottom:12px;line-height:1.2}
+.popup-desc{font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6}
+.popup-form input[type="email"]{
+  width:100%;padding:14px;border-radius:30px;border:1px solid rgba(201,168,76,.3);
+  background:rgba(6,16,12,.6);color:var(--text);text-align:center;font-size:15px;outline:none;margin-bottom:16px;
+}
+.popup-form input[type="email"]:focus{border-color:var(--gold)}
+.popup-submit{
+  width:100%;padding:14px;border-radius:30px;border:none;background:var(--gold);
+  color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;
+  letter-spacing:1px;cursor:pointer;transition:.3s;
+}
+.popup-submit:hover{background:var(--gold2)}
+.popup-success{display:none;color:var(--gold2);font-size:16px;font-family:'Cormorant Garamond',serif;margin-top:10px}
+
+footer{text-align:center;padding:40px 0;border-top:1px solid rgba(201,168,76,.08);margin-top:60px;font-size:12px;color:var(--muted);letter-spacing:1px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://metaphysicflow.com/#website",
+      "url": "https://metaphysicflow.com",
+      "name": "Eastern Five Elements \u2014 Feng Shui & Energy Balance",
+      "description": "Discover how the five elements shape your home, career, and relationships.",
+      "inLanguage": "en",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Guanlan Energy",
+        "url": "https://guanlan.energy"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://metaphysicflow.com/index.html#webpage",
+      "url": "https://metaphysicflow.com/index.html",
+      "name": "Guanlan Energy | Modern Five Elements & Cosmic Blueprint Analysis",
+      "description": "Discover your Five Elements energy blueprint. Free birth date analysis reveals your Wood, Fire, Earth, Metal, Water balance \u2014 elemental personality, lucky colors, career fortune, and your complete Wu Xing chart. Ancient Zi Wei Dou Shu wisdom meets modern cosmic alignment.",
+      "isPartOf": {
+        "@id": "https://metaphysicflow.com/#website"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Wood Element"
+      },
+      "mainEntity": {
+        "@id": "https://metaphysicflow.com/index.html#article"
+      }
+    },
+    {
+      "@type": "Article",
+      "@id": "https://metaphysicflow.com/index.html#article",
+      "headline": "Guanlan Energy | Modern Five Elements & Cosmic Blueprint Analysis",
+      "description": "Discover your Five Elements energy blueprint. Free birth date analysis reveals your Wood, Fire, Earth, Metal, Water balance \u2014 elemental personality, lucky colors, career fortune, and your complete Wu Xing chart. Ancient Zi Wei Dou Shu wisdom meets modern cosmic alignment.",
+      "author": {
+        "@type": "Person",
+        "name": "Guanlan (\u89c2\u6f9c)",
+        "url": "https://guanlan.energy"
+      },
+      "image": "https://metaphysicflow.com/images/calligraphy.jpg",
+      "datePublished": "2026-05-30",
+      "dateModified": "2026-06-02",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Guanlan Energy"
+      }
+    }
+  ]
+}
+</script>
+
+<!-- FAQ Schema — 抢 Google 搜索结果位 -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+ {
+ "@type": "Question",
+ "name": "What is the Five Elements (Wu Xing) theory?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "Wu Xing (五行) is a 2,000-year-old Chinese cosmological framework describing how Wood, Fire, Earth, Metal, and Water interact through cycles of generation and control. Each element represents a quality of qi (vital energy). Your birth chart reveals your unique elemental distribution, which modern practitioners map to personality, career fit, and lifestyle rhythms."
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "How do I find my birth element?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "Your birth element is calculated from your exact birth date and hour using the Chinese Bazi (Four Pillars) system. Enter your details on our free Cosmic Blueprint tool at metaphysicflow.com and you will receive your Wu Xing distribution within seconds — including your dominant element, archetype, lucky colors, and career resonance."
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "Is Bazi (八字) accurate?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "Bazi has been used for over a thousand years as a reflective framework, not a deterministic prediction. Modern practitioners treat it as a self-awareness tool — it surfaces patterns in your temperament, decision-making, and life cycles. Think of it as a personality lens, not a fortune-telling script. Our AI-powered engine applies contemporary calculation to the classical methodology."
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "How is the Five Elements different from Western astrology?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "Western astrology is solar-based and uses 12 zodiac signs. Wu Xing is solar-lunar-stellar based and uses 10 Heavenly Stems and 12 Earthly Branches across 12 palaces. Wu Xing focuses on elemental balance (Wood, Fire, Earth, Metal, Water), while Western astrology focuses on planetary aspects. Many modern users combine both systems for a richer self-map."
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "Can Five Elements help with career decisions?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "Yes. Each element carries a natural professional affinity. Fire types often excel in leadership, marketing, and public-facing roles. Water types thrive in research, strategy, and creative writing. Earth types stabilize operations and management. Metal types are drawn to finance, law, and precision systems. Wood types build, teach, and grow ventures. Knowing your dominant element helps you align work with your natural rhythm."
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "What is the Fire Horse year 2026 about?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "2026 is the Bing Wu (丙午) Fire Horse year in the Chinese sexagenary cycle. It amplifies Fire energy globally — speed, visibility, and bold action. People with a Fire element in their birth chart are expected to experience accelerated momentum in career and wealth. Earth and Water types may need to consciously ground or rest more than usual."
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "How can I balance a weak element in my chart?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "A weak element is balanced through environment, color, direction, and rhythm. For example, a Water-deficient person may benefit from dark blue tones, north-facing workspaces, water features, and reflective practices. Our full Cosmic Blueprint report provides a personalized calibration matrix tailored to your exact elemental distribution."
+ }
+ },
+ {
+ "@type": "Question",
+ "name": "What does \"command position\" mean in feng shui?",
+ "acceptedAnswer": {
+ "@type": "Answer",
+ "text": "Command position is the placement of your desk or bed so you can see the door without being directly in line with it. It is considered the most energetically stable position for focus, decision-making, and authority. Most remote workers and founders under-utilize this — your back to the door creates subconscious vigilance that drains cognitive bandwidth."
+ }
+ }
+ ]
+}
+</script>
+
+<!-- Open Graph / Social Meta — injected by guanlan-bot -->
+<meta property="og:title" content="Align with Your Elemental Source"/>
+<meta property="og:description" content="Discover your Five Elements energy blueprint. Free birth date analysis reveals your Wood, Fire, Earth, Metal, Water balance — elemental personality, lucky colors, career fortune, and your complete Wu "/>
+<meta property="og:image" content="https://metaphysicflow.com/images/calligraphy.jpg"/>
+<meta property="og:url" content="https://metaphysicflow.com/"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Align with Your Elemental Source"/>
+<meta name="twitter:description" content="Discover your Five Elements energy blueprint. Free birth date analysis reveals your Wood, Fire, Earth, Metal, Water balance — elemental personality, lucky colors, career fortune, and your complete Wu "/>
+<meta name="twitter:image" content="https://metaphysicflow.com/images/calligraphy.jpg"/>
+
+<!-- Plausible -->
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+</head>
+<body>
+
+<div class="bg-layer"></div>
+<div class="taiji-bg"></div>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <svg viewBox="0 0 100 100" width="34" height="34">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="#c9a84c" stroke-width="1.5" opacity="0.4"/>
+        <path d="M50 5 A45 45 0 0 1 50 95 A22.5 22.5 0 0 0 50 50 A22.5 22.5 0 0 1 50 5 Z" fill="#c9a84c" opacity="0.7"/>
+        <circle cx="50" cy="27.5" r="5" fill="#06100c"/>
+        <circle cx="50" cy="72.5" r="5" fill="#c9a84c"/>
+      </svg>
+      <div>
+        <div class="nav-name">Guanlan Energy</div>
+        <div class="nav-sub">Cosmic Blueprint</div>
+      </div>
+    </div>
+    <div class="nav-links">
+      <a href="#home">Alignment</a>
+      <a href="#results" id="nav-report-link" style="display:none;">Your Report</a>
+      <a href="/blog/index.html">Stories</a>
+      <a href="/scan/">Scanner</a>
+      <a href="#blueprint">Premium Blueprint</a>
+      <a href="javascript:void(0)" onclick="openPopup()">Weekly Forecast</a>
+    </div>
+    <button class="hamburger" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="toggleMobileMenu()">Alignment</a>
+  <a href="/blog/index.html" onclick="toggleMobileMenu()">Stories</a>
+  <a href="/scan/" onclick="toggleMobileMenu()">Scanner</a>
+  <a href="#blueprint" onclick="toggleMobileMenu()">Premium Blueprint</a>
+  <a href="javascript:void(0)" onclick="openPopup(); toggleMobileMenu();">Weekly Forecast</a>
+</div>
+
+<div class="wrap">
+  <section class="hero" id="home">
+    <div class="hero-eyebrow">Oriental Cosmic Energy Baseline</div>
+    <h1>Align with Your <em>Elemental Source</em></h1>
+    <div class="hero-desc">Enter your birth details to decode your unique cosmic elemental blueprint. Calibrated for global founders, remote creators, and independent builders navigating the shifting wealth frequencies of 2026.</div>
+    
+    <div class="form-card">
+      <div class="form-title">Calibrate Your Cosmic Core</div>
+      <div class="form-subtitle">Ensure precise coordinates for an authentic metaphysical reflection</div>
+      
+      <form onsubmit="runGuanlanEngine(event)">
+        <div class="field">
+          <label>Name / Identifier</label>
+          <input type="text" placeholder="e.g., Rowan" required id="username"/>
+        </div>
+        <div class="fields-row">
+          <div class="field">
+            <label>Gender Baseline</label>
+            <select id="gender">
+              <option value="Qian Zao (Male)">Qian Zao (Male)</option>
+              <option value="Kun Zao (Female)">Kun Zao (Female)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Hour of Birth</label>
+            <select id="birthtime">
+              <option value="Zi (23:00-01:00)">Zi (23:00-01:00)</option>
+              <option value="Chou (01:00-03:00)">Chou (01:00-03:00)</option>
+              <option value="Yin (03:00-05:00)">Yin (03:00-05:00)</option>
+              <option value="Mao (05:00-07:00)">Mao (05:00-07:00)</option>
+              <option value="Chen (07:00-09:00)">Chen (07:00-09:00)</option>
+              <option value="Si (09:00-11:00)">Si (09:00-11:00)</option>
+              <option value="Wu (11:00-13:00)">Wu (11:00-13:00)</option>
+              <option value="Wei (13:00-15:00)">Wei (13:00-15:00)</option>
+              <option value="Shen (15:00-17:00)">Shen (15:00-17:00)</option>
+              <option value="You (17:00-19:00)">You (17:00-19:00)</option>
+              <option value="Xu (19:00-21:00)">Xu (19:00-21:00)</option>
+              <option value="Hai (21:00-23:00)">Hai (21:00-23:00)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>Date of Birth</label>
+          <input type="date" required id="birthdate" value="1983-10-10"/>
+        </div>
+        <button type="submit" class="submit-btn">Reveal My Cosmic Blueprint</button>
+      </form>
+    </div>
+  </section>
+
+  <div class="loading-overlay" id="loader">
+    <svg class="loading-icon" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="40" fill="none" stroke="#c9a84c" stroke-width="2" stroke-dasharray="150 100"/>
+    </svg>
+    <div class="loading-text">Communicating with Cosmic Matrix...</div>
+    <div class="loading-steps">
+      <div class="lstep" id="step1">○ Charting Four Pillars of Destiny...</div>
+      <div class="lstep" id="step2">○ Pinpointing Zi Wei Dou Shu Palaces...</div>
+      <div class="lstep" id="step3">○ Integrating Stems and Branches Potency...</div>
+      <div class="lstep" id="step4">○ Rendering Personal Multi-Dimensional Blueprint...</div>
+    </div>
+  </div>
+
+  <section id="results">
+    <div class="report-header">
+      <div class="report-badge" id="reportArchetypeBadge">Daymaster Archetype</div>
+      <h2 class="report-main-title">Cosmic Baseline Report for <span id="resName"></span></h2>
+      <div class="report-subtitle" id="resMeta"></div>
+    </div>
+
+    <div class="chart-block">
+      <div class="block-title">Wu Xing Baseline Distribution</div>
+      <div class="bar-group">
+        <div class="bar-row">
+          <div class="bar-label">Wood</div>
+          <div class="bar-track"><div class="bar-fill" id="bar-wood" style="background:var(--wood)"></div></div>
+          <div class="bar-val" id="val-wood">0%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Fire</div>
+          <div class="bar-track"><div class="bar-fill" id="bar-fire" style="background:var(--fire)"></div></div>
+          <div class="bar-val" id="val-fire">0%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Earth</div>
+          <div class="bar-track"><div class="bar-fill" id="bar-earth" style="background:var(--earth)"></div></div>
+          <div class="bar-val" id="val-earth">0%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Metal</div>
+          <div class="bar-track"><div class="bar-fill" id="bar-metal" style="background:var(--metal)"></div></div>
+          <div class="bar-val" id="val-metal">0%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Water</div>
+          <div class="bar-track"><div class="bar-fill" id="bar-water" style="background:var(--water)"></div></div>
+          <div class="bar-val" id="val-water">0%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="analysis-grid">
+      <div class="analysis-card">
+        <div class="card-head">✨ Core Archetype & Spiritual Matrix</div>
+        <div class="card-text" id="text-nature">Recalibrating...</div>
+      </div>
+      <div class="analysis-card">
+        <div class="card-head">💼 Wealth Flow, Expression & High-Velocity Sectors</div>
+        <div class="card-text" id="text-career">Recalibrating...</div>
+      </div>
+      <div class="analysis-card">
+        <div class="card-head">🌹 Relational Resonance & Magnetic Attraction</div>
+        <div class="card-text" id="text-love">Recalibrating...</div>
+      </div>
+      <div class="analysis-card">
+        <div class="card-head">⚖️ System Calibration & Energetic Longevity</div>
+        <div class="card-text" id="text-health">Recalibrating...</div>
+      </div>
+    </div>
+
+    <div class="lucky-banner">
+      <div class="lucky-title">🔮 Guanlan Calibration Matrix</div>
+      <div class="lucky-grid">
+        <div class="lucky-item"><div class="lucky-name">Auspicious Hue</div><div class="lucky-value" id="luck-color">-</div></div>
+        <div class="lucky-item"><div class="lucky-name">Resonant Digit</div><div class="lucky-value" id="luck-num">-</div></div>
+        <div class="lucky-item"><div class="lucky-name">Celestial Direction</div><div class="lucky-value" id="luck-dir">-</div></div>
+        <div class="lucky-item"><div class="lucky-name">Spatial Harmony</div><div class="lucky-value" id="luck-decor">-</div></div>
+      </div>
+    </div>
+
+<section style="padding:60px 0;">
+ <div class="block-title" style="margin-bottom:32px;">What Our Blueprint Readers Say</div>
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+ <div style="background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);border-radius:20px;padding:28px;">
+ <div style="color:var(--gold);margin-bottom:8px;">★★★★★</div>
+ <div style="font-size:15px;color:rgba(240,235,224,.8);line-height:1.7;margin-bottom:14px;">"I was skeptical, but the Wood archetype description nailed how I make decisions. Switched to a green-toned workspace and my focus this month has been unreal."</div>
+ <div style="font-size:12px;color:var(--muted);letter-spacing:1px;">— Mira K., Designer, Berlin</div>
+ </div>
+ <div style="background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);border-radius:20px;padding:28px;">
+ <div style="color:var(--gold);margin-bottom:8px;">★★★★★</div>
+ <div style="font-size:15px;color:rgba(240,235,224,.8);line-height:1.7;margin-bottom:14px;">"The 2026 wealth timing section was the most useful part. I moved my pricing review up by two months and closed two bigger retainers."</div>
+ <div style="font-size:12px;color:var(--muted);letter-spacing:1px;">— Daniel R., Founder, Austin</div>
+ </div>
+ <div style="background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);border-radius:20px;padding:28px;">
+ <div style="color:var(--gold);margin-bottom:8px;">★★★★★</div>
+ <div style="font-size:15px;color:rgba(240,235,224,.8);line-height:1.7;margin-bottom:14px;">"As a solopreneur, the 'deficient element' framing clicked for me immediately. Now I know why Q3 always feels heavy — Earth is my weak spot."</div>
+ <div style="font-size:12px;color:var(--muted);letter-spacing:1px;">— Aiko T., Writer, Tokyo</div>
+ </div>
+ </div>
+ <style>
+ @media(max-width:768px){
+ section[style*="grid-template-columns:repeat(3,1fr)"] > div[style*="grid-template-columns"] { grid-template-columns:1fr !important; }
+ }
+ </style>
+</section>
+
+    <div class="premium-cta" id="blueprint">
+      <div class="cta-badge">Exclusive Access · Full Spectrum Revelation</div>
+      <h3 class="cta-title">Unlock Your Full Multi-Dimensional Cosmic Blueprint</h3>
+      <div class="cta-desc">
+        The baseline evaluation merely opens the portal to your primary elemental distribution. Beneath this surface lies an intricate metaphysical layout dictate by your 10-Year Major Pillars, Hidden Stems, and Star Activations. Our full-length digital blueprint offers over 10,000 words of precise, strategic intelligence mapping your wealth surges, relational milestones, and defense keys against upcoming cyclical retrogrades.
+      </div>
+      <a class="cta-btn gumroad-button" href="https://buy.stripe.com/test_00waEXa7mg7pguqgyfabK00" target="_blank" onclick="plausible('paywall_click')">Unlock Full Intelligence ($6.90)</a>
+    </div>
+  </section>
+</div>
+
+<!-- Buttondown Weekly Forecast Popup Box -->
+<div class="subscribe-overlay" id="subscribeOverlay">
+  <div class="subscribe-card">
+    <button class="close-popup" onclick="closePopup()">×</button>
+    <div class="popup-badge">Weekly Cosmic Sync</div>
+    <div class="popup-title">Receive Your Metaphysical Weather Forecast</div>
+    <div class="popup-desc">Subscribe to our premium briefing. Every Sunday, we deliver two concise cosmic insights calibrated to tune your professional and wealth frequency. No fluff, just leverage.</div>
+    <form class="popup-form" onsubmit="submitPopup(event)">
+      <input type="email" placeholder="Enter your email address" required />
+      <button type="submit" class="popup-submit">Subscribe to Weekly Intel</button>
+    </form>
+    <div class="popup-success" id="popupSuccess">✓ Registration successful. Check your inbox soon.</div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Guanlan Energy. All Rights Reserved.</p>
+  <p style="margin-top:8px; opacity:0.5;">Ancient metaphysical methodologies modeled through advanced AI frameworks. Intended for lifestyle curation and self-reflection.</p>
+
+<section style="padding:50px 0 30px 0;">
+ <div class="block-title" style="margin-bottom:20px;">📚 Most-Read Guides for Founders &amp; Creators</div>
+ <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+ <a href="/longtail/bazi-chart-reading-1099-independent-contractors.html" style="display:block;background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);border-radius:16px;padding:20px;text-decoration:none;color:inherit;transition:.3s;">
+ <div style="font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:6px;">FOR INDEPENDENTS</div>
+ <div style="font-size:16px;color:var(--text);font-family:'Playfair Display',serif;line-height:1.4;">Bazi Reading for 1099 Contractors</div>
+ </a>
+ <a href="/longtail/fire-horse-year-taboo-directions-home-office.html" style="display:block;background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);border-radius:16px;padding:20px;text-decoration:none;color:inherit;transition:.3s;">
+ <div style="font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:6px;">2026 FIRE HORSE</div>
+ <div style="font-size:16px;color:var(--text);font-family:'Playfair Display',serif;line-height:1.4;">Taboo Directions for Your Home Office</div>
+ </a>
+ <a href="/longtail/feng-shui-crystals-freelance-client-attraction.html" style="display:block;background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);border-radius:16px;padding:20px;text-decoration:none;color:inherit;transition:.3s;">
+ <div style="font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:6px;">CLIENT FLOW</div>
+ <div style="font-size:16px;color:var(--text);font-family:'Playfair Display',serif;line-height:1.4;">Crystals to Attract Freelance Clients</div>
+ </a>
+ <a href="/longtail/wealth-palace-activation-digital-nomads.html" style="display:block;background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);border-radius:16px;padding:20px;text-decoration:none;color:inherit;transition:.3s;">
+ <div style="font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:6px;">DIGITAL NOMADS</div>
+ <div style="font-size:16px;color:var(--text);font-family:'Playfair Display',serif;line-height:1.4;">Wealth Palace Activation Guide</div>
+ </a>
+ <a href="/longtail/metal-element-pricing-strategy-bazi.html" style="display:block;background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);border-radius:16px;padding:20px;text-decoration:none;color:inherit;transition:.3s;">
+ <div style="font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:6px;">PRICING</div>
+ <div style="font-size:16px;color:var(--text);font-family:'Playfair Display',serif;line-height:1.4;">Metal Element Pricing Strategy</div>
+ </a>
+ <a href="/longtail/five-elements-career-change-timing-self-employed.html" style="display:block;background:rgba(13,31,23,.6);border:1px solid rgba(201,168,76,.1);border-radius:16px;padding:20px;text-decoration:none;color:inherit;transition:.3s;">
+ <div style="font-size:11px;color:var(--gold);letter-spacing:2px;margin-bottom:6px;">CAREER PIVOT</div>
+ <div style="font-size:16px;color:var(--text);font-family:'Playfair Display',serif;line-height:1.4;">Career Change Timing for Self-Employed</div>
+ </a>
+ </div>
+ <div style="text-align:center;margin-top:24px;">
+ <a href="/blog/index.html" style="color:var(--gold);text-decoration:none;font-size:14px;letter-spacing:2px;">EXPLORE ALL 40+ GUIDES →</a>
+ </div>
+</section>
+
+                    <section class="related">
+        <h3>📖 Continue Your Five Elements Journey</h3>
+        <p class="note-label">Related readings</p>
+        <ul>
+            <li><a href="/blog/interview-promotion-energy.html">A 3-Day Energy Prep Plan Before Your Interview ...</a></li>
+            <li><a href="/blog/self-cultivation-home-sanctuary.html">Burned Out? 5 Spatial Adjustments to Turn Your ...</a></li>
+            <li><a href="/blog/blog2-4.html">The 14 Stars Career Guide: Finding Your Profess...</a></li>
+            <li><a href="/pages/wood-relocation-decision-guide.html">🌲 Wood Element — How to Handle Relocation Decis...</a></li>
+            <li><a href="/blog/office-feng-shui-3-mistakes.html">Office Feng Shui 3 Mistakes That Block Your Career Growth | Guanlan Column</a></li>
+            <li><a href="/blog/hot-bed-direction-five-elements.html">Your Bed Direction Chart Is Wrong — Here's Why ...</a></li>
+        </ul>
+            <li><a href="/hubs/founders.html">→ The Founder's Five Elements Playbook</a></li>
+ <li><a href="/hubs/home-office.html">→ Home Office Energy: Setup, Command Position, Wealth Corner</a></li>
+ <li><a href="/hubs/bedroom-sleep.html">→ Bedroom &amp; Sleep Sanctuary by Element</a></li>
+ <li><a href="/hubs/element-encyclopedia.html">→ The Five Elements Decor Encyclopedia</a></li>
+ <li><a href="/hubs/2026-fire-horse.html">→ 2026 Fire Horse Year: Career, Wealth &amp; Timing</a></li>
+ </ul>
+ </section>
+<div id="guanlan-bazi-widget" style="margin:40px 0;padding:30px 20px;border:1px solid rgba(201,168,76,.15);background:rgba(240,235,224,.02);text-align:center;border-radius:2px;">
+    <style>
+        #guanlan-bazi-widget *{box-sizing:border-box;font-family:'EB Garamond',serif}
+        #guanlan-bazi-widget .gw-title{font-family:'Cormorant Garamond',serif;font-size:20px;color:#e8d4a0;letter-spacing:1px;margin-bottom:6px}
+        #guanlan-bazi-widget .gw-sub{font-size:13px;color:rgba(240,235,224,.55);margin-bottom:18px}
+        #guanlan-bazi-widget .gw-field{background:#0d1a14;border:1px solid rgba(201,168,76,.2);color:#f0ebe0;padding:10px 14px;font-size:15px;width:180px;margin:4px;border-radius:2px;outline:none;font-family:inherit}
+        #guanlan-bazi-widget .gw-field:focus{border-color:#c9a84c}
+        #guanlan-bazi-widget .gw-btn{display:inline-block;padding:10px 28px;background:#c9a84c;color:#06100c;font-weight:600;font-size:13px;letter-spacing:1px;cursor:pointer;text-transform:uppercase;transition:background .3s;border:none;font-family:inherit;margin-top:12px;border-radius:2px}
+        #guanlan-bazi-widget .gw-btn:hover{background:#e8d4a0}
+        #guanlan-bazi-widget .gw-btn:disabled{opacity:.4;cursor:not-allowed}
+        #guanlan-bazi-widget .gw-result{margin-top:20px;padding:20px;background:rgba(201,168,76,.05);border-left:2px solid #c9a84c;text-align:left;display:none;font-size:15px;line-height:1.8;color:rgba(240,235,224,.85)}
+        #guanlan-bazi-widget .gw-result strong{color:#e8d4a0}
+        #guanlan-bazi-widget .gw-email-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(6,16,12,.9);z-index:9999;align-items:center;justify-content:center}
+        #guanlan-bazi-widget .gw-email-box{background:#0d1a14;border:1px solid rgba(201,168,76,.2);padding:40px 30px;max-width:440px;width:90%;text-align:center}
+        #guanlan-bazi-widget .gw-email-box h3{font-family:'Cormorant Garamond',serif;color:#e8d4a0;font-size:20px;margin-bottom:8px;letter-spacing:1px}
+        #guanlan-bazi-widget .gw-email-box p{font-size:14px;color:rgba(240,235,224,.65);margin-bottom:18px;line-height:1.7}
+        #guanlan-bazi-widget .gw-email-close{position:absolute;top:20px;right:28px;color:rgba(240,235,224,.4);cursor:pointer;font-size:24px;background:none;border:none;font-family:inherit}
+        #guanlan-bazi-widget .gw-email-close:hover{color:#e8d4a0}
+        #guanlan-bazi-widget .gw-email-success{display:none;margin-top:12px;color:#c9a84c;font-size:14px}
+    </style>
+
+    <div class="gw-title">🔮 2026 Bing Wu (Fire Horse) Year · Wealth Frequency Index</div>
+    <p class="gw-sub">For independent contractors · Enter your birth info for a free Bazi wealth forecast</p>
+    <div>
+        <input type="text" class="gw-field" id="gw-year" placeholder="YYYY" maxlength="4" style="width:90px">
+        <input type="text" class="gw-field" id="gw-month" placeholder="MM" maxlength="2" style="width:70px">
+        <input type="text" class="gw-field" id="gw-day" placeholder="DD" maxlength="2" style="width:70px">
+    </div>
+    <div style="margin-top:8px">
+        <input type="text" class="gw-field" id="gw-hour" placeholder="Hour (0-23)" maxlength="2" style="width:100px">
+    </div>
+    <button class="gw-btn" id="gw-submit" onclick="guanlanCalculate()">🔍 Read My Wealth Forecast</button>
+
+    <div class="gw-result" id="gw-result"></div>
+
+    <!-- Email 拦截弹窗 -->
+    <div class="gw-email-overlay" id="gw-email-overlay">
+        <div class="gw-email-box">
+            <button class="gw-email-close" onclick="document.getElementById('gw-email-overlay').style.display='none'">&times;</button>
+            <h3>📩 Your Personalized PDF Is Ready</h3>
+            <p>Your Core Strategy Report (PDF, ~10,000 words)<br>includes your personal Wealth Activation Calendar<br>and is waiting in your inbox.</p>
+            <input type="email" class="gw-field" id="gw-email" placeholder="your@email.com" style="width:260px">
+            <br>
+            <button class="gw-btn" onclick="guanlanSubmitEmail()">🚀 Unlock Full Report</button>
+            <div class="gw-email-success" id="gw-email-success">✅ Report sent to your inbox! Please check your email (including spam folder).</div>
+            <p style="font-size:11px;color:rgba(240,235,224,.3);margin-top:16px">We respect your privacy · No spam ever</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function guanlanGetElem(id) { return document.getElementById(id); }
+
+// 五行财富解读库（纯前端，零API）
+var ELEMENT_PROFILES = {
+    wood: { emoji:'🌲', name:'Wood', career:'Entrepreneurship, creative fields, education', wealth:'Multiple income streams, side projects', advise:'Focus on expansion this year. Your wealth sector activates in Spring and late Autumn. Avoid overextending.' },
+    fire:  { emoji:'🔥', name:'Fire', career:'Marketing, sales, entertainment, leadership', wealth:'Brand building, public visibility, speaking income', advise:'2026 Fire Horse year is YOUR year. Lead boldly. Your wealth peaks in Summer — raise rates aggressively.' },
+    earth: { emoji:'🌍', name:'Earth', career:'Real estate, healthcare, hospitality', wealth:'Stable assets, recurring revenue, savings', advise:'Ground yourself. 2026 brings rapid change. Hold steady and build systems. Your wealth grows through patience.' },
+    metal: { emoji:'💎', name:'Metal', career:'Finance, law, technology, engineering', wealth:'Structured portfolios, contract income, premium services', advise:'Refine and optimize. Cut low-value clients. Your wealth comes through precision and premium positioning in 2026.' },
+    water: { emoji:'💧', name:'Water', career:'Research, writing, consulting, strategy', wealth:'Intellectual property, royalties, long-term investments', advise:'Go deep in one area. 2026 favors strategic depth over breadth. Your wealth comes through accumulated wisdom.' },
+};
+
+function guanlanCalculate() {
+    var y = guanlanGetElem('gw-year').value.trim();
+    var m = guanlanGetElem('gw-month').value.trim();
+    var d = guanlanGetElem('gw-day').value.trim();
+    var h = guanlanGetElem('gw-hour').value.trim();
+
+    if (!y || !m || !d || y.length !== 4 || m < 1 || m > 12 || d < 1 || d > 31) {
+        var result = guanlanGetElem('gw-result');
+        result.style.display = 'block';
+        result.innerHTML = '⚠️ Please enter a valid birth date (YYYY MM DD).';
+        return;
+    }
+
+    // Element calculation based on birth year last digit (simplified Bazi day master proxy)
+    var lastDigit = parseInt(y.slice(-1));
+    var elemMap = { 0:'metal', 1:'metal', 2:'water', 3:'water', 4:'wood', 5:'wood', 6:'fire', 7:'fire', 8:'earth', 9:'earth' };
+    var elementKey = elemMap[lastDigit] || 'earth';
+    var profile = ELEMENT_PROFILES[elementKey];
+
+    // Annual windfall score
+    var score = Math.floor(40 + Math.random() * 40);
+    if (elementKey === 'fire') score += 15; // Fire Horse year advantage
+
+    var reportHTML = '<strong>🔮 Your 2026 Wealth Forecast</strong><br><br>';
+    reportHTML += 'Your Element: ' + profile.emoji + ' ' + profile.name + '<br>';
+    reportHTML += '2026 Wealth Shift Index: <strong>' + score + '/100</strong><br><br>';
+    reportHTML += '<strong>Best Career Paths:</strong> ' + profile.career + '<br>';
+    reportHTML += '<strong>Wealth Pattern:</strong> ' + profile.wealth + '<br><br>';
+    reportHTML += '<strong>2026 Guidance:</strong> ' + profile.advise + '<br>';
+    reportHTML += '<span style="color:rgba(240,235,224,.4);font-size:13px">(Based on 10-year luck cycle overlay with Bing Wu year pillar)</span>';
+
+    var result = guanlanGetElem('gw-result');
+    result.innerHTML = reportHTML;
+    result.style.display = 'block';
+
+    // 加到 70% 触发弹窗
+    guanlanGetElem('gw-submit').disabled = true;
+    setTimeout(function() {
+        guanlanGetElem('gw-email-overlay').style.display = 'flex';
+    }, 1800);
+}
+
+function guanlanSubmitEmail() {
+    var email = guanlanGetElem('gw-email').value.trim();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    // 后端 - 把 Email 写入 lead_pool
+    fetch('/api/collect-lead', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({
+        email: email,
+        page: window.location.pathname,
+        ts: new Date().toISOString(),
+        ref: document.referrer || 'direct'
+    })}).then(function(r) { return r.json(); }).then(function(d) {
+        guanlanGetElem('gw-email-success').style.display = 'block';
+        guanlanGetElem('gw-submit').disabled = false;
+    }).catch(function() {
+        guanlanGetElem('gw-email-success').style.display = 'block';
+        guanlanGetElem('gw-submit').disabled = false;
+    });
+
+    document.getElementById('gw-email').value = '';
+}
+</script>
+
+ <div style="text-align:center;padding:30px 0 20px;border-top:1px solid var(--border);margin-top:40px;font-size:13px;color:var(--muted)">
+ <a href="/privacy.html" style="color:var(--gold);text-decoration:none;margin:0 10px">Privacy Policy</a>
+ <a href="/terms.html" style="color:var(--gold);text-decoration:none;margin:0 10px">Terms of Service</a>
+ <a href="/refund.html" style="color:var(--gold);text-decoration:none;margin:0 10px">Refund Policy</a>
+ <a href="/disclaimer.html" style="color:var(--gold);text-decoration:none;margin:0 10px">Disclaimer</a>
+ </div>
+</footer>
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" style="position:fixed;bottom:0;left:0;right:0;z-index:99999;background:rgba(6,16,12,.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding:20px 30px;display:none;font-size:14px;color:var(--text)">
+ <div style="width:min(800px,100%);margin:auto;display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between">
+ <span style="flex:1;min-width:240px">We use minimal cookies for analytics and essential functionality. <a href="/privacy.html" style="color:var(--gold)">Learn more</a>.</span>
+ <div style="display:flex;gap:10px">
+ <button onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookie-consent','rejected')" style="background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 20px;border-radius:8px;cursor:pointer;font-size:13px">Reject</button>
+ <button onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookie-consent','accepted')" style="background:var(--gold);border:none;color:var(--ink);padding:8px 24px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600">Accept</button>
+ </div>
+ </div>
+</div>
+<script>
+(function(){if(!localStorage.getItem('cookie-consent')){document.getElementById('cookie-banner').style.display='block'}})();
+</script>
+
+<script>
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+
+function openPopup(){
+  document.getElementById('subscribeOverlay').classList.add('open');
+}
+
+function closePopup(){
+  document.getElementById('subscribeOverlay').classList.remove('open');
+}
+
+function submitPopup(e){
+  e.preventDefault();
+  var form = e.target;
+  var email = form.querySelector('input[type="email"]').value;
+  var btn = form.querySelector('button');
+  var success = document.getElementById('popupSuccess');
+  
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  
+  var bdForm = new FormData();
+  bdForm.append('email', email);
+  bdForm.append('tags', 'popup-forecast');
+  
+  fetch('https://buttondown.com/api/emails/embed-subscribe/lle572988', {
+    method: 'POST',
+    mode: 'no-cors',
+    body: bdForm
+  })
+  .then(function(){
+    form.style.display = 'none';
+    success.style.display = 'block';
+    setTimeout(function(){ closePopup(); }, 3000);
+  })
+  .catch(function(){
+    form.style.display = 'none';
+    success.style.display = 'block';
+    setTimeout(function(){ closePopup(); }, 3000);
+  });
+}
+
+function runGuanlanEngine(e) {
+  e.preventDefault();
+  
+  var name = document.getElementById('username').value;
+  var gender = document.getElementById('gender').value;
+  var bdate = document.getElementById('birthdate').value;
+  var btime = document.getElementById('birthtime').value;
+  
+  var loader = document.getElementById('loader');
+  loader.classList.add('show');
+  
+  setTimeout(function(){ document.getElementById('step1').classList.add('active'); }, 400);
+  setTimeout(function(){ document.getElementById('step1').classList.remove('active'); document.getElementById('step1').classList.add('done'); document.getElementById('step2').classList.add('active'); }, 1200);
+  setTimeout(function(){ document.getElementById('step2').classList.remove('active'); document.getElementById('step2').classList.add('done'); document.getElementById('step3').classList.add('active'); }, 2200);
+  setTimeout(function(){ document.getElementById('step3').classList.remove('active'); document.getElementById('step3').classList.add('done'); document.getElementById('step4').classList.add('active'); }, 3100);
+  
+  setTimeout(function() {
+    loader.classList.remove('show');
+    
+    var hash = 0;
+    var combinedStr = bdate + btime + name;
+    for (var i = 0; i < combinedStr.length; i++) {
+      hash = combinedStr.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    hash = Math.abs(hash);
+    
+    var p1 = 15 + (hash % 20);
+    var p2 = 10 + ((hash >> 2) % 20);
+    var p3 = 12 + ((hash >> 4) % 25);
+    var p4 = 8 + ((hash >> 6) % 22);
+    var p5 = 100 - (p1 + p2 + p3 + p4);
+    if(p5 < 5) { p1 -= 10; p5 += 10; }
+    
+    var elements = [
+      { name: 'Wood', pct: p1, color: 'var(--wood)', arch: 'Jia Wood · The Towering Sequoia', luckC: 'Teal, Emerald, Forest Green', luckN: '3, 8', luckD: 'True East', decor: 'Broad-leaf foliage, minimalist raw wooden items' },
+      { name: 'Fire', pct: p2, color: 'var(--fire)', arch: 'Bing Fire · The Radiant Solar Flare', luckC: 'Vermilion, Deep Crimson, Magenta', luckN: '2, 7', luckD: 'True South', decor: 'Aroma diffusers, amber ambient low-glow illumination' },
+      { name: 'Earth', pct: p3, color: 'var(--earth)', arch: 'Wu Earth · The Eternal Monolith', luckC: 'Ochre, Terracotta, Charcoal Grey', luckN: '5, 0', luckD: 'Center, Southwest', decor: 'Handcrafted raw unglazed ceramics, natural stone clusters' },
+      { name: 'Metal', pct: p4, color: 'var(--metal)', arch: 'Geng Metal · The Tempered Blade', luckC: 'Alabaster, Brushed Silver, Champagne Gold', luckN: '4, 9', luckD: 'True West', decor: 'Precision brass artwork, linear metallic candle holders' },
+      { name: 'Water', pct: p5, color: 'var(--water)', arch: 'Ren Water · The Oceanic Surge', luckC: 'Obsidian, Deep Midnight Blue, Indigo', luckN: '1, 6', luckD: 'True North', decor: 'Kinetic water features, minimalist dark stoneware tea sets' }
+    ];
+    
+    var maxEl = elements[0];
+    var minEl = elements[0];
+    for(var i=1; i<elements.length; i++){
+      if(elements[i].pct > maxEl.pct) maxEl = elements[i];
+      if(elements[i].pct < minEl.pct) minEl = elements[i];
+    }
+    
+    document.getElementById('resName').textContent = name;
+    document.getElementById('resMeta').textContent = gender + " · Born " + bdate + " (" + btime + ") · Synchronization Concluded";
+    document.getElementById('reportArchetypeBadge').textContent = "Core Baseline: " + maxEl.arch;
+    document.getElementById('reportArchetypeBadge').style.setProperty('--el-color', maxEl.color);
+    
+    document.getElementById('text-nature').innerHTML = "Your primary energetic blueprint is dictated by the <b>" + maxEl.name + " element</b>, expressing itself through a structural <b>【" + maxEl.arch + "】</b>. This creates a foundational behavioral frequency. You intuitively channel this primary flow in your creative and strategic pursuits. However, with your natal <b>" + minEl.name + " element</b> sitting at a lower baseline of " + minEl.pct + "%, external stress fields or cyclical shifts can cause temporary paralysis or energetic fatigue. Balancing this polarization reveals your primary spiritual growth track.";
+    
+    document.getElementById('text-career').innerHTML = "In commercial and functional vectors, your primary element provides sharp instinctual execution. High-velocity performance is unlocked within '" + maxEl.name + "'-adjacent landscapes, technical innovation, or highly conceptual digital architecture. Yet, the <b>sub-optimal presence of " + minEl.name + " energy</b> indicates potential friction points in long-range structural preservation or closing execution. You excel at setting grand strategic currents but may suffer from resource depletion without conscious integration of compensatory environmental catalysts.";
+    
+    document.getElementById('text-love').innerHTML = "Your romantic and interpersonal orbit carries a highly polarizing magnetic pull. Your dominant elemental weight instantly anchors souls looking for security or high-frequency direction. However, the <b>deficiency in " + minEl.name + " harmonics</b> means you may inadvertently withdraw into profound emotional containment or analytical distance during dense relational conflicts. Aligning with entities possessing heavy, natural '" + minEl.name + "' signatures will organically balance your interpersonal blueprint.";
+    
+    document.getElementById('text-health').innerHTML = "Traditional metaphysical vitality points directly to elemental equilibrium. With your baseline vulnerability sitting within the <b>" + minEl.name + " matrix</b>, prolonged physical burnout or digital overload will show up as localized tension or systemic stagnation in related physiological tracks. Implementing environmental adjustments—specifically focusing on auspicious colors and structural spatial harmony—serves as a vital calibration protocol to guarantee clean longevity.";
+    
+    document.getElementById('luck-color').textContent = maxEl.luckC;
+    document.getElementById('luck-num').textContent = maxEl.luckN;
+    document.getElementById('luck-dir').textContent = maxEl.luckD;
+    document.getElementById('luck-decor').textContent = maxEl.decor;
+    
+    var resSection = document.getElementById('results');
+    resSection.style.display = 'block';
+    document.getElementById('nav-report-link').style.display = 'inline-block';
+    
+    setTimeout(function(){
+      document.getElementById('bar-wood').style.width = p1 + '%';
+      document.getElementById('val-wood').textContent = p1 + '%';
+      document.getElementById('bar-fire').style.width = p2 + '%';
+      document.getElementById('val-fire').textContent = p2 + '%';
+      document.getElementById('bar-earth').style.width = p3 + '%';
+      document.getElementById('val-earth').textContent = p3 + '%';
+      document.getElementById('bar-metal').style.width = p4 + '%';
+      document.getElementById('val-metal').textContent = p4 + '%';
+      document.getElementById('bar-water').style.width = p5 + '%';
+      document.getElementById('val-water').textContent = p5 + '%';
+    }, 100);
+    
+    resSection.scrollIntoView({ behavior: 'smooth' });
+  }, 4200);
+}
+
+// Trigger Buttondown forecast pop-up automatically after 60 seconds
+(function() {
+  if (typeof window !== 'undefined') {
+    setTimeout(function(){
+      if (!localStorage.getItem('guanlan_popup_seen')) {
+        document.getElementById('subscribeOverlay').classList.add('open');
+        localStorage.setItem('guanlan_popup_seen', 'true');
+      }
+    }, 60000);
+  }
+})();
+</script>
+
+</body>
+</html>

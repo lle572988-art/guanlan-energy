@@ -1,11 +1,11 @@
 /**
- * Claude-powered ~500-word English Zi Wei karma report for widget leads.
+ * DeepSeek-powered ~500-word English Zi Wei karma report for widget leads.
  */
 
 import { formatBirthHour, buildContextSummary } from './parse-page-context.js';
 
-const ANTHROPIC_API = 'https://api.anthropic.com/v1/messages';
-const MODEL = process.env.ANTHROPIC_KARMA_MODEL || 'claude-sonnet-4-20250514';
+const DEEPSEEK_API = 'https://api.deepseek.com/chat/completions';
+const MODEL = process.env.AI_KARMA_MODEL || 'deepseek-chat';
 
 function buildPrompt(lead, pageContext) {
   const contextLine = buildContextSummary(pageContext);
@@ -62,7 +62,7 @@ The transit alert you felt is real. To unlock your complete 10-year major luck (
 }
 
 export async function generateAiKarmaReport(lead, pageContext) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.AI_API_KEY || process.env.ANTHROPIC_API_KEY;
   const prompt = buildPrompt(lead, pageContext);
 
   if (!apiKey) {
@@ -75,12 +75,11 @@ export async function generateAiKarmaReport(lead, pageContext) {
   }
 
   try {
-    const res = await fetch(ANTHROPIC_API, {
+    const res = await fetch(DEEPSEEK_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
+        'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
         model: MODEL,
@@ -91,12 +90,11 @@ export async function generateAiKarmaReport(lead, pageContext) {
 
     const data = await res.json();
     if (!res.ok) {
-      throw new Error(data?.error?.message || `Anthropic ${res.status}`);
+      throw new Error(data?.error?.message || `DeepSeek ${res.status}`);
     }
 
-    const text = (data.content || [])
-      .filter((b) => b.type === 'text')
-      .map((b) => b.text)
+    const text = (data.choices || [])
+      .map((c) => (c.message?.content || ''))
       .join('\n')
       .trim();
 

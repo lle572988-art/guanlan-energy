@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guanlan Energy · Zi Wei Dou Shu · Purple Star Astrology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #03070F;
+  --deep: #060D1A;
+  --surface: #0C1628;
+  --layer: #111E35;
+  --rim: #1A2D4A;
+  --gold: #C5984A;
+  --gold-light: #E2C27A;
+  --gold-dim: #7A5C28;
+  --silver: #9BB5CC;
+  --silver-dim: #4A6680;
+  --amethyst: #5C3D7A;
+  --amethyst-glow: rgba(92, 61, 122, 0.25);
+  --parchment: #D4C4A0;
+  --text: #C8D8E8;
+  --text-dim: #6A8299;
+  --r: 0.5rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--text);
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: 17px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ─── STAR FIELD ─── */
+#starfield {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  overflow: hidden;
+}
+#starfield canvas { width: 100%; height: 100%; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 4rem;
+  border-bottom: 1px solid rgba(197, 152, 74, 0.12);
+  background: linear-gradient(to bottom, rgba(3,7,15,0.92) 0%, transparent 100%);
+  backdrop-filter: blur(8px);
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 0.9rem;
+}
+.nav-sigil {
+  width: 36px; height: 36px;
+  opacity: 0.9;
+}
+.nav-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.nav-name span {
+  display: block;
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  color: var(--silver-dim);
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 2.4rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: var(--silver-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--void) !important;
+  background: var(--gold);
+  padding: 0.55rem 1.4rem;
+  border-radius: 1px;
+  transition: background 0.3s, box-shadow 0.3s !important;
+}
+.nav-cta:hover { background: var(--gold-light) !important; box-shadow: 0 0 20px rgba(197,152,74,0.4) !important; }
+
+/* ─── HERO ─── */
+#hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 44% 56%;
+  align-items: center;
+  padding: 7rem 0 4rem;
+  overflow: hidden;
+}
+
+/* nebula glow behind chart */
+#hero::after {
+  content: '';
+  position: absolute; right: -5%; top: 50%; transform: translateY(-50%);
+  width: 62vw; height: 90vh;
+  background: radial-gradient(ellipse at center,
+    rgba(92,61,122,0.18) 0%,
+    rgba(30,15,50,0.12) 40%,
+    transparent 70%);
+  pointer-events: none;
+}
+
+.hero-left {
+  padding: 0 3rem 0 4.5rem;
+  position: relative; z-index: 2;
+}
+
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  display: flex; align-items: center; gap: 0.7rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 32px; height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.hero-h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 3.8vw, 4rem);
+  font-weight: 300;
+  line-height: 1.12;
+  color: var(--parchment);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.35s forwards;
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--silver-dim);
+  letter-spacing: 0.04em;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.45s forwards;
+}
+
+.hero-body {
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 400px;
+  margin-bottom: 1.4rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.55s forwards;
+}
+.hero-body strong { color: var(--silver); font-weight: 500; }
+
+.trust-row {
+  display: flex; align-items: center; gap: 1.2rem;
+  margin-bottom: 2.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.65s forwards;
+}
+.trust-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold);
+}
+.trust-row span {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* ─── FORM ─── */
+.chart-form {
+  background: rgba(12, 22, 40, 0.7);
+  border: 1px solid rgba(197,152,74,0.18);
+  border-radius: 2px;
+  padding: 1.8rem;
+  max-width: 380px;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.75s forwards;
+}
+.chart-form::before {
+  content: '';
+  position: absolute; top: -1px; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.form-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.form-row { margin-bottom: 1rem; }
+.form-label {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: var(--silver-dim);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.form-input, .form-select {
+  width: 100%;
+  background: rgba(6, 13, 26, 0.8);
+  border: 1px solid rgba(74, 102, 128, 0.4);
+  color: var(--text);
+  font-family: 'EB Garamond', serif;
+  font-size: 0.95rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 1px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  appearance: none;
+}
+.form-input:focus, .form-select:focus {
+  border-color: var(--gold-dim);
+  box-shadow: 0 0 0 1px rgba(197,152,74,0.2), 0 0 12px rgba(197,152,74,0.08);
+}
+.form-select { cursor: pointer; }
+.form-select option { background: #0A1525; }
+
+.form-hint {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text-dim);
+  margin-top: 0.25rem;
+}
+
+.btn-primary {
+  width: 100%;
+  margin-top: 1.4rem;
+  background: var(--gold);
+  color: var(--void);
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: none;
+  padding: 1rem;
+  border-radius: 1px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.15s;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+  box-shadow: 0 4px 30px rgba(197,152,74,0.45);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.form-sub {
+  text-align: center;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--text-dim);
+}
+.form-sub span { color: var(--gold); }
+
+/* ─── HERO CHART ─── */
+.hero-right {
+  position: relative; z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#zwds-chart {
+  width: min(580px, 88%);
+  height: min(580px, 88%);
+  position: relative;
+}
+
+/* ─── DIVIDER ─── */
+.section-divider {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 0 4.5rem;
+  margin: 2rem 0;
+  opacity: 0.35;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim));
+}
+.section-divider::after {
+  background: linear-gradient(90deg, var(--gold-dim), transparent);
+}
+.divider-glyph {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--gold-dim);
+  white-space: nowrap;
+}
+
+/* ─── SECTION BASE ─── */
+section {
+  position: relative; z-index: 1;
+}
+.section-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: flex; align-items: center; gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 1px;
+  background: var(--gold);
+  opacity: 0.6;
+}
+
+.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 300;
+  color: var(--parchment);
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+}
+.section-heading em { font-style: italic; color: var(--gold-light); }
+
+/* ─── PREVIEW SECTION ─── */
+#preview {
+  padding: 5rem 0;
+  background: linear-gradient(to bottom, var(--void) 0%, var(--deep) 50%, var(--void) 100%);
+}
+
+.preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  border: 1px solid rgba(197,152,74,0.15);
+  background: rgba(197,152,74,0.08);
+  max-width: 820px;
+  margin: 3rem auto 0;
+  position: relative;
+}
+.preview-grid::before {
+  content: 'SAMPLE CHART — YOUR CHART WILL BE UNIQUE';
+  position: absolute;
+  top: -1.6rem; left: 50%; transform: translateX(-50%);
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.22em;
+  color: var(--silver-dim);
+  white-space: nowrap;
+}
+.palace-preview {
+  background: var(--deep);
+  padding: 1.2rem;
+  border: 1px solid rgba(26,45,74,0.8);
+  position: relative;
+  min-height: 90px;
+  transition: background 0.3s;
+}
+.palace-preview:hover { background: var(--surface); }
+.palace-preview.locked::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: rgba(3,7,15,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+.palace-name-zh {
+  font-size: 0.68rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+.palace-name-en {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--silver-dim);
+  display: block;
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+}
+.palace-stars {
+  font-size: 0.85rem;
+  color: var(--silver);
+  line-height: 1.5;
+}
+.palace-stars .star-main { color: var(--gold-light); font-weight: 500; }
+.palace-stars .star-secondary { color: var(--silver-dim); font-size: 0.78rem; }
+.unlock-badge {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  z-index: 2;
+  background: rgba(197,152,74,0.12);
+  border: 1px solid rgba(197,152,74,0.3);
+  padding: 0.3rem 0.7rem;
+  border-radius: 1px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: var(--gold);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.palace-preview.highlight {
+  border-color: rgba(197,152,74,0.4);
+  box-shadow: 0 0 0 1px rgba(197,152,74,0.15) inset;
+}
+
+.preview-cta {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+.preview-cta p {
+  font-size: 1rem; font-style: italic;
+  color: var(--text-dim);
+  margin-bottom: 1.2rem;
+}
+.btn-outline {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.8rem 2.2rem;
+  text-decoration: none;
+  border-radius: 1px;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+  background: transparent;
+}
+.btn-outline:hover {
+  background: var(--gold);
+  color: var(--void);
+  box-shadow: 0 0 24px rgba(197,152,74,0.35);
+}
+
+/* ─── PALACES GRID ─── */
+#palaces {
+  padding: 6rem 0;
+}
+
+.palaces-intro {
+  max-width: 580px;
+  margin-bottom: 3.5rem;
+}
+.palaces-intro p {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+}
+
+.palaces-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(197,152,74,0.1);
+  border: 1px solid rgba(197,152,74,0.1);
+}
+
+.palace-card {
+  background: var(--deep);
+  padding: 1.4rem 1.2rem;
+  border: 1px solid transparent;
+  transition: background 0.3s, border-color 0.3s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.palace-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0;
+  width: 2px; height: 0;
+  background: var(--gold);
+  transition: height 0.4s;
+}
+.palace-card:hover { background: var(--surface); border-color: rgba(197,152,74,0.15); }
+.palace-card:hover::before { height: 100%; }
+
+.palace-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-dim);
+  margin-bottom: 0.6rem;
+}
+.palace-zh {
+  font-size: 1.3rem;
+  color: var(--gold);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.2rem;
+}
+.palace-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--silver-dim);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+.palace-desc {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.55;
+}
+
+/* ─── ABOUT ─── */
+#about {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, var(--void) 0%, var(--deep) 60%, var(--void) 100%);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.about-portrait {
+  position: relative;
+}
+.portrait-frame {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: var(--surface);
+  border: 1px solid rgba(197,152,74,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.portrait-placeholder {
+  text-align: center;
+  color: var(--text-dim);
+}
+.portrait-placeholder svg { opacity: 0.25; margin-bottom: 1rem; }
+.portrait-placeholder p {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--silver-dim);
+  text-transform: uppercase;
+}
+.portrait-corner {
+  position: absolute;
+  width: 16px; height: 16px;
+  border-color: var(--gold);
+  border-style: solid;
+  opacity: 0.5;
+}
+.portrait-corner.tl { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+.portrait-corner.tr { top: 8px; right: 8px; border-width: 1px 1px 0 0; }
+.portrait-corner.bl { bottom: 8px; left: 8px; border-width: 0 0 1px 1px; }
+.portrait-corner.br { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+
+.about-caption {
+  margin-top: 1rem;
+  text-align: center;
+}
+.about-caption strong {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--parchment);
+  display: block;
+}
+.about-caption span {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+
+.about-content .section-heading { margin-bottom: 0.8rem; }
+
+.about-body {
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.credentials {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.cred-item {
+  border-left: 1px solid rgba(197,152,74,0.3);
+  padding-left: 1rem;
+}
+.cred-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.cred-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  color: var(--silver-dim);
+  text-transform: uppercase;
+  display: block;
+}
+
+/* ─── PRICING ─── */
+#pricing {
+  padding: 6rem 0;
+}
+
+.pricing-note {
+  max-width: 520px;
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin-bottom: 3.5rem;
+  font-style: italic;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(197,152,74,0.08);
+}
+
+.pricing-card {
+  background: var(--deep);
+  padding: 2.2rem 1.8rem;
+  border: 1px solid rgba(197,152,74,0.08);
+  position: relative;
+  transition: background 0.3s;
+}
+.pricing-card:hover { background: var(--surface); }
+.pricing-card.featured {
+  background: linear-gradient(160deg, var(--surface) 0%, #0E1D34 100%);
+  border-color: rgba(197,152,74,0.35);
+  z-index: 1;
+}
+.pricing-card.featured::before {
+  content: '';
+  position: absolute; top: -1px; left: 10%; right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.pricing-badge {
+  position: absolute; top: -0.7rem; left: 50%; transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--void);
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: 1px;
+  white-space: nowrap;
+}
+
+.pricing-type {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--silver-dim);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.pricing-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  color: var(--parchment);
+  margin-bottom: 0.3rem;
+}
+.pricing-name-zh {
+  font-size: 0.85rem;
+  color: var(--gold-dim);
+  letter-spacing: 0.08em;
+  margin-bottom: 1.2rem;
+}
+
+.pricing-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+  display: flex; align-items: flex-start; gap: 0.2rem;
+  margin-bottom: 0.4rem;
+}
+.price-dollar {
+  font-size: 1.2rem;
+  margin-top: 0.3rem;
+  color: var(--gold-dim);
+}
+.pricing-delivery {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  color: var(--silver-dim);
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+}
+
+.pricing-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+.pricing-features li {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(26,45,74,0.6);
+  display: flex; align-items: center; gap: 0.6rem;
+  line-height: 1.4;
+}
+.pricing-features li::before {
+  content: '◆';
+  font-size: 0.38rem;
+  color: var(--gold-dim);
+  flex-shrink: 0;
+}
+.pricing-features li.highlight { color: var(--silver); }
+.pricing-features li.highlight::before { color: var(--gold); }
+
+.btn-pricing {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 0.85rem 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border-radius: 1px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  border: 1px solid rgba(197,152,74,0.35);
+  color: var(--gold);
+  background: transparent;
+}
+.btn-pricing:hover {
+  background: rgba(197,152,74,0.1);
+  border-color: var(--gold);
+}
+.pricing-card.featured .btn-pricing {
+  background: var(--gold);
+  color: var(--void);
+  border-color: var(--gold);
+}
+.pricing-card.featured .btn-pricing:hover {
+  background: var(--gold-light);
+  box-shadow: 0 4px 24px rgba(197,152,74,0.35);
+}
+
+/* ─── TESTIMONIALS ─── */
+#social-proof {
+  padding: 5rem 0;
+  background: var(--deep);
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(197,152,74,0.08);
+  margin-top: 3rem;
+}
+
+.testimonial-card {
+  background: var(--deep);
+  padding: 2rem 1.8rem;
+  border: 1px solid rgba(197,152,74,0.06);
+  transition: background 0.3s;
+}
+.testimonial-card:hover { background: var(--surface); }
+
+.testimonial-stars {
+  color: var(--gold);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 1rem;
+}
+.testimonial-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+.testimonial-author {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.testimonial-location {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+.coming-soon-banner {
+  margin-top: 2rem;
+  padding: 1rem 1.8rem;
+  background: rgba(197,152,74,0.06);
+  border: 1px solid rgba(197,152,74,0.2);
+  border-radius: 1px;
+  display: flex; align-items: center; gap: 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  color: var(--silver-dim);
+  text-transform: uppercase;
+}
+.coming-soon-banner::before {
+  content: '◈';
+  color: var(--gold);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(197,152,74,0.1);
+  padding: 3rem 4.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer-brand {
+  font-family: 'Cinzel', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+}
+.footer-brand span {
+  display: block;
+  font-size: 0.55rem;
+  color: var(--silver-dim);
+  letter-spacing: 0.15em;
+  margin-top: 0.2rem;
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+}
+.footer-tagline {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+}
+.footer-links {
+  display: flex; gap: 1.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+}
+.footer-links a {
+  color: var(--silver-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--gold); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes slowRotateCCW {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1; }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 1; r: 1.5; }
+  50%       { opacity: 0.2; r: 0.8; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  #hero {
+    grid-template-columns: 1fr;
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+  }
+  .hero-left { padding: 0 2rem; margin-bottom: 2rem; }
+  .hero-right { height: auto; padding: 2rem; }
+  #zwds-chart { width: min(450px, 90vw); height: min(450px, 90vw); }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .about-portrait { max-width: 300px; }
+  .pricing-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .palaces-grid { grid-template-columns: repeat(2, 1fr); }
+  nav { padding: 1rem 2rem; }
+  .nav-links { display: none; }
+  footer { grid-template-columns: 1fr; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- STARFIELD CANVAS -->
+<div id="starfield"><canvas id="stars-canvas"></canvas></div>
+
+<!-- ─── NAVIGATION ─── -->
+<nav>
+  <div class="nav-brand">
+    <svg class="nav-sigil" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="18" cy="18" r="16" stroke="#C5984A" stroke-width="0.6" opacity="0.7"/>
+      <circle cx="18" cy="18" r="10" stroke="#C5984A" stroke-width="0.4" opacity="0.4"/>
+      <circle cx="18" cy="18" r="2.5" fill="#C5984A" opacity="0.8"/>
+      <line x1="18" y1="2" x2="18" y2="34" stroke="#C5984A" stroke-width="0.4" opacity="0.3"/>
+      <line x1="2" y1="18" x2="34" y2="18" stroke="#C5984A" stroke-width="0.4" opacity="0.3"/>
+      <line x1="6.7" y1="6.7" x2="29.3" y2="29.3" stroke="#C5984A" stroke-width="0.3" opacity="0.25"/>
+      <line x1="29.3" y1="6.7" x2="6.7" y2="29.3" stroke="#C5984A" stroke-width="0.3" opacity="0.25"/>
+      <!-- 12 tick marks -->
+      <g stroke="#C5984A" stroke-width="0.5" opacity="0.5">
+        <line x1="18" y1="2" x2="18" y2="5"/>
+        <line x1="18" y1="31" x2="18" y2="34"/>
+        <line x1="2" y1="18" x2="5" y2="18"/>
+        <line x1="31" y1="18" x2="34" y2="18"/>
+      </g>
+    </svg>
+    <div class="nav-name">
+      Guanlan Energy
+      <span>观澜能量 · Purple Star Astrology</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#palaces">The 12 Palaces</a></li>
+    <li><a href="#about">The Reader</a></li>
+    <li><a href="#pricing">Services</a></li>
+    <li><a href="/">BaZi Calculator</a></li>
+    <li><a href="/blog/index.html">Articles</a></li>
+    <li><a href="#hero" class="nav-cta">Get My Chart</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Purple Star Astrology · Zi Wei Dou Shu · 紫微斗数</div>
+
+    <h1 class="hero-h1">
+      Your<br>
+      <em>Zi Wei Dou Shu</em><br>
+      Chart
+    </h1>
+    <p class="hero-subtitle">The Most Detailed Chinese Astrology System</p>
+
+    <p class="hero-body">
+      <strong>Real chart calculation. Real human interpretation.</strong><br>
+      The ancient imperial system — used by the Son of Heaven to understand the patterns of fate — now available in English for the first time.
+    </p>
+
+    <div class="trust-row">
+      <div class="trust-dot"></div>
+      <span>Professional Calculation</span>
+      <div class="trust-dot"></div>
+      <span>Human Interpretation</span>
+      <div class="trust-dot"></div>
+      <span>500+ Charts Read</span>
+    </div>
+
+    <div class="chart-form">
+      <div class="form-title">Generate My Purple Star Chart</div>
+
+      <div class="form-row">
+        <label class="form-label" for="dob">Date of Birth</label>
+        <input class="form-input" type="date" id="dob" name="dob">
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="hour">Birth Hour</label>
+        <select class="form-select" id="hour" name="hour">
+          <option value="">Select birth hour…</option>
+          <option value="zi">子時 · Zi Hour (23:00 – 01:00)</option>
+          <option value="chou">丑時 · Chou Hour (01:00 – 03:00)</option>
+          <option value="yin">寅時 · Yin Hour (03:00 – 05:00)</option>
+          <option value="mao">卯時 · Mao Hour (05:00 – 07:00)</option>
+          <option value="chen">辰時 · Chen Hour (07:00 – 09:00)</option>
+          <option value="si">巳時 · Si Hour (09:00 – 11:00)</option>
+          <option value="wu">午時 · Wu Hour (11:00 – 13:00)</option>
+          <option value="wei">未時 · Wei Hour (13:00 – 15:00)</option>
+          <option value="shen">申時 · Shen Hour (15:00 – 17:00)</option>
+          <option value="you">酉時 · You Hour (17:00 – 19:00)</option>
+          <option value="xu">戌時 · Xu Hour (19:00 – 21:00)</option>
+          <option value="hai">亥時 · Hai Hour (21:00 – 23:00)</option>
+        </select>
+        <p class="form-hint">Birth hour determines your Life Palace (命宮) — the core of your chart</p>
+      </div>
+
+      <div class="form-row">
+        <label class="form-label" for="country">Country of Birth <span style="color:var(--gold-dim);font-style:italic">(optional)</span></label>
+        <input class="form-input" type="text" id="country" name="country" placeholder="e.g. United States">
+        <p class="form-hint">Used for time zone correction · Leave blank for standard time</p>
+      </div>
+
+      <button class="btn-primary" onclick="handleSubmit()">
+        ◆ &nbsp; Generate My Purple Star Chart &nbsp; ◆
+      </button>
+      <p class="form-sub">Free chart &nbsp;·&nbsp; <span>No sign-up required</span> &nbsp;·&nbsp; See your 12 palaces in 30 seconds</p>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div id="zwds-chart">
+      <svg id="chart-svg" viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+        <defs>
+          <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1A0A2A" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#050B14" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="softglow">
+            <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- Background nebula glow -->
+        <circle cx="280" cy="280" r="260" fill="url(#bgGrad)"/>
+
+        <!-- Outer decorative ring - slowly rotates -->
+        <g id="outer-ring" style="transform-origin:280px 280px; animation: slowRotate 120s linear infinite">
+          <circle cx="280" cy="280" r="250" fill="none" stroke="#C5984A" stroke-width="0.4" opacity="0.25"/>
+          <circle cx="280" cy="280" r="242" fill="none" stroke="#C5984A" stroke-width="0.25" opacity="0.15"/>
+          <!-- 72 small tick marks around outer ring -->
+          <g id="ticks" stroke="#C5984A" stroke-width="0.5" opacity="0.3"></g>
+          <!-- 12 major ticks with degree labels -->
+          <g id="major-ticks"></g>
+        </g>
+
+        <!-- Second rotating ring - counter clockwise -->
+        <g id="inner-ring" style="transform-origin:280px 280px; animation: slowRotateCCW 90s linear infinite">
+          <circle cx="280" cy="280" r="228" fill="none" stroke="#9BB5CC" stroke-width="0.3" opacity="0.12"/>
+          <!-- constellation dots -->
+          <g id="constellation-dots"></g>
+        </g>
+
+        <!-- 12 Palace Grid - static 4x4 outer ring -->
+        <g id="palace-grid">
+          <!-- Grid lines -->
+          <!-- Outer rectangle -->
+          <rect x="60" y="60" width="440" height="440" fill="none" stroke="#C5984A" stroke-width="0.6" opacity="0.4"/>
+          <!-- Inner rectangle (center void) -->
+          <rect x="170" y="170" width="220" height="220" fill="none" stroke="#C5984A" stroke-width="0.5" opacity="0.3"/>
+
+          <!-- Vertical dividers -->
+          <line x1="170" y1="60" x2="170" y2="500" stroke="#C5984A" stroke-width="0.4" opacity="0.3"/>
+          <line x1="280" y1="60" x2="280" y2="170" stroke="#C5984A" stroke-width="0.4" opacity="0.3"/>
+          <line x1="280" y1="390" x2="280" y2="500" stroke="#C5984A" stroke-width="0.4" opacity="0.3"/>
+          <line x1="390" y1="60" x2="390" y2="500" stroke="#C5984A" stroke-width="0.4" opacity="0.3"/>
+
+          <!-- Horizontal dividers -->
+          <line x1="60" y1="170" x2="500" y2="170" stroke="#C5984A" stroke-width="0.4" opacity="0.3"/>
+          <line x1="60" y1="280" x2="170" y2="280" stroke="#C5984A" stroke-width="0.4" opacity="0.3"/>
+          <line x1="390" y1="280" x2="500" y2="280" stroke="#C5984A" stroke-width="0.4" opacity="0.3"/>
+          <line x1="60" y1="390" x2="500" y2="390" stroke="#C5984A" stroke-width="0.4" opacity="0.3"/>
+
+          <!-- Center decoration -->
+          <circle cx="280" cy="280" r="60" fill="none" stroke="#C5984A" stroke-width="0.4" opacity="0.2"/>
+          <circle cx="280" cy="280" r="30" fill="none" stroke="#C5984A" stroke-width="0.3" opacity="0.15"/>
+          <circle cx="280" cy="280" r="4" fill="#C5984A" opacity="0.6"/>
+          <!-- Center cross -->
+          <line x1="220" y1="280" x2="340" y2="280" stroke="#C5984A" stroke-width="0.3" opacity="0.2"/>
+          <line x1="280" y1="220" x2="280" y2="340" stroke="#C5984A" stroke-width="0.3" opacity="0.2"/>
+
+          <!-- Central text -->
+          <text x="280" y="268" text-anchor="middle" font-family="serif" font-size="13" fill="#C5984A" opacity="0.7" letter-spacing="2">紫微斗數</text>
+          <text x="280" y="288" text-anchor="middle" font-family="serif" font-size="7" fill="#9BB5CC" opacity="0.5" letter-spacing="3">ZI WEI DOU SHU</text>
+          <text x="280" y="302" text-anchor="middle" font-family="serif" font-size="6.5" fill="#7A5C28" opacity="0.7" letter-spacing="1">命盤</text>
+        </g>
+
+        <!-- Palace content - 12 palaces -->
+        <g id="palaces-content" font-family="serif">
+          <!-- Palace 1: 子 · 命宮 (top-left) -->
+          <g transform="translate(60,60)">
+            <rect width="110" height="110" fill="#C5984A" opacity="0.03"/>
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">子 · ZI</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.9">命宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.6">Life Palace</text>
+            <text x="8" y="66" font-size="9" fill="#E2C27A" filter="url(#softglow)">紫微 天相</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.6">文昌 左輔</text>
+            <text x="8" y="93" font-size="7.5" fill="#9BB5CC" opacity="0.5">天馬 祿存</text>
+            <text x="8" y="106" font-size="6.5" fill="#7A5C28" opacity="0.6">大限 2024–2034</text>
+          </g>
+
+          <!-- Palace 2: 丑 · 父母 (top-2nd) -->
+          <g transform="translate(170,60)">
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">丑 · CHOU</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">父母宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Parents Palace</text>
+            <text x="8" y="66" font-size="9" fill="#D4C4A0" opacity="0.7">天梁</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.5">天空 截路</text>
+          </g>
+
+          <!-- Palace 3: 寅 · 福德 (top-3rd) -->
+          <g transform="translate(280,60)">
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">寅 · YIN</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">福德宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Virtue Palace</text>
+            <text x="8" y="66" font-size="9" fill="#D4C4A0" opacity="0.7">七殺</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.5">陀羅 地空</text>
+          </g>
+
+          <!-- Palace 4: 卯 · 田宅 (top-right) -->
+          <g transform="translate(390,60)">
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">卯 · MAO</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">田宅宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Property Palace</text>
+            <text x="8" y="66" font-size="9" fill="#D4C4A0" opacity="0.7">天同 巨門</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.5">火星</text>
+          </g>
+
+          <!-- Palace 5: 亥 · 兄弟 (left-top) -->
+          <g transform="translate(60,170)">
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">亥 · HAI</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">兄弟宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Siblings Palace</text>
+            <text x="8" y="66" font-size="9" fill="#D4C4A0" opacity="0.7">太陽 化忌</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.5">文曲</text>
+          </g>
+
+          <!-- Palace 6: 辰 · 官禄 (right-top) -->
+          <g transform="translate(390,170)">
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">辰 · CHEN</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">官祿宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Career Palace</text>
+            <text x="8" y="66" font-size="9" fill="#E2C27A" filter="url(#softglow)">武曲 化科</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.5">右弼 天姚</text>
+          </g>
+
+          <!-- Palace 7: 戌 · 夫妻 (left-bottom) -->
+          <g transform="translate(60,280)">
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">戌 · XU</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">夫妻宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Spouse Palace</text>
+            <text x="8" y="66" font-size="9" fill="#D4C4A0" opacity="0.7">天機 化祿</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.5">天鉞 鈴星</text>
+          </g>
+
+          <!-- Palace 8: 巳 · 仆役 (right-bottom) -->
+          <g transform="translate(390,280)">
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">巳 · SI</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">仆役宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Friends Palace</text>
+            <text x="8" y="66" font-size="9" fill="#D4C4A0" opacity="0.7">廉貞</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.5">天刑 孤辰</text>
+          </g>
+
+          <!-- Palace 9: 酉 · 子女 (bottom-left) -->
+          <g transform="translate(60,390)">
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">酉 · YOU</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">子女宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Children Palace</text>
+            <text x="8" y="66" font-size="9" fill="#D4C4A0" opacity="0.7">天府</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.5">天壽 恩光</text>
+          </g>
+
+          <!-- Palace 10: 申 · 財帛 (bottom-2nd) -->
+          <g transform="translate(170,390)">
+            <rect width="110" height="110" fill="#C5984A" opacity="0.02"/>
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">申 · SHEN</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.9">財帛宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.6">Wealth Palace</text>
+            <text x="8" y="66" font-size="9" fill="#E2C27A" filter="url(#softglow)">太陰 化權</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.6">天魁 紅鸞</text>
+            <text x="8" y="93" font-size="7.5" fill="#9BB5CC" opacity="0.5">天喜</text>
+          </g>
+
+          <!-- Palace 11: 未 · 疾厄 (bottom-3rd) -->
+          <g transform="translate(280,390)">
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">未 · WEI</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">疾厄宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Health Palace</text>
+            <text x="8" y="66" font-size="9" fill="#D4C4A0" opacity="0.7">貪狼</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.5">天虛 病符</text>
+          </g>
+
+          <!-- Palace 12: 午 · 遷移 (bottom-right) -->
+          <g transform="translate(390,390)">
+            <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">午 · WU</text>
+            <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">遷移宮</text>
+            <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Travel Palace</text>
+            <text x="8" y="66" font-size="9" fill="#D4C4A0" opacity="0.7">破軍 化忌</text>
+            <text x="8" y="80" font-size="7.5" fill="#9BB5CC" opacity="0.5">地劫</text>
+          </g>
+        </g>
+
+        <!-- Twinkling star points overlaid on chart -->
+        <g id="star-overlay" opacity="0.5"></g>
+
+        <!-- Corner ornaments -->
+        <g stroke="#C5984A" stroke-width="0.8" opacity="0.35" fill="none">
+          <!-- Top-left -->
+          <polyline points="30,50 30,30 50,30"/>
+          <!-- Top-right -->
+          <polyline points="510,50 510,30 530,30"/>
+          <!-- Bottom-left -->
+          <polyline points="30,510 30,530 50,530"/>
+          <!-- Bottom-right -->
+          <polyline points="510,510 510,530 530,530"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="section-divider">
+  <div class="divider-glyph">◆ &nbsp; 十二宮位 &nbsp; THE TWELVE PALACES &nbsp; ◆</div>
+</div>
+
+<!-- ─── CHART PREVIEW ─── -->
+<section id="preview">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Free Preview</div>
+      <h2 class="section-heading">What Your Chart <em>Reveals</em></h2>
+      <p style="color:var(--text-dim); max-width:560px; margin-bottom:0.5rem; font-size:1rem; line-height:1.75;">
+        Every Zi Wei Dou Shu chart contains 12 palaces, each governing a dimension of your fate. Below is a sample reading — generate yours to see your actual star placements.
+      </p>
+    </div>
+
+    <div class="preview-grid reveal">
+      <!-- Life Palace (unlocked) -->
+      <div class="palace-preview highlight">
+        <span class="palace-name-zh">命宮</span>
+        <span class="palace-name-en">Life Palace</span>
+        <div class="palace-stars">
+          <span class="star-main">紫微星 · Zi Wei</span><br>
+          <span class="star-secondary">天相 · Tian Xiang &nbsp; 文昌</span>
+        </div>
+        <p style="font-size:0.82rem;color:var(--text-dim);margin-top:0.7rem;line-height:1.55;">
+          The Purple Star in your Life Palace bestows natural authority and an innate capacity to lead. You carry the bearing of someone who was meant for significance.
+        </p>
+      </div>
+
+      <!-- Wealth Palace (unlocked preview) -->
+      <div class="palace-preview highlight">
+        <span class="palace-name-zh">財帛宮</span>
+        <span class="palace-name-en">Wealth Palace</span>
+        <div class="palace-stars">
+          <span class="star-main">太陰化權 · Tai Yin Hua Quan</span><br>
+          <span class="star-secondary">天魁 · Tian Kui</span>
+        </div>
+        <p style="font-size:0.82rem;color:var(--text-dim);margin-top:0.7rem;line-height:1.55;">
+          The Moon Star with Power Transformation signals wealth accumulated through persistence and strategic patience. Your financial peak arrives in the second half of life.
+        </p>
+      </div>
+
+      <!-- Career Palace (locked) -->
+      <div class="palace-preview locked">
+        <span class="palace-name-zh">官祿宮</span>
+        <span class="palace-name-en">Career Palace</span>
+        <div class="palace-stars">
+          <span class="star-main">武曲化科</span>
+          <br><span class="star-secondary">右弼 · 天姚</span>
+        </div>
+        <div class="unlock-badge">Unlock Full Reading →</div>
+      </div>
+
+      <!-- Spouse Palace (locked) -->
+      <div class="palace-preview locked">
+        <span class="palace-name-zh">夫妻宮</span>
+        <span class="palace-name-en">Spouse Palace</span>
+        <div class="palace-stars">
+          <span class="star-main">天機化祿</span>
+        </div>
+        <div class="unlock-badge">Unlock Full Reading →</div>
+      </div>
+    </div>
+
+    <div class="preview-cta reveal">
+      <p>Your chart contains <strong style="color:var(--gold)">12 complete palace readings</strong> — plus major cycle analysis and 2026 forecast</p>
+      <button class="btn-outline" onclick="document.querySelector('#hero').scrollIntoView({behavior:'smooth'})">
+        Generate My Free Chart
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 12 PALACES ─── -->
+<section id="palaces">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">The System</div>
+      <h2 class="section-heading">The Twelve <em>Palaces</em></h2>
+      <div class="palaces-intro">
+        <p>Unlike Western astrology's twelve signs, Zi Wei Dou Shu maps your entire life into twelve domains — each palace receiving a unique constellation of stars that interact, transform, and evolve across your lifetime.</p>
+      </div>
+    </div>
+
+    <div class="palaces-grid reveal">
+      <div class="palace-card">
+        <div class="palace-num">PALACE I</div>
+        <div class="palace-zh">命宮</div>
+        <span class="palace-en">Life & Destiny Palace</span>
+        <p class="palace-desc">Your core self, natural character, life mission, and the overall trajectory of your fate. The most important palace in any chart.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE II</div>
+        <div class="palace-zh">兄弟宮</div>
+        <span class="palace-en">Siblings Palace</span>
+        <p class="palace-desc">Relationship with siblings and close peers. Also indicates the quality of your social bonds and collaborative capacity.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE III</div>
+        <div class="palace-zh">夫妻宮</div>
+        <span class="palace-en">Spouse & Romance Palace</span>
+        <p class="palace-desc">The nature of your most intimate partnership, the character of who you attract, and the patterns governing your love life.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE IV</div>
+        <div class="palace-zh">子女宮</div>
+        <span class="palace-en">Children Palace</span>
+        <p class="palace-desc">Relationship with children, creative output, and the legacy you leave behind. Also governs investments and subordinates.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE V</div>
+        <div class="palace-zh">財帛宮</div>
+        <span class="palace-en">Wealth Palace</span>
+        <p class="palace-desc">How you attract, manage, and lose money. The stars here reveal your wealth style — whether your fortune comes through skill, relationships, or timing.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE VI</div>
+        <div class="palace-zh">疾厄宮</div>
+        <span class="palace-en">Health Palace</span>
+        <p class="palace-desc">Constitutional health tendencies, vulnerability periods, and the body's relationship with your life path. Often overlooked, always illuminating.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE VII</div>
+        <div class="palace-zh">遷移宮</div>
+        <span class="palace-en">Travel & Migration Palace</span>
+        <p class="palace-desc">Luck when away from home, potential for relocation, international fortune, and how external environments affect your fate.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE VIII</div>
+        <div class="palace-zh">仆役宮</div>
+        <span class="palace-en">Friends & Servants Palace</span>
+        <p class="palace-desc">The quality of those who serve and assist you. Colleagues, employees, and the social network that either elevates or drains you.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE IX</div>
+        <div class="palace-zh">官祿宮</div>
+        <span class="palace-en">Career & Status Palace</span>
+        <p class="palace-desc">Professional vocation, public reputation, and the type of work that aligns with your nature. The stars here show the ideal path to recognition.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE X</div>
+        <div class="palace-zh">田宅宮</div>
+        <span class="palace-en">Property Palace</span>
+        <p class="palace-desc">Real estate fate, domestic environment, family heritage, and the ancestral qi you carry. Reveals whether property brings fortune or burden.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE XI</div>
+        <div class="palace-zh">福德宮</div>
+        <span class="palace-en">Virtue & Fortune Palace</span>
+        <p class="palace-desc">Inner happiness, spiritual inclination, ancestral merit, and the quality of joy available to you. One of the deepest and most telling palaces.</p>
+      </div>
+      <div class="palace-card">
+        <div class="palace-num">PALACE XII</div>
+        <div class="palace-zh">父母宮</div>
+        <span class="palace-en">Parents Palace</span>
+        <p class="palace-desc">The relationship with parents and authority figures. Also reveals your connection to heaven, teachers, and the sources of guidance in your life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-portrait reveal">
+        <div class="portrait-frame">
+          <div class="portrait-corner tl"></div>
+          <div class="portrait-corner tr"></div>
+          <div class="portrait-corner bl"></div>
+          <div class="portrait-corner br"></div>
+          <div class="portrait-placeholder">
+            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+              <circle cx="32" cy="24" r="14" stroke="#C5984A" stroke-width="1"/>
+              <path d="M8 56 C8 40 56 40 56 56" stroke="#C5984A" stroke-width="1" fill="none"/>
+            </svg>
+            <p>Your Photo Here</p>
+            <p style="margin-top:0.4rem;font-size:0.5rem;opacity:0.7">Professional portrait increases<br>conversion by 60%</p>
+          </div>
+        </div>
+        <div class="about-caption">
+          <strong>The Purple Star Reader</strong>
+          <span>观澜能量 · Guanlan Energy</span>
+        </div>
+      </div>
+
+      <div class="about-content reveal">
+        <div class="section-label">The Reader</div>
+        <h2 class="section-heading">Why <em>Human</em> Interpretation<br>Changes Everything</h2>
+        <p class="about-body">
+          In the English-speaking world, you can find dozens of automated BaZi calculators. What you cannot find — until now — is a practitioner fluent in both the classical Chinese tradition and the English language, offering genuine Zi Wei Dou Shu interpretation.
+        </p>
+        <p class="about-body">
+          I have studied Zi Wei Dou Shu within the living tradition for over a decade — not from textbooks alone, but through the lineage of real chart practice. Every reading I deliver is a conversation between the ancient system and your actual life.
+        </p>
+
+        <div class="credentials">
+          <div class="cred-item">
+            <span class="cred-num">500+</span>
+            <span class="cred-label">Charts Read</span>
+          </div>
+          <div class="cred-item">
+            <span class="cred-num">10+</span>
+            <span class="cred-label">Years of Study</span>
+          </div>
+          <div class="cred-item">
+            <span class="cred-num">24h</span>
+            <span class="cred-label">Report Delivery</span>
+          </div>
+          <div class="cred-item">
+            <span class="cred-num">EN/中</span>
+            <span class="cred-label">Bilingual Practice</span>
+          </div>
+        </div>
+
+        <p class="about-body" style="font-style:italic; border-left:1px solid rgba(197,152,74,0.3); padding-left:1.2rem;">
+          "Zi Wei Dou Shu is not fortune-telling. It is the study of timing — understanding when to move, when to wait, and what patterns repeat in your life so that you can work with fate rather than against it."
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section id="pricing">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Services</div>
+      <h2 class="section-heading">Choose Your <em>Depth</em></h2>
+      <p class="pricing-note">All charts are calculated using traditional Zi Wei Dou Shu methods. Reports are delivered as beautifully designed PDFs, handcrafted for your specific constellation.</p>
+    </div>
+
+    <div class="pricing-grid reveal">
+      <!-- Starter -->
+      <div class="pricing-card">
+        <div class="pricing-type">Entry Reading</div>
+        <div class="pricing-name">Purple Star Starter</div>
+        <div class="pricing-name-zh">紫微入門報告</div>
+        <div class="pricing-price">
+          <span class="price-dollar">$</span>9.90
+        </div>
+        <div class="pricing-delivery">PDF Report · Delivered within 24 hours</div>
+        <ul class="pricing-features">
+          <li class="highlight">Life Palace (命宮) full reading</li>
+          <li class="highlight">Wealth Palace (財帛宮) analysis</li>
+          <li class="highlight">Career Palace (官祿宮) overview</li>
+          <li>Your primary star's nature and influence</li>
+          <li>Key personality patterns and natural gifts</li>
+          <li>8–10 page illustrated PDF</li>
+        </ul>
+        <button class="btn-pricing">Begin Reading</button>
+      </div>
+
+      <!-- Featured -->
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-type">Complete Chart</div>
+        <div class="pricing-name">Full Purple Star Chart</div>
+        <div class="pricing-name-zh">紫微完整命盤</div>
+        <div class="pricing-price">
+          <span class="price-dollar">$</span>39
+        </div>
+        <div class="pricing-delivery">PDF Report · Delivered within 24 hours</div>
+        <ul class="pricing-features">
+          <li class="highlight">All 12 palaces fully interpreted</li>
+          <li class="highlight">Major Cycle (大限) analysis</li>
+          <li class="highlight">2026 annual forecast with specific guidance</li>
+          <li>Four Transformations analysis (四化)</li>
+          <li>Career trajectory and wealth timing</li>
+          <li>Relationship and partnership patterns</li>
+          <li>20–25 page illustrated PDF</li>
+          <li>Email follow-up welcome</li>
+        </ul>
+        <button class="btn-pricing">Order Full Chart</button>
+      </div>
+
+      <!-- Premium -->
+      <div class="pricing-card">
+        <div class="pricing-type">Personal Session</div>
+        <div class="pricing-name">Live Video Reading</div>
+        <div class="pricing-name-zh">人工視頻解讀</div>
+        <div class="pricing-price">
+          <span class="price-dollar">$</span>99
+        </div>
+        <div class="pricing-delivery">30-min Zoom · Recording sent to you</div>
+        <ul class="pricing-features">
+          <li class="highlight">30-minute 1-on-1 Zoom session</li>
+          <li class="highlight">Your specific questions answered</li>
+          <li class="highlight">Full recording delivered</li>
+          <li>Complete chart walkthrough with commentary</li>
+          <li>Handwritten annotated chart PDF included</li>
+          <li>Priority scheduling</li>
+          <li>30 days of email follow-up access</li>
+        </ul>
+        <button class="btn-pricing">Book a Session</button>
+      </div>
+    </div>
+
+    <!-- Annual -->
+    <div style="margin-top:1px;background:var(--deep);border:1px solid rgba(197,152,74,0.15);padding:1.8rem 2rem;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2rem;" class="reveal">
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.2em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:0.5rem;">Annual Membership</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--parchment);">Purple Star Annual Companion &nbsp; <span style="font-size:0.9rem;color:var(--gold-dim);letter-spacing:0.06em;">紫微年度陪跑</span></div>
+        <p style="font-size:0.88rem;color:var(--text-dim);margin-top:0.4rem;">Quarterly reports · Solar term reminders · Unlimited email Q&A · Priority booking for all sessions throughout the year</p>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);font-weight:300;">$199<span style="font-size:0.9rem;color:var(--gold-dim)">/year</span></div>
+        <button class="btn-outline" style="margin-top:0.6rem;font-size:0.6rem;padding:0.6rem 1.5rem">Learn More</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOCIAL PROOF ─── -->
+<section id="social-proof">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Testimonials</div>
+      <h2 class="section-heading">What Readers <em>Experience</em></h2>
+    </div>
+
+    <div class="testimonials-grid reveal">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+        <p class="testimonial-quote">"I've had my Western astrology chart read dozens of times. Nothing came close to this — the Zi Wei reading described patterns in my life I hadn't even articulated to myself."</p>
+        <div class="testimonial-author">Sarah M.</div>
+        <div class="testimonial-location">San Francisco, California</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+        <p class="testimonial-quote">"My grandmother always talked about the family's 'fate chart' but I never understood it. This reading finally connected me to that tradition — in English, which I actually understand."</p>
+        <div class="testimonial-author">James L.</div>
+        <div class="testimonial-location">London, UK</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+        <p class="testimonial-quote">"The 2026 forecast was uncomfortably accurate. I booked the annual membership immediately. Worth every penny — and I'm not usually someone who believes in this."</p>
+        <div class="testimonial-author">Maya R.</div>
+        <div class="testimonial-location">Toronto, Canada</div>
+      </div>
+    </div>
+
+    <div class="coming-soon-banner reveal">
+      Currently accepting our first reviewers — free reading available for the first 10 qualified applicants in exchange for honest feedback. Apply via the form above.
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-brand">
+    Guanlan Energy
+    <span>观澜能量 · Zi Wei Dou Shu · 紫微斗數</span>
+  </div>
+  <p class="footer-tagline">
+    <em>Let your strongest weapon stand at the front — not hidden behind code</em>
+  </p>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+    <a href="#">Reddit</a>
+  </div>
+</footer>
+
+<script>
+/* ─── STARFIELD ─── */
+(function() {
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, stars = [];
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < 280; i++) {
+    stars.push({
+      x: Math.random(), y: Math.random(),
+      r: Math.random() * 1.2 + 0.2,
+      a: Math.random(),
+      speed: Math.random() * 0.004 + 0.001,
+      phase: Math.random() * Math.PI * 2
+    });
+  }
+
+  let t = 0;
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    t += 0.008;
+    stars.forEach(s => {
+      const alpha = s.a * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200, 220, 255, ${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ─── SVG CHART DECORATIONS ─── */
+(function() {
+  const svg = document.getElementById('chart-svg');
+  const ns = 'http://www.w3.org/2000/svg';
+  const cx = 280, cy = 280;
+
+  // Add 72 tick marks to outer ring
+  const ticksG = document.getElementById('ticks');
+  for (let i = 0; i < 72; i++) {
+    const angle = (i / 72) * Math.PI * 2 - Math.PI / 2;
+    const r1 = 242, r2 = (i % 6 === 0) ? 232 : 238;
+    const line = document.createElementNS(ns, 'line');
+    line.setAttribute('x1', cx + Math.cos(angle) * r1);
+    line.setAttribute('y1', cy + Math.sin(angle) * r1);
+    line.setAttribute('x2', cx + Math.cos(angle) * r2);
+    line.setAttribute('y2', cy + Math.sin(angle) * r2);
+    ticksG.appendChild(line);
+  }
+
+  // Add 12 constellation dots on inner ring
+  const consG = document.getElementById('constellation-dots');
+  const constellationNames = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+  for (let i = 0; i < 12; i++) {
+    const angle = (i / 12) * Math.PI * 2 - Math.PI / 2;
+    const r = 228;
+    // dot cluster
+    for (let j = 0; j < 3; j++) {
+      const da = (j - 1) * 0.08;
+      const dr = (j === 1) ? 0 : -6;
+      const circle = document.createElementNS(ns, 'circle');
+      circle.setAttribute('cx', cx + Math.cos(angle + da) * (r + dr));
+      circle.setAttribute('cy', cy + Math.sin(angle + da) * (r + dr));
+      circle.setAttribute('r', j === 1 ? 1.8 : 1);
+      circle.setAttribute('fill', '#9BB5CC');
+      circle.setAttribute('opacity', j === 1 ? '0.4' : '0.2');
+      consG.appendChild(circle);
+    }
+
+    // Branch name label at 210px radius
+    const textEl = document.createElementNS(ns, 'text');
+    const labelR = 210;
+    const tx = cx + Math.cos(angle) * labelR;
+    const ty = cy + Math.sin(angle) * labelR;
+    textEl.setAttribute('x', tx);
+    textEl.setAttribute('y', ty);
+    textEl.setAttribute('text-anchor', 'middle');
+    textEl.setAttribute('dominant-baseline', 'middle');
+    textEl.setAttribute('font-size', '8');
+    textEl.setAttribute('fill', '#7A5C28');
+    textEl.setAttribute('opacity', '0.6');
+    textEl.setAttribute('font-family', 'serif');
+    textEl.textContent = constellationNames[i];
+    consG.appendChild(textEl);
+  }
+
+  // Add random twinkling star overlay inside the chart area
+  const overlayG = document.getElementById('star-overlay');
+  const chartStars = [];
+  for (let i = 0; i < 40; i++) {
+    // Random points inside the outer rect area but outside the center
+    let x, y;
+    do {
+      x = 70 + Math.random() * 420;
+      y = 70 + Math.random() * 420;
+    } while (x > 175 && x < 385 && y > 175 && y < 385);
+
+    const circle = document.createElementNS(ns, 'circle');
+    circle.setAttribute('cx', x);
+    circle.setAttribute('cy', y);
+    circle.setAttribute('r', Math.random() * 1.5 + 0.5);
+    circle.setAttribute('fill', '#E2C27A');
+    circle.setAttribute('opacity', Math.random() * 0.4 + 0.1);
+    overlayG.appendChild(circle);
+    chartStars.push({ el: circle, phase: Math.random() * Math.PI * 2, speed: Math.random() * 0.03 + 0.01 });
+  }
+
+  // Animate twinkling
+  let t = 0;
+  function animate() {
+    t += 0.015;
+    chartStars.forEach(s => {
+      const alpha = 0.1 + 0.35 * Math.abs(Math.sin(t * s.speed * 10 + s.phase));
+      s.el.setAttribute('opacity', alpha.toFixed(3));
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ─── SCROLL REVEAL ─── */
+(function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => observer.observe(el));
+})();
+
+/* ─── FORM SUBMIT ─── */
+function handleSubmit() {
+  const dob = document.getElementById('dob').value;
+  const hour = document.getElementById('hour').value;
+  if (!dob || !hour) {
+    const form = document.querySelector('.chart-form');
+    form.style.borderColor = 'rgba(197,152,74,0.6)';
+    form.style.boxShadow = '0 0 20px rgba(197,152,74,0.15)';
+    setTimeout(() => {
+      form.style.borderColor = '';
+      form.style.boxShadow = '';
+    }, 1200);
+    if (!dob) document.getElementById('dob').focus();
+    else document.getElementById('hour').focus();
+    return;
+  }
+  // Map hour value string → index (0–11, matches EARTHLY_BRANCHES order in results page)
+  const hourMap = {
+    zi: 0, chou: 1, yin: 2, mao: 3, chen: 4, si: 5,
+    wu: 6, wei: 7, shen: 8, you: 9, xu: 10, hai: 11
+  };
+  const hourIndex = hourMap[hour] ?? 0;
+  const hourLabel = document.getElementById('hour').options[document.getElementById('hour').selectedIndex].text;
+  const country = (document.getElementById('country').value || '').trim();
+
+  const params = new URLSearchParams({
+    date: dob,
+    hour: hourIndex,
+    hourLabel: hourLabel,
+    country: country
+  });
+
+  window.location.href = 'ziwei-results.html?' + params.toString();
+}
+
+/* ─── NAV SCROLL EFFECT ─── */
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(3,7,15,0.96)';
+    nav.style.borderBottomColor = 'rgba(197,152,74,0.18)';
+  } else {
+    nav.style.background = '';
+    nav.style.borderBottomColor = '';
+  }
+});
+</script>
+</body>
+</html>

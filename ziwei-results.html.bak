@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Zi Wei Dou Shu Chart — Guanlan Energy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97E;
+    --gold-dim: #8B6E2E;
+    --navy: #0A0D1A;
+    --navy-mid: #0E1428;
+    --navy-card: #111827;
+    --navy-border: rgba(201,168,76,0.18);
+    --text-primary: #F0EAD6;
+    --text-muted: #8B8070;
+    --text-gold: #C9A84C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--navy);
+    color: var(--text-primary);
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Stars background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(201,168,76,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.15) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 10%, rgba(255,255,255,0.1) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 60% 70%, rgba(201,168,76,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 25%, rgba(255,255,255,0.12) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 55%, rgba(255,255,255,0.08) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 80%, rgba(201,168,76,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.1) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 65%, rgba(255,255,255,0.08) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 45%, rgba(201,168,76,0.15) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    border-bottom: 1px solid var(--navy-border);
+    background: rgba(10,13,26,0.92);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--gold-dim);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+
+  .nav-logo-sub {
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  nav ul a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--gold); }
+
+  .btn-nav {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 0.6rem 1.3rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .btn-nav:hover { background: var(--gold-light); }
+
+  /* HERO SECTION */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 5rem 2rem 2rem;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before,
+  .hero-eyebrow::after {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold-dim);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .birth-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    border: 1px solid var(--navy-border);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .birth-item {
+    text-align: center;
+  }
+
+  .birth-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+  }
+
+  .birth-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+  }
+
+  .birth-divider {
+    width: 1px;
+    height: 32px;
+    background: var(--navy-border);
+  }
+
+  /* LOADING STATE */
+  #loading-screen {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 4rem 2rem 8rem;
+  }
+
+  .constellation-loader {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 2rem;
+    position: relative;
+  }
+
+  .constellation-loader svg {
+    animation: rotateConstellation 20s linear infinite;
+  }
+
+  @keyframes rotateConstellation {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .loading-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .loading-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 380px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .loading-dots {
+    display: inline-flex;
+    gap: 6px;
+    margin-top: 1.5rem;
+  }
+
+  .loading-dots span {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: dotPulse 1.4s ease-in-out infinite;
+  }
+
+  .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes dotPulse {
+    0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1); }
+  }
+
+  .loading-progress {
+    margin-top: 2rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+  }
+
+  /* RESULTS */
+  #results-container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 2rem 6rem;
+    display: none;
+  }
+
+  /* MASTER STAR BANNER */
+  .master-star-banner {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    padding: 2.5rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    background: linear-gradient(135deg, rgba(201,168,76,0.06) 0%, transparent 50%, rgba(201,168,76,0.04) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .master-star-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .master-star-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-dim);
+    margin-bottom: 0.75rem;
+  }
+
+  .master-star-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+
+  .master-star-chinese {
+    font-size: 1.1rem;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+  }
+
+  .master-star-essence {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--navy-border);
+  }
+
+  /* PALACE GRID */
+  .palace-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(201,168,76,0.08);
+    margin-bottom: 2px;
+  }
+
+  .palace-grid-row {
+    display: contents;
+  }
+
+  /* PALACE CARD */
+  .palace-card {
+    background: var(--navy-card);
+    padding: 1.75rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .palace-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .palace-card:hover { background: #141c2e; }
+  .palace-card:hover::before { opacity: 1; }
+
+  .palace-card.active {
+    background: #0f1929;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+
+  .palace-card.active::before { opacity: 1; }
+
+  .palace-number {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    margin-bottom: 0.6rem;
+  }
+
+  .palace-chinese {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 0.15rem;
+  }
+
+  .palace-english {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .palace-star {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .palace-star-chinese {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .palace-preview {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .palace-read-more {
+    margin-top: 0.75rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .palace-read-more svg {
+    transition: transform 0.2s;
+  }
+
+  .palace-card:hover .palace-read-more svg {
+    transform: translateX(3px);
+  }
+
+  /* EXPANDED PANEL */
+  .palace-expanded {
+    background: #0b1220;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-top: none;
+    padding: 2.5rem 3rem;
+    display: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .palace-expanded.open {
+    display: block;
+    animation: expandIn 0.4s ease;
+  }
+
+  @keyframes expandIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .palace-expanded::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+  }
+
+  .expanded-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .expanded-title-block .palace-chinese {
+    font-size: 2rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .expanded-star-full {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-top: 0.5rem;
+  }
+
+  .expanded-star-full span {
+    color: var(--gold);
+  }
+
+  .close-btn {
+    background: none;
+    border: 1px solid var(--navy-border);
+    color: var(--text-muted);
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .close-btn:hover {
+    border-color: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  .expanded-body {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: var(--text-primary);
+    max-width: 820px;
+  }
+
+  .expanded-body p {
+    margin-bottom: 1.2rem;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .expanded-body .hook {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-style: italic;
+    color: var(--gold);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--gold-dim);
+  }
+
+  .loading-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 1rem;
+    padding: 1rem 0;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 4rem 2rem 6rem;
+    border-top: 1px solid var(--navy-border);
+    margin-top: 2rem;
+  }
+
+  .cta-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: var(--gold-dim);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .cta-title em { color: var(--gold); font-style: italic; }
+
+  .cta-body {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-secondary {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 1rem 2.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.06);
+  }
+
+  /* FORTUNE INDEX */
+  .fortune-strip {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2.5rem 2rem;
+    border-top: 1px solid var(--navy-border);
+    border-bottom: 1px solid var(--navy-border);
+    margin: 0 0 0;
+    background: rgba(201,168,76,0.03);
+  }
+
+  .fortune-item {
+    text-align: center;
+  }
+
+  .fortune-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--gold);
+    margin-bottom: 0.2rem;
+  }
+
+  .fortune-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+  }
+
+  /* ERROR */
+  .error-msg {
+    text-align: center;
+    padding: 2rem;
+    color: #c97474;
+    font-style: italic;
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .palace-grid { grid-template-columns: repeat(2, 1fr); }
+    .palace-expanded { padding: 1.5rem; }
+    .fortune-strip { gap: 1.5rem; flex-wrap: wrap; }
+  }
+
+  @media (max-width: 480px) {
+    .palace-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">☽</div>
+    <div class="nav-logo-text">
+      GUANLAN ENERGY<br>
+      <span class="nav-logo-sub">觀瀾能量 · PURPLE STAR ASTROLOGY</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#">THE 12 PALACES</a></li>
+    <li><a href="#">THE READER</a></li>
+    <li><a href="#">SERVICES</a></li>
+  </ul>
+  <button class="btn-nav">GET MY CHART</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">YOUR CHART HAS BEEN CALCULATED</div>
+  <h1>The Stars Have<br>Always Known <em>You</em></h1>
+  <div class="birth-badge" id="birth-display">
+    <div class="birth-item">
+      <div class="birth-label">DATE OF BIRTH</div>
+      <div class="birth-value" id="disp-date">—</div>
+    </div>
+    <div class="birth-divider"></div>
+    <div class="birth-item">
+      <div class="birth-label">BIRTH HOUR</div>
+      <div class="birth-value" id="disp-hour">—</div>
+    </div>
+    <div class="birth-divider"></div>
+    <div class="birth-item">
+      <div class="birth-label">LIFE PALACE STAR</div>
+      <div class="birth-value" id="disp-star">—</div>
+    </div>
+  </div>
+</div>
+
+<!-- LOADING -->
+<div id="loading-screen">
+  <div class="constellation-loader">
+    <svg viewBox="0 0 120 120" width="120" height="120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="58" stroke="rgba(201,168,76,0.15)" stroke-width="1"/>
+      <circle cx="60" cy="60" r="48" stroke="rgba(201,168,76,0.08)" stroke-width="0.5"/>
+      <circle cx="60" cy="8" r="3" fill="#C9A84C" opacity="0.8"/>
+      <circle cx="112" cy="60" r="2" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="60" cy="112" r="2.5" fill="#C9A84C" opacity="0.6"/>
+      <circle cx="8" cy="60" r="2" fill="#C9A84C" opacity="0.4"/>
+      <circle cx="91" cy="18" r="1.5" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="102" cy="91" r="1.5" fill="#C9A84C" opacity="0.4"/>
+      <circle cx="18" cy="91" r="1.5" fill="#C9A84C" opacity="0.5"/>
+      <circle cx="29" cy="18" r="1.5" fill="#C9A84C" opacity="0.6"/>
+      <line x1="60" y1="8" x2="91" y2="18" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+      <line x1="91" y1="18" x2="112" y2="60" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+      <line x1="112" y1="60" x2="102" y2="91" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
+      <line x1="102" y1="91" x2="60" y2="112" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+      <line x1="60" y1="112" x2="18" y2="91" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+      <line x1="18" y1="91" x2="8" y2="60" stroke="rgba(201,168,76,0.25)" stroke-width="0.5"/>
+      <line x1="8" y1="60" x2="29" y2="18" stroke="rgba(201,168,76,0.3)" stroke-width="0.5"/>
+      <line x1="29" y1="18" x2="60" y2="8" stroke="rgba(201,168,76,0.2)" stroke-width="0.5"/>
+      <circle cx="60" cy="60" r="6" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.6)" stroke-width="1"/>
+      <circle cx="60" cy="60" r="2" fill="#C9A84C"/>
+    </svg>
+  </div>
+  <div class="loading-title">Reading your constellation</div>
+  <div class="loading-subtitle">The ancient system is mapping your twelve palaces across lifetimes of recorded fate.</div>
+  <div class="loading-dots">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="loading-progress" id="loading-status">CALCULATING LIFE PALACE · 命宮</div>
+</div>
+
+<!-- RESULTS -->
+<div id="results-container">
+  <!-- Fortune Strip -->
+  <div class="fortune-strip" id="fortune-strip" style="display:none">
+    <div class="fortune-item">
+      <div class="fortune-value" id="ft-element">Wood</div>
+      <div class="fortune-label">FIVE ELEMENTS</div>
+    </div>
+    <div class="birth-divider"></div>
+    <div class="fortune-item">
+      <div class="fortune-value" id="ft-cycle">丙午</div>
+      <div class="fortune-label">MAJOR CYCLE</div>
+    </div>
+    <div class="birth-divider"></div>
+    <div class="fortune-item">
+      <div class="fortune-value" id="ft-2026">Expansion</div>
+      <div class="fortune-label">2026 THEME</div>
+    </div>
+    <div class="birth-divider"></div>
+    <div class="fortune-item">
+      <div class="fortune-value" id="ft-strength">Authority</div>
+      <div class="fortune-label">CORE STRENGTH</div>
+    </div>
+  </div>
+
+  <!-- Master Star -->
+  <div id="master-banner" style="display:none" class="master-star-banner">
+    <div class="master-star-label">YOUR LIFE PALACE MASTER STAR</div>
+    <div class="master-star-name" id="mb-name">—</div>
+    <div class="master-star-chinese" id="mb-chinese">—</div>
+    <div class="master-star-essence" id="mb-essence">—</div>
+  </div>
+
+  <!-- Palace Grid -->
+  <div class="section-title" id="grid-label" style="display:none">THE TWELVE PALACES · 十二宮</div>
+  <div class="palace-grid" id="palace-grid"></div>
+
+  <!-- CTA -->
+  <div class="cta-section" id="cta-block" style="display:none">
+    <div class="cta-eyebrow">YOU HAVE SEEN THE SURFACE</div>
+    <div class="cta-title">Your complete chart holds<br><em>what words cannot prepare you for</em></div>
+    <div class="cta-body">Every palace runs 20–30 pages deep. The full chart includes your Major Cycle analysis, Four Transformations, career timing, wealth peaks — and what 2026 is specifically activating in your chart.</div>
+    <div class="cta-buttons">
+      <button class="btn-primary">ORDER FULL CHART — $39</button>
+      <button class="btn-secondary">BOOK A LIVE READING — $99</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── CHART DATA ENGINE ─────────────────────────────────────────────────────
+// Simulate chart calculation from birth data
+// In production this calls your actual ZWDS calculation backend
+
+const EARTHLY_BRANCHES = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const HOUR_NAMES = ['子時','丑時','寅時','卯時','辰時','巳時','午時','未時','申時','酉時','戌時','亥時'];
+
+const MAJOR_STARS = {
+  '紫微': { en: 'Zi Wei · Purple Emperor', element: 'Earth', nature: 'Emperor', color: '#9b7fd4' },
+  '天機': { en: 'Tian Ji · Heavenly Strategist', element: 'Wood', nature: 'Advisor', color: '#5cba8c' },
+  '太陽': { en: 'Tai Yang · The Sun', element: 'Fire', nature: 'Illuminator', color: '#e8a43c' },
+  '武曲': { en: 'Wu Qu · Military Melody', element: 'Metal', nature: 'Commander', color: '#7ba8d4' },
+  '天同': { en: 'Tian Tong · Heavenly Union', element: 'Water', nature: 'Peacemaker', color: '#7dbcc8' },
+  '廉貞': { en: 'Lian Zhen · Chaste Honor', element: 'Fire', nature: 'Strategist', color: '#d47f7f' },
+  '天府': { en: 'Tian Fu · Celestial Treasury', element: 'Earth', nature: 'Treasurer', color: '#c9a84c' },
+  '太陰': { en: 'Tai Yin · The Moon', element: 'Water', nature: 'Empath', color: '#a8b8d4' },
+  '貪狼': { en: 'Tan Lang · Greedy Wolf', element: 'Water/Wood', nature: 'Charmer', color: '#a07fd4' },
+  '巨門': { en: 'Ju Men · Mighty Gate', element: 'Water', nature: 'Investigator', color: '#789ab8' },
+  '天相': { en: 'Tian Xiang · Heavenly Minister', element: 'Water', nature: 'Diplomat', color: '#88b89f' },
+  '天梁': { en: 'Tian Liang · Heavenly Beam', element: 'Earth', nature: 'Protector', color: '#b8a870' },
+  '七殺': { en: 'Qi Sha · Seven Killings', element: 'Metal/Fire', nature: 'Warrior', color: '#c07070' },
+  '破軍': { en: 'Po Jun · Destroyer', element: 'Water', nature: 'Revolutionary', color: '#9070b8' },
+};
+
+const PALACE_DEFS = [
+  { idx: 0, cn: '命宮', en: 'LIFE & DESTINY PALACE', roman: 'Ming Gong', domain: 'Your core self, soul mission, and the fate you were born to live.' },
+  { idx: 1, cn: '兄弟宮', en: 'SIBLINGS PALACE', roman: 'Xiong Di Gong', domain: 'Your peers, close allies, and collaborative capacity in this life.' },
+  { idx: 2, cn: '夫妻宮', en: 'SPOUSE & ROMANCE PALACE', roman: 'Fu Qi Gong', domain: 'The soul you attract, the patterns you repeat in intimate union.' },
+  { idx: 3, cn: '子女宮', en: 'CHILDREN & CREATIVITY PALACE', roman: 'Zi Nü Gong', domain: 'Creative output, legacy, investments, and the energy you birth into the world.' },
+  { idx: 4, cn: '財帛宮', en: 'WEALTH PALACE', roman: 'Cai Bo Gong', domain: 'How you make, lose, and deserve money — your true financial destiny.' },
+  { idx: 5, cn: '疾厄宮', en: 'HEALTH PALACE', roman: 'Ji E Gong', domain: 'Your body\'s constitutional pattern, hidden vulnerabilities, and vitality signature.' },
+  { idx: 6, cn: '遷移宮', en: 'TRAVEL & MIGRATION PALACE', roman: 'Qian Yi Gong', domain: 'Your luck when abroad, the power of place in your destiny.' },
+  { idx: 7, cn: '仆役宮', en: 'FRIENDS & SERVANTS PALACE', roman: 'Pu Yi Gong', domain: 'The quality of people drawn to you, your social network\'s true nature.' },
+  { idx: 8, cn: '官祿宮', en: 'CAREER & STATUS PALACE', roman: 'Guan Lu Gong', domain: 'Your professional destiny, the path where your name is meant to be remembered.' },
+  { idx: 9, cn: '田宅宮', en: 'PROPERTY PALACE', roman: 'Tian Zhai Gong', domain: 'Your ancestral inheritance, relationship with home, property fate.' },
+  { idx: 10, cn: '福德宮', en: 'VIRTUE & FORTUNE PALACE', roman: 'Fu De Gong', domain: 'Your inner joy, spiritual merit, and the quality of life you feel inside.' },
+  { idx: 11, cn: '父母宮', en: 'PARENTS PALACE', roman: 'Fu Mu Gong', domain: 'The karma with authority, your connection to heaven and ancestral protection.' },
+];
+
+// Simple deterministic star assignment based on birth data
+function assignStars(birthDate, hourIndex) {
+  const starKeys = Object.keys(MAJOR_STARS);
+  const date = new Date(birthDate);
+  const month = date.getMonth();
+  const day = date.getDate();
+  const year = date.getFullYear();
+  
+  // Life Palace star (primary calculation)
+  const lifeSeed = ((year % 12) + month + Math.floor(day / 3) + hourIndex) % 14;
+  const lifeStarIndex = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13][lifeSeed];
+  
+  const assignments = [];
+  for (let i = 0; i < 12; i++) {
+    const seed = (lifeSeed + month * i + day + i * 3 + hourIndex) % starKeys.length;
+    assignments.push(starKeys[seed]);
+  }
+  assignments[0] = starKeys[Math.min(lifeStarIndex, starKeys.length - 1)]; // Life palace is primary
+  return assignments;
+}
+
+function getMetaData(lifeStarCn, birthDate) {
+  const date = new Date(birthDate);
+  const year = date.getFullYear();
+  const cycles = ['甲子','乙丑','丙寅','丁卯','戊辰','己巳','庚午','辛未','壬申','癸酉','甲戌','乙亥'];
+  const cycle = cycles[(year - 1924) % 12] || '丙午';
+  const elements = { '紫微':'Earth','天機':'Wood','太陽':'Fire','武曲':'Metal','天同':'Water','廉貞':'Fire',
+                     '天府':'Earth','太陰':'Water','貪狼':'Wood','巨門':'Water','天相':'Water','天梁':'Earth',
+                     '七殺':'Metal','破軍':'Water' };
+  const strengths = { '紫微':'Authority','天機':'Intellect','太陽':'Radiance','武曲':'Command','天同':'Harmony',
+                      '廉貞':'Resilience','天府':'Abundance','太陰':'Intuition','貪狼':'Magnetism','巨門':'Perception',
+                      '天相':'Diplomacy','天梁':'Wisdom','七殺':'Courage','破軍':'Transformation' };
+  const themes2026 = { '紫微':'Power','天機':'Revelation','太陽':'Recognition','武曲':'Harvest','天同':'Peace',
+                       '廉貞':'Breakthrough','天府':'Accumulation','太陰':'Deepening','貪狼':'Expansion','巨門':'Truth',
+                       '天相':'Alliance','天梁':'Protection','七殺':'Purge','破軍':'Rebirth' };
+  return {
+    element: elements[lifeStarCn] || 'Earth',
+    cycle,
+    strength: strengths[lifeStarCn] || 'Authority',
+    theme2026: themes2026[lifeStarCn] || 'Expansion'
+  };
+}
+
+// ─── API PROXY ─────────────────────────────────────────────────────────────
+// SECURITY: Never call api.anthropic.com directly from the browser.
+// The API key lives ONLY in the Cloudflare Worker environment variable (ANTHROPIC_API_KEY).
+// Deploy worker/proxy.js to Cloudflare Workers and set this URL to your worker's domain.
+// Local development: leave as '/api/claude' if running a local proxy (see worker/proxy.js).
+const PROXY_URL = '/api/claude'; // e.g. 'https://guanlan-proxy.YOUR_SUBDOMAIN.workers.dev'
+
+async function callClaude(messages, max_tokens = 1000) {
+  const res = await fetch(PROXY_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages, max_tokens })
+  });
+  if (!res.ok) throw new Error(`Proxy error ${res.status}`);
+  const data = await res.json();
+  return data.content?.map(c => c.text || '').join('') || '';
+}
+
+// ─── CLAUDE API READING ────────────────────────────────────────────────────
+async function generatePalaceReading(palaceDef, starCn, starData, birthDate, hourLabel, lifeStarCn) {
+  const prompt = `You are a master Zi Wei Dou Shu astrologer writing for an English-speaking Western audience who knows nothing about Chinese astrology. Your writing must be viscerally accurate, emotionally arresting, and so specific it feels like you've been watching this person's life.
+
+PALACE: ${palaceDef.cn} (${palaceDef.en.split('·')[0].trim()} — ${palaceDef.roman})
+Domain: ${palaceDef.domain}
+
+STAR PLACED HERE: ${starCn} / ${starData.en}
+Element: ${starData.element} | Archetype: ${starData.nature}
+
+Life Palace Master Star: ${lifeStarCn}
+Birth Date: ${birthDate}
+Birth Hour: ${hourLabel}
+
+Write a reading for this palace that:
+1. Opens with ONE devastating, soul-precise sentence (the "hook") that the person will feel is about them specifically — something they've never heard articulated before
+2. Then 2-3 short paragraphs that go DEEP. No generic astrology platitudes. Name the specific wound, the specific gift, the specific pattern they live in. Be bold. Be precise. Use "you" directly.
+3. End with one line about 2026's specific activation in this palace.
+
+DO NOT use phrases like: "you may find", "perhaps", "it's possible", "some people with this placement". Be declarative. Be certain. Be poetic but precise.
+
+Tone: Like a brilliant friend who has known you for decades and finally decided to say everything they've been observing. Warm but unflinching. Literary but not flowery.
+
+Format your response as:
+HOOK: [one devastating opening sentence]
+BODY: [2-3 paragraphs, each separated by a blank line]
+2026: [one sentence about this year's activation]`;
+
+  const text = await callClaude([{ role: 'user', content: prompt }], 1000);
+  return text;
+}
+
+function parseReading(raw) {
+  const hookMatch = raw.match(/HOOK:\s*([\s\S]*?)(?=BODY:|$)/i);
+  const bodyMatch = raw.match(/BODY:\s*([\s\S]*?)(?=2026:|$)/i);
+  const yr2026Match = raw.match(/2026:\s*([\s\S]*?)$/i);
+  return {
+    hook: hookMatch ? hookMatch[1].trim() : '',
+    body: bodyMatch ? bodyMatch[1].trim() : raw,
+    year2026: yr2026Match ? yr2026Match[1].trim() : ''
+  };
+}
+
+// ─── STATE ─────────────────────────────────────────────────────────────────
+let chartState = {
+  birthDate: '',
+  hourIndex: 0,
+  hourLabel: '',
+  starAssignments: [],
+  readings: {},
+  activeCard: null
+};
+
+// ─── URL PARAMS ─────────────────────────────────────────────────────────────
+function getParams() {
+  const p = new URLSearchParams(window.location.search);
+  // Normalize date: HTML date inputs return yyyy-mm-dd, display as yyyy/mm/dd
+  const rawDate = p.get('date') || '1990/06/15';
+  const date = rawDate.replace(/-/g, '/');
+  return {
+    date,
+    hour: parseInt(p.get('hour') ?? '0', 10),
+    hourLabel: p.get('hourLabel') || '子時 · Zi Hour (23:00–01:00)',
+    country: p.get('country') || ''
+  };
+}
+
+// ─── RENDER PALACE CARD ────────────────────────────────────────────────────
+function renderPalaceCard(palace, starCn, index) {
+  const star = MAJOR_STARS[starCn] || { en: starCn, element: '—', nature: '—' };
+  const reading = chartState.readings[index];
+  const preview = reading ? reading.hook : '✦ Reading loading...';
+
+  const card = document.createElement('div');
+  card.className = 'palace-card';
+  card.id = `card-${index}`;
+  card.innerHTML = `
+    <div class="palace-number">PALACE ${['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'][index]}</div>
+    <div class="palace-chinese">${palace.cn}</div>
+    <div class="palace-english">${palace.en}</div>
+    <div class="palace-star">${star.en.split('·')[0].trim()}</div>
+    <div class="palace-star-chinese">${starCn} · ${star.nature}</div>
+    <div class="palace-preview">${preview}</div>
+    <div class="palace-read-more">
+      READ FULL READING
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+        <path d="M2 6h8M7 3l3 3-3 3" stroke="#C9A84C" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+    </div>
+  `;
+  card.addEventListener('click', () => toggleCard(index));
+  return card;
+}
+
+function renderExpandedPanel(palace, starCn, index) {
+  const star = MAJOR_STARS[starCn] || { en: starCn, element: '—', nature: '—' };
+  const reading = chartState.readings[index];
+
+  const panel = document.createElement('div');
+  panel.className = 'palace-expanded';
+  panel.id = `expanded-${index}`;
+
+  if (reading) {
+    const parsed = parseReading(reading.raw || '');
+    panel.innerHTML = `
+      <div class="expanded-header">
+        <div class="expanded-title-block">
+          <div class="palace-chinese">${palace.cn}</div>
+          <div class="palace-english" style="margin:0.25rem 0 0.5rem">${palace.en}</div>
+          <div class="expanded-star-full"><span>${star.en.split('·')[0].trim()}</span> · ${star.element} · ${star.nature}</div>
+        </div>
+        <button class="close-btn" onclick="closeCard(${index})">CLOSE ✕</button>
+      </div>
+      <div class="expanded-body">
+        ${reading.hook ? `<p class="hook">"${reading.hook}"</p>` : ''}
+        ${reading.body ? reading.body.split('\n\n').filter(p=>p.trim()).map(p => `<p>${p}</p>`).join('') : ''}
+        ${reading.year2026 ? `<p style="margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid rgba(201,168,76,0.15); color:var(--gold); font-style:italic;">✦ 2026: ${reading.year2026}</p>` : ''}
+      </div>
+    `;
+  } else {
+    panel.innerHTML = `
+      <div class="expanded-header">
+        <div class="expanded-title-block">
+          <div class="palace-chinese">${palace.cn}</div>
+          <div class="palace-english" style="margin:0.25rem 0 0.5rem">${palace.en}</div>
+        </div>
+        <button class="close-btn" onclick="closeCard(${index})">CLOSE ✕</button>
+      </div>
+      <div class="loading-inline">
+        <div class="loading-dots" style="display:inline-flex">
+          <span></span><span></span><span></span>
+        </div>
+        Consulting the ancient records...
+      </div>
+    `;
+    // Load and re-render when ready
+    loadReading(index).then(() => {
+      const existingPanel = document.getElementById(`expanded-${index}`);
+      if (existingPanel && existingPanel.classList.contains('open')) {
+        const newPanel = renderExpandedPanel(palace, starCn, index);
+        newPanel.classList.add('open');
+        existingPanel.replaceWith(newPanel);
+      }
+    });
+  }
+  return panel;
+}
+
+// ─── CARD TOGGLE ──────────────────────────────────────────────────────────
+function toggleCard(index) {
+  if (chartState.activeCard === index) {
+    closeCard(index);
+    return;
+  }
+  // Close previous
+  if (chartState.activeCard !== null) {
+    closeCard(chartState.activeCard, false);
+  }
+  chartState.activeCard = index;
+  const card = document.getElementById(`card-${index}`);
+  card.classList.add('active');
+
+  // Remove old expanded if exists
+  const oldExpanded = document.getElementById(`expanded-${index}`);
+  if (oldExpanded) oldExpanded.remove();
+
+  // Insert after card's row
+  const palace = PALACE_DEFS[index];
+  const starCn = chartState.starAssignments[index];
+  const panel = renderExpandedPanel(palace, starCn, index);
+  panel.classList.add('open');
+
+  // Insert after the card in DOM
+  card.after(panel);
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function closeCard(index, updateState = true) {
+  const card = document.getElementById(`card-${index}`);
+  if (card) card.classList.remove('active');
+  const panel = document.getElementById(`expanded-${index}`);
+  if (panel) panel.remove();
+  if (updateState) chartState.activeCard = null;
+}
+
+// ─── LOADING A READING ────────────────────────────────────────────────────
+async function loadReading(index) {
+  if (chartState.readings[index]) return;
+  const palace = PALACE_DEFS[index];
+  const starCn = chartState.starAssignments[index];
+  const star = MAJOR_STARS[starCn] || { en: starCn, element: '—', nature: '—' };
+  const lifeStarCn = chartState.starAssignments[0];
+
+  try {
+    const raw = await generatePalaceReading(
+      palace, starCn, star,
+      chartState.birthDate, chartState.hourLabel, lifeStarCn
+    );
+    const parsed = parseReading(raw);
+    chartState.readings[index] = { ...parsed, raw };
+
+    // Update preview
+    const previewEl = document.querySelector(`#card-${index} .palace-preview`);
+    if (previewEl && parsed.hook) {
+      previewEl.textContent = parsed.hook;
+    }
+  } catch (e) {
+    const isProxyMissing = e.message?.includes('404') || e.message?.includes('Failed to fetch');
+    chartState.readings[index] = {
+      hook: isProxyMissing
+        ? 'API proxy not configured — deploy worker/proxy.js to Cloudflare Workers and set PROXY_URL.'
+        : 'Reading unavailable — please try again.',
+      body: '',
+      year2026: '',
+      raw: ''
+    };
+  }
+}
+
+// ─── MASTER STAR READING ──────────────────────────────────────────────────
+async function generateMasterReading(lifeStarCn, birthDate, hourLabel) {
+  const star = MAJOR_STARS[lifeStarCn];
+  const prompt = `You are a Zi Wei Dou Shu master. Give a 2-sentence essence description of someone whose Life Palace holds ${lifeStarCn} (${star?.en || lifeStarCn}). 
+The first sentence should be a profound truth about who they fundamentally ARE. The second about their life's central paradox or tension.
+Write in second person ("You are..."). Be devastating in accuracy, poetic in form. No generic astrology. Maximum 60 words total.`;
+
+  return await callClaude([{ role: 'user', content: prompt }], 200);
+}
+
+// ─── MAIN INIT ─────────────────────────────────────────────────────────────
+async function init() {
+  const params = getParams();
+  chartState.birthDate = params.date;
+  chartState.hourIndex = params.hour;
+  chartState.hourLabel = params.hourLabel;
+  chartState.country = params.country;
+
+  // Display birth info
+  document.getElementById('disp-date').textContent = params.date;
+  document.getElementById('disp-hour').textContent = params.hourLabel.split('·')[0].trim();
+  // Show country in badge if provided
+  if (params.country) {
+    const badge = document.querySelector('.birth-badge');
+    const divider = document.createElement('div'); divider.className = 'birth-divider';
+    const item = document.createElement('div'); item.className = 'birth-item';
+    item.innerHTML = `<div class="birth-label">PLACE OF BIRTH</div><div class="birth-value">${params.country}</div>`;
+    badge.appendChild(divider);
+    badge.appendChild(item);
+  }
+
+  const loadingStatus = document.getElementById('loading-status');
+  const statusMessages = [
+    'CALCULATING LIFE PALACE · 命宮',
+    'MAPPING WEALTH DESTINY · 財帛宮',
+    'READING CAREER STARS · 官祿宮',
+    'CONSULTING FORTUNE PALACE · 福德宮',
+    'ASSEMBLING YOUR CONSTELLATION · 十二宮'
+  ];
+  let statusIdx = 0;
+  const statusInterval = setInterval(() => {
+    statusIdx = (statusIdx + 1) % statusMessages.length;
+    loadingStatus.textContent = statusMessages[statusIdx];
+  }, 1800);
+
+  // Calculate chart
+  chartState.starAssignments = assignStars(params.date, params.hour);
+  const lifeStarCn = chartState.starAssignments[0];
+  const lifeStarData = MAJOR_STARS[lifeStarCn] || { en: lifeStarCn };
+
+  document.getElementById('disp-star').textContent = lifeStarData.en?.split('·')[0]?.trim() || lifeStarCn;
+
+  // Load Life Palace reading + master star reading first
+  const [_, masterEssence] = await Promise.all([
+    loadReading(0),
+    generateMasterReading(lifeStarCn, params.date, params.hourLabel)
+  ]);
+
+  clearInterval(statusInterval);
+
+  // Hide loading
+  document.getElementById('loading-screen').style.display = 'none';
+  document.getElementById('results-container').style.display = 'block';
+
+  // Fortune strip
+  const meta = getMetaData(lifeStarCn, params.date);
+  document.getElementById('ft-element').textContent = meta.element;
+  document.getElementById('ft-cycle').textContent = meta.cycle;
+  document.getElementById('ft-2026').textContent = meta.theme2026;
+  document.getElementById('ft-strength').textContent = meta.strength;
+  document.getElementById('fortune-strip').style.display = 'flex';
+
+  // Master banner
+  document.getElementById('mb-name').textContent = lifeStarData.en?.split('·')[0]?.trim() || lifeStarCn;
+  document.getElementById('mb-chinese').textContent = `${lifeStarCn} · ${lifeStarData.en?.split('·')[1]?.trim() || ''}`;
+  document.getElementById('mb-essence').textContent = masterEssence;
+  document.getElementById('master-banner').style.display = 'block';
+
+  // Grid
+  document.getElementById('grid-label').style.display = 'flex';
+  const grid = document.getElementById('palace-grid');
+  grid.innerHTML = '';
+
+  PALACE_DEFS.forEach((palace, i) => {
+    const card = renderPalaceCard(palace, chartState.starAssignments[i], i);
+    grid.appendChild(card);
+  });
+
+  // CTA
+  document.getElementById('cta-block').style.display = 'block';
+
+  // Background load remaining readings
+  for (let i = 1; i < 12; i++) {
+    setTimeout(() => loadReading(i), i * 600);
+  }
+}
+
+// Start
+init().catch(err => {
+  document.getElementById('loading-screen').innerHTML = `
+    <div style="color:#c97474;font-style:italic;font-size:1.05rem;line-height:1.8;max-width:480px;margin:0 auto;">
+      <div style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.2em;color:#8B6E2E;margin-bottom:1rem;">INITIALISATION ERROR</div>
+      <p>The stars could not be read: <strong style="color:#e08080">${err.message}</strong></p>
+      <p style="margin-top:1rem;font-size:0.9rem;color:#6a6060">If you are setting up: deploy <code>worker/proxy.js</code> to Cloudflare Workers,<br>set <code>ANTHROPIC_API_KEY</code> as an environment variable,<br>then update <code>PROXY_URL</code> in <code>ziwei-results.html</code>.</p>
+      <p style="margin-top:1.5rem"><a href="index.html" style="color:#C9A84C;text-decoration:none;font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.15em">← RETURN TO CHART FORM</a></p>
+    </div>`;
+});
+</script>
+</body>
+</html>
