@@ -1,0 +1,86 @@
+{
+  "site": {
+    "name": "Guanlan Energy",
+    "domain": "https://metaphysicflow.com",
+    "cta_page": "/free-chart.html",
+    "cta_text": "Get Your Free Chart Reading",
+    "author": "Guanlan Energy",
+    "twitter": "@metaphysicflow",
+    "logo": "/images/og-chart.jpg",
+    "faq_page": "/faq.html"
+  },
+  "pages": [
+    {
+      "slug": "zi-wei-dou-shu-calculator-english",
+      "keyword": "Zi Wei Dou Shu Calculator English",
+      "title": "Free Zi Wei Dou Shu Calculator — Decode Your Purple Star Chart in English",
+      "description": "Calculate your authentic imperial Purple Star Astrology map instantly. Access complete English translations for the 12 Palaces and 14 Major Stars.",
+      "summary": "This advanced digital engine converts your solar birth data into the traditional 12-Palace Matrix used by ancient Chinese emperors.",
+      "definition": "Zi Wei Dou Shu Calculator English is a digital diagnostic core that translates Western solar coordinates into traditional Eastern lunar matrices for personal destiny charting.",
+      "lsi_keywords": ["Purple Star Astrology", "12 Palaces", "Ming Gong", "Bazi vs Zi Wei", "Chinese Destiny Matrix"]
+    },
+    {
+      "slug": "bazi-vs-zi-wei-dou-shu-difference",
+      "keyword": "Bazi vs Zi Wei Dou Shu",
+      "title": "Bazi vs Zi Wei Dou Shu: Which Eastern Astrology System Is More Accurate?",
+      "description": "Discover the core differences between Bazi (Four Pillars) and Zi Wei Dou Shu. Learn how the 5 Elements and the 12-Palace Matrix blueprint your life.",
+      "summary": "While both systems utilize your lunar birth coordinates, they map your life through entirely different metaphysical resolutions.",
+      "definition": "Bazi is a Chinese astrological framework focusing on the elemental balance of Yin-Yang, while Zi Wei Dou Shu operates as an intricate 12-house matrix mapping micro life events.",
+      "lsi_keywords": ["Four Pillars of Destiny", "14 Major Stars", "Yin Yang balance", "Fate calculation", "Chinese Metaphysics"]
+    },
+    {
+      "slug": "purple-star-astrology-calculator",
+      "keyword": "Purple Star Astrology Calculator",
+      "title": "Purple Star Astrology Calculator Free — Plot Imperial 12-Palace Chart",
+      "description": "Use the premier free Purple Star Astrology Calculator online. Instantly plot your Ming Gong, Wealth, and Career palaces with true solar time calibration.",
+      "summary": "Access the fully localized English engine for the ancient imperial astrological calculation framework.",
+      "definition": "Purple Star Astrology Calculator is an automated astronomical ephemeris engine designed to plot the imperial 108 celestial nodes within a 12-quadrant destiny grid.",
+      "lsi_keywords": ["Imperial astrology", "Free chart plotting", "14 major Zheng Yao", "Auxiliary stars", "Astral map interpretation"]
+    },
+    {
+      "slug": "what-is-ming-gong-life-palace",
+      "keyword": "Ming Gong Life Palace",
+      "title": "What is Ming Gong (Life Palace) in Zi Wei Dou Shu? Core Archetypes",
+      "description": "Unlock the secrets of your Ming Gong (Life Palace). Learn how this master operating system governs your core identity, personality traits, and baseline destiny.",
+      "summary": "The Life Palace acts as the ultimate filter and structural anchor for your entire Eastern astrological blueprint.",
+      "definition": "Ming Gong, or the Life Palace, is the structural anchor of a Zi Wei Dou Shu chart, representing an individual's core psychological persona and baseline destiny potential.",
+      "lsi_keywords": ["Life Palace meaning", "Master star alignment", "Core personality nodes", "12 Palaces analysis", "Destiny anchor"]
+    },
+    {
+      "slug": "zi-wei-dou-shu-wealth-palace-stars",
+      "keyword": "Zi Wei Dou Shu Wealth Palace",
+      "title": "Zi Wei Dou Shu Wealth Palace Guide: How to Calculate Your Money Cycles",
+      "description": "Deep dive into the Zi Wei Dou Shu Wealth Palace. Discover which stars indicate financial abundance, entrepreneurship capability, or sudden wealth accumulation.",
+      "summary": "Analyze the financial quadrant of your cosmic chart to optimize your cash flow and investments.",
+      "definition": "Zi Wei Dou Shu Wealth Palace is the specific metaphysical house that governs an individual's financial capacity, money management style, and lifetime wealth-generation cycles.",
+      "lsi_keywords": ["Finance star", "Wealth accumulation", "Money luck pillars", "Business success astrology", "Property palace connection"]
+    },
+    {
+      "slug": "zi-wei-dou-shu-career-palace-meaning",
+      "keyword": "Zi Wei Dou Shu Career Palace",
+      "title": "Zi Wei Dou Shu Career Palace: Best Professions for Your Astral Archetype",
+      "description": "Decode your vocational path using the Zi Wei Dou Shu Career Palace. Find out whether you thrive in high-risk execution, corporate leadership, or creative fields.",
+      "summary": "Align your career strategy with your inherent planetary strengths to maximize workplace leverage.",
+      "definition": "Zi Wei Dou Shu Career Palace is the astrological sector that defines an individual's ideal vocational environment, professional operational skills, and workplace dynamics.",
+      "lsi_keywords": ["Vocational alignment", "Leadership stars", "Corporate strategy astrology", "Independent entrepreneur star", "Job change timing"]
+    },
+    {
+      "slug": "spouse-palace-zi-wei-dou-shu-marriage",
+      "keyword": "Spouse Palace Zi Wei Dou Shu",
+      "title": "Spouse Palace Zi Wei Dou Shu: Marriage Timing & Partner Archetypes",
+      "description": "Uncover your romantic patterns through the Spouse Palace in Purple Star Astrology. Read indications for ideal partner personalities and marriage harmony.",
+      "summary": "Explore the relationship matrix to understand your cosmic compatibility and lifelong partnership dynamics.",
+      "definition": "Spouse Palace in Zi Wei Dou Shu is the relationship quadrant that registers an individual's romantic inclinations, marriage stability, and the psychological archetype of their life partner.",
+      "lsi_keywords": ["Relationship compatibility", "Marriage timing astrology", "Partner profile calculation", "Affection pillars", "12 houses romance"]
+    },
+    {
+      "slug": "free-chinese-astrology-reading-english",
+      "keyword": "Free Chinese Astrology Reading English",
+      "title": "100% Free Chinese Astrology Reading — Detailed English Interpretations",
+      "description": "Get your comprehensive free Chinese astrology reading in plain English. No sign-ups required. Decode your Bazi pillars and Purple Star matrix today.",
+      "summary": "Instantly bypass archaic translations and access clean, actionable modern insights about your fate.",
+      "definition": "Free Chinese Astrology Reading English refers to the programmatic, ad-free digital translation of complex Eastern metaphysical systems into accessible psychological reports for global users.",
+      "lsi_keywords": ["No registration chart", "Lunar calendar analysis", "Destiny blueprint online", "Actionable spiritual guides", "Eastern wisdom tools"]
+    }
+  ]
+}

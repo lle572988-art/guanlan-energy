@@ -1,61 +1,46 @@
 #!/bin/bash
-# SEO Submission Script: ping Google, Bing (IndexNow), and build sitemap
+# SEO Submission Script: IndexNow + Bing sitemap ping
 # Usage: bash seo-submit.sh
 
 SITE="https://metaphysicflow.com"
 DOMAIN="metaphysicflow.com"
+MATRIX="seo-engine/data/keywords-matrix.json"
 
 echo "========================================"
 echo "  SEO Submission for $DOMAIN"
 echo "========================================"
 
-# 1. IndexNow for Bing (fastest — no auth needed)
+# Build URL list from keywords matrix + core pages
+PAGE_URLS=$(node -e "
+const c=require('./${MATRIX}');
+const base=c.site.domain;
+const core=[base+'/',base+'/faq.html',base+'/free-chart.html',base+'/llms.txt',base+'/blog/'];
+const geo=c.pages.map(p=>base+'/pages/'+p.slug+'.html');
+console.log(JSON.stringify([...core,...geo]));
+")
+
 echo ""
-echo "[1/4] IndexNow → Bing..."
+echo "[1/3] IndexNow → Bing..."
 curl -s -X POST "https://api.indexnow.org/indexnow" \
   -H "Content-Type: application/json" \
-  -d '{
-    "host": "'"$DOMAIN"'",
-    "key": "seo-indexnow-key",
-    "keyLocation": "'"$SITE"'/seo-indexnow-key.txt",
-    "urlList": [
-      "'"$SITE"'/",
-      "'"$SITE"'/faq.html",
-      "'"$SITE"'/free-chart.html",
-      "'"$SITE"'/llms.txt",
-      "'"$SITE"'/blog/",
-      "'"$SITE"'/about.html",
-      "'"$SITE"'/consultation.html",
-      "'"$SITE"'/feng-shui-scan.html",
-      "'"$SITE"'/forecast.html",
-      "'"$SITE"'/checkout.html",
-      "'"$SITE"'/privacy.html",
-      "'"$SITE"'/terms.html",
-      "'"$SITE"'/disclaimer.html",
-      "'"$SITE"'/refund.html"
-    ]
-  }' | head -5
+  -d "{
+    \"host\": \"${DOMAIN}\",
+    \"key\": \"seo-indexnow-key\",
+    \"keyLocation\": \"${SITE}/seo-indexnow-key.txt\",
+    \"urlList\": ${PAGE_URLS}
+  }"
 echo ""
 
-# 2. Google Indexing API (via search console ping)
 echo ""
-echo "[2/4] Google ping (indexing API)..."
-curl -s "https://www.google.com/ping?sitemap=${SITE}/sitemap.xml" | head -3
-echo ""
-
-# 3. Bing webmaster ping
-echo ""
-echo "[3/4] Bing webmaster ping..."
+echo "[2/3] Bing sitemap ping..."
 curl -s "https://www.bing.com/ping?siteMap=${SITE}/sitemap.xml" | head -3
 echo ""
 
-# 4. Check current index status
 echo ""
-echo "[4/4] Index check..."
-echo "  Google: https://www.google.com/search?q=site%3A${DOMAIN}"
-echo "  Bing:   https://www.bing.com/search?q=site%3A${DOMAIN}"
+echo "[3/3] Index check..."
+echo "  Google: https://www.google.com/search?q=site%3A${DOMAIN}+pages"
+echo "  Bing:   https://www.bing.com/search?q=site%3A${DOMAIN}+pages"
 echo ""
 echo "========================================"
-echo "  ✅ Done — wait 24-48h for results"
-echo "  📋 GSC: https://search.google.com/search-console?resource_id=sc-set:${SITE}"
+echo "  Done — GEO pages pinged via IndexNow"
 echo "========================================"

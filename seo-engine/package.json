@@ -1,0 +1,11 @@
+{
+  "name": "guanlan-geo-seo-engine",
+  "version": "2.0.0",
+  "description": "Programmatic SEO and GEO blog generator for MetaphysicFlow",
+  "private": true,
+  "scripts": {
+    "generate": "node scripts/generate-pages.js",
+    "sitemap": "node scripts/update-sitemap-links.js",
+    "build": "node scripts/generate-pages.js && node scripts/update-sitemap-links.js"
+  }
+}
