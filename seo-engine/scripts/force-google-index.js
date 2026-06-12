@@ -6,6 +6,10 @@
  *   npm run seo:force-index
  *   npm run seo:force-index -- --dry-run
  *   npm run seo:force-index -- --limit 50 --offset 0
+ *   npm run seo:force-index -- --proxy http://127.0.0.1:7890
+ *   npm run seo:force-index -- --no-proxy
+ *
+ * Proxy: auto-probes 127.0.0.1:7890 / 1087 / 10809 (no terminal env vars needed).
  *
  * Credentials (first match wins):
  *   1. GOOGLE_APPLICATION_CREDENTIALS env var
@@ -16,6 +20,7 @@
 const fs = require('fs');
 const path = require('path');
 const { google } = require('googleapis');
+const { resolveProxyAgent } = require('./proxy-agent');
 
 const rootDir = path.join(__dirname, '../..');
 const matrixPath = path.join(__dirname, '../data/transit-matrix.json');
@@ -24,10 +29,13 @@ const SCOPE = 'https://www.googleapis.com/auth/indexing';
 
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
+const noProxy = args.includes('--no-proxy');
 const limitIdx = args.indexOf('--limit');
 const offsetIdx = args.indexOf('--offset');
+const proxyIdx = args.indexOf('--proxy');
 const limit = limitIdx >= 0 ? parseInt(args[limitIdx + 1], 10) : null;
 const offset = offsetIdx >= 0 ? parseInt(args[offsetIdx + 1], 10) : 0;
+const explicitProxy = proxyIdx >= 0 ? args[proxyIdx + 1] : null;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -77,6 +85,30 @@ Note: Default quota is ~200 publish/day. 240 URLs may need:
 `);
 }
 
+async function configureGoogleClient(credPath) {
+  const { agent, proxyUrl } = await resolveProxyAgent({
+    explicitProxy,
+    skip: noProxy,
+  });
+
+  if (proxyUrl) {
+    console.log(`🛫 Routing Google API via ${proxyUrl}\n`);
+  } else if (noProxy) {
+    console.log('🔗 Direct connection (--no-proxy)\n');
+  }
+
+  if (agent) {
+    google.options({ agent });
+  }
+
+  const auth = new google.auth.GoogleAuth({
+    keyFile: credPath,
+    scopes: [SCOPE],
+  });
+
+  return google.indexing({ version: 'v3', auth });
+}
+
 async function main() {
   const allUrls = loadUrls();
   let urls = allUrls.slice(offset);
@@ -111,11 +143,14 @@ async function main() {
   console.log(`🔑 Credentials: ${credPath}`);
   console.log(`📧 Service account: ${saEmail}\n`);
 
-  const auth = new google.auth.GoogleAuth({
-    keyFile: credPath,
-    scopes: [SCOPE],
-  });
-  const indexing = google.indexing({ version: 'v3', auth });
+  let indexing;
+  try {
+    indexing = await configureGoogleClient(credPath);
+  } catch (err) {
+    console.error(`❌ Failed to initialize Google client: ${err.message}`);
+    console.error('💡 Ensure your proxy app (Clash/V2Ray) is running, or pass --proxy http://127.0.0.1:7890');
+    process.exit(1);
+  }
 
   let ok = 0;
   let fail = 0;
@@ -139,6 +174,10 @@ async function main() {
       errors.push({ url, message: msg });
       console.error(`❌ [${n}/${allUrls.length}] ${url}`);
       console.error(`   → ${msg}`);
+
+      if (/ECONNRESET|ETIMEDOUT|ENOTFOUND|socket hang up/i.test(msg)) {
+        console.error('   💡 Network timeout — start your proxy app or use --proxy');
+      }
     }
     if (i < urls.length - 1) await sleep(RATE_MS);
   }

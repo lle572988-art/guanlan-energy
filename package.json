@@ -13,7 +13,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "seo:build": "npm run build --prefix seo-engine",
     "seo:blast": "npm run seo:blast --prefix seo-engine",
-    "seo:qc": "node scripts/playbook-qc.js"
+    "seo:qc": "node scripts/playbook-qc.js",
+    "karma:test": "node scripts/test-karma-fulfillment.mjs",
+    "karma:send": "node scripts/test-karma-fulfillment.mjs --send"
   },
   "repository": {
     "type": "git",

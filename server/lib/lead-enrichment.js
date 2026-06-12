@@ -36,8 +36,17 @@ function buildPalaceTags(body) {
 
 export function enrichLead(body) {
   const email = String(body.email || '').trim().toLowerCase();
-  const dob = body.dob || body.date || '';
-  const hour = body.hour !== undefined && body.hour !== null ? body.hour : '';
+  const birthYear = body.birthYear || body.birth_year || '';
+  const birthMonth = body.birthMonth || body.birth_month || '';
+  const birthDay = body.birthDay || body.birth_day || '';
+  const birthHour = body.birthHour ?? body.birth_hour ?? body.hour ?? '';
+  const dob =
+    body.dob ||
+    body.date ||
+    (birthYear && birthMonth && birthDay
+      ? `${birthYear}-${String(birthMonth).padStart(2, '0')}-${String(birthDay).padStart(2, '0')}`
+      : '');
+  const hour = birthHour !== '' && birthHour !== null && birthHour !== undefined ? birthHour : '';
   const country = body.country || '';
   const mainStar = body.mainStar || body.mainStarCn || '';
   const mainStarEn =
@@ -47,12 +56,17 @@ export function enrichLead(body) {
   const enriched = {
     email,
     dob,
+    birthYear: birthYear || (dob ? dob.split('-')[0] : ''),
+    birthMonth: birthMonth || (dob ? dob.split('-')[1] : ''),
+    birthDay: birthDay || (dob ? dob.split('-')[2] : ''),
+    birthHour: hour,
     hour,
     country,
     mainStar,
     mainStarEn,
     name: body.name || '',
-    page: body.page || '/free-chart.html',
+    page: body.page || body.sourceUrl || '/free-chart.html',
+    sourceUrl: body.sourceUrl || body.page || '',
     source: body.source || 'free-chart-gate',
     pdfReady: body.pdfReady !== false,
     chartSvgProvided: Boolean(body.chartSvg),

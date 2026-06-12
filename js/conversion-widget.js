@@ -62,11 +62,16 @@
 
       const payload = {
         email,
+        birthYear: year,
+        birthMonth: month,
+        birthDay: day,
+        birthHour: hour === '' ? '' : Number(hour),
         dob: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
         hour: hour === '' ? '' : Number(hour),
         source: 'ai-widget-programmatic-seo',
+        sourceUrl: window.location.pathname,
         page: window.location.pathname,
-        pdfReady: true,
+        pdfReady: false,
       };
 
       try {
