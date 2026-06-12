@@ -4,19 +4,28 @@
 
 SITE="https://metaphysicflow.com"
 DOMAIN="metaphysicflow.com"
-MATRIX="seo-engine/data/keywords-matrix.json"
+KEYWORDS="seo-engine/data/keywords-matrix.json"
+INFINITE="seo-engine/data/infinite-matrix.json"
 
 echo "========================================"
 echo "  SEO Submission for $DOMAIN"
 echo "========================================"
 
-# Build URL list from keywords matrix + core pages
+# Build URL list: core pages + keyword GEO pages + 168 star-palace matrix
 PAGE_URLS=$(node -e "
-const c=require('./${MATRIX}');
-const base=c.site.domain;
+const fs=require('fs');
+const kw=require('./${KEYWORDS}');
+const base=kw.site.domain;
 const core=[base+'/',base+'/faq.html',base+'/free-chart.html',base+'/llms.txt',base+'/blog/'];
-const geo=c.pages.map(p=>base+'/pages/'+p.slug+'.html');
-console.log(JSON.stringify([...core,...geo]));
+const keywordUrls=kw.pages.map(p=>base+'/pages/'+p.slug+'.html');
+let matrixUrls=[];
+if(fs.existsSync('./${INFINITE}')){
+  const mx=JSON.parse(fs.readFileSync('./${INFINITE}','utf8'));
+  matrixUrls=mx.pages.map(p=>base+'/pages/'+p.slug+'.html');
+}
+const all=[...new Set([...core,...keywordUrls,...matrixUrls])];
+process.stderr.write('URLs to ping: '+all.length+'\\n');
+console.log(JSON.stringify(all));
 ")
 
 echo ""
