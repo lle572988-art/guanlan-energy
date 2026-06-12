@@ -16,6 +16,9 @@ const today = new Date().toISOString().split('T')[0];
 const slugs = config.pages.map((p) => p.slug);
 const files = slugs.map((s) => `${s}.html`).filter((f) => fs.existsSync(path.join(pagesDir, f)));
 
+const isTransit = dataFile.includes('transit-matrix');
+const urlPriority = isTransit ? '0.78' : '0.72';
+
 console.log(`\n🗺️  Sitemap merge for ${files.length} pages from ${path.basename(dataFile)}`);
 
 let sitemap = fs.readFileSync(sitemapPath, 'utf8');
@@ -27,8 +30,8 @@ files.forEach((file) => {
   const entry = `  <url>
     <loc>${loc}</loc>
     <lastmod>${today}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.72</priority>
+    <changefreq>${isTransit ? 'weekly' : 'monthly'}</changefreq>
+    <priority>${urlPriority}</priority>
   </url>`;
   sitemap = sitemap.replace('</urlset>', `${entry}\n</urlset>`);
   added++;

@@ -1,16 +1,18 @@
 {
   "name": "guanlan-geo-seo-engine",
-  "version": "3.0.0",
-  "description": "Programmatic SEO matrix + silo engine for MetaphysicFlow",
+  "version": "4.0.0",
+  "description": "Programmatic SEO matrix + transit + parasite engine for MetaphysicFlow",
   "private": true,
   "scripts": {
     "generate": "node scripts/generate-pages.js",
     "sitemap": "node scripts/update-sitemap-links.js",
     "build": "node scripts/generate-pages.js && node scripts/update-sitemap-links.js",
     "seo:multiply": "node scripts/build-infinite-matrix.js",
-    "seo:generate": "SEO_DATA=../data/infinite-matrix.json node scripts/generate-pages.js",
+    "seo:transit": "node scripts/build-transit-matrix.js",
+    "seo:generate": "SEO_DATA=../data/infinite-matrix.json node scripts/generate-pages.js && node scripts/generate-transit-pages.js",
     "seo:silo": "node scripts/silo-link-architect.js",
-    "seo:sitemap": "SEO_DATA=../data/infinite-matrix.json node scripts/update-sitemap-links.js",
-    "seo:blast": "npm run seo:multiply && npm run seo:generate && npm run seo:silo && npm run seo:sitemap"
+    "seo:parasite": "node scripts/parasite-content-spinner.js",
+    "seo:sitemap": "SEO_DATA=../data/infinite-matrix.json node scripts/update-sitemap-links.js && SEO_DATA=../data/transit-matrix.json node scripts/update-sitemap-links.js",
+    "seo:blast": "npm run seo:multiply && npm run seo:transit && npm run seo:generate && npm run seo:silo && npm run seo:parasite && npm run seo:sitemap"
   }
 }

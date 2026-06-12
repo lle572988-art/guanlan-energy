@@ -6,12 +6,13 @@ SITE="https://metaphysicflow.com"
 DOMAIN="metaphysicflow.com"
 KEYWORDS="seo-engine/data/keywords-matrix.json"
 INFINITE="seo-engine/data/infinite-matrix.json"
+TRANSIT="seo-engine/data/transit-matrix.json"
 
 echo "========================================"
 echo "  SEO Submission for $DOMAIN"
 echo "========================================"
 
-# Build URL list: core pages + keyword GEO pages + 168 star-palace matrix
+# Build URL list: core + keyword GEO + 168 star-palace + 240 transit matrix
 PAGE_URLS=$(node -e "
 const fs=require('fs');
 const kw=require('./${KEYWORDS}');
@@ -23,7 +24,12 @@ if(fs.existsSync('./${INFINITE}')){
   const mx=JSON.parse(fs.readFileSync('./${INFINITE}','utf8'));
   matrixUrls=mx.pages.map(p=>base+'/pages/'+p.slug+'.html');
 }
-const all=[...new Set([...core,...keywordUrls,...matrixUrls])];
+let transitUrls=[];
+if(fs.existsSync('./${TRANSIT}')){
+  const tx=JSON.parse(fs.readFileSync('./${TRANSIT}','utf8'));
+  transitUrls=tx.pages.map(p=>base+'/pages/'+p.slug+'.html');
+}
+const all=[...new Set([...core,...keywordUrls,...matrixUrls,...transitUrls])];
 process.stderr.write('URLs to ping: '+all.length+'\\n');
 console.log(JSON.stringify(all));
 ")

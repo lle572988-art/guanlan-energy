@@ -154,3 +154,8 @@ config.pages.forEach((page) => {
 });
 
 console.log(`\n📄 ${config.pages.length} pages → /pages/`);
+
+// Phase 3: compile transit matrix when running full generate (no SEO_DATA override)
+if (!process.env.SEO_DATA) {
+  require('./generate-transit-pages.js');
+}
