@@ -1,11 +1,16 @@
 {
   "name": "guanlan-geo-seo-engine",
-  "version": "2.0.0",
-  "description": "Programmatic SEO and GEO blog generator for MetaphysicFlow",
+  "version": "3.0.0",
+  "description": "Programmatic SEO matrix + silo engine for MetaphysicFlow",
   "private": true,
   "scripts": {
     "generate": "node scripts/generate-pages.js",
     "sitemap": "node scripts/update-sitemap-links.js",
-    "build": "node scripts/generate-pages.js && node scripts/update-sitemap-links.js"
+    "build": "node scripts/generate-pages.js && node scripts/update-sitemap-links.js",
+    "seo:multiply": "node scripts/build-infinite-matrix.js",
+    "seo:generate": "SEO_DATA=../data/infinite-matrix.json node scripts/generate-pages.js",
+    "seo:silo": "node scripts/silo-link-architect.js",
+    "seo:sitemap": "SEO_DATA=../data/infinite-matrix.json node scripts/update-sitemap-links.js",
+    "seo:blast": "npm run seo:multiply && npm run seo:generate && npm run seo:silo && npm run seo:sitemap"
   }
 }

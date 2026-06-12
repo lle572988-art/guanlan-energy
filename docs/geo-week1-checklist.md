@@ -76,3 +76,13 @@ Perplexity test queries:
 4. How does Zi Wei Dou Shu differ from Bazi
 
 **Success metric:** metaphysicflow.com appears in Sources within 2–8 weeks.
+
+---
+
+## Phase 2 — High-authority directories
+
+Full copy-paste profiles for **Crunchbase**, **AlternativeTo**, **Capterra**, **G2**:
+
+→ **`docs/directory-listings-pack.md`**
+
+Recommended order: Crunchbase (Day 1) → AlternativeTo (Day 2) → Capterra/G2 (Day 3–4).

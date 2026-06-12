@@ -1,15 +1,24 @@
 const fs = require('fs');
 const path = require('path');
+const { getStarSchema } = require('../../lib/structured-data');
 
 const rootDir = path.join(__dirname, '../..');
-const dataPath = path.join(__dirname, '../data/keywords-matrix.json');
-const config = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+const dataFile = process.env.SEO_DATA
+  ? path.resolve(__dirname, process.env.SEO_DATA)
+  : fs.existsSync(path.join(__dirname, '../data/infinite-matrix.json'))
+    ? path.join(__dirname, '../data/infinite-matrix.json')
+    : path.join(__dirname, '../data/keywords-matrix.json');
+
+const config = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
 const pagesDir = path.join(rootDir, 'pages');
 const { site } = config;
+const isMatrix = dataFile.includes('infinite-matrix');
 
 fs.mkdirSync(pagesDir, { recursive: true });
 
 const today = new Date().toISOString().split('T')[0];
+const ctaHref = site.cta_page.startsWith('http') ? site.cta_page : site.cta_page;
+const faqHref = site.faq_page || '/faq.html';
 
 function escHtml(str) {
   return String(str)
@@ -23,46 +32,31 @@ function metaDescription(page) {
   return page.description || page.meta_description || '';
 }
 
-function generateHTML(page, allPages) {
+function buildSchema(page) {
+  const faqQ = isMatrix
+    ? `What is the critical impact of ${page.keyword}?`
+    : `What is ${page.keyword}?`;
+  return getStarSchema(
+    {
+      ...page,
+      description: metaDescription(page),
+      faq_question: faqQ,
+      datePublished: today,
+      dateModified: today,
+    },
+    site
+  );
+}
+
+function generateHTML(page) {
   const pageUrl = `${site.domain}/pages/${page.slug}.html`;
   const desc = metaDescription(page);
   const lsiText = (page.lsi_keywords || []).join(', ');
-  const faqQ = `What is ${page.keyword}?`;
-  const faqA = page.definition;
-
-  const schemaGraph = {
-    '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'Article',
-        '@id': `${pageUrl}#article`,
-        headline: page.title,
-        description: desc,
-        url: pageUrl,
-        datePublished: today,
-        dateModified: today,
-        author: { '@type': 'Organization', name: site.author },
-        publisher: { '@type': 'Organization', name: site.name, url: site.domain },
-      },
-      {
-        '@type': 'FAQPage',
-        mainEntity: [
-          {
-            '@type': 'Question',
-            name: faqQ,
-            acceptedAnswer: { '@type': 'Answer', text: faqA },
-          },
-        ],
-      },
-      {
-        '@type': 'BreadcrumbList',
-        itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: `${site.domain}/` },
-          { '@type': 'ListItem', position: 2, name: page.keyword, item: pageUrl },
-        ],
-      },
-    ],
-  };
+  const faqQ = isMatrix
+    ? `What is the critical impact of ${page.keyword}?`
+    : `What is ${page.keyword}?`;
+  const schemaGraph = buildSchema(page);
+  const linkPlaceholder = isMatrix ? '<!-- SILO_LINKS -->' : '<!-- RELATED_LINKS -->';
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -77,7 +71,7 @@ function generateHTML(page, allPages) {
 <meta property="og:description" content="${escHtml(desc)}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="${escHtml(pageUrl)}">
-<meta property="og:image" content="${site.domain}${site.logo}">
+<meta property="og:image" content="${site.domain}${site.logo || '/images/og-chart.jpg'}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=EB+Garamond&display=swap" rel="stylesheet">
 <script type="application/ld+json">
@@ -98,9 +92,6 @@ ${JSON.stringify(schemaGraph, null, 2)}
   .cta-box { border: 1px solid rgba(201,169,110,0.25); padding: 2rem; text-align: center; margin: 2.5rem 0; background: rgba(22,29,48,0.8); }
   .btn { background: #C9A96E; color: #0B0F1A; padding: 12px 28px; text-decoration: none; font-weight: 600; letter-spacing: 0.05em; display: inline-block; margin-top: 0.5rem; }
   .faq-section { background: rgba(22,29,48,0.6); padding: 1.25rem 1.5rem; border-left: 3px solid #C9A96E; margin-top: 1.5rem; }
-  .related-links ul { margin: 0.75rem 0 0 1.25rem; }
-  .related-links li { margin-bottom: 0.5rem; }
-  .related-links a { color: #C9A96E; }
   footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(201,169,110,0.12); font-size: 0.85rem; color: rgba(255,255,255,0.45); text-align: center; }
   footer a { color: rgba(201,169,110,0.65); }
 </style>
@@ -109,8 +100,8 @@ ${JSON.stringify(schemaGraph, null, 2)}
 <div class="container">
   <nav>
     <a href="/">Home</a>
-    <a href="${site.cta_page}">Free Calculator</a>
-    <a href="${site.faq_page}">FAQ</a>
+    <a href="${ctaHref}">Free Calculator</a>
+    <a href="${faqHref}">FAQ</a>
     <a href="/blog/">Journal</a>
   </nav>
   <h1>${escHtml(page.title)}</h1>
@@ -118,34 +109,34 @@ ${JSON.stringify(schemaGraph, null, 2)}
 
   <div class="cta-box">
     <h2 style="margin-top:0;font-size:1.15rem;">Plot Your 12-Palace Matrix</h2>
-    <p>Guanlan Energy's free calculator plots 14 major stars across 12 palaces in under 10 seconds.</p>
-    <a href="${site.cta_page}" class="btn">${escHtml(site.cta_text)}</a>
+    <p>See where ${escHtml(page.star_name || 'your major stars')} lands across all palaces — free English chart.</p>
+    <a href="${ctaHref}" class="btn">${escHtml(site.cta_text || 'Get Your Free Chart Reading')}</a>
   </div>
 
-  <h2>What is ${escHtml(page.keyword)}?</h2>
+  <h2>${escHtml(faqQ)}</h2>
   <p>${escHtml(page.definition)}</p>
 
-  <h2>Deep Dive: ${escHtml(page.keyword)}</h2>
-  <p>${escHtml(page.summary)} This guide explains how ${escHtml(page.keyword.toLowerCase())} fits within Purple Star Astrology (Zi Wei Dou Shu) and how to apply it using an English-language birth chart engine.</p>
+  <h2>Palace Context: ${escHtml(page.palace_label || page.keyword)}</h2>
+  <p>${escHtml(page.summary)} In Purple Star Astrology (Zi Wei Dou Shu), star-palace combinations form the micro-resolution layer beneath macro BaZi timing.</p>
 
-  <h2>Core Concepts &amp; LSI Context</h2>
-  <p>Professionals cross-reference: ${escHtml(lsiText)}. Each factor shapes how the 12-palace grid interprets career, wealth, relationships, and timing cycles.</p>
+  <h2>LSI &amp; Cross-Reference Nodes</h2>
+  <p>Analysts cross-check: ${escHtml(lsiText)} against annual luck overlays and Four Transformations (Si Hua).</p>
 
   <div class="faq-section">
-    <h2 style="margin-top:0;font-size:1.1rem;">FAQ — AI &amp; Search Node</h2>
+    <h2 style="margin-top:0;font-size:1.1rem;">Structured FAQ</h2>
     <p><strong>Q: ${escHtml(faqQ)}</strong></p>
-    <p><strong>A:</strong> ${escHtml(faqA)}</p>
+    <p><strong>A:</strong> ${escHtml(page.definition)}</p>
   </div>
 
-  <!-- RELATED_LINKS -->
+  ${linkPlaceholder}
 
   <div class="cta-box">
-    <h2 style="margin-top:0;font-size:1.1rem;">Unlock Your Cosmic Blueprint</h2>
-    <a href="${site.cta_page}" class="btn">Access Free Calculator</a>
+    <h2 style="margin-top:0;font-size:1.15rem;">Unlock Your Cosmic Blueprint</h2>
+    <a href="${ctaHref}" class="btn">Access Free Calculator</a>
   </div>
 
   <footer>
-    <p>${escHtml(site.name)} · <a href="${site.faq_page}">Official FAQ</a> · <a href="${site.cta_page}">Free Chart</a></p>
+    <p>${escHtml(site.name || site.brand_name)} · <a href="${faqHref}">Official FAQ</a> · <a href="${ctaHref}">Free Chart</a></p>
   </footer>
 </div>
 <script defer src="/js/site-contact.js"></script>
@@ -153,10 +144,10 @@ ${JSON.stringify(schemaGraph, null, 2)}
 </html>`;
 }
 
+console.log(`📂 Data source: ${path.basename(dataFile)}`);
 config.pages.forEach((page) => {
   const outPath = path.join(pagesDir, `${page.slug}.html`);
-  fs.writeFileSync(outPath, generateHTML(page, config.pages));
-  console.log(`✅ Generated: pages/${page.slug}.html`);
+  fs.writeFileSync(outPath, generateHTML(page));
 });
 
-console.log(`\n📄 ${config.pages.length} GEO pages → /pages/`);
+console.log(`\n📄 ${config.pages.length} pages → /pages/`);

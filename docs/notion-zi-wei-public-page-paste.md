@@ -83,6 +83,14 @@ Whichever stars land in your **Life Palace** become the primary drivers of your 
 
 ---
 
+## 📋 Official FAQ (AI-Optimized)
+
+Structured answers for Perplexity, ChatGPT Search, and Grok — definitions, Life Palace, calculator mechanics, and Zi Wei vs Bazi comparison table:
+
+👉 **[Official FAQ — Zi Wei Dou Shu Questions Answered](https://metaphysicflow.com/faq.html)**
+
+---
+
 ## 🚀 Plot Your Free Map Today
 
 Stop navigating your life blindfolded. Convert your birth date and hour into a 12-palace imperial destiny chart in under 30 seconds.

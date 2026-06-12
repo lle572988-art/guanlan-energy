@@ -1,0 +1,143 @@
+{
+  "meta": {
+    "source": "seo-engine/scripts/build-infinite-matrix.js",
+    "generated_for": "metaphysicflow.com static stack",
+    "star_count": 14,
+    "palace_count": 12,
+    "matrix_pages": 168
+  },
+  "site": {
+    "domain": "https://metaphysicflow.com",
+    "brand_name": "Guanlan Energy",
+    "calculator_url": "/free-chart.html",
+    "faq_url": "/faq.html"
+  },
+  "stars": [
+    {
+      "slug": "zi-wei",
+      "name": "Zi Wei",
+      "title": "The Emperor Star",
+      "entity": "https://www.wikidata.org/wiki/Q8071018",
+      "blog_url": "/blog/zi-wei-dou-shu-zi-wei-star-meaning.html",
+      "desc": "the supreme ruler of the cosmos representing absolute authority and leadership"
+    },
+    {
+      "slug": "tian-ji",
+      "name": "Tian Ji",
+      "title": "The Strategist Star",
+      "entity": "https://www.wikidata.org/wiki/Q11091244",
+      "blog_url": "/blog/zi-wei-dou-shu-tian-ji-star-meaning.html",
+      "desc": "the divine mind governing intellect, rapid adaptation, and strategic schematics"
+    },
+    {
+      "slug": "tai-yang",
+      "name": "Tai Yang",
+      "title": "The Sun Star",
+      "entity": "https://metaphysicflow.com/blog/zi-wei-dou-shu-tai-yang-star-meaning.html",
+      "blog_url": "/blog/zi-wei-dou-shu-tai-yang-star-meaning.html",
+      "desc": "the radiant star governing visibility, public service, generosity, and outward expression"
+    },
+    {
+      "slug": "wu-qu",
+      "name": "Wu Qu",
+      "title": "The Commander Star",
+      "entity": "https://metaphysicflow.com/blog/zi-wei-dou-shu-wu-qu-star-meaning.html",
+      "blog_url": "/blog/zi-wei-dou-shu-wu-qu-star-meaning.html",
+      "desc": "the finance-and-action star governing decisiveness, wealth accumulation, and pragmatic execution"
+    },
+    {
+      "slug": "tian-tong",
+      "name": "Tian Tong",
+      "title": "The Harmonizer Star",
+      "entity": "https://metaphysicflow.com/blog/zi-wei-dou-shu-tian-tong-star-meaning.html",
+      "blog_url": "/blog/zi-wei-dou-shu-tian-tong-star-meaning.html",
+      "desc": "the blessing star governing ease, emotional comfort, creativity, and conflict avoidance"
+    },
+    {
+      "slug": "lian-zhen",
+      "name": "Lian Zhen",
+      "title": "The Integrity Star",
+      "entity": "https://metaphysicflow.com/blog/zi-wei-dou-shu-lian-zhen-star-meaning.html",
+      "blog_url": "/blog/zi-wei-dou-shu-lian-zhen-star-meaning.html",
+      "desc": "the complex fire star governing passion, principle, politics, and emotional intensity"
+    },
+    {
+      "slug": "tian-fu",
+      "name": "Tian Fu",
+      "title": "The Steward Star",
+      "entity": "https://metaphysicflow.com/blog/zi-wei-dou-shu-tian-fu-star-meaning.html",
+      "blog_url": "/blog/zi-wei-dou-shu-tian-fu-star-meaning.html",
+      "desc": "the treasury star governing conservation, institutional stability, and accumulated resources"
+    },
+    {
+      "slug": "tai-yin",
+      "name": "Tai Yin",
+      "title": "The Moon Star",
+      "entity": "https://www.wikidata.org/wiki/Q11092672",
+      "blog_url": "/blog/zi-wei-dou-shu-tai-yin-star-meaning.html",
+      "desc": "the lunar archetype governing passive wealth, deep intuition, and emotional sanctuaries"
+    },
+    {
+      "slug": "tan-lang",
+      "name": "Tan Lang",
+      "title": "The Virtuoso Star",
+      "entity": "https://metaphysicflow.com/blog/zi-wei-dou-shu-tan-lang-star-meaning.html",
+      "blog_url": "/blog/zi-wei-dou-shu-tan-lang-star-meaning.html",
+      "desc": "the desire-and-charisma star governing talent, romance, and multidimensional ambition"
+    },
+    {
+      "slug": "ju-men",
+      "name": "Ju Men",
+      "title": "The Voice Star",
+      "entity": "https://metaphysicflow.com/blog/zi-wei-dou-shu-ju-men-star-meaning.html",
+      "blog_url": "/blog/zi-wei-dou-shu-ju-men-star-meaning.html",
+      "desc": "the eloquence star governing debate, law, persuasion, and verbal conflict patterns"
+    },
+    {
+      "slug": "tian-xiang",
+      "name": "Tian Xiang",
+      "title": "The Mediator Star",
+      "entity": "https://metaphysicflow.com/blog/zi-wei-dou-shu-tian-xiang-star-meaning.html",
+      "blog_url": "/blog/zi-wei-dou-shu-tian-xiang-star-meaning.html",
+      "desc": "the minister star governing diplomacy, fair process, and chief-of-staff energy"
+    },
+    {
+      "slug": "tian-liang",
+      "name": "Tian Liang",
+      "title": "The Protector Star",
+      "entity": "https://metaphysicflow.com/blog/zi-wei-dou-shu-tian-liang-star-meaning.html",
+      "blog_url": "/blog/zi-wei-dou-shu-tian-liang-star-meaning.html",
+      "desc": "the elder-wisdom star governing protection, healing, and disaster relief instincts"
+    },
+    {
+      "slug": "qi-sha",
+      "name": "Qi Sha",
+      "title": "The Warrior Star",
+      "entity": "https://www.wikidata.org/wiki/Q11155998",
+      "blog_url": "/blog/zi-wei-dou-shu-qi-sha-star-meaning.html",
+      "desc": "the vanguard star representing raw execution, revolutionary shifts, and high-risk breakthroughs"
+    },
+    {
+      "slug": "po-jun",
+      "name": "Po Jun",
+      "title": "The Destroyer Star",
+      "entity": "https://metaphysicflow.com/blog/zi-wei-dou-shu-po-jun-star-meaning.html",
+      "blog_url": "/blog/zi-wei-dou-shu-po-jun-star-meaning.html",
+      "desc": "the innovator star governing radical transformation, demolition, and reconstruction cycles"
+    }
+  ],
+  "palaces": [
+    { "slug": "ming-gong", "name": "Ming Gong", "eng": "Life Palace", "siloKey": "MingGong", "domain": "core persona, baseline destiny, and psychological blueprint" },
+    { "slug": "parents-palace", "name": "Parents Palace", "eng": "Parents Palace", "siloKey": "ParentsPalace", "domain": "authority figures, genetics, and early upbringing patterns" },
+    { "slug": "spouse-palace", "name": "Spouse Palace", "eng": "Spouse Palace", "siloKey": "SpousePalace", "domain": "romantic attraction matrix, marriage stability, and partner archetypes" },
+    { "slug": "children-palace", "name": "Children Palace", "eng": "Children Palace", "siloKey": "ChildrenPalace", "domain": "offspring, creativity, legacy, and generational output" },
+    { "slug": "wealth-palace", "name": "Wealth Palace", "eng": "Wealth Palace", "siloKey": "WealthPalace", "domain": "financial velocity, cash flow mechanics, and lifetime capital generation" },
+    { "slug": "health-palace", "name": "Health Palace", "eng": "Health Palace", "siloKey": "HealthPalace", "domain": "constitution, vitality, vulnerability, and recovery cycles" },
+    { "slug": "travel-palace", "name": "Travel Palace", "eng": "Travel Palace", "siloKey": "TravelPalace", "domain": "public image, mobility, and life away from home" },
+    { "slug": "friends-palace", "name": "Friends Palace", "eng": "Friends Palace", "siloKey": "FriendsPalace", "domain": "networks, allies, subordinates, and social leverage" },
+    { "slug": "career-palace", "name": "Career Palace", "eng": "Career Palace", "siloKey": "CareerPalace", "domain": "vocational alignment, executive leverage, and workspace dynamics" },
+    { "slug": "property-palace", "name": "Property Palace", "eng": "Property Palace", "siloKey": "PropertyPalace", "domain": "real estate, home environment, and inherited assets" },
+    { "slug": "fu-de-palace", "name": "Fu De Palace", "eng": "Happiness Palace", "siloKey": "FuDePalace", "domain": "inner joy, subconscious patterns, and spiritual depth" },
+    { "slug": "siblings-palace", "name": "Siblings Palace", "eng": "Siblings Palace", "siloKey": "SiblingsPalace", "domain": "peers, rivalry, cooperation, and close companions" }
+  ]
+}

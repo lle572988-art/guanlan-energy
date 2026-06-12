@@ -11,7 +11,9 @@
   "main": "articlesData.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "seo:build": "npm run build --prefix seo-engine"
+    "seo:build": "npm run build --prefix seo-engine",
+    "seo:blast": "npm run seo:blast --prefix seo-engine",
+    "seo:qc": "node scripts/playbook-qc.js"
   },
   "repository": {
     "type": "git",
