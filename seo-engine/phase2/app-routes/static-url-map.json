@@ -1,0 +1,14 @@
+{
+  "stack": "static-html-vercel",
+  "source_config": "config/seo_config.json",
+  "routes": [
+    { "playbook": "/calculator", "static": "/free-chart.html", "status": "live" },
+    { "playbook": "/stars", "static": "/blog/", "status": "live" },
+    { "playbook": "/stars/[starSlug]", "static": "/blog/zi-wei-dou-shu-{starSlug}-star-meaning.html", "status": "live" },
+    { "playbook": "/stars/[star]/in-[palace]", "static": "/pages/{starSlug}-in-{palaceSlug}.html", "status": "live", "count": 168 },
+    { "playbook": "/transit/[slug]", "static": "/pages/transit/{slug}.html", "status": "live", "count": 240 },
+    { "playbook": "/palaces/[palaceSlug]", "static": "/pages/what-is-ming-gong-life-palace.html", "status": "partial" },
+    { "playbook": "/compare/[slug]", "static": "/blog/bazi-vs-zi-wei-dou-shu.html", "status": "live" },
+    { "playbook": "/horoscope/[forecast]", "static": null, "status": "pending", "generator": "seo-engine/scripts/generate-transit-pages.js" }
+  ]
+}

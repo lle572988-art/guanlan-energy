@@ -14,6 +14,11 @@
     "seo:build": "npm run build --prefix seo-engine",
     "seo:blast": "npm run seo:blast --prefix seo-engine",
     "seo:qc": "node scripts/playbook-qc.js",
+    "phase2:competitor-intel": "npm run phase2:competitor-intel --prefix seo-engine",
+    "phase2:pipeline": "npm run phase2:pipeline --prefix seo-engine",
+    "phase2:pipeline:dry": "npm run phase2:pipeline:dry --prefix seo-engine",
+    "phase2:qc": "npm run phase2:qc --prefix seo-engine",
+    "phase2:full": "npm run phase2:full --prefix seo-engine",
     "karma:test": "node scripts/test-karma-fulfillment.mjs",
     "karma:send": "node scripts/test-karma-fulfillment.mjs --send"
   },

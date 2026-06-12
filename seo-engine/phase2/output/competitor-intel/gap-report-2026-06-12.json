@@ -1,0 +1,662 @@
+{
+  "generated_at": "2026-06-12T17:53:21.594Z",
+  "site": {
+    "domain": "https://metaphysicflow.com",
+    "brand_name": "Guanlan Energy",
+    "calculator_url": "/free-chart.html",
+    "calculator_aliases": [
+      "/calculator",
+      "/free-chart.html",
+      "/pages/zi-wei-dou-shu-calculator-english.html",
+      "/pages/purple-star-astrology-calculator.html"
+    ],
+    "faq_url": "/faq.html",
+    "sitemap_url": "/sitemap.xml"
+  },
+  "dry_run": false,
+  "our_inventory": {
+    "matrix_pages": 430,
+    "sitemap_urls": 645,
+    "unique_keywords": 445
+  },
+  "summary": {
+    "competitors_analyzed": 6,
+    "competitor_pages_fetched": 25,
+    "gap_count": 30,
+    "covered_count": 0
+  },
+  "config_pending": [],
+  "competitors": [
+    {
+      "id": "masterseanchan",
+      "label": "Sean Chan — editorial authority",
+      "domain": "https://masterseanchan.com",
+      "priority": "P0",
+      "urls_discovered": 2,
+      "pages_fetched": 1,
+      "gap_count": 3,
+      "fetch_errors": [
+        {
+          "url": "https://masterseanchan.com/blog/",
+          "status": 403
+        }
+      ],
+      "top_gaps": [
+        {
+          "phrase": "Sean Chan | Asia&#039;s Leading Bazi Master &amp; Feng Shui Consultant",
+          "url": "https://masterseanchan.com/"
+        },
+        {
+          "phrase": "Sean Chan Chinese Metaphysics Consulting Group",
+          "url": "https://masterseanchan.com/"
+        },
+        {
+          "phrase": "Meet Tian Qi 天启",
+          "url": "https://masterseanchan.com/"
+        }
+      ]
+    },
+    {
+      "id": "yuanyucore",
+      "label": "Zi Wei vs BaZi comparison",
+      "domain": "https://yuanyucore.com",
+      "priority": "P1",
+      "urls_discovered": 1,
+      "pages_fetched": 0,
+      "gap_count": 0,
+      "fetch_errors": [
+        {
+          "url": "https://yuanyucore.com/",
+          "status": 0,
+          "error": "This operation was aborted"
+        }
+      ],
+      "top_gaps": []
+    },
+    {
+      "id": "imperialharvest",
+      "label": "Definition snippets",
+      "domain": "https://imperialharvest.com",
+      "priority": "P1",
+      "urls_discovered": 9,
+      "pages_fetched": 9,
+      "gap_count": 16,
+      "fetch_errors": [],
+      "top_gaps": [
+        {
+          "phrase": "Imperial Harvest | Singapore Feng Shui Master &amp; Bazi Consultant",
+          "url": "https://imperialharvest.com/"
+        },
+        {
+          "phrase": "Your Trusted Feng Shui Partner For Every Stage of Life",
+          "url": "https://imperialharvest.com/"
+        },
+        {
+          "phrase": "Empower Your Destiny With the Wisdom of Bazi",
+          "url": "https://imperialharvest.com/"
+        },
+        {
+          "phrase": "Master David Goh",
+          "url": "https://imperialharvest.com/"
+        },
+        {
+          "phrase": "Understanding Imperial Feng Shui",
+          "url": "https://imperialharvest.com/"
+        }
+      ]
+    },
+    {
+      "id": "zwds-calculator",
+      "label": "Direct calculator competitor",
+      "domain": "https://zwds-calculator.com",
+      "priority": "P2",
+      "urls_discovered": 1,
+      "pages_fetched": 0,
+      "gap_count": 0,
+      "fetch_errors": [
+        {
+          "url": "https://zwds-calculator.com/",
+          "status": 403
+        }
+      ],
+      "top_gaps": []
+    },
+    {
+      "id": "purplestarmapper",
+      "label": "Purple Star calculator",
+      "domain": "https://purplestarmapper.com",
+      "priority": "P2",
+      "urls_discovered": 1,
+      "pages_fetched": 1,
+      "gap_count": 1,
+      "fetch_errors": [],
+      "top_gaps": [
+        {
+          "phrase": "易經占卜｜免費線上卜卦｜星途羅盤",
+          "url": "https://purplestarmapper.com/"
+        }
+      ]
+    },
+    {
+      "id": "fusang-vision",
+      "label": "Calculator competitor",
+      "domain": "https://fusang-vision.com",
+      "priority": "P2",
+      "urls_discovered": 14,
+      "pages_fetched": 14,
+      "gap_count": 10,
+      "fetch_errors": [],
+      "top_gaps": [
+        {
+          "phrase": "Fusang Vision | Zi Wei Astrology Readings &amp; Purple Astrology Insights",
+          "url": "https://fusang-vision.com/"
+        },
+        {
+          "phrase": "Country/region",
+          "url": "https://fusang-vision.com/"
+        },
+        {
+          "phrase": "Item added to your cart",
+          "url": "https://fusang-vision.com/"
+        },
+        {
+          "phrase": "Find The Map of Your Soul",
+          "url": "https://fusang-vision.com/"
+        },
+        {
+          "phrase": "Career Clarity",
+          "url": "https://fusang-vision.com/"
+        }
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "competitor_id": "masterseanchan",
+      "competitor_label": "Sean Chan — editorial authority",
+      "competitor_priority": "P0",
+      "url": "https://masterseanchan.com/",
+      "phrase": "Sean Chan | Asia&#039;s Leading Bazi Master &amp; Feng Shui Consultant",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "bazi",
+          "feng",
+          "shui"
+        ],
+        "ratio": 0.2727272727272727
+      },
+      "suggested_action": "Expand compare content — see /blog/bazi-vs-zi-wei-dou-shu.html"
+    },
+    {
+      "competitor_id": "masterseanchan",
+      "competitor_label": "Sean Chan — editorial authority",
+      "competitor_priority": "P0",
+      "url": "https://masterseanchan.com/",
+      "phrase": "Sean Chan Chinese Metaphysics Consulting Group",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "chinese"
+        ],
+        "ratio": 0.16666666666666666
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Sean Chan Chinese Metaphysics Consulting Group\""
+    },
+    {
+      "competitor_id": "masterseanchan",
+      "competitor_label": "Sean Chan — editorial authority",
+      "competitor_priority": "P0",
+      "url": "https://masterseanchan.com/",
+      "phrase": "Meet Tian Qi 天启",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "tian"
+        ],
+        "ratio": 0.5
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Meet Tian Qi 天启\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/",
+      "phrase": "Imperial Harvest | Singapore Feng Shui Master &amp; Bazi Consultant",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "feng",
+          "shui",
+          "bazi"
+        ],
+        "ratio": 0.3333333333333333
+      },
+      "suggested_action": "Expand compare content — see /blog/bazi-vs-zi-wei-dou-shu.html"
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/",
+      "phrase": "Your Trusted Feng Shui Partner For Every Stage of Life",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "feng",
+          "shui",
+          "partner",
+          "life"
+        ],
+        "ratio": 0.5714285714285714
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Your Trusted Feng Shui Partner For Every Stage of Life\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/",
+      "phrase": "Empower Your Destiny With the Wisdom of Bazi",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "bazi"
+        ],
+        "ratio": 0.25
+      },
+      "suggested_action": "Expand compare content — see /blog/bazi-vs-zi-wei-dou-shu.html"
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/",
+      "phrase": "Master David Goh",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Master David Goh\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/",
+      "phrase": "Understanding Imperial Feng Shui",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "feng",
+          "shui"
+        ],
+        "ratio": 0.5
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Understanding Imperial Feng Shui\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/",
+      "phrase": "Thrive with Imperial Feng Shui in Singapore. Discover the right Imperial Harvest Treasure for you.",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "feng",
+          "shui",
+          "discover",
+          "you"
+        ],
+        "ratio": 0.36363636363636365
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Thrive with Imperial Feng Shui in Singapore. Discover the right Imperial Harvest Treasure for you.\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/",
+      "phrase": "“Imperial Harvest gave me the breakthrough I had been working toward for years — in just months.”",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "working"
+        ],
+        "ratio": 0.09090909090909091
+      },
+      "suggested_action": "Build transit/forecast page via seo:transit + generate-transit-pages"
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/",
+      "phrase": "“Before Imperial Harvest, i was earning 500k to 600k per year. After embarking my journey with Imperial Harvest, I am able to earn more than 1 million in 2024. And now 2025, in a short span of 3 months i have already achieved ERA Rising Millionaire (income crossing 500k)”",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "year",
+          "income"
+        ],
+        "ratio": 0.058823529411764705
+      },
+      "suggested_action": "Build transit/forecast page via seo:transit + generate-transit-pages"
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/post-sitemap1.xml",
+      "phrase": "post sitemap1.xml",
+      "slug": "post-sitemap1.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"post sitemap1.xml\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/post-sitemap2.xml",
+      "phrase": "post sitemap2.xml",
+      "slug": "post-sitemap2.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"post sitemap2.xml\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/page-sitemap.xml",
+      "phrase": "page sitemap.xml",
+      "slug": "page-sitemap.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"page sitemap.xml\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/collections-sitemap1.xml",
+      "phrase": "collections sitemap1.xml",
+      "slug": "collections-sitemap1.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"collections sitemap1.xml\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/collections-sitemap2.xml",
+      "phrase": "collections sitemap2.xml",
+      "slug": "collections-sitemap2.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"collections sitemap2.xml\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/category-sitemap.xml",
+      "phrase": "category sitemap.xml",
+      "slug": "category-sitemap.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"category sitemap.xml\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/video-sitemap.xml",
+      "phrase": "video sitemap.xml",
+      "slug": "video-sitemap.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"video sitemap.xml\""
+    },
+    {
+      "competitor_id": "imperialharvest",
+      "competitor_label": "Definition snippets",
+      "competitor_priority": "P1",
+      "url": "https://imperialharvest.com/local-sitemap.xml",
+      "phrase": "local sitemap.xml",
+      "slug": "local-sitemap.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"local sitemap.xml\""
+    },
+    {
+      "competitor_id": "purplestarmapper",
+      "competitor_label": "Purple Star calculator",
+      "competitor_priority": "P2",
+      "url": "https://purplestarmapper.com/",
+      "phrase": "易經占卜｜免費線上卜卦｜星途羅盤",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "empty"
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"易經占卜｜免費線上卜卦｜星途羅盤\""
+    },
+    {
+      "competitor_id": "fusang-vision",
+      "competitor_label": "Calculator competitor",
+      "competitor_priority": "P2",
+      "url": "https://fusang-vision.com/",
+      "phrase": "Fusang Vision | Zi Wei Astrology Readings &amp; Purple Astrology Insights",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "wei",
+          "astrology",
+          "purple",
+          "astrology"
+        ],
+        "ratio": 0.4444444444444444
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Fusang Vision | Zi Wei Astrology Readings &amp; Purple Astrology Insights\""
+    },
+    {
+      "competitor_id": "fusang-vision",
+      "competitor_label": "Calculator competitor",
+      "competitor_priority": "P2",
+      "url": "https://fusang-vision.com/",
+      "phrase": "Country/region",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Country/region\""
+    },
+    {
+      "competitor_id": "fusang-vision",
+      "competitor_label": "Calculator competitor",
+      "competitor_priority": "P2",
+      "url": "https://fusang-vision.com/",
+      "phrase": "Item added to your cart",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Item added to your cart\""
+    },
+    {
+      "competitor_id": "fusang-vision",
+      "competitor_label": "Calculator competitor",
+      "competitor_priority": "P2",
+      "url": "https://fusang-vision.com/",
+      "phrase": "Find The Map of Your Soul",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Find The Map of Your Soul\""
+    },
+    {
+      "competitor_id": "fusang-vision",
+      "competitor_label": "Calculator competitor",
+      "competitor_priority": "P2",
+      "url": "https://fusang-vision.com/",
+      "phrase": "Career Clarity",
+      "slug": "",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [
+          "career"
+        ],
+        "ratio": 0.5
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"Career Clarity\""
+    },
+    {
+      "competitor_id": "fusang-vision",
+      "competitor_label": "Calculator competitor",
+      "competitor_priority": "P2",
+      "url": "https://fusang-vision.com/sitemap_agentic_discovery.xml",
+      "phrase": "sitemap_agentic_discovery.xml",
+      "slug": "sitemap_agentic_discovery.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"sitemap_agentic_discovery.xml\""
+    },
+    {
+      "competitor_id": "fusang-vision",
+      "competitor_label": "Calculator competitor",
+      "competitor_priority": "P2",
+      "url": "https://fusang-vision.com/sitemap_products_1.xml?from=8966804766885&amp;to=9125934334117",
+      "phrase": "sitemap_products_1.xml",
+      "slug": "sitemap_products_1.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"sitemap_products_1.xml\""
+    },
+    {
+      "competitor_id": "fusang-vision",
+      "competitor_label": "Calculator competitor",
+      "competitor_priority": "P2",
+      "url": "https://fusang-vision.com/sitemap_pages_1.xml?from=105388769445&amp;to=120316526757",
+      "phrase": "sitemap_pages_1.xml",
+      "slug": "sitemap_pages_1.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"sitemap_pages_1.xml\""
+    },
+    {
+      "competitor_id": "fusang-vision",
+      "competitor_label": "Calculator competitor",
+      "competitor_priority": "P2",
+      "url": "https://fusang-vision.com/sitemap_collections_1.xml?from=317823975589&amp;to=326562119845",
+      "phrase": "sitemap_collections_1.xml",
+      "slug": "sitemap_collections_1.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"sitemap_collections_1.xml\""
+    },
+    {
+      "competitor_id": "fusang-vision",
+      "competitor_label": "Calculator competitor",
+      "competitor_priority": "P2",
+      "url": "https://fusang-vision.com/sitemap_blogs_1.xml",
+      "phrase": "sitemap_blogs_1.xml",
+      "slug": "sitemap_blogs_1.xml",
+      "coverage": {
+        "covered": false,
+        "reason": "gap",
+        "overlap": [],
+        "ratio": 0
+      },
+      "suggested_action": "Create static HTML page under pages/ or blog/ targeting \"sitemap_blogs_1.xml\""
+    }
+  ]
+}

@@ -7,12 +7,13 @@ DOMAIN="metaphysicflow.com"
 KEYWORDS="seo-engine/data/keywords-matrix.json"
 INFINITE="seo-engine/data/infinite-matrix.json"
 TRANSIT="seo-engine/data/transit-matrix.json"
+HOROSCOPE="seo-engine/data/horoscope-matrix.json"
 
 echo "========================================"
 echo "  SEO Submission for $DOMAIN"
 echo "========================================"
 
-# Build URL list: core + keyword GEO + 168 star-palace + 240 transit matrix
+# Build URL list: core + keyword GEO + matrix + transit + horoscope
 PAGE_URLS=$(node -e "
 const fs=require('fs');
 const kw=require('./${KEYWORDS}');
@@ -29,7 +30,12 @@ if(fs.existsSync('./${TRANSIT}')){
   const tx=JSON.parse(fs.readFileSync('./${TRANSIT}','utf8'));
   transitUrls=tx.pages.map(p=>base+'/pages/'+p.slug+'.html');
 }
-const all=[...new Set([...core,...keywordUrls,...matrixUrls,...transitUrls])];
+let horoscopeUrls=[];
+if(fs.existsSync('./${HOROSCOPE}')){
+  const hz=JSON.parse(fs.readFileSync('./${HOROSCOPE}','utf8'));
+  horoscopeUrls=hz.pages.map(p=>base+'/pages/'+p.slug+'.html');
+}
+const all=[...new Set([...core,...keywordUrls,...matrixUrls,...transitUrls,...horoscopeUrls])];
 process.stderr.write('URLs to ping: '+all.length+'\\n');
 console.log(JSON.stringify(all));
 ")
