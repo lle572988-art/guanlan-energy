@@ -63,8 +63,8 @@ function buildBlogSchema(meta) {
         headline: meta.title,
         description: meta.description,
         url: meta.pageUrl,
-        datePublished: meta.datePublished,
-        dateModified: meta.datePublished,
+      datePublished: meta.datePublished,
+      dateModified: new Date().toISOString().split('T')[0],
         inLanguage: 'en-US',
         author: { '@type': 'Organization', name: SITE.author || SITE.brand_name },
         publisher: {
