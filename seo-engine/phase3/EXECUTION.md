@@ -8,6 +8,12 @@
 4. **Widget** — 529 pages 含新 Gap 页
 5. **Schema 审计** — `phase3:schema-audit`（部署后 blog 样本应显示 Article）
 
+## ✅ 已完成（2026-06-13 续）
+
+6. **Reddit PullPush 备用** — datacenter IP 403 时走 pullpush.io（15 线程）
+7. **Gap 重过滤** — 30 → **10** 条有效 gap（`phase2:refilter-gaps`）
+8. **内链** — 首页 compare 区 + free-chart 底部 → Gap/Horoscope 页
+
 ## 📋 需你在 GSC 手动做
 
 1. **重复网页（.md）** → 打开问题 → **验证修正情况**（commit `9896bb9` 已 301）

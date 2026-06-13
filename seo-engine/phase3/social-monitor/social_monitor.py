@@ -110,6 +110,54 @@ def score_thread(thread: dict) -> float:
     return min(score, 100)
 
 
+def search_reddit_pullpush(query: str, subreddit: str | None = None, limit: int = 10) -> list[dict]:
+    """Fallback when reddit.com JSON returns 403 — uses pullpush.io archive."""
+    if not REQUESTS_OK:
+        return []
+    params = {
+        "q": f'"{query}"' if " " in query else query,
+        "size": limit,
+        "sort": "desc",
+        "sort_type": "created_utc",
+    }
+    if subreddit:
+        params["subreddit"] = subreddit.replace("r/", "")
+    url = "https://api.pullpush.io/reddit/search/submission/?" + urllib.parse.urlencode(params)
+    try:
+        resp = requests.get(url, timeout=20, headers={"User-Agent": "MetaphysicFlowSEOBot/1.0"})
+        resp.raise_for_status()
+        data = resp.json()
+        threads = []
+        for p in data.get("data", []):
+            created_raw = p.get("created_utc", 0)
+            try:
+                created = float(created_raw or 0)
+            except (TypeError, ValueError):
+                created = 0
+            age_hours = (time.time() - created) / 3600 if created else 999
+            permalink = p.get("permalink") or ""
+            if permalink and not permalink.startswith("http"):
+                permalink = f"https://reddit.com{permalink}"
+            threads.append(
+                {
+                    "platform": "reddit",
+                    "subreddit": f"r/{p.get('subreddit', subreddit or 'unknown')}",
+                    "title": p.get("title", ""),
+                    "body": (p.get("selftext") or "")[:500],
+                    "url": permalink or p.get("url", ""),
+                    "upvotes": p.get("score", p.get("ups", 0)),
+                    "reply_count": p.get("num_comments", 0),
+                    "age_hours": round(age_hours, 1),
+                    "post_id": p.get("id", ""),
+                    "source": "pullpush",
+                }
+            )
+        return threads
+    except Exception as e:
+        print(f"   ⚠️  PullPush search failed ('{query}'): {e}")
+        return []
+
+
 def search_reddit_json(subreddit: str, query: str, limit: int = 10) -> list[dict]:
     encoded_query = urllib.parse.quote(query)
     sub = subreddit.replace("r/", "")
@@ -117,12 +165,24 @@ def search_reddit_json(subreddit: str, query: str, limit: int = 10) -> list[dict
         f"https://www.reddit.com/r/{sub}/search.json"
         f"?q={encoded_query}&sort=new&limit={limit}&restrict_sr=1"
     )
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+        ),
+        "Accept": "application/json",
+    }
     try:
-        req = urllib.request.Request(
-            url, headers={"User-Agent": "MetaphysicFlowSEOBot/1.0 (research)"}
-        )
-        with urllib.request.urlopen(req, timeout=12) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
+        if REQUESTS_OK:
+            resp = requests.get(url, headers=headers, timeout=12)
+            if resp.status_code == 403:
+                raise PermissionError("403 Blocked")
+            resp.raise_for_status()
+            data = resp.json()
+        else:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=12) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
 
         threads = []
         for post in data.get("data", {}).get("children", []):
@@ -140,26 +200,44 @@ def search_reddit_json(subreddit: str, query: str, limit: int = 10) -> list[dict
                     "reply_count": p.get("num_comments", 0),
                     "age_hours": round(age_hours, 1),
                     "post_id": p.get("id", ""),
+                    "source": "reddit",
                 }
             )
         return threads
     except Exception as e:
-        print(f"   ⚠️  Reddit search failed (r/{sub}, '{query}'): {e}")
-        return []
+        print(f"   ⚠️  Reddit direct failed (r/{sub}, '{query}'): {e} → PullPush")
+        return search_reddit_pullpush(query, subreddit=sub, limit=limit)
 
 
 def scan_reddit() -> list[dict]:
     all_threads = []
     seen_ids = set()
+
+    # Global PullPush queries (works when reddit.com blocks datacenter IPs)
+    global_queries = [
+        "zi wei dou shu",
+        "purple star astrology",
+        "ZWDS chart",
+        "bazi vs zi wei",
+    ]
+    print("   PullPush global search…")
+    for term in global_queries:
+        for t in search_reddit_pullpush(term, subreddit=None, limit=8):
+            if t["post_id"] and t["post_id"] not in seen_ids:
+                t["score"] = score_thread(t)
+                all_threads.append(t)
+                seen_ids.add(t["post_id"])
+        time.sleep(0.8)
+
     for sub in REDDIT_TARGETS["subreddits"][:3]:
-        for term in REDDIT_TARGETS["search_terms"][:3]:
+        for term in REDDIT_TARGETS["search_terms"][:2]:
             print(f"   Scanning r/{sub}: '{term}'...")
             for t in search_reddit_json(sub, term, limit=5):
                 if t["post_id"] not in seen_ids:
                     t["score"] = score_thread(t)
                     all_threads.append(t)
                     seen_ids.add(t["post_id"])
-            time.sleep(1.5)
+            time.sleep(1.0)
     all_threads.sort(key=lambda x: -x["score"])
     return all_threads
 

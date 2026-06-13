@@ -26,6 +26,7 @@
     "phase2:pipeline:dry": "node phase2/automation/pipeline.js --dry-run",
     "phase2:qc": "node ../scripts/playbook-qc.js --matrix-only",
     "phase2:full": "node phase2/automation/pipeline.js --with qc,competitor-intel",
+    "phase2:refilter-gaps": "node phase2/competitor-intel/refilter-gap-report.js",
     "phase3:schema-audit": "node phase3/schema-engine/audit-schema.js --sample",
     "phase3:social-scan": "python3 phase3/social-monitor/social_monitor.py --mode scan",
     "phase3:social-full": "python3 phase3/social-monitor/social_monitor.py --mode full"
