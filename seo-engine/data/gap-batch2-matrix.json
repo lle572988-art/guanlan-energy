@@ -1,0 +1,143 @@
+{
+  "site": {
+    "domain": "https://metaphysicflow.com",
+    "cta_page": "/free-chart.html",
+    "cta_text": "Get Your Free Chart Reading",
+    "brand_name": "Guanlan Energy",
+    "author": "Guanlan Energy",
+    "faq_page": "/faq.html",
+    "logo": "/images/og-chart.jpg"
+  },
+  "pages": [
+    {
+      "slug": "feng-shui-partner-every-life-stage-vs-zwds",
+      "gap_rank": 6,
+      "gap_phrase": "Your Trusted Feng Shui Partner For Every Stage of Life",
+      "competitor": "imperialharvest.com",
+      "page_type": "compare",
+      "title": "Feng Shui for Every Life Stage vs Zi Wei Dou Shu — Which Guides You Better?",
+      "description": "Searching for a Feng Shui partner through career, marriage, and retirement? Compare space-based Feng Shui with Purple Star's 12-palace life map — free English chart.",
+      "lead": "Feng Shui adjusts the environment for each life chapter. ZWDS maps which palace is activated when — timing plus domain, not just room layout.",
+      "sections": [
+        {
+          "h2": "Life-Stage Feng Shui (Space Layer)",
+          "body": "Imperial and classical Feng Shui often package consultations by milestone: first home, marriage, career promotion, retirement. The logic is environmental — shift qi in the bedroom for partnership, the office for authority, the wealth corner for income. It works when your challenge is spatial: blocked doors, beam pressure, missing corners."
+        },
+        {
+          "h2": "ZWDS Life-Stage Reading (Chart Layer)",
+          "body": "Purple Star Astrology assigns each life domain to a palace — Life, Spouse, Career, Wealth, Health, Travel, and more. Decade luck (大限) and annual stars show which palace is under pressure this year. You can know that Career Palace is activated before you renovate the home office."
+        },
+        {
+          "h2": "When to Use Which",
+          "body": "Use Feng Shui when you control the space and need immediate environmental relief. Use ZWDS when choosing timing — should I move, marry, or pivot careers this year? Many practitioners layer both: chart for timing, Feng Shui for execution."
+        }
+      ],
+      "faq_q": "Can Feng Shui and ZWDS contradict each other?",
+      "faq_a": "They operate on different layers — space vs birth map. A strong Wealth Palace year might still benefit from a cleared wealth corner; a weak Career Palace year suggests caution on big job moves regardless of desk placement."
+    },
+    {
+      "slug": "imperial-feng-shui-treasure-vs-birth-chart",
+      "gap_rank": 7,
+      "gap_phrase": "Thrive with Imperial Feng Shui — Discover the right Treasure for you",
+      "competitor": "imperialharvest.com",
+      "page_type": "landing",
+      "title": "Imperial Feng Shui Treasures vs Your Birth Chart — What Actually Moves Destiny?",
+      "description": "Curious about Imperial Feng Shui treasures and blessed artifacts? Learn how Purple Star Astrology reads wealth and career from your natal chart — without buying objects first.",
+      "lead": "Treasures symbolize intent. Your chart shows whether wealth flows through career, partnership, or investment — and which years reward action.",
+      "sections": [
+        {
+          "h2": "What \"Imperial Treasures\" Promise",
+          "body": "High-end Feng Shui retail often pairs consultations with jade, pixiu, or ritual objects tuned to your element. The symbolism can focus intention — but objects do not replace knowing which palace carries your wealth star."
+        },
+        {
+          "h2": "What a ZWDS Chart Shows Instead",
+          "body": "Wealth Palace (財帛) stars reveal how you earn — salary, business, windfall, or partnership money. Wu Qu favors earned income; Tan Lang favors deal-making; Tai Yin favors assets and property. Annual 化祿 on Wealth Palace marks high-yield windows."
+        },
+        {
+          "h2": "Practical Sequence",
+          "body": "Plot your free chart first. Identify Wealth and Career palaces plus current decade luck. Then, if you use Feng Shui objects, align them to the element that supports your chart — not a generic bestseller."
+        }
+      ],
+      "faq_q": "Do I need Feng Shui treasures if I have a strong Wealth Palace?",
+      "faq_a": "A strong Wealth Palace indicates natural capacity — execution and timing matter more than objects. Treasures may support mindset; they do not substitute reading annual activation and 化忌 pressure on Wealth."
+    },
+    {
+      "slug": "iching-divination-vs-zi-wei-dou-shu",
+      "gap_rank": 8,
+      "gap_phrase": "易經占卜 — Free online I Ching divination vs chart-based reading",
+      "competitor": "xingtu-luopan / competitor I Ching tools",
+      "page_type": "compare",
+      "title": "I Ching Divination vs Zi Wei Dou Shu — Question Reading vs Birth Map",
+      "description": "Compare free I Ching hexagram readings with Purple Star natal charts. When to cast a hexagram vs plot your full ZWDS matrix in English.",
+      "lead": "I Ching answers the question you ask now. ZWDS answers who you are across twelve life domains — then layers timing on top.",
+      "sections": [
+        {
+          "h2": "I Ching: Event-Centered",
+          "body": "Traditional I Ching (易经占卜) uses coin or yarrow casts to produce a hexagram for a specific decision: Should I take this job? Will this deal close? It is situational, often single-question, and excels at moral- strategic framing of a moment."
+        },
+        {
+          "h2": "ZWDS: Person-Centered",
+          "body": "Zi Wei Dou Shu builds a fixed natal map from birth datetime. Fourteen major stars sit in twelve palaces; transformations (四化) modulate them by year. You learn baseline temperament, wealth style, relationship pattern — then overlay annual stars."
+        },
+        {
+          "h2": "Using Both Without Contradiction",
+          "body": "Cast I Ching for a fork-in-the-road decision this week. Use ZWDS to know if you are in a Career Palace activation year before you act on the hexagram. Chart gives context; I Ching gives situational nuance."
+        }
+      ],
+      "faq_q": "Is online I Ching as accurate as a full ZWDS chart?",
+      "faq_a": "They measure different things — accuracy depends on question clarity for I Ching and birth-time precision for ZWDS. Neither replaces the other; serious practitioners use chart for structure and divination for specific dilemmas."
+    },
+    {
+      "slug": "free-purple-star-chart-beginners-guide",
+      "gap_rank": 9,
+      "gap_phrase": "Free Chinese astrology chart reading in English for beginners",
+      "competitor": "fusang-vision.com",
+      "page_type": "landing",
+      "title": "Free Purple Star Chart for Beginners — English ZWDS Step-by-Step",
+      "description": "New to Purple Star Astrology? Generate a free English birth chart, locate your Life Palace, and read Wealth and Career — no Chinese required.",
+      "lead": "Beginners need three anchors: Life Palace personality, Wealth Palace money style, Career Palace vocation — everything else builds from there.",
+      "sections": [
+        {
+          "h2": "Step 1: Birth Data Precision",
+          "body": "Gather date, time (as exact as possible), and gender. Two-hour error can shift the Life Palace. Use solar time if your calculator supports location correction."
+        },
+        {
+          "h2": "Step 2: Read Life · Wealth · Career First",
+          "body": "Life Palace (命宮) is your core tone. Wealth (財帛) shows earning pattern. Career (官祿) shows work environment fit. Skip auxiliary stars until these three make sense."
+        },
+        {
+          "h2": "Step 3: Note Annual Transformations",
+          "body": "Each year assigns 化祿 化權 化科 化忌 to specific stars. 化忌 marks friction — not doom, but where you need patience. Check which palace receives 化忌 this year."
+        }
+      ],
+      "faq_q": "How is Purple Star different from Chinese zodiac year animals?",
+      "faq_a": "Year animal horoscopes use birth year only. ZWDS uses full birth datetime for a unique twelve-palace map — two people born in the same Dragon year can have opposite Career Palace stars."
+    },
+    {
+      "slug": "seven-killings-star-career-meaning-guide",
+      "gap_rank": 10,
+      "gap_phrase": "What does the Seven Killings star mean in career and leadership?",
+      "competitor": "quora / community search intent",
+      "page_type": "landing",
+      "title": "Seven Killings Star (Qi Sha 七殺) — Career, Power & Independence in ZWDS",
+      "description": "Qi Sha in your Career or Life Palace? Learn how the Seven Killings star drives bold leadership, pressure, and unconventional success paths in Purple Star Astrology.",
+      "lead": "七殺 is the general star — high stakes, high autonomy. In Career Palace it favors entrepreneurship, crisis roles, and paths where you forge your own rules.",
+      "sections": [
+        {
+          "h2": "Core Qi Sha Temperament",
+          "body": "Seven Killings carries decisive, confrontational energy. Natives do not thrive in passive environments. They need challenge, visible results, and room to act independently — military, surgery, trading, startup leadership, competitive sales."
+        },
+        {
+          "h2": "Qi Sha in Career Palace (官祿)",
+          "body": "Career Palace Qi Sha often means non-linear success: rapid rises, industry switches, or building something from zero. Stability comes from mastery under pressure, not from corporate ladder politicking."
+        },
+        {
+          "h2": "Shadow Side & 化忌 Years",
+          "body": "Unchecked Qi Sha becomes burnout, conflict, or reckless risk. When 化忌 hits Qi Sha, slow major moves — the star demands strategy, not impulse. Pair with strong Tian Fu or Tian Xiang in adjacent palaces for balance."
+        }
+      ],
+      "faq_q": "Is Seven Killings a \"bad\" star?",
+      "faq_a": "No star is purely bad in ZWDS. Qi Sha is demanding — it rewards courage and punishes hesitation. Context from Life Palace, transformations, and decade luck determines whether it reads as breakthrough or breakdown."
+    }
+  ]
+}

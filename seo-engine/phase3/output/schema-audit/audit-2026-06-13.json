@@ -1,0 +1,91 @@
+[
+  {
+    "url": "https://metaphysicflow.com/free-chart.html",
+    "profile": "calculator",
+    "schemas_found": [
+      "WebApplication",
+      "FAQPage"
+    ],
+    "schemas_recommended": [
+      "WebApplication",
+      "SoftwareApplication",
+      "FAQPage"
+    ],
+    "schemas_missing": [
+      "SoftwareApplication"
+    ],
+    "script_blocks": 2,
+    "score_pct": 67,
+    "status": "gaps"
+  },
+  {
+    "url": "https://metaphysicflow.com/faq.html",
+    "profile": "article",
+    "schemas_found": [
+      "FAQPage"
+    ],
+    "schemas_recommended": [
+      "Article",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
+    "schemas_missing": [
+      "Article",
+      "BreadcrumbList"
+    ],
+    "script_blocks": 1,
+    "score_pct": 33,
+    "status": "gaps"
+  },
+  {
+    "url": "https://metaphysicflow.com/pages/empower-destiny-bazi-vs-zi-wei-dou-shu.html",
+    "profile": "compare",
+    "schemas_found": [
+      "Article",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
+    "schemas_recommended": [
+      "Article",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
+    "schemas_missing": [],
+    "script_blocks": 3,
+    "score_pct": 100,
+    "status": "complete"
+  },
+  {
+    "url": "https://metaphysicflow.com/pages/horoscope/2026-dragon-forecast.html",
+    "profile": "horoscope",
+    "schemas_found": [
+      "Article",
+      "TrendAction",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
+    "schemas_recommended": [
+      "Article",
+      "FAQPage",
+      "BreadcrumbList"
+    ],
+    "schemas_missing": [],
+    "script_blocks": 4,
+    "score_pct": 100,
+    "status": "complete"
+  },
+  {
+    "url": "https://metaphysicflow.com/blog/the-psychology-of-minimalist-spaces.html",
+    "profile": "blog",
+    "schemas_found": [],
+    "schemas_recommended": [
+      "Article"
+    ],
+    "schemas_missing": [
+      "Article"
+    ],
+    "script_blocks": 0,
+    "score_pct": 0,
+    "status": "gaps"
+  }
+]

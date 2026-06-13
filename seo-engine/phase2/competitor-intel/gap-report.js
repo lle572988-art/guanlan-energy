@@ -4,6 +4,7 @@ const { loadSeoConfig, ensureOutputDir } = require('../lib/paths');
 const { buildSiteInventory, coversTopic, normalize } = require('../lib/keyword-index');
 const { fetchText, discoverUrls } = require('../lib/fetch-html');
 const { extractPageIntel } = require('./extract-page-intel');
+const { filterAndRankGaps, isJunkGapPhrase } = require('./gap-filter');
 
 function renderMarkdown(report) {
   const lines = [
@@ -31,6 +32,7 @@ function renderMarkdown(report) {
   report.gaps.slice(0, 30).forEach((g, i) => {
     lines.push(
       `### ${i + 1}. ${g.phrase}`,
+      `- Quality score: **${g.quality_score ?? '—'}**`,
       `- Competitor: **${g.competitor_label}** (${g.competitor_priority})`,
       `- Source URL: ${g.url}`,
       `- Suggested action: ${g.suggested_action}`,
@@ -112,6 +114,7 @@ function buildGapEntries(competitor, pages, inventory) {
     }
 
     page.h2_sample.forEach((h2) => {
+      if (isJunkGapPhrase(h2)) return;
       const h2Check = coversTopic(inventory, h2);
       if (!h2Check.covered && h2.length > 12) {
         gaps.push({
@@ -130,18 +133,19 @@ function buildGapEntries(competitor, pages, inventory) {
 
   const seen = new Set();
   const dedupedGaps = gaps.filter((g) => {
+    if (isJunkGapPhrase(g.phrase)) return false;
     const key = `${g.competitor_id}:${normalize(g.phrase)}`;
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
   });
 
-  dedupedGaps.sort((a, b) => {
-    const pri = { P0: 0, P1: 1, P2: 2 };
-    return (pri[a.competitor_priority] ?? 9) - (pri[b.competitor_priority] ?? 9);
+  const ranked = filterAndRankGaps(dedupedGaps);
+  ranked.forEach((g, i) => {
+    g.rank = i + 1;
   });
 
-  return { gaps: dedupedGaps, covered };
+  return { gaps: ranked, covered };
 }
 
-module.exports = { writeGapReport, renderMarkdown, buildGapEntries, suggestAction };
+module.exports = { writeGapReport, renderMarkdown, buildGapEntries, suggestAction, isJunkGapPhrase, filterAndRankGaps };

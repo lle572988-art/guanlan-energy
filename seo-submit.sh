@@ -9,6 +9,7 @@ INFINITE="seo-engine/data/infinite-matrix.json"
 TRANSIT="seo-engine/data/transit-matrix.json"
 HOROSCOPE="seo-engine/data/horoscope-matrix.json"
 GAP_TOP5="seo-engine/data/gap-top5-matrix.json"
+GAP_BATCH2="seo-engine/data/gap-batch2-matrix.json"
 
 echo "========================================"
 echo "  SEO Submission for $DOMAIN"
@@ -40,6 +41,10 @@ let gapUrls=[];
 if(fs.existsSync('./${GAP_TOP5}')){
   const gp=JSON.parse(fs.readFileSync('./${GAP_TOP5}','utf8'));
   gapUrls=gp.pages.map(p=>base+'/pages/'+p.slug+'.html');
+}
+if(fs.existsSync('./${GAP_BATCH2}')){
+  const gb=JSON.parse(fs.readFileSync('./${GAP_BATCH2}','utf8'));
+  gapUrls=gapUrls.concat(gb.pages.map(p=>base+'/pages/'+p.slug+'.html'));
 }
 const all=[...new Set([...core,...keywordUrls,...matrixUrls,...transitUrls,...horoscopeUrls,...gapUrls])];
 process.stderr.write('URLs to ping: '+all.length+'\\n');

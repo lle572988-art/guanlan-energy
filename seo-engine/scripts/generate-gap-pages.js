@@ -2,7 +2,14 @@ const fs = require('fs');
 const path = require('path');
 
 const rootDir = path.join(__dirname, '../..');
-const dataPath = path.join(__dirname, '../data/gap-top5-matrix.json');
+const seoEngineDir = path.join(__dirname, '..');
+let dataPath = path.join(seoEngineDir, 'data/gap-top5-matrix.json');
+const matrixArg = process.argv.find((a) => a.startsWith('--matrix='));
+if (matrixArg) {
+  dataPath = path.resolve(__dirname, matrixArg.split('=')[1]);
+} else if (process.env.GAP_MATRIX) {
+  dataPath = path.resolve(seoEngineDir, process.env.GAP_MATRIX.replace(/^\.\.\//, ''));
+}
 
 if (!fs.existsSync(dataPath)) {
   console.error('❌ Missing gap-top5-matrix.json');

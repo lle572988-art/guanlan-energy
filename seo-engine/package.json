@@ -10,6 +10,8 @@
     "seo:multiply": "node scripts/build-infinite-matrix.js",
     "seo:horoscope": "node scripts/build-horoscope-matrix.js",
     "seo:gap-top5": "node scripts/generate-gap-pages.js",
+    "seo:gap-batch2": "node scripts/generate-gap-pages.js --matrix=../data/gap-batch2-matrix.json",
+    "seo:blog-schema": "node scripts/inject-blog-schema.js",
     "seo:transit": "node scripts/build-transit-matrix.js",
     "seo:generate": "SEO_DATA=../data/infinite-matrix.json node scripts/generate-pages.js && node scripts/generate-transit-pages.js && node scripts/generate-horoscope-pages.js",
     "seo:inject": "node ../scripts/inject-conversion-widget.js",
@@ -23,7 +25,10 @@
     "phase2:pipeline": "node phase2/automation/pipeline.js",
     "phase2:pipeline:dry": "node phase2/automation/pipeline.js --dry-run",
     "phase2:qc": "node ../scripts/playbook-qc.js --matrix-only",
-    "phase2:full": "node phase2/automation/pipeline.js --with qc,competitor-intel"
+    "phase2:full": "node phase2/automation/pipeline.js --with qc,competitor-intel",
+    "phase3:schema-audit": "node phase3/schema-engine/audit-schema.js --sample",
+    "phase3:social-scan": "python3 phase3/social-monitor/social_monitor.py --mode scan",
+    "phase3:social-full": "python3 phase3/social-monitor/social_monitor.py --mode full"
   },
   "dependencies": {
     "googleapis": "^173.0.0",
