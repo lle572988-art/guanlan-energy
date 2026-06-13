@@ -69,7 +69,7 @@ body {
   line-height: 1.6;
   min-height: 100vh;
 }
-nav {
+nav.site-nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   background: rgba(8, 8, 8, 0.82);
   backdrop-filter: blur(12px);
@@ -77,21 +77,21 @@ nav {
   display: flex; align-items: center; justify-content: space-between;
   border-bottom: 1px solid rgba(201, 169, 110, 0.08);
 }
-nav .logo {
+nav.site-nav .logo {
   font-family: Cinzel, serif;
   font-size: 0.85rem;
   letter-spacing: 0.15em;
   color: rgba(201, 169, 110, 0.55);
   text-decoration: none;
 }
-nav a.back {
+nav.site-nav a.back {
   color: rgba(201, 169, 110, 0.55);
   text-decoration: none;
   font-family: Cinzel, serif;
   font-size: 0.78rem;
   transition: color 0.3s;
 }
-nav a.back:hover { color: var(--gold); }
+nav.site-nav a.back:hover { color: var(--gold); }
 
 .container {
   max-width: 720px;
@@ -126,10 +126,12 @@ h1 {
 }
 
 .journal-toc {
+  position: static;
   margin-bottom: 2rem;
   padding: 1.25rem 1.35rem;
   border: 1px solid rgba(201, 169, 110, 0.12);
   background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: none;
 }
 .journal-toc-title {
   font-family: Cinzel, serif;
@@ -153,10 +155,12 @@ h1 {
 .journal-toc-links a:hover { color: var(--gold); }
 
 .main-stars-quick {
+  position: static;
   margin: 1rem 0 1.5rem;
   padding: 1rem 1.15rem;
   border: 1px solid rgba(201, 169, 110, 0.1);
   background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: none;
 }
 .main-stars-quick-title {
   font-family: Cinzel, serif;
@@ -303,7 +307,7 @@ footer {
 </style>
 </head>
 <body>
-<nav>
+<nav class="site-nav">
   <a href="/" class="logo">GUANLAN ENERGY</a>
   <a href="/" class="back">← Home</a>
 </nav>

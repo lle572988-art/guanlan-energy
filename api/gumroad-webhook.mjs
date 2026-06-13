@@ -19,7 +19,7 @@ async function adjustSpots(delta) {
 
 async function verifySignature(request, rawBody) {
   const secret = process.env.GUMROAD_SECRET;
-  if (!secret) return true;
+  if (!secret) return false;
   const sig = request.headers.get('x-gumroad-signature') || request.headers.get('X-Gumroad-Signature');
   if (!sig) return false;
   const key = await crypto.subtle.importKey(
