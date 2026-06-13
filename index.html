@@ -47,10 +47,10 @@
   <link rel="canonical" href="https://metaphysicflow.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" fetchpriority="high">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
 <noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap">
 </noscript>
 <style>
   body { font-family: Georgia, 'Times New Roman', serif; }
@@ -104,7 +104,7 @@ body {
     transparent 55%
   );
   color: var(--text-primary);
-  font-family: 'EB Garamond', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 19px;
   line-height: 1.7;
   cursor: default;
@@ -170,7 +170,7 @@ p {
   font-size: 0.6rem;
   letter-spacing: 0.22em;
   color: var(--silver-dim);
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
 }
 .nav-links {
@@ -385,7 +385,7 @@ p {
 }
 .hero-title-small {
   display: block;
-  font-family: 'EB Garamond', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.1rem;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.5);
@@ -404,7 +404,7 @@ p {
 }
 
 .hero-lead {
-  font-family: 'EB Garamond', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1rem;
   font-weight: 400;
   font-style: normal;
@@ -506,7 +506,7 @@ p {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.85);
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 14px;
   padding: 12px 14px;
   border-radius: 5px;
@@ -560,7 +560,7 @@ p {
   text-transform: lowercase;
   letter-spacing: 0.04em;
   margin-left: 4px;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
 }
 .location-hint {
   display: block;
@@ -575,7 +575,7 @@ p {
   background: none;
   border: none;
   border-radius: 0;
-  font-family: 'EB Garamond', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 12px;
   font-style: normal;
   letter-spacing: 0.04em;
@@ -599,7 +599,7 @@ p {
   margin-top: 0.5rem;
   background: var(--gold-accent);
   color: #0a0a0a;
-  font-family: 'EB Garamond', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.06em;
@@ -637,7 +637,7 @@ p {
   border-top: 1px solid rgba(201, 169, 110, 0.12);
 }
 .form-social-stat {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.88rem;
   font-style: italic;
   letter-spacing: 0;
@@ -753,7 +753,7 @@ p {
 }
 .chart-hint {
   text-align: center;
-  font-family: 'EB Garamond', Georgia, serif;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 11px;
   letter-spacing: 0.06em;
   color: rgba(255, 255, 255, 0.25);
@@ -921,6 +921,45 @@ section {
   transition: background 0.2s;
 }
 .unlock-badge:hover { background: var(--gold-light); }
+
+.unlock-modal-backdrop {
+  position: fixed; inset: 0; z-index: 9998;
+  background: rgba(3, 7, 15, 0.82);
+  backdrop-filter: blur(6px);
+  display: none; align-items: center; justify-content: center;
+  padding: 1.25rem;
+}
+.unlock-modal-backdrop.open { display: flex; }
+.unlock-modal {
+  max-width: 420px; width: 100%;
+  background: linear-gradient(165deg, rgba(22, 29, 48, 0.98), rgba(11, 15, 26, 0.98));
+  border: 1px solid rgba(201, 169, 110, 0.35);
+  padding: 2rem 1.75rem 1.75rem;
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+}
+.unlock-modal h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem; font-weight: 400; color: var(--parchment);
+  margin-bottom: 0.65rem;
+}
+.unlock-modal p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.95rem; color: var(--text-dim); line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+.unlock-modal .btn-unlock-primary {
+  display: inline-block; width: 100%;
+  background: var(--gold); color: #0B0F1A;
+  padding: 14px 20px; text-decoration: none;
+  font-family: 'Cinzel', serif; font-size: 0.68rem;
+  letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
+}
+.unlock-modal .btn-unlock-primary:hover { background: var(--gold-light); }
+.unlock-modal-close {
+  margin-top: 1rem; background: none; border: none;
+  color: rgba(201, 169, 110, 0.55); font-size: 0.8rem; cursor: pointer;
+}
 .palace-name-zh {
   font-size: 0.68rem;
   color: var(--gold-dim);
@@ -1240,7 +1279,7 @@ section {
 .article-toc a {
   display: block;
   padding: 0.4rem 0 0.4rem 0.85rem;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.95rem;
   color: var(--text-secondary);
   text-decoration: none;
@@ -1440,7 +1479,7 @@ section {
   margin-bottom: 0.35rem;
 }
 .about-caption span {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.9rem;
   font-style: italic;
   letter-spacing: 0.02em;
@@ -1739,7 +1778,7 @@ section {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(201, 169, 110, 0.12);
   border-radius: 2px;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.55);
   font-style: italic;
@@ -1780,7 +1819,7 @@ section {
   background: rgba(24, 40, 64, 0.98);
   border: 1px solid rgba(212,168,85,0.45);
   border-radius: 2px;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.95rem;
   color: var(--text);
   white-space: normal;
@@ -1853,7 +1892,7 @@ section {
 }
 .testimonial-quote {
   flex: 1;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-style: normal;
   font-size: 15px;
   color: rgba(255, 255, 255, 0.85);
@@ -1883,7 +1922,7 @@ section {
   margin-top: 0.75rem;
 }
 .testimonial-verified {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-size: 0.72rem;
   letter-spacing: 0.02em;
   text-transform: none;
@@ -1909,7 +1948,7 @@ section {
 .testimonial-cta-text {
   color: var(--text-secondary);
   font-size: 14px;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   line-height: 1.6;
 }
 .testimonial-cta-link {
@@ -1917,7 +1956,7 @@ section {
   color: #C9A96E;
   text-decoration: underline;
   font-size: 14px;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   transition: color 0.3s;
 }
 .testimonial-cta-link:hover {
@@ -1972,7 +2011,7 @@ footer {
   color: var(--silver-dim);
   letter-spacing: 0.15em;
   margin-top: 0.2rem;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Cormorant Garamond', serif;
   font-style: italic;
 }
 .footer-tagline {
@@ -2653,6 +2692,7 @@ body::before {
         
                   <!-- Palace 2: 丑 · 父母 (top-2nd) -->
                   <g transform="translate(170,60)">
+                    <title>父母宮 · Parents Palace</title>
                     <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">丑 · CHOU</text>
                     <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">父母宮</text>
                     <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Parents Palace</text>
@@ -2662,6 +2702,7 @@ body::before {
         
                   <!-- Palace 3: 寅 · 福德 (top-3rd) -->
                   <g transform="translate(280,60)">
+                    <title>福德宮 · Virtue Palace</title>
                     <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">寅 · YIN</text>
                     <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">福德宮</text>
                     <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Virtue Palace</text>
@@ -2671,6 +2712,7 @@ body::before {
         
                   <!-- Palace 4: 卯 · 田宅 (top-right) -->
                   <g transform="translate(390,60)">
+                    <title>田宅宮 · Property Palace</title>
                     <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">卯 · MAO</text>
                     <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">田宅宮</text>
                     <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Property Palace</text>
@@ -2680,6 +2722,7 @@ body::before {
         
                   <!-- Palace 5: 亥 · 兄弟 (left-top) -->
                   <g transform="translate(60,170)">
+                    <title>兄弟宮 · Siblings Palace</title>
                     <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">亥 · HAI</text>
                     <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">兄弟宮</text>
                     <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Siblings Palace</text>
@@ -2700,6 +2743,7 @@ body::before {
         
                   <!-- Palace 7: 戌 · 夫妻 (left-bottom) -->
                   <g transform="translate(60,280)">
+                    <title>夫妻宮 · Spouse Palace</title>
                     <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">戌 · XU</text>
                     <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">夫妻宮</text>
                     <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Spouse Palace</text>
@@ -2709,6 +2753,7 @@ body::before {
         
                   <!-- Palace 8: 巳 · 仆役 (right-bottom) -->
                   <g transform="translate(390,280)">
+                    <title>仆役宮 · Friends Palace</title>
                     <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">巳 · SI</text>
                     <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">仆役宮</text>
                     <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Friends Palace</text>
@@ -2718,6 +2763,7 @@ body::before {
         
                   <!-- Palace 9: 酉 · 子女 (bottom-left) -->
                   <g transform="translate(60,390)">
+                    <title>子女宮 · Children Palace</title>
                     <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">酉 · YOU</text>
                     <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">子女宮</text>
                     <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Children Palace</text>
@@ -2727,6 +2773,7 @@ body::before {
         
                   <!-- Palace 10: 申 · 財帛 (bottom-2nd) -->
                   <g class="palace-spotlight palace-spotlight--wealth" transform="translate(170,390)">
+                    <title>財帛宮 · Wealth Palace</title>
                     <rect width="110" height="110" fill="#C5984A" opacity="0.06"/>
                     <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">申 · SHEN</text>
                     <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.9">財帛宮</text>
@@ -2738,6 +2785,7 @@ body::before {
         
                   <!-- Palace 11: 未 · 疾厄 (bottom-3rd) -->
                   <g transform="translate(280,390)">
+                    <title>疾厄宮 · Health Palace</title>
                     <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">未 · WEI</text>
                     <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">疾厄宮</text>
                     <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Health Palace</text>
@@ -2747,6 +2795,7 @@ body::before {
         
                   <!-- Palace 12: 午 · 遷移 (bottom-right) -->
                   <g transform="translate(390,390)">
+                    <title>遷移宮 · Travel Palace</title>
                     <text x="8" y="18" font-size="7.5" fill="#7A5C28" opacity="0.8" letter-spacing="1">午 · WU</text>
                     <text x="8" y="34" font-size="10" fill="#C5984A" opacity="0.7">遷移宮</text>
                     <text x="8" y="48" font-size="7" fill="#9BB5CC" opacity="0.5">Travel Palace</text>
@@ -2866,19 +2915,19 @@ body::before {
           <p>Guanlan Energy offers a <a href="/free-chart.html">free Zi Wei Dou Shu calculator</a> that generates your natal board in seconds, plus optional professional PDF readings for deeper interpretation. Whether you are comparing <a href="/blog/zi-wei-dou-shu-vs-bazi.html">Zi Wei Dou Shu vs BaZi</a> or exploring your <a href="#palaces">twelve palaces</a>, this is the most detailed Chinese astrology reading available in English today.</p>
         </div>
 
-        <div class="seo-faq-preview" id="article-common-questions">
+        <div class="seo-faq-preview" id="article-common-questions" itemscope itemtype="https://schema.org/FAQPage">
           <h3>Common Questions</h3>
-          <div class="seo-faq-item faq-item">
-            <strong>Is Zi Wei Dou Shu more accurate than BaZi?</strong>
-            <p>They answer different questions. BaZi distills your elemental balance into eight characters; Zi Wei maps every life domain palace-by-palace. Serious practitioners use both — BaZi for energy diagnosis, Zi Wei for situational timing and domain-specific guidance.</p>
+          <div class="seo-faq-item faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <strong itemprop="name">Is Zi Wei Dou Shu more accurate than BaZi?</strong>
+            <p itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">They answer different questions. BaZi distills your elemental balance into eight characters; Zi Wei maps every life domain palace-by-palace. Serious practitioners use both — BaZi for energy diagnosis, Zi Wei for situational timing and domain-specific guidance.</span></p>
           </div>
-          <div class="seo-faq-item faq-item">
-            <strong>Do I need my exact birth hour?</strong>
-            <p>Yes. The birth hour determines palace placement and the Life Palace position. Without it, the chart shifts entirely. Our calculator accepts standard two-hour branches (Zi, Chou, Yin…), wherever you were born in the world.</p>
+          <div class="seo-faq-item faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <strong itemprop="name">Do I need my exact birth hour?</strong>
+            <p itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">Yes. The birth hour determines palace placement and the Life Palace position. Without it, the chart shifts entirely. Our calculator accepts standard two-hour branches (Zi, Chou, Yin…), wherever you were born in the world.</span></p>
           </div>
-          <div class="seo-faq-item faq-item">
-            <strong>Is this a free Chinese astrology reading?</strong>
-            <p>Your interactive 12-palace preview is free. Full palace-by-palace written reports and 2026 forecasts are available through our <a href="#pricing">professional services</a>.</p>
+          <div class="seo-faq-item faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+            <strong itemprop="name">Is this a free Chinese astrology reading?</strong>
+            <p itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><span itemprop="text">Your interactive 12-palace preview is free. Full palace-by-palace written reports and 2026 forecasts are available through our professional services.</span></p>
           </div>
         </div>
 
@@ -2941,7 +2990,7 @@ body::before {
         </p>
       </div>
 
-      <div class="palace-preview palace-card locked" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+      <div class="palace-preview palace-card locked" data-unlock-palace="Spouse Palace">
         <span class="palace-name-en">Spouse Palace</span>
         <div class="palace-stars">
           <span class="star-main">Tian Ji · Strategist</span><br>
@@ -2953,7 +3002,7 @@ body::before {
         <div class="unlock-badge" role="button" aria-label="Unlock Spouse Palace reading">◆ Unlock from $19</div>
       </div>
 
-      <div class="palace-preview palace-card locked" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+      <div class="palace-preview palace-card locked" data-unlock-palace="Health Palace">
         <span class="palace-name-en">Health Palace</span>
         <div class="palace-stars">
           <span class="star-main">Tan Lang · Desire Star</span><br>
@@ -2965,7 +3014,7 @@ body::before {
         <div class="unlock-badge" role="button" aria-label="Unlock Health Palace reading">◆ Unlock from $19</div>
       </div>
 
-      <div class="palace-preview palace-card locked" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+      <div class="palace-preview palace-card locked" data-unlock-palace="Travel Palace">
         <span class="palace-name-en">Travel Palace</span>
         <div class="palace-stars">
           <span class="star-main">Po Jun · Breaker</span><br>
@@ -3313,7 +3362,7 @@ body::before {
     ">
       <table style="
         width:100%; border-collapse:collapse;
-        font-family:'EB Garamond',serif; font-size:0.92rem;
+        font-family:'Cormorant Garamond',serif; font-size:0.92rem;
         min-width:560px;
       ">
         <thead>
@@ -3369,7 +3418,7 @@ body::before {
         </tbody>
       </table>
     </div>
-    <div class="reveal" style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:0.75rem 1.25rem;font-family:'EB Garamond',serif;font-size:0.88rem;">
+    <div class="reveal" style="margin-top:2rem;display:flex;flex-wrap:wrap;gap:0.75rem 1.25rem;font-family:'Cormorant Garamond',serif;font-size:0.88rem;">
       <span style="color:var(--gold-dim);font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.12em;text-transform:uppercase;width:100%;margin-bottom:0.25rem;">Deep compare guides</span>
       <a href="/pages/empower-destiny-bazi-vs-zi-wei-dou-shu.html" style="color:var(--gold-soft);text-decoration:none;">BaZi vs ZWDS</a>
       <a href="/pages/iching-divination-vs-zi-wei-dou-shu.html" style="color:var(--gold-soft);text-decoration:none;">I Ching vs ZWDS</a>
@@ -4464,6 +4513,16 @@ window.addEventListener('scroll', () => {
   </div>
 </div>
 
+<!-- Three-Palace unlock modal ($19) -->
+<div id="unlock-modal-backdrop" class="unlock-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="unlock-modal-title" aria-hidden="true">
+  <div class="unlock-modal">
+    <h3 id="unlock-modal-title">Unlock <span id="unlock-modal-palace">this palace</span></h3>
+    <p id="unlock-modal-copy">Get Life, Wealth, and Career palace readings — the three most actionable domains — with 2026 activation notes. Delivered as a 12–14 page PDF within 24 hours.</p>
+    <a id="unlock-modal-cta" class="btn-unlock-primary" href="https://lleonard88.gumroad.com/l/lfoxf?wanted=true" data-product="three-palace-snapshot">Get Three-Palace Report — $19</a>
+    <button type="button" class="unlock-modal-close" id="unlock-modal-close">Not now</button>
+  </div>
+</div>
+
 <!-- EXIT INTENT POPUP -->
 <div id="exit-popup" style="
   display:none; position:fixed; inset:0; z-index:9000;
@@ -4496,7 +4555,7 @@ window.addEventListener('scroll', () => {
       <input type="email" placeholder="your@email.com" id="exit-email" required style="
         flex:1;min-width:180px;
         background:rgba(6,13,26,0.8);border:1px solid rgba(74,102,128,0.4);
-        color:var(--text);font-family:'EB Garamond',serif;font-size:0.95rem;
+        color:var(--text);font-family:'Cormorant Garamond',serif;font-size:0.95rem;
         padding:0.7rem 0.9rem;border-radius:1px;outline:none;
       ">
       <button type="submit" style="
@@ -4734,6 +4793,49 @@ window.addEventListener('scroll', function() {
 })();
 </script>
 <script>
+(function() {
+  var backdrop = document.getElementById('unlock-modal-backdrop');
+  var palaceEl = document.getElementById('unlock-modal-palace');
+  var closeBtn = document.getElementById('unlock-modal-close');
+  if (!backdrop) return;
+
+  function openUnlockModal(palaceName) {
+    if (palaceEl && palaceName) palaceEl.textContent = palaceName;
+    backdrop.classList.add('open');
+    backdrop.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (window.trackEvent) trackEvent('checkout_click', { product: 'three-palace-snapshot', source: 'unlock_modal', palace: palaceName || '' });
+  }
+
+  function closeUnlockModal() {
+    backdrop.classList.remove('open');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-unlock-palace], .unlock-badge').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var card = el.closest('[data-unlock-palace]');
+      openUnlockModal(card ? card.getAttribute('data-unlock-palace') : '');
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeUnlockModal);
+  backdrop.addEventListener('click', function(e) {
+    if (e.target === backdrop) closeUnlockModal();
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && backdrop.classList.contains('open')) closeUnlockModal();
+  });
+
+  if (new URLSearchParams(window.location.search).get('unlock') === 'true') {
+    openUnlockModal('Spouse Palace');
+  }
+})();
+</script>
+<script>
 if (new URLSearchParams(window.location.search).get('v') === 'b') {
   var heroBtn = document.getElementById('hero-cta-btn');
   if (heroBtn) heroBtn.textContent = 'See My 12 Palaces Now';
@@ -4838,6 +4940,18 @@ window.trackEvent = function(name, props) {
   window.addEventListener('scroll', function onFirstScroll() {
     window.__loadGumroadScript();
   }, { once: true, passive: true });
+})();
+</script>
+<script src="/js/gumroad-products.js"></script>
+<script>
+(function() {
+  var G = window.GUANLAN_GUMROAD || {};
+  ['partner-compatibility', 'annual'].forEach(function(key) {
+    if (!G[key]) return;
+    document.querySelectorAll('a[data-product="' + key + '"]').forEach(function(a) {
+      a.href = G[key];
+    });
+  });
 })();
 </script>
 <script id="gumroad-checkout-loader">

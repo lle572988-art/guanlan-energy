@@ -4,6 +4,9 @@ window.GUANLAN_GUMROAD = {
   'three-palace-snapshot': 'https://lleonard88.gumroad.com/l/lfoxf?wanted=true',
   'full-chart': 'https://lleonard88.gumroad.com/l/tiuyjr?wanted=true',
   'live-reading': 'https://lleonard88.gumroad.com/l/lozmm?wanted=true'
+  // Add when published on Gumroad:
+  // 'partner-compatibility': 'https://lleonard88.gumroad.com/l/SLUG?wanted=true',
+  // 'annual': 'https://lleonard88.gumroad.com/l/SLUG?wanted=true'
 };
 
 window.GUANLAN_GUMROAD_THANK_YOU = {

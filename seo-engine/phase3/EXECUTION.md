@@ -21,6 +21,16 @@
 11. **Transit 内链** — 240 页 footer 前加 2026 Lian Zhen / forecast / compare  hub
 12. **核心页内链** — `faq.html` · `blog/index.html` · 首页 compare · `free-chart` → GSC 优先 URL
 
+## ✅ 已完成（2026-06-13 SEO 细节批）
+
+13. **Blog dateModified 全量刷新** — 69/69 → `2026-06-13`（`npm run seo:blog-schema`）
+14. **首页 SVG `<title>`** — 12 宫全部补全
+15. **Locked palace $19 弹窗** — Three-Palace Gumroad 直开（`?unlock=true`）
+16. **首页字体** — EB Garamond 移除，Cormorant + Cinzel
+17. **Blog 内链 hub** — `npm run seo:blog-links`（69 篇 Related guides）
+18. **GSC 优先 URL IndexNow** — `bash seo-priority-ping.sh`（9 条，部署后跑）
+19. **首页 #what-is-zwds FAQ** — 内联 FAQPage microdata
+
 ## 📋 需你在 GSC 手动做
 
 1. **重复网页（.md）** → 打开问题 → **验证修正情况**（commit `9896bb9` 已 301）

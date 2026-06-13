@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Inject Article + Breadcrumb JSON-LD into blog/*.html posts missing schema.
+ * Inject or refresh Article + Breadcrumb JSON-LD on blog/*.html posts.
  *
  * Usage:
  *   node scripts/inject-blog-schema.js
@@ -16,6 +16,7 @@ const { DEFAULT_SITE, getBreadcrumbSchema } = require('../../lib/structured-data
 
 const SITE = DEFAULT_SITE;
 const dryRun = process.argv.includes('--dry-run');
+const today = new Date().toISOString().split('T')[0];
 
 function decodeHtml(s) {
   return String(s)
@@ -39,7 +40,7 @@ function extractMeta(html, fileName) {
 
   const title = decodeHtml((titleMatch && titleMatch[1].trim()) || (h1Match && h1Match[1].trim()) || slug);
   const description = decodeHtml((descMatch && descMatch[1].trim()) || title);
-  const datePublished = dateMatch ? dateMatch[1].trim() : new Date().toISOString().split('T')[0];
+  const datePublished = dateMatch ? dateMatch[1].trim() : today;
 
   return { slug, pageUrl, title, description, datePublished };
 }
@@ -63,8 +64,8 @@ function buildBlogSchema(meta) {
         headline: meta.title,
         description: meta.description,
         url: meta.pageUrl,
-      datePublished: meta.datePublished,
-      dateModified: new Date().toISOString().split('T')[0],
+        datePublished: meta.datePublished,
+        dateModified: today,
         inLanguage: 'en-US',
         author: { '@type': 'Organization', name: SITE.author || SITE.brand_name },
         publisher: {
@@ -85,8 +86,15 @@ function hasJsonLd(html) {
   return /type=["']application\/ld\+json["']/i.test(html);
 }
 
-function injectSchema(html, schema) {
-  const tag = `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>\n`;
+function schemaTag(schema) {
+  return `<script type="application/ld+json">\n${JSON.stringify(schema, null, 2)}\n</script>\n`;
+}
+
+function upsertSchema(html, schema) {
+  const tag = schemaTag(schema);
+  if (hasJsonLd(html)) {
+    return html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>\n?/i, tag);
+  }
   if (html.includes('</head>')) {
     return html.replace('</head>', `${tag}</head>`);
   }
@@ -97,31 +105,31 @@ const files = fs
   .readdirSync(blogDir)
   .filter((f) => f.endsWith('.html') && f !== 'index.html');
 
-let updated = 0;
-let skipped = 0;
+let inserted = 0;
+let refreshed = 0;
 
-console.log(`📝 Blog schema injection${dryRun ? ' (dry-run)' : ''}`);
+console.log(`📝 Blog schema injection${dryRun ? ' (dry-run)' : ''} · dateModified=${today}`);
 
 files.forEach((file) => {
   const filePath = path.join(blogDir, file);
-  let html = fs.readFileSync(filePath, 'utf8');
-
-  if (hasJsonLd(html)) {
-    skipped += 1;
-    return;
-  }
-
+  const html = fs.readFileSync(filePath, 'utf8');
+  const hadSchema = hasJsonLd(html);
   const meta = extractMeta(html, file);
-  const schema = buildBlogSchema(meta);
-  const next = injectSchema(html, schema);
+  const next = upsertSchema(html, buildBlogSchema(meta));
 
   if (!dryRun) {
     fs.writeFileSync(filePath, next);
   }
-  updated += 1;
-  console.log(`   ✓ ${file}`);
+
+  if (hadSchema) {
+    refreshed += 1;
+    console.log(`   ↻ ${file}`);
+  } else {
+    inserted += 1;
+    console.log(`   ✓ ${file}`);
+  }
 });
 
-console.log(`\n✅ Updated: ${updated} | Skipped (already has schema): ${skipped}`);
+console.log(`\n✅ Inserted: ${inserted} | Refreshed dateModified: ${refreshed} | Total: ${files.length}`);
 
-module.exports = { buildBlogSchema, extractMeta };
+module.exports = { buildBlogSchema, extractMeta, upsertSchema };
