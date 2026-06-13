@@ -12,8 +12,9 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Zi Wei Dou Shu Calculator — Free Purple Star Chart",
+  "@type": "SoftwareApplication",
+  "name": "Free Zi Wei Dou Shu Calculator",
+  "alternateName": "Purple Star Astrology Chart Calculator",
   "url": "https://metaphysicflow.com/free-chart.html",
   "applicationCategory": "LifestyleApplication",
   "operatingSystem": "Web browser",
@@ -24,10 +25,33 @@
     "price": "0",
     "priceCurrency": "USD"
   },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "127",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
   "provider": {
     "@type": "Organization",
     "name": "Guanlan Energy",
     "url": "https://metaphysicflow.com"
+  },
+  "featureList": "12 Palace Chart,Life Palace Reading,Wealth Star Analysis,Career Palace,Decade Forecast"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://metaphysicflow.com/free-chart.html#webpage",
+  "url": "https://metaphysicflow.com/free-chart.html",
+  "name": "Free Zi Wei Dou Shu Calculator",
+  "description": "Generate your Purple Star Astrology 12-palace natal chart instantly in English.",
+  "inLanguage": "en",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", ".hero-desc"]
   }
 }
 </script>
@@ -70,11 +94,9 @@
 <meta name="twitter:image" content="https://metaphysicflow.com/images/og-chart.jpg">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-T82Z7E5ELB');</script>
-<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
-<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=optional" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg-primary: #0d0d12;
@@ -2109,7 +2131,7 @@
   .palace-life-card.locked .star-name { opacity: 0.85; }
   .palace-group--locked {
     content-visibility: auto;
-    contain-intrinsic-size: 0 600px;
+    contain-intrinsic-size: 0 400px;
   }
   #email-gate-embedded:not(.gate-visible) {
     opacity: 0;
@@ -2281,6 +2303,12 @@
   </ul>
 </nav>
 
+<header class="hero" id="page-hero">
+  <div class="hero-eyebrow">FREE CALCULATOR · 紫微斗數</div>
+  <h1>Free Zi Wei Dou Shu Calculator</h1>
+  <p class="hero-desc hero-sub" style="font-size:1.05rem;color:var(--text-secondary);max-width:36rem;margin:0 auto 1rem;font-style:italic">Guanlan Energy · Purple Star Astrology — 12-palace natal chart in English</p>
+</header>
+
 <!-- Hidden chart SVG — used for PDF/email export only -->
 <div id="chart-decor" aria-hidden="true">
   <svg id="chart-svg" role="presentation" viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg">
@@ -2336,10 +2364,10 @@
     </div>
     <div class="hook-core">
       <div class="hook-meta" id="hook-meta">—</div>
-      <h1 class="hook-title" id="hook-title">
+      <h2 class="hook-title" id="hook-title">
         <span class="hook-title-lead">You are</span>
         <em class="hook-title-name">The Seeker</em>
-      </h1>
+      </h2>
       <p class="hook-blurb" id="hook-blurb">Your chart is being calculated…</p>
       <div class="hook-sihua-badges" id="hook-sihua-badges"></div>
       <div class="hook-stats" id="hook-stats">
@@ -2390,6 +2418,9 @@
 
   <section id="twelve-palaces">
     <h2 class="screen-heading">Your Complete Life Map</h2>
+    <div class="palace-grid-wrapper">
+      <div class="palace-grid" id="palacesGrid" aria-label="Twelve palaces overview"></div>
+    </div>
     <div id="palace-groups"></div>
     <div id="email-gate-embedded" class="gate-embedded">
       <h2>Unlock Your Full 12-Palace Cosmic Map</h2>
@@ -2399,7 +2430,7 @@
         <input class="fi" type="text" id="gate-name" placeholder="Your name" autocomplete="given-name">
         <label class="fi-label" for="gate-email">Email address</label>
         <input class="fi" type="email" id="gate-email" placeholder="Your email address" autocomplete="email" inputmode="email" required>
-        <button class="btn-gold" type="submit" id="gate-submit-btn">Unlock My Full Chart</button>
+        <button class="btn-gold" type="submit" id="gate-submit-btn" data-analytics="funnel-step-2">Unlock My Full Chart</button>
       </form>
       <div id="gate-embedded-success" class="gate-embedded-success">
         <p style="color:#E2C27A;font-size:1.05rem;margin-bottom:0.4rem;">✅ All 12 palaces unlocked on this page!</p>
@@ -2493,7 +2524,7 @@
           </div>
           <div class="cta-primary-right">
             <div class="cta-price"><span class="price-currency">$</span>39</div>
-            <a href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" class="btn-cta-primary" data-product="full-chart">Order My Full Reading</a>
+            <a href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" class="btn-cta-primary" data-product="full-chart" data-analytics="funnel-step-3">Order My Full Reading</a>
             <div class="cta-guarantee">PDF in 24h · Human-written · Not AI-generated</div>
           </div>
         </div>
@@ -2928,20 +2959,6 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Zi Wei Dou Shu Calculator",
-  "alternateName": "Purple Star Astrology Chart Calculator",
-  "url": "https://metaphysicflow.com/free-chart.html",
-  "applicationCategory": "LifestyleApplication",
-  "operatingSystem": "Web",
-  "screenshot": "https://metaphysicflow.com/images/og-chart.jpg",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "description": "Free online Zi Wei Dou Shu natal chart calculator with 12-palace Purple Star Astrology readings in English."
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
     {
@@ -3007,6 +3024,36 @@
   <a href="/pages/horoscope/2026-annual-forecast.html" style="color:#C9A96E;">2026 forecast</a>
 </nav>
 
+<div id="sticky-cta-mobile" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:501;padding:0.65rem 1rem calc(0.65rem + env(safe-area-inset-bottom,0px));background:rgba(6,13,26,0.97);border-top:1px solid rgba(197,152,74,0.3);justify-content:center;transform:translateY(100%);transition:transform 0.35s ease">
+  <a href="index.html#pricing?intent=full-report" style="width:100%;max-width:420px;height:48px;display:flex;align-items:center;justify-content:center;background:var(--gold);color:var(--void);font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border-radius:2px">Full 12-Palace Report — $39</a>
+</div>
+
+<script>
+(function(){
+  var bar = document.getElementById('sticky-cta-mobile');
+  if (!bar || !('IntersectionObserver' in window)) return;
+  var pricingEl = document.querySelector('.cta-primary-product') || document.getElementById('cta-block');
+  var pricingVisible = false;
+  if (pricingEl) {
+    new IntersectionObserver(function(entries){ pricingVisible = entries[0].isIntersecting; updateBar(); }, { threshold: 0.15 }).observe(pricingEl);
+  }
+  function updateBar(){
+    if (window.innerWidth > 768) { bar.style.transform = 'translateY(100%)'; return; }
+    var max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+    var pct = window.scrollY / max;
+    if (pricingVisible || pct < 0.4) {
+      bar.style.display = 'none';
+      bar.style.transform = 'translateY(100%)';
+    } else {
+      bar.style.display = 'flex';
+      bar.style.transform = 'translateY(0)';
+    }
+  }
+  window.addEventListener('scroll', updateBar, { passive: true });
+  window.addEventListener('resize', updateBar, { passive: true });
+})();
+</script>
+
 <footer style="text-align:center;padding:2.5rem 1.5rem 1rem;color:rgba(240,235,224,0.35);font-size:12px;letter-spacing:0.06em;border-top:1px solid rgba(201,168,76,0.1);margin-top:3rem">
   <p style="margin-bottom:1rem">
     <a href="https://www.producthunt.com/products/zi-wei-dou-shu-calculator?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-zi-wei-dou-shu-calculator" target="_blank" rel="noopener noreferrer"><img alt="Zi Wei Dou Shu Calculator on Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1168206&theme=dark&t=1781077480610" style="display:inline-block"></a>
@@ -3020,5 +3067,19 @@
 </footer>
 
   <script defer src="/js/site-contact.js"></script>
+<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.tagged-events.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (new URLSearchParams(window.location.search).get('confirmed') !== '1') return;
+  var banner = document.createElement('div');
+  banner.id = 'confirmed-banner';
+  banner.setAttribute('role', 'status');
+  banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;padding:0.85rem 1.25rem;background:rgba(201,152,74,0.95);color:#060D1A;text-align:center;font-family:Cinzel,serif;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase';
+  banner.textContent = 'Email confirmed — welcome back to your Purple Star chart';
+  document.body.insertBefore(banner, document.body.firstChild);
+  if (window.plausible) plausible('email_confirmed_return');
+});
+</script>
 </body>
 </html>

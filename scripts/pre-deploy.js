@@ -58,13 +58,20 @@ async function runParallel(tasks) {
   const MAX_MS = 15000;
   console.log('🚀 Pre-deploy checks\n');
   run('apply-thin-post-policy', 'apply-thin-post-policy.js');
+  run('sync-sitemap-blog', 'sync-sitemap-blog.js');
+  run('inject-chart-rating', 'inject-chart-rating.js');
   run('update-schema-dates', 'update-schema-dates.js');
   run('audit-sitemap', 'audit-sitemap.js');
+  run('audit-time-elements', 'audit-time-elements.js', ['--fix']);
   await runParallel([
     { label: 'audit-alt', script: 'audit-alt.js' },
     { label: 'audit-meta', script: 'audit-meta.js' },
+    { label: 'audit-canonical', script: 'audit-canonical.js' },
     { label: 'audit-internal-links', script: 'audit-internal-links.js' },
     { label: 'audit-breadcrumbs', script: 'audit-breadcrumbs.js', args: ['--skip-url-check'] },
+    { label: 'audit-speakable', script: 'audit-speakable.js' },
+    { label: 'audit-faq-match', script: 'audit-faq-match.js' },
+    { label: 'audit-hub-schema', script: 'audit-hub-schema.js' },
   ]);
   const elapsed = Date.now() - t0;
   console.timeEnd('prebuild');

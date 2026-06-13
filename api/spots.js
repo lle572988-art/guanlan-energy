@@ -21,18 +21,24 @@ export default async function handler(request) {
   }
 
   let remaining = DEFAULT_SPOTS;
+  let kvAvailable = false;
   try {
     const { kv } = await import('@vercel/kv');
     remaining = await readSpots(kv);
+    kvAvailable = true;
   } catch {
     /* KV optional in dev */
   }
+
+  const cacheControl = kvAvailable
+    ? `public, s-maxage=${CACHE_SECONDS}, stale-while-revalidate=120`
+    : 'no-store';
 
   return new Response(JSON.stringify({ remaining }), {
     status: 200,
     headers: {
       'Content-Type': 'application/json',
-      'Cache-Control': `public, s-maxage=${CACHE_SECONDS}, stale-while-revalidate=120`,
+      'Cache-Control': cacheControl,
     },
   });
 }

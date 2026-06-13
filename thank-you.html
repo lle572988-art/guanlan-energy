@@ -4,15 +4,41 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Thank You · Guanlan Energy</title>
+<!-- Gumroad Redirect URL: https://metaphysicflow.com/thank-you.html?ref=gumroad&tier=starter -->
 <meta name="description" content="Payment confirmed — your Guanlan Energy Zi Wei Dou Shu reading is in our fulfillment queue. Check your inbox for next steps.">
-<meta name="robots" content="noindex"/>
+<meta name="robots" content="noindex,follow"/>
 <link rel="canonical" href="https://metaphysicflow.com/thank-you.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Cinzel:wght@400;500&display=optional" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-T82Z7E5ELB');</script>
-<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
-<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};window.trackEvent=function(n,p){if(window.plausible)plausible(n,{props:p||{}});};</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Your Purple Star Reading · Order Confirmed",
+  "url": "https://metaphysicflow.com/thank-you.html",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["#thank-headline"]
+  },
+  "mainEntity": {
+    "@type": "Order",
+    "orderStatus": "https://schema.org/OrderDelivered",
+    "orderedItem": {
+      "@type": "Service",
+      "name": "Zi Wei Dou Shu Full Reading",
+      "price": "39.00",
+      "priceCurrency": "USD"
+    },
+    "seller": {
+      "@type": "Organization",
+      "name": "Guanlan Energy",
+      "url": "https://metaphysicflow.com"
+    }
+  }
+}
+</script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
@@ -41,9 +67,15 @@ h1{font-size:28px;font-weight:400;color:#e8d4a0;margin-bottom:12px}
 .btn-upsell{
   display:inline-block;padding:12px 22px;background:#c9a84c;color:#06100c;
   font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;
-  text-decoration:none;border-radius:2px;
+  text-decoration:none;border-radius:2px;margin-right:8px;margin-bottom:8px;
 }
 .btn-upsell:hover{background:#e8d4a0}
+.btn-upsell-outline{
+  display:inline-block;padding:12px 22px;background:transparent;color:#c9a84c;
+  font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;border-radius:2px;border:1px solid rgba(201,168,76,0.35);
+}
+.btn-upsell-outline:hover{background:rgba(201,168,76,0.08)}
 .share{margin:20px 0 28px}
 .share p{font-size:13px;color:rgba(240,235,224,0.5);margin-bottom:10px}
 .btn-share{
@@ -52,6 +84,7 @@ h1{font-size:28px;font-weight:400;color:#e8d4a0;margin-bottom:12px}
   text-transform:uppercase;text-decoration:none;
 }
 .btn-share:hover{background:rgba(201,168,76,0.1)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .note{font-size:13px;color:rgba(240,235,224,0.45);line-height:1.65;margin-bottom:24px}
 .btn-home{
   display:inline-block;padding:14px 28px;background:transparent;color:#c9a84c;
@@ -63,132 +96,144 @@ h1{font-size:28px;font-weight:400;color:#e8d4a0;margin-bottom:12px}
 </style>
 </head>
 <body>
+<span id="funnel-step-4" data-analytics="funnel-step-4" aria-hidden="true" class="sr-only">Purchase complete</span>
 <div class="wrap">
   <div class="logo">Guanlan Energy</div>
-  <h1>Your reading is on its way</h1>
-  <p class="sub">Payment confirmed. Your personalized PDF is now in our fulfillment queue — human-written, not automated.</p>
+  <h1 id="thank-headline">Your Purple Star Reading · Order Confirmed</h1>
+  <p class="sub" id="thank-sub">Payment confirmed. Your personalized Zi Wei Dou Shu reading is now in our fulfillment queue — human-written, not automated.</p>
   <div class="product-pill" id="product-label">Zi Wei Dou Shu Reading</div>
   <div class="steps">
     <h2>What happens next</h2>
-    <ol>
+    <ol id="thank-steps">
       <li><strong>Check your inbox</strong> — Gumroad sends a receipt immediately.</li>
       <li><strong>Confirm birth details</strong> — if date of birth and birth hour were not included at checkout, reply to the receipt email with both.</li>
-      <li><strong>Receive your PDF</strong> — delivered within <strong>24–48 hours</strong>.</li>
+      <li><strong>Receive your PDF</strong> — delivered within <strong id="delivery-window">24–48 hours</strong>.</li>
     </ol>
   </div>
-  <div class="upsell" id="upsell-block" hidden>
+  <section class="upsell" id="upsell-block" hidden>
     <h2 id="upsell-title">Continue your journey</h2>
     <p id="upsell-copy"></p>
     <a class="btn-upsell" id="upsell-cta" href="/#pricing">View readings</a>
-  </div>
-  <div class="share">
+    <a class="btn-upsell-outline" id="consult-cta" href="/consultation.html" hidden>Book a consultation</a>
+  </section>
+  <section class="share" id="share-block">
+    <h2 class="sr-only">Share your reading</h2>
     <p>Know someone who would find this uncannily accurate?</p>
     <a class="btn-share" id="twitter-share" target="_blank" rel="noopener noreferrer">Share on X</a>
-  </div>
+    <button type="button" class="btn-share" id="native-share" hidden>Share link</button>
+    <button type="button" class="btn-share" id="copy-share-link" hidden>Copy referral link</button>
+  </section>
   <p class="note">Questions? <a href="mailto:hello@metaphysicflow.com" style="color:#c9a84c">hello@metaphysicflow.com</a></p>
   <a class="btn-home" href="/">Back to Home</a>
   <div class="footer">© 2026 Guanlan Energy · metaphysicflow.com</div>
 </div>
-<script defer src="/js/site-contact.js"></script>
-<script src="/js/gumroad-products.js"></script>
 <script>
-(function() {
-  var labels = {
-    'life-palace-dive': 'Life Palace Deep Dive · $9.90',
-    'three-palace-snapshot': 'Three-Palace Snapshot · $19',
-    'full-chart': 'Full 12-Palace Matrix · $39',
-    'live-reading': 'Live Video Consultation · $99',
-    'partner-compatibility': 'Partner Compatibility · $59',
-    'annual': 'Annual Cosmic Alignment · $199'
+(function(){
+  var G={'life-palace-dive':'https://lleonard88.gumroad.com/l/acvsfx?wanted=true','three-palace-snapshot':'https://lleonard88.gumroad.com/l/lfoxf?wanted=true','full-chart':'https://lleonard88.gumroad.com/l/tiuyjr?wanted=true','live-reading':'https://lleonard88.gumroad.com/l/lozmm?wanted=true'};
+  var labels={'life-palace-dive':'Life Palace Deep Dive · $9.90','three-palace-snapshot':'Three-Palace Snapshot · $19','full-chart':'Full 12-Palace Matrix · $39','live-reading':'Live Video Consultation · $99','partner-compatibility':'Partner Compatibility · $59','annual':'Annual Cosmic Alignment · $199'};
+  var tierSubs={starter:'We are crafting your starter reading — expect your PDF within 24 hours.',full:'All twelve palaces and Major Cycle notes — delivered as an illustrated PDF within 24–48 hours.',premium:'Check your inbox for scheduling details. We will walk through your chart together on video.'};
+  var tierUpsell={
+    starter:{title:'Upgrade to Full Zi Wei Chart Reading',copy:'Your starter reading covers key palaces — the Full 12-Palace Matrix ($39) maps all twelve domains, Major Cycle, and 2026 timing in one PDF.',href:G['full-chart'],label:'Order Full Matrix — $39'},
+    full:{title:'Book Your Live Purple Star Session',copy:'Your PDF covers every palace — a Live Video Session ($99) lets you ask timing and career questions face-to-face with recording included.',href:G['live-reading'],label:'Book Live Session — $99'},
+    premium:{title:'Share Your Purple Star Reading Experience',copy:'If your reading landed with uncomfortable accuracy, a referral helps someone else find clarity. We read every testimonial personally.',href:'',label:'Leave a testimonial',referral:true}
   };
-  var upsells = {
-    'life-palace-dive': {
-      title: 'Unlock the full matrix',
-      copy: 'Your Life Palace is the anchor — the Full 12-Palace Matrix ($39) reveals every palace, Major Cycle, and 2026 timing.',
-      product: 'full-chart',
-      label: 'Order Full Matrix — $39'
-    },
-    'three-palace-snapshot': {
-      title: 'Go live with a practitioner',
-      copy: 'Three palaces in writing is powerful — a 30-minute Live Session ($99) lets you ask follow-up questions in real time.',
-      product: 'live-reading',
-      label: 'Book Live Session — $99'
-    },
-    'full-chart': {
-      title: 'Add relationship depth',
-      copy: 'Your natal matrix is complete — a Partner Compatibility Reading ($59) maps two charts for love and friction patterns.',
-      product: 'partner-compatibility',
-      label: 'Order Compatibility — $59'
+  var tierPrices={starter:'9.90',full:'39.00',premium:'99.00'};
+  var tierServiceNames={starter:'Zi Wei Dou Shu Starter Reading',full:'Zi Wei Dou Shu Full Reading',premium:'Zi Wei Dou Shu Premium Consultation'};
+  var p=new URLSearchParams(location.search);
+  var rawProduct=p.get('product')||'';
+  var tier=p.get('tier')||'';
+  try{if(!tier)tier=sessionStorage.getItem('selected_tier')||'';}catch(e){}
+  if(p.get('ref')==='gumroad'&&p.get('tier'))tier=p.get('tier');
+  var aliases={'life-palace':'life-palace-dive','three-palace':'three-palace-snapshot','partner':'partner-compatibility'};
+  var product=aliases[rawProduct]||rawProduct;
+  if(!tier&&/life-palace|three-palace|snapshot|dive/.test(product))tier='starter';
+  if(!tier&&product==='full-chart')tier='full';
+  if(!tier&&/live-reading|annual/.test(product))tier='premium';
+  if(!tier)tier='full';
+  try{
+    var orderLd=document.querySelector('script[type="application/ld+json"]');
+    if(orderLd){
+      var schema=JSON.parse(orderLd.textContent);
+      if(schema.mainEntity&&schema.mainEntity['@type']==='Order'){
+        schema.mainEntity.orderedItem={'@type':'Service','name':tierServiceNames[tier]||tierServiceNames.full,'price':tierPrices[tier]||tierPrices.full,'priceCurrency':'USD'};
+        orderLd.textContent=JSON.stringify(schema);
+      }
     }
-  };
-  var G = window.GUANLAN_GUMROAD || {};
-  var params = new URLSearchParams(window.location.search);
-  var rawProduct = params.get('product') || '';
-  var aliases = {
-    'life-palace': 'life-palace-dive',
-    'three-palace': 'three-palace-snapshot',
-    'partner': 'partner-compatibility'
-  };
-  var product = aliases[rawProduct] || rawProduct;
-  var el = document.getElementById('product-label');
-  if (el && labels[product]) el.textContent = labels[product];
-
-  var upsell = upsells[product] || {
-    title: 'Go deeper on your chart',
-    copy: 'Unlock the Full 12-Palace Matrix ($39) — every palace, Major Cycle, and personalized timing in one PDF.',
-    product: 'full-chart',
-    label: 'Order Full Matrix — $39'
-  };
-
-  document.getElementById('upsell-block').hidden = false;
-  document.getElementById('upsell-title').textContent = upsell.title;
-  document.getElementById('upsell-copy').textContent = upsell.copy;
-  var cta = document.getElementById('upsell-cta');
-  cta.textContent = upsell.label;
-  cta.href = G[upsell.product] || ('/#pricing');
-  cta.setAttribute('data-product', upsell.product);
-
-  var shareText = 'Just got my Zi Wei Dou Shu chart read in English — uncomfortably accurate. metaphysicflow.com';
-  document.getElementById('twitter-share').href =
-    'https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareText);
-
-  var purchaseValues = {
-    'life-palace-dive': 9.90,
-    'three-palace-snapshot': 19,
-    'full-chart': 39,
-    'live-reading': 99,
-    'partner-compatibility': 59,
-    'annual': 199
-  };
-  var purchaseValue = purchaseValues[product] || 39;
-  if (window.trackEvent) trackEvent('purchase_complete', { product: product || 'unknown', value: purchaseValue });
-  else if (window.plausible) plausible('purchase_complete', { props: { product: product || 'unknown', value: purchaseValue } });
-  if (window.gtag) {
-    var txnId = params.get('sale_id') || params.get('order');
-    if (!txnId) txnId = Date.now().toString() + Math.random().toString(36).slice(2);
-    var skuMap = {
-      'life-palace-dive': 'acvsfx',
-      'three-palace-snapshot': 'lfoxf',
-      'full-chart': 'tiuyjr',
-      'live-reading': 'lozmm',
-      'partner-compatibility': 'partner',
-      'annual': 'annual'
-    };
-    var itemId = skuMap[product] || product || 'gumroad';
-    gtag('event', 'purchase', {
-      transaction_id: txnId,
-      value: purchaseValue,
-      currency: 'USD',
-      items: [{
-        item_id: itemId,
-        item_name: product || 'gumroad',
-        price: purchaseValue,
-        quantity: 1,
-        item_category: 'ziwei_reading'
-      }]
-    });
+  }catch(e){}
+  var el=document.getElementById('product-label');
+  if(el&&labels[product])el.textContent=labels[product];
+  if(tierSubs[tier])document.getElementById('thank-sub').textContent=tierSubs[tier];
+  if(product==='live-reading')document.getElementById('delivery-window').textContent='48 hours (scheduling email)';
+  var dob=p.get('dob')||p.get('date')||'';
+  try{
+    if(!dob)dob=sessionStorage.getItem('chart_dob')||'';
+    if(!dob){var b=JSON.parse(sessionStorage.getItem('guanlan_birth')||'{}');if(b&&b.dob)dob=b.dob;}
+  }catch(e){}
+  var up=tierUpsell[tier]||tierUpsell.full;
+  document.getElementById('upsell-block').hidden=false;
+  document.getElementById('upsell-title').textContent=up.title;
+  document.getElementById('upsell-copy').textContent=up.copy;
+  var cta=document.getElementById('upsell-cta');
+  if(up.referral){
+    cta.textContent='Email hello@metaphysicflow.com';
+    cta.href='mailto:hello@metaphysicflow.com?subject=Zi%20Wei%20Reading%20Testimonial';
+    document.getElementById('share-block').querySelector('p').textContent='Refer a friend — share your chart experience:';
+    var refHash='';
+    try{
+      var storedEmail=sessionStorage.getItem('chart_email')||sessionStorage.getItem('gate_email')||'';
+      if(storedEmail){
+        var h=0;
+        for(var i=0;i<storedEmail.length;i++){h=((h<<5)-h)+storedEmail.charCodeAt(i);h|=0;}
+        refHash=Math.abs(h).toString(36);
+      }
+    }catch(e){}
+    var shareUrl=location.origin+'/?ref='+(refHash||'friend');
+    var nativeBtn=document.getElementById('native-share');
+    var copyBtn=document.getElementById('copy-share-link');
+    if(navigator.share){
+      nativeBtn.hidden=false;
+      nativeBtn.textContent='Share with a friend';
+      nativeBtn.addEventListener('click',function(){
+        navigator.share({title:'Zi Wei Dou Shu Reading',text:'Just got my Purple Star chart read — uncomfortably accurate.',url:shareUrl}).catch(function(){});
+      });
+    }else if(copyBtn){
+      copyBtn.hidden=false;
+      copyBtn.textContent='Copy referral link';
+      copyBtn.addEventListener('click',function(){
+        if(navigator.clipboard&&navigator.clipboard.writeText){
+          navigator.clipboard.writeText(shareUrl).then(function(){copyBtn.textContent='Link copied!';}).catch(function(){window.prompt('Copy this link:',shareUrl);});
+        }else{
+          window.prompt('Copy this link:',shareUrl);
+        }
+      });
+    }
+  }else{
+    cta.textContent=up.label;
+    cta.href=up.href||'/#pricing';
+    cta.setAttribute('data-product',tier==='starter'?'full-chart':'live-reading');
+  }
+  var consult=document.getElementById('consult-cta');
+  if(consult&&dob){
+    var q=new URLSearchParams();q.set('dob',dob);
+    if(p.get('hour'))q.set('hour',p.get('hour'));
+    if(product)q.set('product',product);
+    consult.href='/consultation.html?'+q.toString()+'#book';
+    consult.textContent='Book consultation with my birth details';
+    consult.hidden=false;
+  }
+  var shareText='Just got my Zi Wei Dou Shu chart read in English — uncomfortably accurate. metaphysicflow.com';
+  document.getElementById('twitter-share').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(shareText);
+  var purchaseValues={'life-palace-dive':9.9,'three-palace-snapshot':19,'full-chart':39,'live-reading':99,'partner-compatibility':59,'annual':199};
+  var purchaseValue=purchaseValues[product]||39;
+  window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};
+  plausible('purchase_complete',{props:{product:product||'unknown',value:purchaseValue,tier:tier||'unknown'}});
+  if(window.gtag){
+    var txnId=p.get('sale_id')||p.get('order')||Date.now().toString()+Math.random().toString(36).slice(2);
+    var skuMap={'life-palace-dive':'acvsfx','three-palace-snapshot':'lfoxf','full-chart':'tiuyjr','live-reading':'lozmm','partner-compatibility':'partner','annual':'annual'};
+    gtag('event','purchase',{transaction_id:txnId,value:purchaseValue,currency:'USD',items:[{item_id:skuMap[product]||product||'gumroad',item_name:product||'gumroad',price:purchaseValue,quantity:1,item_category:'ziwei_reading'}]});
   }
 })();
 </script>
+<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.tagged-events.js"></script>
 </body>
 </html>

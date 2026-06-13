@@ -4,12 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free BaZi Calculator · Eight Characters Chart | Guanlan Energy</title>
-<meta name="description" content="Free BaZi calculator and eight characters chart — discover your Four Pillars birth chart, day master, and five-element energy profile in English.">
+<meta name="description" content="Free BaZi calculator for your Chinese astrology birth chart. Enter birth date and hour to generate your Four Pillars eight-characters chart and five-element profile.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Free BaZi Calculator · Eight Characters Chart">
+<meta property="og:url" content="https://metaphysicflow.com/bazi-calculator.html">
 <meta property="og:description" content="Calculate your BaZi eight characters birth chart and five-element profile — Wood, Fire, Earth, Metal, Water.">
 <link rel="canonical" href="https://metaphysicflow.com/bazi-calculator.html">
 <link rel="alternate" hreflang="en" href="https://metaphysicflow.com/bazi-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://metaphysicflow.com/bazi-calculator.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Free BaZi Calculator",
+  "url": "https://metaphysicflow.com/bazi-calculator.html",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["h1", ".hero-desc"]
+  }
+}
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -116,6 +130,9 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size-adjust: 0.52;
+  ascent-override: 90%;
+  descent-override: 22%;
   background: var(--void);
   color: var(--text);
   min-height: 100vh;
@@ -443,7 +460,7 @@ footer {
     <div class="hero-eyebrow">BAZI · EIGHT CHARACTERS · FIVE ELEMENTS</div>
     <h1>Free <em>BaZi Calculator</em><br>Four Pillars of Destiny Chart</h1>
     <h2 class="hero-sub-heading">Eight Characters · Four Pillars of Destiny</h2>
-    <p class="hero-sub">BaZi calculates your unique composition of <strong>Wood, Fire, Earth, Metal, Water</strong> — the five energies shaping your personality, health, and life cycles.</p>
+    <p class="hero-desc hero-sub">BaZi calculates your unique composition of <strong>Wood, Fire, Earth, Metal, Water</strong> — the five energies shaping your personality, health, and life cycles.</p>
     <div class="form-card">
       <div class="full">
         <label class="fl" for="d">Birth Date</label>
@@ -480,15 +497,37 @@ footer {
     </div>
   </div>
 
-  <div class="out" id="out">
+  <output class="out" id="out" for="d h p g">
     <div class="ph">
       <div>
         <span class="pd"></span>Enter birth data above and click Calculate<br>
         <span style="font-size:0.8rem;color:rgba(255,255,255,0.2)">to see your BaZi pillars &amp; five-element profile</span>
       </div>
     </div>
-  </div>
+  </output>
 </div>
+
+<section class="faq-section" style="max-width:720px;margin:3rem auto;padding:0 2rem">
+  <h2 style="font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--gold-light);margin-bottom:1.25rem">BaZi Calculator FAQ</h2>
+  <dl style="display:grid;gap:1.25rem">
+    <div>
+      <dt style="color:var(--gold-light);font-weight:500;margin-bottom:0.35rem">What is BaZi?</dt>
+      <dd style="color:var(--text-secondary);margin:0;line-height:1.7">BaZi (八字), or the Four Pillars of Destiny, is a Chinese astrology system that maps your birth year, month, day, and hour into eight characters — four Heavenly Stems and four Earthly Branches — revealing your day master and five-element balance.</dd>
+    </div>
+    <div>
+      <dt style="color:var(--gold-light);font-weight:500;margin-bottom:0.35rem">BaZi vs Zi Wei Dou Shu — what is the difference?</dt>
+      <dd style="color:var(--text-secondary);margin:0;line-height:1.7">BaZi focuses on the Five Elements and cyclical timing through the Four Pillars. Zi Wei Dou Shu maps fourteen major stars across twelve life palaces. Many practitioners use both: BaZi for elemental timing, Zi Wei for detailed life-domain readings.</dd>
+    </div>
+    <div>
+      <dt style="color:var(--gold-light);font-weight:500;margin-bottom:0.35rem">Is this BaZi calculator free?</dt>
+      <dd style="color:var(--text-secondary);margin:0;line-height:1.7">Yes. The Guanlan Energy BaZi calculator is free — enter your birth date and Chinese two-hour birth branch to view your Four Pillars chart and five-element profile in English with no payment required.</dd>
+    </div>
+    <div>
+      <dt style="color:var(--gold-light);font-weight:500;margin-bottom:0.35rem">Why does birth hour matter in BaZi?</dt>
+      <dd style="color:var(--text-secondary);margin:0;line-height:1.7">The hour pillar completes your Four Pillars chart. A different two-hour birth branch can change your hour stem and shift your elemental balance, so accurate birth time improves BaZi calculator results.</dd>
+    </div>
+  </dl>
+</section>
 
 <footer>Guanlan Energy · Purple Star Astrology</footer>
 
@@ -571,7 +610,7 @@ function go() {
 }
 
 function show(gz, pt) {
-  var labels = ["YEAR", "MONTH", "DAY", "HOUR"];
+  var labels = ["Year Pillar · 年柱", "Month Pillar · 月柱", "Day Pillar · 日柱", "Hour Pillar · 時柱"];
   var order = ["Wood", "Fire", "Earth", "Metal", "Water"];
   var dayStem = gz[2].charAt(0);
   var html = "<p class='out-kicker'>YOUR BAZI · 八字命盘</p><dl class='pillar-grid'>";
@@ -610,5 +649,7 @@ function show(gz, pt) {
 }
 </script>
   <script defer src="/js/site-contact.js"></script>
+<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.tagged-events.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 </body>
 </html>

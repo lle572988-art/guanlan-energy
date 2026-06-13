@@ -4,11 +4,11 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="x-spots" content="8"/>
-<link rel="canonical" href="https://metaphysicflow.com/consultation.html"/>
+<link rel="canonical" href="https://metaphysicflow.com/consultation.html">
 <link rel="dns-prefetch" href="https://gumroad.com">
 <link rel="preconnect" href="https://api.gumroad.com" crossorigin>
 <title>Zi Wei Dou Shu Consultation · 1-on-1 Reading | Guanlan Energy</title>
-<meta name="description" content="Private 60-minute voice-based deep dive into your 14 Main Stars and Five Elements. Fully personalized natal chart consultation."/>
+<meta name="description" content="Book a Zi Wei Dou Shu reading — purple star astrology consultation with a personalized birth chart. Private voice-based deep dive into your 14 Main Stars and twelve palaces."/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
@@ -100,6 +100,13 @@ nav{
   margin-top:40px;animation:pulse 2s infinite;
 }
 @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes prefillFadeIn{from{opacity:0}to{opacity:1}}
+.prefill-confirm{
+  font-size:14px;color:var(--gold2);line-height:1.7;margin-top:0.75rem;
+  padding:0.75rem 1rem;border:1px solid rgba(201,168,76,0.25);
+  background:rgba(201,168,76,0.06);border-radius:2px;
+  opacity:0;animation:prefillFadeIn 200ms ease forwards;
+}
 
 /* ── SECTIONS ── */
 section{padding:80px 20px}
@@ -536,11 +543,7 @@ document.addEventListener('scroll', function(){
   "name": "Zi Wei Dou Shu Consultation",
   "description": "Private voice-based deep dive into your Purple Star chart and twelve life palaces.",
   "provider": {"@id": "https://metaphysicflow.com/#organization"},
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/LimitedAvailability"
-  }
+  "offers": []
 }
 ]
 </script>
@@ -551,92 +554,13 @@ document.addEventListener('scroll', function(){
 <meta property="og:image" content="https://metaphysicflow.com/images/og-image.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:url" content="https://metaphysicflow.com/"/>
+<meta property="og:url" content="https://metaphysicflow.com/consultation.html">
 <meta property="og:type" content="website"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="You Are Not a System.You Are a Constellation."/>
 <meta name="twitter:description" content="A private, voice-based deep dive into your 14 Main Stars and Five Elements. Receive a completely personalised energy blueprint and life guidance from Guanlan."/>
 <meta name="twitter:image" content="https://metaphysicflow.com/images/og-image.png"/>
 
-<!-- Plausible Analytics -->
-<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
-<script>
-window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
-</script>
-<!-- Funnel Tracking (Plausible custom events) -->
-<script>
-(function() {
-  // form_view: when form card enters viewport
-  var formCard = document.querySelector(".form-card");
-  if (formCard) {
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { plausible("form_view"); obs.disconnect(); }
-      });
-    }, { threshold: 0.3 });
-    obs.observe(formCard);
-  }
-
-  // form_start: first field focus
-  var inputs = document.querySelectorAll("#username, #birthdate, #birthtime, .gw-field");
-  var started = false;
-  inputs.forEach(function(inp) {
-    inp.addEventListener("focus", function() {
-      if (!started) { started = true; plausible("form_start"); }
-    });
-  });
-
-  // form_submit: BaZi form submission
-  var baziForm = document.querySelector("form[onsubmit*='runGuanlanEngine']");
-  if (baziForm) {
-    baziForm.addEventListener("submit", function() { plausible("form_submit"); });
-  }
-
-  // report_generated: patch runGuanlanEngine
-  var origEngine = window.runGuanlanEngine;
-  if (origEngine) {
-    window.runGuanlanEngine = function(e) {
-      origEngine(e);
-      // The original code sets results display after 4200ms via setTimeout
-      // We intercept the relevant setTimeout to fire our event
-      var origST = window.setTimeout;
-      window.setTimeout = function(fn, ms) {
-        return origST(function() {
-          fn();
-          if (ms > 4000) {
-            setTimeout(function() { plausible("report_generated"); }, 200);
-            window.setTimeout = origST;
-          }
-        }, ms);
-      };
-    };
-  }
-
-  // paywall_view & paywall_click
-  var paywallBtn = document.querySelector(".cta-btn.gumroad-button");
-  if (paywallBtn) {
-    var pwObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { plausible("paywall_view"); pwObs.disconnect(); }
-      });
-    }, { threshold: 0.3 });
-    pwObs.observe(paywallBtn);
-    paywallBtn.addEventListener("click", function() { plausible("paywall_click"); });
-  }
-
-  // email_subscribe: popup form + widget
-  var popupForm = document.querySelector(".popup-form");
-  if (popupForm) popupForm.addEventListener("submit", function() { plausible("email_subscribe"); });
-
-  var widgetBtn = document.querySelector(".gw-email-box .gw-btn");
-  if (widgetBtn) widgetBtn.addEventListener("click", function() { plausible("email_subscribe"); });
-
-  // gumroad purchase_complete (fires when user lands back from Gumroad)
-  if (window.location.search.includes("gumroad_return")) {
-    plausible("purchase_complete");
-  }
-})();
-</script>
 </head>
 <body>
 
@@ -659,7 +583,7 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
 <div class="wrap">
 <section class="hero">
   <div class="sigil">☰ ☷ ☵</div>
-  <h1>Zi Wei Dou Shu Consultation<br><span style="font-size:0.55em;font-weight:300;letter-spacing:0.06em;color:var(--muted)">Private Purple Star Reading · Four Pillars of Destiny</span></h1>
+  <h1>Purple Star Astrology Consultation<br><span style="font-size:0.55em;font-weight:300;letter-spacing:0.06em;color:var(--muted)">Zi Wei Dou Shu Reading · Four Pillars of Destiny</span></h1>
   <p id="spots-remaining" style="font-family:sans-serif;font-size:12px;letter-spacing:0.08em;color:var(--gold);margin-top:8px;">Loading session availability…</p>
   <p class="sub">A private, voice-to-voice journey into your 14 Main Stars and Five Elements — completely tailored to your birth, your questions, and your energy.</p>
   <div class="divider"></div>
@@ -760,13 +684,28 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
 
 <!-- PRICING COMPARISON -->
 <div class="wrap">
-<section style="padding-top:20px">
+<section style="padding-top:20px" aria-label="Pricing Plans">
   <div class="section-label">Not sure which path?</div>
   <h2 class="section-title">Start small, go deep.</h2>
-  <div style="max-width:700px;margin:0 auto;text-align:center">
-    <p style="font-size:15px;color:var(--muted);line-height:1.8">Every journey begins with a single step. Start with a <strong style="color:var(--gold2)">free 12-palace chart preview</strong>, then choose your depth — from the <strong style="color:var(--gold2)">$9.90 Life Palace Deep Dive</strong> to the <strong style="color:var(--gold2)">$39 Full 12-Palace Matrix</strong> or <strong style="color:var(--gold2)">$59 Partner Compatibility Reading</strong>.</p>
-    <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-top:20px"><strong style="color:var(--gold2)">Partner Compatibility Reading ($59)</strong> — a written Zi Wei Dou Shu relationship analysis comparing two natal charts. We map Spouse Palace reciprocity, attraction patterns, friction points, and timing windows for partnership shifts — delivered as an illustrated PDF within 48 hours. Ideal when you want clarity on love dynamics without a live session.</p>
-    <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-top:16px"><strong style="color:var(--gold2)">Annual Zi Wei Guidance ($199/year)</strong> — quarterly Purple Star Astrology reports aligned to your Major Cycles and solar-term transitions. Includes unlimited email Q&amp;A, priority booking for live sessions, and written timing guidance for career, wealth, and relationship decisions across the full year.</p>
+  <div style="max-width:700px;margin:0 auto;display:grid;gap:1.25rem">
+    <article style="padding:1.25rem;border:1px solid rgba(201,168,76,.12);border-radius:6px;background:rgba(201,168,76,.03)">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.15rem;color:var(--gold2);margin-bottom:0.35rem">Free 12-Palace Chart Preview</h3>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin:0">Start with a free chart at <a href="/free-chart.html" style="color:var(--gold2)">metaphysicflow.com/free-chart.html</a> — Life, Wealth, and Career palace highlights instantly.</p>
+    </article>
+    <article style="padding:1.25rem;border:1px solid rgba(201,168,76,.12);border-radius:6px;background:rgba(201,168,76,.03)">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.15rem;color:var(--gold2);margin-bottom:0.35rem">Life Palace Deep Dive — $9.90</h3>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin:0">Focused PDF on your Life Palace master star, life mission, and personality patterns — 8–10 pages.</p>
+    </article>
+    <article style="padding:1.25rem;border:1px solid rgba(201,168,76,.12);border-radius:6px;background:rgba(201,168,76,.03)">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.15rem;color:var(--gold2);margin-bottom:0.35rem">Full 12-Palace Matrix — $39</h3>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin:0">All twelve palaces interpreted, Major Cycle analysis, Four Transformations, and a complete 2026 forecast — delivered as an illustrated PDF within 24 hours.</p>
+    </article>
+    <article style="padding:1.25rem;border:1px solid rgba(201,168,76,.12);border-radius:6px;background:rgba(201,168,76,.03)">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.15rem;color:var(--gold2);margin-bottom:0.35rem">Live Video Session — $99</h3>
+      <p style="font-size:15px;color:var(--muted);line-height:1.8;margin:0">Private voice-to-voice session — your chart decoded in real time with personalised practices and answers to your deepest questions.</p>
+    </article>
+  </div>
+  <div style="max-width:700px;margin:1.5rem auto 0;text-align:center">
     <a href="index.html#pricing" style="display:inline-block;margin-top:12px;padding:8px 24px;border:1px solid var(--gold2);color:var(--gold2);text-decoration:none;border-radius:4px;font-size:12px;letter-spacing:2px">✦ View All Readings &amp; Pricing</a>
   </div>
 </section>
@@ -791,6 +730,7 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
   <h2 class="section-title">Choose your time. Reserve your session.</h2>
   <div style="max-width:650px;margin:0 auto 40px;text-align:center">
     <p style="font-size:14px;color:var(--muted);line-height:1.7">Submit your details below. I'll review your chart and reach out within <strong style="color:var(--gold2)">24 hours</strong> with a personal booking link to schedule our session.</p>
+    <p id="prefill-confirm" class="prefill-confirm" hidden></p>
     <a class="wa-btn" data-guanlan-wa-cta="consultation" href="https://wa.me/8613983664891?text=Hi%2C%20I%20would%20like%20to%20ask%20about%20the%20Live%20Video%20Consultation." style="margin-top:20px">Prefer WhatsApp? Message me directly</a>
   </div>
   <div style="max-width:700px;margin:0 auto 50px;text-align:center">
@@ -890,16 +830,32 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
 document.addEventListener('DOMContentLoaded', function() {
   var params = new URLSearchParams(window.location.search);
   var rawHour = (params.get('hour') || '').trim().toLowerCase();
+  var rawDob = (params.get('dob') || params.get('date') || '').trim();
   var hourSelect = document.getElementById('consult-hour');
-  if (!hourSelect || !rawHour) return;
-  var branches = ['zi','chou','yin','mao','chen','si','wu','wei','shen','you','xu','hai'];
-  var branch = rawHour;
-  if (/^\d+$/.test(rawHour)) {
-    var idx = Math.max(0, Math.min(11, parseInt(rawHour, 10)));
-    branch = branches[idx];
+  var dobInput = document.getElementById('consult-dob');
+  if (dobInput && rawDob) {
+    var normalized = rawDob.replace(/\//g, '-');
+    if (/^\d{4}-\d{2}-\d{2}$/.test(normalized)) dobInput.value = normalized;
   }
-  if (branches.indexOf(branch) !== -1) {
-    hourSelect.value = branch;
+  if (hourSelect && rawHour) {
+    var branches = ['zi','chou','yin','mao','chen','si','wu','wei','shen','you','xu','hai'];
+    var branch = rawHour;
+    if (/^\d+$/.test(rawHour)) {
+      var idx = Math.max(0, Math.min(11, parseInt(rawHour, 10)));
+      branch = branches[idx];
+    }
+    if (branches.indexOf(branch) !== -1) hourSelect.value = branch;
+  }
+  var confirmEl = document.getElementById('prefill-confirm');
+  if (confirmEl && dobInput && dobInput.value) {
+    var branchLabels = { zi:'Zi (子)', chou:'Chou (丑)', yin:'Yin (寅)', mao:'Mao (卯)', chen:'Chen (辰)', si:'Si (巳)', wu:'Wu (午)', wei:'Wei (未)', shen:'Shen (申)', you:'You (酉)', xu:'Xu (戌)', hai:'Hai (亥)' };
+    var msg = 'We pre-filled your birth date (' + dobInput.value + ') from your chart session';
+    if (hourSelect && hourSelect.value) {
+      msg += ' and birth hour (' + (branchLabels[hourSelect.value] || hourSelect.value) + ')';
+    }
+    msg += ' — please confirm before submitting.';
+    confirmEl.textContent = msg;
+    confirmEl.hidden = false;
   }
 });
 </script>
@@ -909,19 +865,6 @@ fetch('/api/spots').then(function(r){return r.json();}).then(function(d){
   if (!el) return;
   var n = typeof d.remaining === 'number' ? d.remaining : 8;
   el.textContent = n + ' consultation slot' + (n === 1 ? '' : 's') + ' remaining this month';
-  var schemaEl = document.getElementById('service-schema');
-  if (schemaEl) {
-    try {
-      var data = JSON.parse(schemaEl.textContent);
-      var svc = Array.isArray(data) ? data.find(function(x){ return x['@type'] === 'Service'; }) : null;
-      if (svc && svc.offers) {
-        svc.offers.availability = n > 0
-          ? 'https://schema.org/LimitedAvailability'
-          : 'https://schema.org/SoldOut';
-        schemaEl.textContent = JSON.stringify(data);
-      }
-    } catch (e) { /* ignore */ }
-  }
 }).catch(function(){
   var el = document.getElementById('spots-remaining');
   if (el) el.textContent = 'Limited consultation slots — inquire below';
@@ -1220,6 +1163,61 @@ function submitPopup(e){
     gtag('event', 'popup_subscribe', { event_category: 'engagement' });
   }
 }
+</script>
+<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.tagged-events.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
+<script>
+(function() {
+  var formCard = document.querySelector(".form-card");
+  if (formCard) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { plausible("form_view"); obs.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    obs.observe(formCard);
+  }
+  var inputs = document.querySelectorAll("#username, #birthdate, #birthtime, .gw-field");
+  var started = false;
+  inputs.forEach(function(inp) {
+    inp.addEventListener("focus", function() {
+      if (!started) { started = true; plausible("form_start"); }
+    });
+  });
+  var baziForm = document.querySelector("form[onsubmit*='runGuanlanEngine']");
+  if (baziForm) baziForm.addEventListener("submit", function() { plausible("form_submit"); });
+  var origEngine = window.runGuanlanEngine;
+  if (origEngine) {
+    window.runGuanlanEngine = function(e) {
+      origEngine(e);
+      var origST = window.setTimeout;
+      window.setTimeout = function(fn, ms) {
+        return origST(function() {
+          fn();
+          if (ms > 4000) {
+            setTimeout(function() { plausible("report_generated"); }, 200);
+            window.setTimeout = origST;
+          }
+        }, ms);
+      };
+    };
+  }
+  var paywallBtn = document.querySelector(".cta-btn.gumroad-button");
+  if (paywallBtn) {
+    var pwObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) { plausible("paywall_view"); pwObs.disconnect(); }
+      });
+    }, { threshold: 0.3 });
+    pwObs.observe(paywallBtn);
+    paywallBtn.addEventListener("click", function() { plausible("paywall_click"); });
+  }
+  var popupForm = document.querySelector(".popup-form");
+  if (popupForm) popupForm.addEventListener("submit", function() { plausible("email_subscribe"); });
+  var widgetBtn = document.querySelector(".gw-email-box .gw-btn");
+  if (widgetBtn) widgetBtn.addEventListener("click", function() { plausible("email_subscribe"); });
+  if (window.location.search.includes("gumroad_return")) plausible("purchase_complete");
+})();
 </script>
 
 </body>

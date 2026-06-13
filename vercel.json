@@ -4,6 +4,13 @@
   "trailingSlash": false,
   "headers": [
     {
+      "source": "/api/confirm",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, max-age=0" },
+        { "key": "CDN-Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
       "source": "/api/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "private, no-store, max-age=0" },
@@ -74,17 +81,31 @@
       ]
     },
     {
+      "source": "/thank-you",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, max-age=0" },
+        { "key": "CDN-Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
+      "source": "/thank-you.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, max-age=0" },
+        { "key": "CDN-Cache-Control", "value": "no-store" }
+      ]
+    },
+    {
       "source": "/(.*).html",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
-        { "key": "CDN-Cache-Control", "value": "public, max-age=31536000" }
+        { "key": "Cache-Control", "value": "public, max-age=0, stale-while-revalidate=86400" },
+        { "key": "CDN-Cache-Control", "value": "public, max-age=0, stale-while-revalidate=86400" }
       ]
     },
     {
       "source": "/(free-chart|consultation|faq|thank-you|bazi-calculator|feng-shui-scan|ziwei-results|privacy|terms|about|pricing|checkout|subscribe|contact|stories|scanner|premium|calculator)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
-        { "key": "CDN-Cache-Control", "value": "public, max-age=31536000" }
+        { "key": "Cache-Control", "value": "public, max-age=0, stale-while-revalidate=86400" },
+        { "key": "CDN-Cache-Control", "value": "public, max-age=0, stale-while-revalidate=86400" }
       ]
     },
     {
@@ -111,8 +132,8 @@
     {
       "source": "/",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
-        { "key": "CDN-Cache-Control", "value": "public, max-age=31536000" }
+        { "key": "Cache-Control", "value": "public, max-age=0, stale-while-revalidate=86400" },
+        { "key": "CDN-Cache-Control", "value": "public, max-age=0, stale-while-revalidate=86400" }
       ]
     },
     {
@@ -221,6 +242,11 @@
     {
       "source": "/blog/",
       "destination": "/blog/index.html"
+    },
+    {
+      "source": "/consultation",
+      "has": [{ "type": "query", "key": "intent" }],
+      "destination": "/consultation.html"
     },
     {
       "source": "/((?!hubs/|blog/|scan/|longtail/|images/|pages/|api/|js/|[a-z0-9_-]+\\.[a-z0-9]+).*)",

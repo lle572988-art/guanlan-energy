@@ -749,6 +749,40 @@ function renderCareerUpsellHtml() {
     + '</div></div>';
 }
 
+function firePlausibleIdle(event, props) {
+  var schedule = window.requestIdleCallback
+    ? function (fn) { requestIdleCallback(fn, { timeout: 2000 }); }
+    : function (fn) { setTimeout(fn, 0); };
+  schedule(function () {
+    if (window.plausible) plausible(event, props ? { props: props } : undefined);
+  });
+}
+
+function palaceHoverUnlockLabel() {
+  var n = parseInt(localStorage.getItem('palaces_hovered_count') || '0', 10);
+  if (performance.now() > 180000 && n < 4) {
+    return 'Try intro reading — $9.90 →';
+  }
+  return n < 3 ? 'Unlock in Full Report — $39 →' : 'Try intro reading — $9.90 →';
+}
+
+function palaceHoverButtonLabel(n) {
+  if (performance.now() > 180000 && n < 4) {
+    return 'Try intro reading — $9.90 →';
+  }
+  return n <= 3 ? 'Unlock in Full Report — $39 →' : 'Try intro reading — $9.90 →';
+}
+
+function trackPalaceHover(card, locked) {
+  if (!locked || !card) return;
+  card.addEventListener('mouseenter', function () {
+    var n = parseInt(localStorage.getItem('palaces_hovered_count') || '0', 10) + 1;
+    localStorage.setItem('palaces_hovered_count', String(n));
+    var btn = card.querySelector('.palace-read-more, .card-action');
+    if (btn) btn.textContent = palaceHoverButtonLabel(n);
+  }, { once: true });
+}
+
 function renderPalaceLifeCard(reading, index, readings) {
   var locked = isPalaceLocked(index);
   var lifeDisplay = index === 0 ? resolveLifePalaceDisplay(readings) : null;
@@ -770,10 +804,12 @@ function renderPalaceLifeCard(reading, index, readings) {
     + '<h3 class="star-name">' + title + '</h3>'
     + '<p class="teaser">' + teaser + '</p>'
     + bodyBlock
-    + (btnLabel ? '<button type="button" class="card-action" data-index="' + index + '">' + btnLabel + '</button>' : '');
+    + (btnLabel ? '<button type="button" class="card-action" data-index="' + index + '" data-palace="' + reading.palaceEn + '">' + btnLabel + '</button>' : '');
   card.querySelector('.card-action').addEventListener('click', function() {
+    if (locked) firePlausibleIdle('palace_unlock_click', { palace: reading.palaceEn });
     handlePalaceAction(index);
   });
+  trackPalaceHover(card, locked);
   if (!locked) {
     card.classList.add('expanded');
   }
@@ -790,7 +826,37 @@ function handlePalaceAction(index) {
   if (card) card.classList.toggle('expanded');
 }
 
+function renderPalacesGrid(readings) {
+  var grid = document.getElementById('palacesGrid');
+  if (!grid || !readings) return;
+  grid.innerHTML = '';
+  readings.forEach(function(reading, index) {
+    var locked = isPalaceLocked(index);
+    var card = document.createElement('div');
+    card.className = 'palace-card' + (locked ? ' palace-locked' : ' palace-free');
+    card.id = 'grid-card-' + index;
+    var nameTag = locked ? 'h3' : 'div';
+    card.innerHTML = ''
+      + '<div class="palace-number">PALACE ' + reading.roman + '</div>'
+      + '<div class="palace-chinese">' + reading.palaceCn + '</div>'
+      + '<' + nameTag + ' class="palace-name-en">' + reading.palaceEn + '</' + nameTag + '>'
+      + (locked
+        ? '<button type="button" class="palace-read-more" data-palace="' + reading.palaceEn + '" data-unlock-index="' + index + '">Unlock reading</button>'
+        : '<div class="palace-preview">' + wordTeaser(reading.hook || pillarBody(reading), 12) + '</div>');
+    var unlockBtn = card.querySelector('[data-palace]');
+    if (unlockBtn) {
+      unlockBtn.addEventListener('click', function() {
+        firePlausibleIdle('palace_unlock_click', { palace: reading.palaceEn });
+        handlePalaceAction(index);
+      });
+    }
+    trackPalaceHover(card, locked);
+    grid.appendChild(card);
+  });
+}
+
 function renderPalaceGroups(readings) {
+  renderPalacesGrid(readings);
   var container = document.getElementById('palace-groups');
   if (!container) return;
   container.innerHTML = '';
@@ -830,16 +896,50 @@ function renderChartSvg(result) {
   return window.ZwdsChartRender.renderChartSvg(result);
 }
 
+function postChartMeta(email, star, dob, hour) {
+  if (!email || !email.includes('@')) return;
+  var payload = {
+    email: email,
+    star: star || '',
+    dob: dob || '',
+    hour: hour !== undefined && hour !== null ? hour : ''
+  };
+  fetch('/api/chart-meta', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    keepalive: true,
+    body: JSON.stringify(payload)
+  }).catch(function () {});
+}
+
+function setupPricingFunnelTracking() {
+  if (chartState._pricingFunnelBound) return;
+  chartState._pricingFunnelBound = true;
+  document.querySelectorAll('[data-product]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      if (window.plausible) plausible('pricing_cta_click', { props: { product: el.getAttribute('data-product') || 'unknown' } });
+    });
+  });
+}
+
 function populateResultsUI(result, params) {
   chartState.readings = getChartReading(result);
   var lifeStarCn = getEffectiveLifeStarCn(chartState.readings);
   var meta = getChartMeta(result, lifeStarCn);
+  var lifeDisplay = resolveLifePalaceDisplay(chartState.readings);
+  var starName = lifeDisplay.mode === 'open'
+    ? 'Open Path'
+    : (lifeDisplay.starCn ? getStarSoulTitle(lifeDisplay.starCn) : lifeDisplay.displayName);
+  document.title = starName + ' Life Palace · Your Zi Wei Chart | MetaphysicFlow';
 
   renderIdentityHook(result, chartState.readings, meta);
   renderPersonalChartCta(chartState.readings, result);
   renderThreePillars(chartState.readings);
   renderYearForecast(meta, chartState.readings);
   renderPalaceGroups(chartState.readings);
+
+  var pageHero = document.getElementById('page-hero');
+  if (pageHero) pageHero.style.display = 'none';
 
   window.__chartData = buildChartShareData(result, chartState.readings, meta);
   renderShareSection(window.__chartData);
@@ -857,6 +957,11 @@ function populateResultsUI(result, params) {
   var results = document.getElementById('results-container');
   if (results) results.style.display = 'block';
   showBlock('cta-block');
+  setupPricingFunnelTracking();
+
+  if (params.email) {
+    postChartMeta(params.email, lifeStarCn || starName, String(params.date || '').replace(/\//g, '-'), params.hour);
+  }
 
   setTimeout(function() {
     generateAndUpdateAIReadings(result, params);
@@ -1008,6 +1113,14 @@ function runChartCalculation(params) {
 
     hideLoadingScreen();
     populateResultsUI(result, params);
+    window.isChartReady = true;
+    var idleSchedule = window.requestIdleCallback
+      ? function (fn) { requestIdleCallback(fn, { timeout: 2000 }); }
+      : function (fn) { setTimeout(fn, 0); };
+    idleSchedule(function () {
+      try { sessionStorage.setItem('chart_generated', '1'); } catch (e) {}
+    });
+    fetch('/api/stats', { method: 'POST', keepalive: true }).catch(function () {});
     if (window.plausible) plausible('chart_ready');
     if (window.gtag) gtag('event', 'chart_ready', { page: 'free-chart' });
   } catch (err) {
@@ -1140,7 +1253,8 @@ function renderPostGateUpsell(readings, result) {
   banner.className = 'post-gate-upsell';
   banner.innerHTML = ''
     + '<h3>Your <strong>' + starName + '</strong> in <strong>' + branch + '宮</strong> — unlock all 9 palaces with a full <strong>Zi Wei Dou Shu</strong> Purple Star reading ($39)</h3>'
-    + '<a class="btn-gold" href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" data-product="full-chart">Get the Full 12-Palace Matrix — $39</a>';
+    + '<a class="btn-gold" href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" data-product="full-chart">Get the Full 12-Palace Matrix — $39</a>'
+    + ' <a class="btn-gold btn-gold-outline" href="index.html#pricing?intent=full-report" data-intent="full-report">Compare all readings</a>';
   gate.insertAdjacentElement('afterend', banner);
   if (window.trackEvent) trackEvent('upsell_banner_view', { star: starName, branch: branch });
   else if (window.plausible) plausible('upsell_banner_view', { props: { star: starName, branch: branch } });
@@ -1172,13 +1286,35 @@ function submitGate(event) {
     btn.textContent = 'Unlocking your chart…';
   }
 
+  var lifeDisplay = chartState.readings ? resolveLifePalaceDisplay(chartState.readings) : null;
+  var starName = lifeDisplay && lifeDisplay.mode === 'open'
+    ? 'Open Path'
+    : (lifeDisplay && lifeDisplay.starCn ? getStarSoulTitle(lifeDisplay.starCn) : (lifeDisplay ? lifeDisplay.displayName : ''));
+
   captureLead(email, name || 'Chart Reader', 'free-chart-gate');
+  postChartMeta(email, (lifeDisplay && lifeDisplay.starCn) || starName, String(chartState.birthDate || '').replace(/\//g, '-'), chartState.hourIndex);
   if (window.plausible) plausible('gate_submit');
   if (window.gtag) gtag('event', 'generate_lead', { method: 'free-chart-gate' });
 
   unlockAllPalaces();
   document.getElementById('gate-form').style.display = 'none';
   document.getElementById('gate-embedded-success').classList.add('show');
+  var gateForm = document.getElementById('gate-form');
+  if (gateForm && !document.getElementById('gate-wait-upsell')) {
+    var waitAside = document.createElement('aside');
+    waitAside.id = 'gate-wait-upsell';
+    waitAside.setAttribute('aria-label', 'Special Offer');
+    waitAside.style.cssText = 'font-size:0.9rem;color:rgba(240,235,224,0.65);margin-top:0.75rem;line-height:1.6';
+    var dobParam = chartState.birthDate ? '?dob=' + encodeURIComponent(String(chartState.birthDate).replace(/\//g, '-')) + '&intent=wealth-palace' : '?intent=wealth-palace';
+    waitAside.innerHTML = 'While you wait — <a href="/consultation.html' + dobParam + '#book" id="gate-wealth-upsell-link" style="color:#C9943A">unlock your Wealth Palace for $9.90 →</a>';
+    gateForm.insertAdjacentElement('afterend', waitAside);
+    var wealthLink = document.getElementById('gate-wealth-upsell-link');
+    if (wealthLink) {
+      wealthLink.addEventListener('click', function () {
+        if (window.plausible) plausible('wealth_upsell_click', { props: { source: 'post_capture' } });
+      });
+    }
+  }
   renderPostGateUpsell(chartState.readings, chartState.result);
   setTimeout(hideEmbeddedGate, 1800);
   return false;

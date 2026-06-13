@@ -26,8 +26,6 @@
   <!-- Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-T82Z7E5ELB');</script>
-  <script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.js"></script>
-  <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 
   <!-- Open Graph / Social Media Preview -->
   <meta property="og:type" content="website">
@@ -51,13 +49,18 @@
 <link rel="preload" as="image" href="/images/og-chart.jpg" fetchpriority="high" type="image/jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=optional" fetchpriority="high">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=optional" media="print" onload="this.media='all'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
 <noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=optional">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap">
 </noscript>
 <style>
-  body { font-family: Georgia, 'Times New Roman', serif; }
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size-adjust: 0.52;
+    ascent-override: 90%;
+    descent-override: 22%;
+  }
   .nav-name, .form-label, .section-label, .btn-primary {
     font-family: Georgia, serif;
   }
@@ -2485,11 +2488,11 @@ body::before {
     <div class="hero-left">
       <div class="hero-copy">
       <div class="hero-eyebrow">Purple Star Astrology · Zi Wei Dou Shu</div>
-      <p class="hero-subtitle" style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:rgba(255,255,255,0.72);margin-bottom:0.65rem;font-style:italic;">Why does your life keep repeating the same patterns?</p>
+      <p class="hero-desc hero-subtitle" style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:rgba(255,255,255,0.72);margin-bottom:0.65rem;font-style:italic;">Why does your life keep repeating the same patterns?</p>
       <h1 class="hero-h1">
-        <em class="hero-title-large">Zi Wei Dou Shu · Your Purple Star chart maps the answer — in English.</em>
+        <em class="hero-title-large">Zi Wei Dou Shu · Purple Star Astrology</em>
       </h1>
-      <p class="hero-lead">
+      <p class="hero-desc hero-lead">
         The 1,000-year-old Chinese imperial system maps your birth moment onto 12 life domains —
         revealing why certain years change everything, and what's coming next.
       </p>
@@ -2546,7 +2549,7 @@ body::before {
           <p class="form-hint" id="country-hint">Improves accuracy for non-China births</p>
         </details>
 
-        <button class="btn-primary" type="submit" id="hero-cta-btn">
+        <button class="btn-primary" type="submit" id="hero-cta-btn" data-analytics="funnel-step-1">
           Reveal My Fate Map — Free
         </button>
         <p class="form-sub">
@@ -3249,7 +3252,7 @@ body::before {
           <li>2026 activation preview for your core palace</li>
           <li>8–10 page illustrated PDF</li>
         </ul>
-        <a class="btn-pricing" href="https://lleonard88.gumroad.com/l/acvsfx?wanted=true" data-product="life-palace-dive" style="display:inline-block;text-decoration:none;">Get Life Palace Report</a>
+        <a class="btn-pricing" href="https://lleonard88.gumroad.com/l/acvsfx?wanted=true" data-analytics="funnel-step-3" data-product="life-palace-dive" data-price-tier="starter" style="display:inline-block;text-decoration:none;">Get Life Palace Report</a>
       </div>
 
       <!-- Tier 1.5 — Three-Palace Snapshot -->
@@ -3269,7 +3272,7 @@ body::before {
           <li>12–14 page illustrated PDF</li>
         </ul>
         <a class="btn-pricing" href="https://lleonard88.gumroad.com/l/lfoxf?wanted=true"
-          data-product="three-palace-snapshot" style="display:inline-block;text-decoration:none;">
+          data-analytics="funnel-step-3" data-product="three-palace-snapshot" data-price-tier="full" style="display:inline-block;text-decoration:none;">
           Get Three-Palace Report
         </a>
       </div>
@@ -3295,7 +3298,7 @@ body::before {
           <li>Career trajectory &amp; wealth timing</li>
           <li>20–25 page illustrated PDF</li>
         </ul>
-        <a class="btn-pricing" href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" data-product="full-chart" style="display:inline-block;text-decoration:none;">Order Full Matrix</a>
+        <a class="btn-pricing" href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" data-analytics="funnel-step-3" data-product="full-chart" data-price-tier="full" style="display:inline-block;text-decoration:none;">Order Full Matrix</a>
       </div>
 
       <!-- Partner Compatibility — Gumroad SKU pending; see js/gumroad-products.js partner-compatibility -->
@@ -3315,7 +3318,7 @@ body::before {
           <li>Comprehensive illustrated PDF guide</li>
         </ul>
         <!-- Gumroad SKU pending — see PARTNER_SKU in js/gumroad-products.js -->
-        <a class="btn-pricing" href="#pricing" data-product="partner-compatibility" style="display:inline-block;text-decoration:none;">Order Compatibility</a>
+        <a class="btn-pricing" href="#pricing" data-product="partner-compatibility" data-price-tier="full" style="display:inline-block;text-decoration:none;">Order Compatibility</a>
       </div>
 
       <!-- Tier 3 -->
@@ -3335,7 +3338,7 @@ body::before {
           <li>Annotated chart PDF included</li>
           <li>30 days email follow-up access</li>
         </ul>
-        <a class="btn-pricing" href="https://lleonard88.gumroad.com/l/lozmm?wanted=true" data-product="live-reading" style="display:inline-block;text-decoration:none;">Book Video Session</a>
+        <a class="btn-pricing" href="https://lleonard88.gumroad.com/l/lozmm?wanted=true" data-analytics="funnel-step-3" data-product="live-reading" data-price-tier="premium" style="display:inline-block;text-decoration:none;">Book Video Session</a>
       </div>
 
       <!-- Tier 4 — Annual — Gumroad SKU pending; see js/gumroad-products.js annual -->
@@ -3354,7 +3357,7 @@ body::before {
           <li>Priority booking for all sessions throughout the year</li>
         </ul>
         <!-- Gumroad SKU pending — see ANNUAL_SKU in js/gumroad-products.js -->
-        <a class="btn-pricing" href="#pricing" data-product="annual">Start Annual Plan</a>
+        <a class="btn-pricing" href="#pricing" data-product="annual" data-price-tier="premium">Start Annual Plan</a>
       </div>
     </div>
 
@@ -3472,41 +3475,51 @@ body::before {
 <!-- FIX-10: Visible FAQ for SEO Rich Snippets -->
 <section id="faq" style="padding:5rem 0; position:relative; z-index:1;" itemscope itemtype="https://schema.org/FAQPage">
   <div class="section-inner">
-    <div class="reveal">
+  <div class="reveal">
       <div class="section-label">Common Questions</div>
       <h2 class="section-heading">Frequently Asked <em>Questions</em></h2>
     </div>
     <div style="max-width:720px; margin-top:2rem;" class="reveal">
-      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <h3 itemprop="name" style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--parchment);margin-bottom:0.5rem;">
-          Is Zi Wei Dou Shu more accurate than BaZi?
-        </h3>
+      <details class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question" open>
+        <summary itemprop="name" style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--parchment);margin-bottom:0.5rem;cursor:pointer;list-style:none;">
+          What is Zi Wei Dou Shu?
+        </summary>
         <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0;">
-            BaZi and Zi Wei Dou Shu serve different purposes. BaZi reveals your elemental composition and 10-year luck cycles in eight characters. Zi Wei maps twelve life domains with star-level detail — career, wealth, relationships, health, and more — each receiving a unique constellation. Many serious practitioners use both together for the most complete picture of timing and character.
+          <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0.75rem 0 0;">
+            Zi Wei Dou Shu (Purple Star Astrology) is a classical Chinese natal chart system that maps fourteen major stars across twelve life palaces — Life, Wealth, Career, Relationships, and more. Unlike sun-sign astrology, each palace receives a unique star constellation based on your exact birth date and Chinese birth hour.
           </p>
         </div>
-      </div>
-      <div class="faq-item" style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,169,110,0.15);" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <h3 itemprop="name" style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--parchment);margin-bottom:0.5rem;">
-          Why do I need my exact birth hour for a Zi Wei chart?
-        </h3>
+      </details>
+      <details class="faq-item" style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,169,110,0.15);" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name" style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--parchment);margin-bottom:0.5rem;cursor:pointer;list-style:none;">
+          Is Purple Star Astrology accurate?
+        </summary>
         <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0;">
-            The birth hour determines which palace becomes your zi wei dou shu life palace — the anchor for the entire chart. A difference of one two-hour branch shifts every star placement. Our calculator uses the traditional Chinese two-hour branch system (Zi, Chou, Yin…), which applies regardless of where in the world you were born.
+          <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0.75rem 0 0;">
+            Accuracy depends on correct birth data — especially the Chinese two-hour birth branch — and skilled interpretation. Practitioners report that clients find palace-level readings uncannily specific about career timing, relationship patterns, and life themes. Zi Wei Dou Shu is a interpretive framework, not a scientific prediction system.
           </p>
         </div>
-      </div>
-      <div class="faq-item" style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,169,110,0.15);" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-        <h3 itemprop="name" style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--parchment);margin-bottom:0.5rem;">
-          How do I get a free Zi Wei Dou Shu chart?
-        </h3>
+      </details>
+      <details class="faq-item" style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,169,110,0.15);" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name" style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--parchment);margin-bottom:0.5rem;cursor:pointer;list-style:none;">
+          How do I read a Zi Wei chart?
+        </summary>
         <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-          <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0;">
-            Enter your date of birth and birth hour in the form at the top of this page, or open our purple star astrology free calculator. Your chinese natal chart english preview generates in under 30 seconds — free, with Life, Wealth, and Career palace highlights included.
+          <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0.75rem 0 0;">
+            Start with your Life Palace — the anchor palace determined by your birth hour. Identify the major star(s) seated there, then read outward through Wealth, Career, and Relationship palaces. Each palace shows a life domain; star combinations reveal strengths, challenges, and timing through Major Cycle periods.
           </p>
         </div>
-      </div>
+      </details>
+      <details class="faq-item" style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,169,110,0.15);" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <summary itemprop="name" style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--parchment);margin-bottom:0.5rem;cursor:pointer;list-style:none;">
+          Zi Wei Dou Shu vs BaZi — what is the difference?
+        </summary>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text" style="font-size:0.95rem;color:var(--text-dim);line-height:1.75;margin:0.75rem 0 0;">
+            BaZi reveals your elemental composition and 10-year luck cycles through eight characters (Four Pillars). Zi Wei maps twelve life domains with star-level detail. Many serious practitioners use both: BaZi for elemental timing, Zi Wei for detailed palace-by-palace life readings.
+          </p>
+        </div>
+      </details>
     </div>
   </div>
 </section>
@@ -4234,6 +4247,8 @@ function handleSubmit(event) {
   }
   if (!valid) return false;
 
+  window.isChartReady = true;
+
   if (new URLSearchParams(window.location.search).get('v') === 'b' && window.trackEvent) {
     trackEvent('cta_variant_b_click');
   }
@@ -4278,6 +4293,9 @@ function handleSubmit(event) {
   }
 
   setTimeout(function() {
+    try {
+      window.__session.set('chart_generated', '1');
+    } catch (e) {}
     try {
       window.location.href = '/free-chart.html?' + params.toString();
     } catch (err) {
@@ -4492,26 +4510,34 @@ window.addEventListener('scroll', () => {
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Is Zi Wei Dou Shu more accurate than BaZi?",
+        "name": "What is Zi Wei Dou Shu?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "BaZi and Zi Wei Dou Shu serve different purposes. BaZi reveals your elemental composition and 10-year luck cycles in eight characters. Zi Wei maps twelve life domains with star-level detail — career, wealth, relationships, health, and more — each receiving a unique constellation. Many serious practitioners use both together for the most complete picture of timing and character."
+          "text": "Zi Wei Dou Shu (Purple Star Astrology) is a classical Chinese natal chart system that maps fourteen major stars across twelve life palaces — Life, Wealth, Career, Relationships, and more. Unlike sun-sign astrology, each palace receives a unique star constellation based on your exact birth date and Chinese birth hour."
         }
       },
       {
         "@type": "Question",
-        "name": "Why do I need my exact birth hour for a Zi Wei chart?",
+        "name": "Is Purple Star Astrology accurate?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The birth hour determines which of the twelve palaces becomes your Life Palace — the anchor for the entire chart. A difference of one two-hour branch shifts every star placement and changes the reading entirely. Our calculator uses the traditional Chinese two-hour branch system (Zi, Chou, Yin…), which applies regardless of where in the world you were born."
+          "text": "Accuracy depends on correct birth data — especially the Chinese two-hour birth branch — and skilled interpretation. Practitioners report that clients find palace-level readings uncannily specific about career timing, relationship patterns, and life themes. Zi Wei Dou Shu is a interpretive framework, not a scientific prediction system."
         }
       },
       {
         "@type": "Question",
-        "name": "How do I get a free Zi Wei Dou Shu chart?",
+        "name": "How do I read a Zi Wei chart?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Enter your date of birth and birth hour in the form at the top of this page — or use our purple star astrology free calculator at /free-chart.html. Your personalized chinese natal chart english preview generates in under 30 seconds, with Life Palace (zi wei dou shu life palace), Wealth, and Career highlights included."
+          "text": "Start with your Life Palace — the anchor palace determined by your birth hour. Identify the major star(s) seated there, then read outward through Wealth, Career, and Relationship palaces. Each palace shows a life domain; star combinations reveal strengths, challenges, and timing through Major Cycle periods."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Zi Wei Dou Shu vs BaZi — what is the difference?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "BaZi reveals your elemental composition and 10-year luck cycles through eight characters (Four Pillars). Zi Wei maps twelve life domains with star-level detail. Many serious practitioners use both: BaZi for elemental timing, Zi Wei for detailed palace-by-palace life readings."
         }
       }
     ]
@@ -4569,6 +4595,22 @@ window.addEventListener('scroll', () => {
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://metaphysicflow.com/#webpage",
+    "url": "https://metaphysicflow.com/",
+    "name": "Zi Wei Dou Shu · Purple Star Astrology",
+    "description": "Free Zi Wei Dou Shu chart calculator and professional reading in English.",
+    "inLanguage": "en",
+    "isPartOf": { "@id": "https://metaphysicflow.com/#website" },
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", ".hero-desc"]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Guanlan Energy — Purple Star Astrology",
     "url": "https://metaphysicflow.com",
@@ -4610,12 +4652,31 @@ window.addEventListener('scroll', () => {
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Guanlan Energy — Zi Wei Dou Shu · Purple Star Astrology",
+    "url": "https://metaphysicflow.com/",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": ["h1", ".hero-desc"]
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Guanlan Energy",
     "url": "https://metaphysicflow.com",
-    "logo": "https://metaphysicflow.com/images/logo-schema.png",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metaphysicflow.com/images/logo-schema.png",
+      "contentUrl": "https://metaphysicflow.com/images/logo-schema.png"
+    },
     "sameAs": [
-      "https://www.reddit.com/r/ziwei/"
+      "https://lleonard88.gumroad.com",
+      "https://www.reddit.com/r/ziwei/",
+      "https://www.producthunt.com/products/zi-wei-dou-shu-calculator",
+      "https://github.com/lle572988-art/zi-wei-dou-shu-calculator"
     ],
     "knowsAbout": ["Zi Wei Dou Shu", "Purple Star Astrology", "BaZi", "Chinese Astrology"]
   }
@@ -4679,7 +4740,7 @@ window.addEventListener('scroll', () => {
         color:var(--text);font-family:'Cormorant Garamond',serif;font-size:0.95rem;
         padding:0.7rem 0.9rem;border-radius:1px;outline:none;
       ">
-      <button type="submit" style="
+      <button type="submit" data-analytics="funnel-step-2" style="
         background:var(--gold);color:var(--void);
         font-family:'Cinzel',serif;font-size:0.65rem;
         letter-spacing:0.15em;text-transform:uppercase;
@@ -4754,11 +4815,33 @@ function dismissStickyCta() {
 <script>
 // Exit Intent Logic
 let exitShown = false;
+function showExitPopupForUser() {
+  var hasChart = window.isChartReady === true;
+  if (!hasChart) {
+    try {
+      hasChart = window.__session.get('chart_generated') === '1';
+    } catch (e) {}
+  }
+  var popup = document.getElementById('exit-popup');
+  if (!popup) return;
+  if (hasChart) {
+    popup.style.display = 'flex';
+    return;
+  }
+  popup.innerHTML = '<div style="background:linear-gradient(160deg,var(--surface),var(--deep));border:1px solid rgba(197,152,74,0.35);max-width:480px;width:90%;padding:2.5rem;position:relative;text-align:center;margin:auto;">'
+    + '<button onclick="closeExitPopup()" style="position:absolute;top:1rem;right:1rem;background:transparent;border:none;color:var(--silver-dim);font-size:1.2rem;cursor:pointer;">×</button>'
+    + '<div style="font-family:\'Cinzel\',serif;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold);margin-bottom:1rem;">THREE PALACES · BEST VALUE</div>'
+    + '<h3 style="font-family:\'Cormorant Garamond\',serif;font-size:1.8rem;font-weight:300;color:var(--parchment);margin-bottom:1rem;">Unlock Life, Wealth &amp; Career</h3>'
+    + '<p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:1.5rem;">The three most actionable palaces — delivered as a PDF within 24 hours.</p>'
+    + '<a href="https://lleonard88.gumroad.com/l/lfoxf?wanted=true" data-product="three-palace-snapshot" style="display:inline-block;background:var(--gold);color:var(--void);font-family:\'Cinzel\',serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;border:none;padding:0.7rem 1.2rem;text-decoration:none;border-radius:1px;">Get Three-Palace Report — $19</a>'
+    + '</div>';
+  popup.style.display = 'flex';
+}
 document.addEventListener('mouseleave', function(e) {
   if (e.clientY <= 0 && !exitShown && !window.__session.get('exitShown')) {
     exitShown = true;
     window.__session.set('exitShown', '1');
-    document.getElementById('exit-popup').style.display = 'flex';
+    showExitPopupForUser();
   }
 });
 function closeExitPopup() {
@@ -4809,7 +4892,13 @@ function handleExitCapture(e) {
   fetch('/api/subscribe', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({ email: email, source: 'exit-popup-life-palace' })
+    body: JSON.stringify({
+      email: email,
+      source: 'exit-popup-life-palace',
+      utm_source: 'exit_popup',
+      utm_medium: 'overlay',
+      utm_campaign: 'life_palace_pdf'
+    })
   })
   .then(function(res) {
     if (res.ok) return { ok: true };
@@ -4868,30 +4957,39 @@ document.getElementById('exit-popup').addEventListener('click', function(e){
 
 window.addEventListener('scroll', function() {
   const bar = document.getElementById('sticky-cta');
-  if (!bar) return;
+  const mob = document.getElementById('sticky-cta-mobile');
+  if (!bar && !mob) return;
   var dismissed = false;
   try {
     dismissed = (window.__storage && window.__storage.get('stickyCtaDismissed') === '1') ||
       sessionStorage.getItem('stickyCtaDismissed') === '1';
   } catch (e) {}
-  if (dismissed) {
-    bar.style.transform = 'translateY(100%)';
-    return;
+  var pricingVisible = window.__pricingVisible === true;
+  var max = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+  var scrollPct = window.scrollY / max;
+  var showBar = !dismissed && !pricingVisible && scrollPct >= 0.4;
+  if (bar) {
+    if (dismissed || window.innerWidth <= 768 || !showBar) {
+      bar.style.transform = 'translateY(100%)';
+    } else {
+      bar.style.transform = 'translateY(0)';
+    }
   }
-  if (window.innerWidth <= 768) {
-    bar.style.transform = 'translateY(100%)';
-    return;
-  }
-  if (window.scrollY > 600) {
-    bar.style.transform = 'translateY(0)';
-  } else {
-    bar.style.transform = 'translateY(100%)';
-  }
-  var mob = document.getElementById('sticky-cta-mobile');
-  if (mob && window.innerWidth <= 768) {
-    mob.style.display = window.scrollY > 400 ? 'flex' : 'none';
+  if (mob) {
+    if (window.innerWidth <= 768 && showBar) {
+      mob.style.display = 'flex';
+    } else {
+      mob.style.display = 'none';
+    }
   }
 }, { passive: true });
+(function(){
+  var pricing = document.getElementById('pricing');
+  if (!pricing || !('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function(entries) {
+    window.__pricingVisible = entries[0].isIntersecting;
+  }, { threshold: 0, rootMargin: '0px 0px -100px 0px' }).observe(pricing);
+})();
 </script>
 <script>
 (function() {
@@ -5009,12 +5107,21 @@ window.trackEvent = function(name, props) {
   pricingGrid.querySelectorAll('.pricing-card').forEach(function(card) {
     var productEl = card.querySelector('[data-product]');
     var tier = productEl ? productEl.getAttribute('data-product') : 'unknown';
+    var priceTier = productEl ? productEl.getAttribute('data-price-tier') : '';
     card.addEventListener('mouseenter', function() {
       trackEvent('pricing_card_hover', { product: tier });
     }, { once: true });
     card.addEventListener('click', function() {
       trackEvent('pricing_card_click', { product: tier });
     });
+    if (productEl) {
+      productEl.addEventListener('click', function() {
+        try {
+          if (priceTier) sessionStorage.setItem('selected_tier', priceTier);
+          else sessionStorage.setItem('selected_tier', tier);
+        } catch (e) {}
+      });
+    }
   });
 })();
 </script>
@@ -5164,5 +5271,7 @@ window.trackEvent = function(name, props) {
   });
 })();
 </script>
+<script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.tagged-events.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /**
- * Remove noindexed blog URLs from sitemap.xml.
+ * Remove noindexed blog URLs from sitemap.xml (scans full blog/ directory).
+ * Exits 1 if any noindexed blog URL remains in sitemap after cleanup.
  */
 
 const fs = require('fs');
@@ -16,12 +17,11 @@ function isNoindex(html) {
 }
 
 const exclude = new Set();
-fs.readdirSync(blogDir)
-  .filter((f) => f.endsWith('.html') && f !== 'index.html')
-  .forEach((f) => {
-    const html = fs.readFileSync(path.join(blogDir, f), 'utf8');
-    if (isNoindex(html)) exclude.add(`https://metaphysicflow.com/blog/${f}`);
-  });
+const blogFiles = fs.readdirSync(blogDir).filter((f) => f.endsWith('.html') && f !== 'index.html');
+blogFiles.forEach((f) => {
+  const html = fs.readFileSync(path.join(blogDir, f), 'utf8');
+  if (isNoindex(html)) exclude.add(`https://metaphysicflow.com/blog/${f}`);
+});
 
 let xml = fs.readFileSync(sitemapPath, 'utf8');
 let removed = 0;
@@ -35,7 +35,18 @@ exclude.forEach((loc) => {
 
 if (removed) fs.writeFileSync(sitemapPath, xml);
 
-console.log(`🗺️  Sitemap audit — ${exclude.size} noindexed blog URL(s), ${removed} removed from sitemap`);
+require('./sync-sitemap-blog.js');
+
+const finalXml = fs.readFileSync(sitemapPath, 'utf8');
+const stillPresent = [...exclude].filter((loc) => finalXml.includes(`<loc>${loc}</loc>`));
+
+console.log(`🗺️  Sitemap audit — scanned ${blogFiles.length} blog posts, ${exclude.size} noindexed, ${removed} removed`);
 if (exclude.size && removed < exclude.size) {
   console.warn(`⚠️  ${exclude.size - removed} noindexed URL(s) were not present in sitemap`);
 }
+if (stillPresent.length) {
+  console.error(`❌ ${stillPresent.length} noindexed blog URL(s) still in sitemap:`);
+  stillPresent.forEach((loc) => console.error(`   ${loc}`));
+  process.exit(1);
+}
+console.log('✅ No noindexed blog posts remain in sitemap');
