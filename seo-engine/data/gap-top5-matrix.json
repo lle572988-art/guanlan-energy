@@ -1,0 +1,156 @@
+{
+  "site": {
+    "domain": "https://metaphysicflow.com",
+    "cta_page": "/free-chart.html",
+    "cta_text": "Get Your Free Chart Reading",
+    "brand_name": "Guanlan Energy",
+    "author": "Guanlan Energy",
+    "faq_page": "/faq.html",
+    "logo": "/images/og-chart.jpg"
+  },
+  "pages": [
+    {
+      "slug": "empower-destiny-bazi-vs-zi-wei-dou-shu",
+      "gap_rank": 1,
+      "gap_phrase": "Empower Your Destiny With the Wisdom of Bazi",
+      "competitor": "imperialharvest.com",
+      "page_type": "compare",
+      "title": "Empower Your Destiny: BaZi vs Zi Wei Dou Shu — Which System Fits You?",
+      "description": "Searching \"empower your destiny with BaZi\"? Compare Four Pillars timing with Purple Star Astrology's 12-palace chart — and get a free English ZWDS reading.",
+      "lead": "BaZi tells you when elemental seasons shift. Zi Wei Dou Shu shows where in your life map those shifts land. Both empower destiny — but at different resolution.",
+      "sections": [
+        {
+          "h2": "What BaZi Does Best",
+          "body": "Four Pillars of Destiny compresses your birth year, month, day, and hour into elemental chemistry. Practitioners use Ten Gods, luck pillars, and annual stems to answer: Is this a wealth year? A relationship test? BaZi excels at macro timing — the weather system moving through your life."
+        },
+        {
+          "h2": "What Zi Wei Dou Shu Adds",
+          "body": "Purple Star Astrology maps 14 major stars across 12 palaces — Life, Wealth, Career, Spouse, Health, Travel, and more. Instead of only asking when, ZWDS asks where: which life domain is activated, which star carries authority, and which Si Hua transformation (Lu, Quan, Ke, Ji) is pressing that palace this year."
+        },
+        {
+          "h2": "How to Choose (Without Superstition Hype)",
+          "body": "If you want elemental strategy and decade luck pillars, start with BaZi. If you want palace-level career/love/wealth narratives in plain English, start with a free ZWDS chart. Many serious readers use both — BaZi for timing windows, ZWDS for domain-specific action plans."
+        }
+      ],
+      "faq_q": "Can BaZi and Zi Wei Dou Shu be used together?",
+      "faq_a": "Yes. BaZi emphasizes elemental cycles and luck pillars; ZWDS emphasizes star placements and palace activations. Together they answer when and where — the two questions most seekers actually care about.",
+      "related": [
+        { "href": "/pages/bazi-vs-zi-wei-dou-shu-difference.html", "label": "Full BaZi vs ZWDS comparison" },
+        { "href": "/blog/bazi-vs-zi-wei-dou-shu.html", "label": "Journal: BaZi vs Purple Star" },
+        { "href": "/pages/horoscope/2026-annual-forecast.html", "label": "2026 ZWDS annual forecast hub" }
+      ]
+    },
+    {
+      "slug": "zi-wei-dou-shu-vs-feng-shui-guide",
+      "gap_rank": 2,
+      "gap_phrase": "Understanding Imperial Feng Shui / Feng Shui Partner For Every Stage of Life",
+      "competitor": "imperialharvest.com",
+      "page_type": "compare",
+      "title": "Zi Wei Dou Shu vs Feng Shui: Chart Blueprint vs Space Design",
+      "description": "Feng Shui optimizes environment; Purple Star Astrology maps your natal timing. Learn when to use each — and how MetaphysicFlow's free chart complements space-based metaphysics.",
+      "lead": "Feng Shui adjusts the room. Zi Wei Dou Shu reads the person in the room. Confusing the two is the most common mistake English-speaking seekers make.",
+      "sections": [
+        {
+          "h2": "Feng Shui: External Environment",
+          "body": "Classical Feng Shui analyzes landform, facing direction, flying stars, and room layout to harmonize qi in physical space. It is indispensable for offices, bedrooms, and renovation timing — especially when you control the environment but feel blocked anyway."
+        },
+        {
+          "h2": "Zi Wei Dou Shu: Internal Life Map",
+          "body": "ZWDS uses birth date, hour, and gender to construct a 12-palace natal board. It reveals innate tendencies in career appetite, wealth style, relationship patterns, and health constitution. No amount of furniture rearrangement replaces knowing which palace is under annual pressure."
+        },
+        {
+          "h2": "Practical Stack for North American Seekers",
+          "body": "Use Feng Shui when you are moving, renovating, or optimizing a workspace. Use ZWDS when you are choosing careers, partners, investment timing, or understanding recurring life themes. Generate your English chart first — then apply Feng Shui to support weak palaces, not instead of reading them."
+        }
+      ],
+      "faq_q": "Does Feng Shui replace a birth chart reading?",
+      "faq_a": "No. Feng Shui works on space; ZWDS works on natal structure and annual overlays. The strongest approach combines both: chart for timing and domain focus, Feng Shui for environmental support."
+    },
+    {
+      "slug": "find-map-of-your-soul-purple-star-chart",
+      "gap_rank": 3,
+      "gap_phrase": "Find The Map of Your Soul",
+      "competitor": "fusang-vision.com",
+      "page_type": "landing",
+      "title": "Find the Map of Your Soul — Free Purple Star (Zi Wei) Chart in English",
+      "description": "Looking for the map of your soul? In Zi Wei Dou Shu, the Life Palace (Ming Gong) is your core identity vector. Generate your free 12-palace chart in 30 seconds.",
+      "lead": "The \"soul map\" metaphor maps cleanly onto Zi Wei Dou Shu's Life Palace — the anchor palace that defines how you move through every other domain.",
+      "sections": [
+        {
+          "h2": "Why Seekers Search \"Map of Your Soul\"",
+          "body": "When career, love, or purpose feel misaligned, generic horoscopes fail. You want a system that feels specific — almost uncomfortably precise. Purple Star Astrology was built for that demand: a full natal matrix, not a single sun sign."
+        },
+        {
+          "h2": "Life Palace = Your Soul's Operating System",
+          "body": "Whatever major star sits in your Life Palace (Zi Wei, Wu Qu, Tai Yin, Po Jun, etc.) becomes the lens through which you interpret success, conflict, and desire. Borrowed stars, opposite-palace reads, and Si Hua transformations refine the picture — but the Life Palace is home base."
+        },
+        {
+          "h2": "From Metaphor to Actionable Chart",
+          "body": "MetaphysicFlow's free calculator plots all 12 palaces with English labels, structured FAQ schema, and palace-level readings for Life, Wealth, and Career. You get the soul map as data — not as vague poetry."
+        }
+      ],
+      "faq_q": "Is the Life Palace the same as a Western rising sign?",
+      "faq_a": "Not exactly. Both affect self-presentation, but ZWDS Life Palace is determined by birth hour within a 12-palace grid populated by specific stars — producing a much more granular identity read than a single rising sign."
+    },
+    {
+      "slug": "career-clarity-zi-wei-dou-shu-reading",
+      "gap_rank": 4,
+      "gap_phrase": "Career Clarity",
+      "competitor": "fusang-vision.com",
+      "page_type": "landing",
+      "title": "Career Clarity Through Zi Wei Dou Shu — Read Your Career Palace (Guan Lu)",
+      "description": "Need career clarity? Purple Star Astrology's Career Palace (Guan Lu Gong) reveals vocational fit, promotion windows, and authority patterns. Free English chart + palace guides.",
+      "lead": "Career confusion usually means your Career Palace is activated — or starved — and you are interpreting it through the wrong metaphor (passion vs duty vs status).",
+      "sections": [
+        {
+          "h2": "What Career Palace Governs",
+          "body": "Guan Lu Gong rules professional trajectory, reputation, leadership appetite, and whether you thrive as founder, specialist, or institutional climber. Stars like Zi Wei, Wu Qu, Qi Sha, and Tian Fu each paint a different vocational archetype."
+        },
+        {
+          "h2": "Annual Overlays That Create \"Clarity Moments\"",
+          "body": "When annual Si Hua hits your Career Palace — especially Hua Quan (authority) or Hua Ji (pressure) — decisions feel urgent. Clarity comes from naming the palace activation, not from generic \"follow your passion\" advice."
+        },
+        {
+          "h2": "Next Step: Chart + 2026 Transit Cross-Check",
+          "body": "Generate your free chart, read Career Palace stars, then cross-check 2026 transit pages where annual transformations touch Guan Lu. MetaphysicFlow links both in one English workflow."
+        }
+      ],
+      "faq_q": "Can ZWDS tell me which job to take?",
+      "faq_a": "It identifies vocational archetype, timing windows, and friction patterns — not a specific employer name. Use it to filter options that match your Career Palace nature, then apply practical due diligence.",
+      "related": [
+        { "href": "/pages/zi-wei-dou-shu-career-palace-meaning.html", "label": "Career Palace meaning guide" },
+        { "href": "/pages/transit/2026-lian-zhen-hua-ji-in-career-palace.html", "label": "2026 Career Palace transit example" }
+      ]
+    },
+    {
+      "slug": "purple-star-astrology-readings-online-english",
+      "gap_rank": 5,
+      "gap_phrase": "Zi Wei Astrology Readings & Purple Astrology Insights",
+      "competitor": "fusang-vision.com",
+      "page_type": "landing",
+      "title": "Purple Star Astrology Readings Online — Free English Chart + AI Report",
+      "description": "Compare Purple Star / Zi Wei astrology reading options in English: free 12-palace calculator, programmatic palace guides, and personalized AI transit reports at MetaphysicFlow.",
+      "lead": "English ZWDS readings range from free calculators to boutique consultations. Here is how to get signal without paying for hype.",
+      "sections": [
+        {
+          "h2": "Tier 1: Free Natal Chart (Start Here)",
+          "body": "Plot your birth date and two-hour branch in MetaphysicFlow's calculator. You receive Life, Wealth, and Career palace highlights plus a full 12-palace SVG board — enough to validate whether ZWDS resonates before spending money."
+        },
+        {
+          "h2": "Tier 2: Programmatic Palace Library",
+          "body": "Hundreds of star×palace and annual transit pages explain specific anxieties (wealth palace stars, 2026 Si Hua in Career Palace, etc.). Use these when you know your stars and want depth on one vector."
+        },
+        {
+          "h2": "Tier 3: Personalized AI + Email Fulfillment",
+          "body": "Widget leads on transit and matrix pages trigger a DeepSeek-generated English report emailed to you — contextual to the page you entered from. Premium PDF readings remain available for full 12-palace human interpretation."
+        }
+      ],
+      "faq_q": "Are free Purple Star readings accurate?",
+      "faq_a": "Chart calculation is deterministic from birth data — accuracy depends on correct birth hour. Interpretation depth varies by tier; always treat free layers as orientation, not final oracle.",
+      "related": [
+        { "href": "/pages/purple-star-astrology-calculator.html", "label": "Purple Star calculator landing" },
+        { "href": "/pages/zi-wei-dou-shu-calculator-english.html", "label": "ZWDS calculator (English)" }
+      ]
+    }
+  ]
+}

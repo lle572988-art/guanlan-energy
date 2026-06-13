@@ -8,6 +8,7 @@ KEYWORDS="seo-engine/data/keywords-matrix.json"
 INFINITE="seo-engine/data/infinite-matrix.json"
 TRANSIT="seo-engine/data/transit-matrix.json"
 HOROSCOPE="seo-engine/data/horoscope-matrix.json"
+GAP_TOP5="seo-engine/data/gap-top5-matrix.json"
 
 echo "========================================"
 echo "  SEO Submission for $DOMAIN"
@@ -35,7 +36,12 @@ if(fs.existsSync('./${HOROSCOPE}')){
   const hz=JSON.parse(fs.readFileSync('./${HOROSCOPE}','utf8'));
   horoscopeUrls=hz.pages.map(p=>base+'/pages/'+p.slug+'.html');
 }
-const all=[...new Set([...core,...keywordUrls,...matrixUrls,...transitUrls,...horoscopeUrls])];
+let gapUrls=[];
+if(fs.existsSync('./${GAP_TOP5}')){
+  const gp=JSON.parse(fs.readFileSync('./${GAP_TOP5}','utf8'));
+  gapUrls=gp.pages.map(p=>base+'/pages/'+p.slug+'.html');
+}
+const all=[...new Set([...core,...keywordUrls,...matrixUrls,...transitUrls,...horoscopeUrls,...gapUrls])];
 process.stderr.write('URLs to ping: '+all.length+'\\n');
 console.log(JSON.stringify(all));
 ")

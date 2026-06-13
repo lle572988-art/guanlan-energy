@@ -9,6 +9,7 @@
     "build": "node scripts/generate-pages.js && node scripts/update-sitemap-links.js",
     "seo:multiply": "node scripts/build-infinite-matrix.js",
     "seo:horoscope": "node scripts/build-horoscope-matrix.js",
+    "seo:gap-top5": "node scripts/generate-gap-pages.js",
     "seo:transit": "node scripts/build-transit-matrix.js",
     "seo:generate": "SEO_DATA=../data/infinite-matrix.json node scripts/generate-pages.js && node scripts/generate-transit-pages.js && node scripts/generate-horoscope-pages.js",
     "seo:inject": "node ../scripts/inject-conversion-widget.js",
