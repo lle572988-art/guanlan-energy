@@ -26,6 +26,17 @@ function loadEnvFile() {
 
 loadEnvFile();
 
+function envKeyIssue(name, value) {
+  if (!value) return `${name} is not set in .env.local`;
+  if (/[^\x00-\x7F]/.test(value)) {
+    return `${name} contains non-ASCII characters (often a pasted "…" placeholder) — use the full key from DeepSeek/Resend, no ellipsis`;
+  }
+  if (value.length < 20) {
+    return `${name} looks truncated (${value.length} chars) — paste the complete key, not a redacted preview like sk-abc…xyz`;
+  }
+  return null;
+}
+
 const send = process.argv.includes('--send');
 const sample = {
   email: process.env.TEST_EMAIL || 'test@example.com',
@@ -53,8 +64,21 @@ async function main() {
 
   console.log('\n=== Phase 6 Karma Fulfillment Test ===');
   console.log('Page context:', pageContext.pageType, '·', pageContext.keyword);
-  console.log('Anthropic:', process.env.ANTHROPIC_API_KEY ? 'configured' : 'MISSING (fallback template)');
-  console.log('Resend:', process.env.RESEND_API_KEY ? 'configured' : 'MISSING');
+  const aiKey = process.env.AI_API_KEY || process.env.ANTHROPIC_API_KEY;
+  const resendKey = process.env.RESEND_API_KEY;
+  const aiIssue = envKeyIssue('AI_API_KEY', aiKey);
+  const resendIssue = envKeyIssue('RESEND_API_KEY', resendKey);
+
+  console.log(
+    'AI_API_KEY:',
+    aiIssue ? `INVALID — ${aiIssue}` : aiKey ? 'configured · model=deepseek-chat' : 'MISSING (fallback template)'
+  );
+  console.log('Resend:', resendIssue ? `INVALID — ${resendIssue}` : resendKey ? 'configured' : 'MISSING');
+
+  if (aiIssue || resendIssue) {
+    console.error('\nFix .env.local with full keys (no … or ... placeholders), save, and re-run.\n');
+    process.exit(1);
+  }
   console.log('Mode:', send ? 'GENERATE + SEND' : 'GENERATE ONLY\n');
 
   if (send) {
