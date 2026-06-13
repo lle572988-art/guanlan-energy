@@ -88,6 +88,27 @@ function sellerEmailHtml(product, body, birthFields) {
     </div>`;
 }
 
+async function adjustSpots(delta) {
+  try {
+    const { kv } = await import('@vercel/kv');
+    let current = await kv.get('spots');
+    if (current == null) current = 8;
+    current = Math.max(0, Number(current) + delta);
+    await kv.set('spots', current);
+    return current;
+  } catch (e) {
+    console.error('[gumroad-ping] spots KV:', e.message);
+    return null;
+  }
+}
+
+function isSpotTierProduct(meta, body) {
+  if (!meta) return false;
+  if (meta.key === 'partner-compatibility' || meta.key === 'annual') return true;
+  const name = (body.product_name || '').toLowerCase();
+  return /partner|compatibility|annual|cosmic alignment/.test(name);
+}
+
 async function logSale(entry) {
   if (!process.env.BLOB_READ_WRITE_TOKEN) return;
   try {
@@ -153,8 +174,13 @@ export default async function handler(req, res) {
   const fromLead = leadToBirthFields(lead);
   const mergedFields = { ...fromLead, ...customFields };
   const meta = product || { key: 'full-chart', name: body.product_name || 'Zi Wei Reading', price: body.price || '' };
+  const refunded = body.refunded === 'true' || body.refunded === true;
 
   try {
+    if (isSpotTierProduct(meta, body)) {
+      await adjustSpots(refunded ? 1 : -1);
+    }
+
     await sendResend({
       to: email,
       subject: `Your ${meta.name} — order confirmed (PDF in 24–48h)`,

@@ -183,18 +183,13 @@ function isEmailCaptured() {
   return chartState.emailCaptured || !!chartState.email;
 }
 
-function isCareerGated(index) {
-  return index === CAREER_PALACE_INDEX && !isEmailCaptured();
-}
-
-function isFreePalace(index) {
-  return FREE_PALACE_INDICES.indexOf(index) !== -1;
-}
-
 function isPalaceLocked(index) {
   if (chartState.unlocked) return false;
-  if (isCareerGated(index)) return true;
-  return !isFreePalace(index);
+  return FREE_PALACE_INDICES.indexOf(index) === -1;
+}
+
+function isCareerGated() {
+  return false;
 }
 
 const STAR_ARCHETYPE = {
@@ -716,7 +711,7 @@ function renderThreePillars(readings) {
     icon: '◆', label: 'HOW YOU ATTRACT WEALTH', reading: readings[4], featured: true
   }));
   grid.appendChild(renderPillarCard({
-    icon: '♡', label: 'HOW YOU LOVE', reading: readings[2], featured: false
+    icon: '⚡', label: 'YOUR CAREER PATH', reading: readings[8], featured: false
   }));
 }
 
@@ -756,7 +751,6 @@ function renderCareerUpsellHtml() {
 
 function renderPalaceLifeCard(reading, index, readings) {
   var locked = isPalaceLocked(index);
-  var careerGated = isCareerGated(index);
   var lifeDisplay = index === 0 ? resolveLifePalaceDisplay(readings) : null;
   var starCn = (reading.majorStars && reading.majorStars[0]) || '';
   var card = document.createElement('div');
@@ -769,37 +763,17 @@ function renderPalaceLifeCard(reading, index, readings) {
   var fullHtml = lifeDisplay
     ? lifePalaceFullHtml(lifeDisplay, lifeDisplay.reading)
     : palaceExpandedBody(reading);
-  var btnLabel = careerGated ? '' : (locked ? 'Unlock — Free with Email' : 'Reveal Full Reading');
-  var bodyBlock = careerGated
-    ? renderCareerGateHtml(index)
-    : ('<div class="palace-full-body" id="palace-body-' + index + '">' + fullHtml
-      + (index === CAREER_PALACE_INDEX && isEmailCaptured() ? renderCareerUpsellHtml() : '')
-      + '</div>');
+  var btnLabel = locked ? 'Unlock — Free with Email' : 'Reveal Full Reading';
+  var bodyBlock = '<div class="palace-full-body" id="palace-body-' + index + '">' + fullHtml + '</div>';
   card.innerHTML = ''
     + '<div class="topic-tag">' + (TOPIC_TAGS[reading.palaceCn] || reading.palaceEn.toUpperCase()) + '</div>'
     + '<h3 class="star-name">' + title + '</h3>'
-    + '<p class="teaser">' + (careerGated ? 'Your Career &amp; Status palace is calculated — email unlocks the full reading.' : teaser) + '</p>'
+    + '<p class="teaser">' + teaser + '</p>'
     + bodyBlock
     + (btnLabel ? '<button type="button" class="card-action" data-index="' + index + '">' + btnLabel + '</button>' : '');
-  if (careerGated) {
-    var gateBtn = card.querySelector('[data-career-gate]');
-    if (gateBtn) {
-      gateBtn.addEventListener('click', function() { submitCareerGate(index); });
-    }
-    var gateEmail = card.querySelector('#career-gate-email-' + index);
-    if (gateEmail) {
-      gateEmail.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          submitCareerGate(index);
-        }
-      });
-    }
-  } else {
-    card.querySelector('.card-action').addEventListener('click', function() {
-      handlePalaceAction(index);
-    });
-  }
+  card.querySelector('.card-action').addEventListener('click', function() {
+    handlePalaceAction(index);
+  });
   if (!locked) {
     card.classList.add('expanded');
   }
@@ -807,10 +781,6 @@ function renderPalaceLifeCard(reading, index, readings) {
 }
 
 function handlePalaceAction(index) {
-  if (isCareerGated(index)) {
-    submitCareerGate(index);
-    return;
-  }
   if (isPalaceLocked(index)) {
     var gate = document.getElementById('email-gate-embedded');
     if (gate) gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -824,15 +794,25 @@ function renderPalaceGroups(readings) {
   var container = document.getElementById('palace-groups');
   if (!container) return;
   container.innerHTML = '';
-  PALACE_GROUPS.forEach(function(group) {
+  var gateInserted = false;
+  PALACE_GROUPS.forEach(function(group, groupIndex) {
     var section = document.createElement('div');
-    section.className = 'palace-group';
+    section.className = 'palace-group' + (!chartState.unlocked && groupIndex > 1 ? ' palace-group--locked' : '');
     section.innerHTML = '<div class="group-title">' + group.title + '</div>';
     group.indices.forEach(function(idx) {
       if (readings[idx]) section.appendChild(renderPalaceLifeCard(readings[idx], idx, readings));
     });
     container.appendChild(section);
+    if (!chartState.unlocked && !gateInserted && groupIndex === 1) {
+      var gate = document.getElementById('email-gate-embedded');
+      if (gate) {
+        gate.style.display = 'block';
+        container.appendChild(gate);
+        gateInserted = true;
+      }
+    }
   });
+  setupGateRevealObserver();
 }
 
 function setChartStatus() { /* decorative chart — no status badges */ }
@@ -856,6 +836,7 @@ function populateResultsUI(result, params) {
   var meta = getChartMeta(result, lifeStarCn);
 
   renderIdentityHook(result, chartState.readings, meta);
+  renderPersonalChartCta(chartState.readings, result);
   renderThreePillars(chartState.readings);
   renderYearForecast(meta, chartState.readings);
   renderPalaceGroups(chartState.readings);
@@ -953,6 +934,14 @@ function submitCareerGate(index) {
       if (actionBtn) actionBtn.remove();
       card.appendChild(bodyWrap);
     }
+    setTimeout(function() {
+      var upsell = card && card.querySelector('.career-upsell-cta');
+      if (upsell) {
+        upsell.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        if (window.trackEvent) trackEvent('upsell_view', { gate: 'career', variant: 'post_gate' });
+        else if (window.plausible) plausible('upsell_view');
+      }
+    }, 350);
   } else {
     refreshPalaceCard(index);
   }
@@ -970,9 +959,62 @@ function applyResultPageSeo() {
     document.head.appendChild(robots);
   }
   robots.setAttribute('content', 'noindex, follow');
+  if (window.history && window.history.replaceState) {
+    window.history.replaceState(null, '', window.location.pathname);
+  }
+}
+
+function renderPersonalChartCta(readings, result) {
+  var cta = document.getElementById('chart-personal-cta');
+  var heading = document.getElementById('chart-personal-cta-heading');
+  var starEl = document.getElementById('chart-personal-star');
+  var branchEl = document.getElementById('chart-personal-branch');
+  if (!cta || !readings || !readings.length) return;
+  var lifeDisplay = resolveLifePalaceDisplay(readings);
+  var starName = lifeDisplay.mode === 'open'
+    ? 'Open Path'
+    : (lifeDisplay.starCn ? getStarSoulTitle(lifeDisplay.starCn) : lifeDisplay.displayName);
+  var branch = result ? getLifeBranch(result, readings) : '—';
+  if (starEl) starEl.textContent = starName;
+  if (branchEl) branchEl.textContent = branch + '宮';
+  if (heading) {
+    heading.innerHTML = 'Your <strong><em id="chart-personal-star">' + starName + '</em></strong> in <strong><span id="chart-personal-branch">' + branch + '宮</span></strong> — unlock the full reading';
+  }
+  cta.hidden = false;
+  if (window.trackEvent) trackEvent('upsell_view', { variant: 'chart_personal_cta', star: starName, branch: branch });
 }
 
 // ─── MAIN ───
+function runChartCalculation(params) {
+  try {
+    if (!window.zwdsCore || typeof window.zwdsCore.calculateChart !== 'function') {
+      throw new Error('Chart engine failed to load.');
+    }
+    if (!window.ZwdsChartRender) {
+      throw new Error('Branch chart renderer failed to load.');
+    }
+
+    const result = window.zwdsCore.calculateChart(params.year, params.month, params.day, params.hour, 'M');
+    if (!result || !result.palaces) {
+      throw new Error('Chart calculation returned no data.');
+    }
+
+    chartState.result = result;
+
+    const svgOk = renderChartSvg(result);
+    if (!svgOk) {
+      throw new Error('Failed to render the 12-palace chart diagram.');
+    }
+
+    hideLoadingScreen();
+    populateResultsUI(result, params);
+    if (window.plausible) plausible('chart_ready');
+    if (window.gtag) gtag('event', 'chart_ready', { page: 'free-chart' });
+  } catch (err) {
+    showError(err);
+  }
+}
+
 function init() {
   try {
     const params = getParams();
@@ -1011,29 +1053,10 @@ function init() {
     const loadingStatus = document.getElementById('loading-status');
     if (loadingStatus) loadingStatus.textContent = 'CALCULATING LIFE PALACE · 命宮';
 
-    if (!window.zwdsCore || typeof window.zwdsCore.calculateChart !== 'function') {
-      throw new Error('Chart engine failed to load.');
-    }
-    if (!window.ZwdsChartRender) {
-      throw new Error('Branch chart renderer failed to load.');
-    }
-
-    const result = window.zwdsCore.calculateChart(params.year, params.month, params.day, params.hour, 'M');
-    if (!result || !result.palaces) {
-      throw new Error('Chart calculation returned no data.');
-    }
-
-    chartState.result = result;
-
-    const svgOk = renderChartSvg(result);
-    if (!svgOk) {
-      throw new Error('Failed to render the 12-palace chart diagram.');
-    }
-
-    hideLoadingScreen();
-    populateResultsUI(result, params);
-    if (window.plausible) plausible('chart_ready');
-    if (window.gtag) gtag('event', 'chart_ready', { page: 'free-chart' });
+    const schedule = window.requestIdleCallback
+      ? function (fn) { requestIdleCallback(fn, { timeout: 2000 }); }
+      : function (fn) { setTimeout(fn, 0); };
+    schedule(function () { runChartCalculation(params); });
 
   } catch (err) {
     showError(err);
@@ -1101,6 +1124,41 @@ function captureLead(email, name, source) {
   });
 }
 
+function renderPostGateUpsell(readings, result) {
+  var existing = document.getElementById('post-gate-upsell');
+  if (existing) existing.remove();
+  if (!readings || !readings.length) return;
+  var lifeDisplay = resolveLifePalaceDisplay(readings);
+  var starName = lifeDisplay.mode === 'open'
+    ? 'Open Path'
+    : (lifeDisplay.starCn ? getStarSoulTitle(lifeDisplay.starCn) : lifeDisplay.displayName);
+  var branch = result ? getLifeBranch(result, readings) : '—';
+  var gate = document.getElementById('email-gate-embedded');
+  if (!gate) return;
+  var banner = document.createElement('div');
+  banner.id = 'post-gate-upsell';
+  banner.className = 'post-gate-upsell';
+  banner.innerHTML = ''
+    + '<h3>Your <strong>' + starName + '</strong> in <strong>' + branch + '宮</strong> — unlock all 9 palaces with a full <strong>Zi Wei Dou Shu</strong> Purple Star reading ($39)</h3>'
+    + '<a class="btn-gold" href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" data-product="full-chart">Get the Full 12-Palace Matrix — $39</a>';
+  gate.insertAdjacentElement('afterend', banner);
+  if (window.trackEvent) trackEvent('upsell_banner_view', { star: starName, branch: branch });
+  else if (window.plausible) plausible('upsell_banner_view', { props: { star: starName, branch: branch } });
+}
+
+function setupGateRevealObserver() {
+  if (chartState.unlocked || chartState._gateObserved) return;
+  var target = document.getElementById('palace-card-8') || document.querySelector('.palace-life-card:not(.locked)');
+  var gate = document.getElementById('email-gate-embedded');
+  if (!target || !gate || !('IntersectionObserver' in window)) return;
+  chartState._gateObserved = true;
+  new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      gate.classList.add('gate-visible');
+    }
+  }, { threshold: 0.9 }).observe(target);
+}
+
 function submitGate(event) {
   if (event) event.preventDefault();
   var name = document.getElementById('gate-name').value.trim();
@@ -1121,6 +1179,7 @@ function submitGate(event) {
   unlockAllPalaces();
   document.getElementById('gate-form').style.display = 'none';
   document.getElementById('gate-embedded-success').classList.add('show');
+  renderPostGateUpsell(chartState.readings, chartState.result);
   setTimeout(hideEmbeddedGate, 1800);
   return false;
 }

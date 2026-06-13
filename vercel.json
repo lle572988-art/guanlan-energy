@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
   "headers": [
     {
       "source": "/js/(.*)",
@@ -17,6 +19,12 @@
       "source": "/fonts/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*).html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600, stale-while-revalidate=86400" }
       ]
     },
     {
@@ -118,6 +126,14 @@
     }
   ],
   "rewrites": [
+    {
+      "source": "/blog",
+      "destination": "/blog/index.html"
+    },
+    {
+      "source": "/blog/",
+      "destination": "/blog/index.html"
+    },
     {
       "source": "/((?!hubs/|blog/|scan/|longtail/|images/|pages/|api/|js/|[a-z0-9_-]+\\.[a-z0-9]+).*)",
       "destination": "/index.html"

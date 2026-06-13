@@ -1,0 +1,61 @@
+/* Shared blog typography — Guanlan Energy journal */
+:root {
+  --void: #03070f;
+  --deep: #060d1a;
+  --surface: #0c1628;
+  --gold: #c5984a;
+  --gold-light: #e2c27a;
+  --silver: #9bb5cc;
+  --silver-dim: #4a6680;
+  --parchment: #d4c4a0;
+  --text: #c8d8e8;
+  --text-dim: #7fa0ba;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--void);
+  color: var(--text);
+  line-height: 1.8;
+}
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(3, 7, 15, 0.92);
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid rgba(197, 152, 74, 0.12);
+  display: flex;
+  justify-content: space-between;
+}
+nav a {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--silver-dim);
+  text-decoration: none;
+}
+nav a:hover { color: var(--gold); }
+.container, .wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.1rem;
+  font-weight: 300;
+  color: var(--parchment);
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+}
+h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 400;
+  color: var(--gold-light);
+  margin: 2rem 0 0.75rem;
+}
+p { margin-bottom: 1rem; color: var(--text-dim); }
+a { color: var(--gold-light); }

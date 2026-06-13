@@ -4,6 +4,7 @@
   "description": "Guanlan Energy - Five Elements Wisdom",
   "dependencies": {
     "@vercel/blob": "^2.4.0",
+    "@vercel/kv": "^3.0.0",
     "lunar-javascript": "^1.7.7",
     "solarlunar": "^3.1.0",
     "stripe": "^17.0.0"
@@ -18,7 +19,19 @@
     "seo:blog-links": "npm run seo:blog-links --prefix seo-engine",
     "seo:blog-main": "npm run seo:blog-main --prefix seo-engine",
     "seo:update-dates": "node scripts/update-dates.js",
+    "seo:update-schema-dates": "node scripts/update-schema-dates.js",
     "seo:sync-sitemap": "node scripts/sync-sitemap-blog.js",
+    "prebuild": "node scripts/pre-deploy.js",
+    "predeploy": "node scripts/pre-deploy.js",
+    "seo:audit-links": "node scripts/audit-internal-links.js",
+    "seo:audit-meta": "node scripts/audit-meta.js",
+    "seo:audit-breadcrumbs": "node scripts/audit-breadcrumbs.js",
+    "seo:audit-breadcrumbs:fix": "node scripts/audit-breadcrumbs.js --fix",
+    "seo:audit-breadcrumbs:live": "node scripts/audit-breadcrumbs.js",
+    "seo:audit-schema": "node scripts/audit-schema.js",
+    "seo:audit-schema:fix": "node scripts/audit-schema.js --fix",
+    "audit:alt": "node scripts/audit-alt.js",
+    "seo:generate-growth-posts": "node scripts/generate-growth-blog-posts.js --",
     "prepare": "node scripts/install-git-hooks.js",
     "seo:priority-ping": "bash seo-priority-ping.sh",
     "phase2:competitor-intel": "npm run phase2:competitor-intel --prefix seo-engine",
@@ -42,6 +55,7 @@
   },
   "homepage": "https://github.com/lle572988-art/guanlan-energy#readme",
   "devDependencies": {
+    "cheerio": "^1.2.0",
     "docx": "^9.7.1"
   }
 }

@@ -3,7 +3,11 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="canonical" href="https://metaphysicflow.com/consultation.html"/><title>1-on-1 BaZi Consultation | Guanlan Energy Natal Chart Reading</title>
+<meta name="x-spots" content="8"/>
+<link rel="canonical" href="https://metaphysicflow.com/consultation.html"/>
+<link rel="dns-prefetch" href="https://gumroad.com">
+<link rel="preconnect" href="https://api.gumroad.com" crossorigin>
+<title>Zi Wei Dou Shu Consultation · 1-on-1 Reading | Guanlan Energy</title>
 <meta name="description" content="Private 60-minute voice-based deep dive into your 14 Main Stars and Five Elements. Fully personalized natal chart consultation."/>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
 <script>
@@ -507,7 +511,7 @@ document.addEventListener('scroll', function(){
 
 
 
-<script type="application/ld+json">
+<script type="application/ld+json" id="service-schema">
 [
 {
   "@context": "https://schema.org",
@@ -529,9 +533,14 @@ document.addEventListener('scroll', function(){
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "1-on-1 BaZi Natal Chart Consultation",
-  "description": "Private voice-based deep dive into your 14 Main Stars and Five Elements.",
-  "provider": {"@id": "https://metaphysicflow.com/#organization"}
+  "name": "Zi Wei Dou Shu Consultation",
+  "description": "Private voice-based deep dive into your Purple Star chart and twelve life palaces.",
+  "provider": {"@id": "https://metaphysicflow.com/#organization"},
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/LimitedAvailability"
+  }
 }
 ]
 </script>
@@ -650,7 +659,8 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
 <div class="wrap">
 <section class="hero">
   <div class="sigil">☰ ☷ ☵</div>
-  <h1>You Are Not a System.<br>You Are a Constellation.</h1>
+  <h1>Zi Wei Dou Shu Consultation<br><span style="font-size:0.55em;font-weight:300;letter-spacing:0.06em;color:var(--muted)">Private Purple Star Reading · Four Pillars of Destiny</span></h1>
+  <p id="spots-remaining" style="font-family:sans-serif;font-size:12px;letter-spacing:0.08em;color:var(--gold);margin-top:8px;">Loading session availability…</p>
   <p class="sub">A private, voice-to-voice journey into your 14 Main Stars and Five Elements — completely tailored to your birth, your questions, and your energy.</p>
   <div class="divider"></div>
   <p style="font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--gold);letter-spacing:2px;font-weight:300">$69 · one session · infinite clarity</p>
@@ -755,6 +765,8 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
   <h2 class="section-title">Start small, go deep.</h2>
   <div style="max-width:700px;margin:0 auto;text-align:center">
     <p style="font-size:15px;color:var(--muted);line-height:1.8">Every journey begins with a single step. Start with a <strong style="color:var(--gold2)">free 12-palace chart preview</strong>, then choose your depth — from the <strong style="color:var(--gold2)">$9.90 Life Palace Deep Dive</strong> to the <strong style="color:var(--gold2)">$39 Full 12-Palace Matrix</strong> or <strong style="color:var(--gold2)">$59 Partner Compatibility Reading</strong>.</p>
+    <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-top:20px"><strong style="color:var(--gold2)">Partner Compatibility Reading ($59)</strong> — a written Zi Wei Dou Shu relationship analysis comparing two natal charts. We map Spouse Palace reciprocity, attraction patterns, friction points, and timing windows for partnership shifts — delivered as an illustrated PDF within 48 hours. Ideal when you want clarity on love dynamics without a live session.</p>
+    <p style="font-size:15px;color:var(--muted);line-height:1.8;margin-top:16px"><strong style="color:var(--gold2)">Annual Zi Wei Guidance ($199/year)</strong> — quarterly Purple Star Astrology reports aligned to your Major Cycles and solar-term transitions. Includes unlimited email Q&amp;A, priority booking for live sessions, and written timing guidance for career, wealth, and relationship decisions across the full year.</p>
     <a href="index.html#pricing" style="display:inline-block;margin-top:12px;padding:8px 24px;border:1px solid var(--gold2);color:var(--gold2);text-decoration:none;border-radius:4px;font-size:12px;letter-spacing:2px">✦ View All Readings &amp; Pricing</a>
   </div>
 </section>
@@ -795,25 +807,40 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
       </div>
     </div>
   </div>
-  <form class="booking-form" action="/api/consult" method="POST" id="consultForm">
+  <form class="booking-form" action="/api/consult" method="POST" id="consultForm" fetchpriority="high">
     <div class="form-row">
       <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" name="name" placeholder="Your name" required>
+        <label for="consult-name">Full Name</label>
+        <input type="text" name="name" id="consult-name" placeholder="Your name" required autocomplete="name">
       </div>
       <div class="form-group">
-        <label>Email</label>
-        <input type="email" name="email" placeholder="your@email.com" required>
+        <label for="consult-email">Email</label>
+        <input type="email" name="email" id="consult-email" placeholder="your@email.com" required autocomplete="email" inputmode="email">
       </div>
     </div>
     <div class="form-row">
       <div class="form-group">
-        <label>Date of Birth</label>
-        <input type="text" name="dob" placeholder="YYYY-MM-DD" required>
+        <label for="consult-dob">Date of Birth</label>
+        <input type="date" name="dob" id="consult-dob" required autocomplete="bday">
       </div>
       <div class="form-group">
-        <label>Time of Birth</label>
-        <input type="text" name="tob" placeholder="HH:MM (24h) or 'unknown'">
+        <label for="consult-hour">Birth Hour (Chinese two-hour branch)</label>
+        <select name="birth_hour" id="consult-hour" required aria-describedby="consult-hour-hint">
+          <option value="">Select birth hour…</option>
+          <option value="zi">子時 · Zi Hour (23:00 – 01:00)</option>
+          <option value="chou">丑時 · Chou Hour (01:00 – 03:00)</option>
+          <option value="yin">寅時 · Yin Hour (03:00 – 05:00)</option>
+          <option value="mao">卯時 · Mao Hour (05:00 – 07:00)</option>
+          <option value="chen">辰時 · Chen Hour (07:00 – 09:00)</option>
+          <option value="si">巳時 · Si Hour (09:00 – 11:00)</option>
+          <option value="wu">午時 · Wu Hour (11:00 – 13:00)</option>
+          <option value="wei">未時 · Wei Hour (13:00 – 15:00)</option>
+          <option value="shen">申時 · Shen Hour (15:00 – 17:00)</option>
+          <option value="you">酉時 · You Hour (17:00 – 19:00)</option>
+          <option value="xu">戌時 · Xu Hour (19:00 – 21:00)</option>
+          <option value="hai">亥時 · Hai Hour (21:00 – 23:00)</option>
+        </select>
+        <p id="consult-hour-hint" class="form-note" style="margin-top:6px;">Same birth-hour options as our free chart calculator</p>
       </div>
     </div>
     <div class="form-group">
@@ -859,6 +886,47 @@ window.plausible = window.plausible || function() { (window.plausible.q = window
 </section>
 </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var params = new URLSearchParams(window.location.search);
+  var rawHour = (params.get('hour') || '').trim().toLowerCase();
+  var hourSelect = document.getElementById('consult-hour');
+  if (!hourSelect || !rawHour) return;
+  var branches = ['zi','chou','yin','mao','chen','si','wu','wei','shen','you','xu','hai'];
+  var branch = rawHour;
+  if (/^\d+$/.test(rawHour)) {
+    var idx = Math.max(0, Math.min(11, parseInt(rawHour, 10)));
+    branch = branches[idx];
+  }
+  if (branches.indexOf(branch) !== -1) {
+    hourSelect.value = branch;
+  }
+});
+</script>
+<script>
+fetch('/api/spots').then(function(r){return r.json();}).then(function(d){
+  var el = document.getElementById('spots-remaining');
+  if (!el) return;
+  var n = typeof d.remaining === 'number' ? d.remaining : 8;
+  el.textContent = n + ' consultation slot' + (n === 1 ? '' : 's') + ' remaining this month';
+  var schemaEl = document.getElementById('service-schema');
+  if (schemaEl) {
+    try {
+      var data = JSON.parse(schemaEl.textContent);
+      var svc = Array.isArray(data) ? data.find(function(x){ return x['@type'] === 'Service'; }) : null;
+      if (svc && svc.offers) {
+        svc.offers.availability = n > 0
+          ? 'https://schema.org/LimitedAvailability'
+          : 'https://schema.org/SoldOut';
+        schemaEl.textContent = JSON.stringify(data);
+      }
+    } catch (e) { /* ignore */ }
+  }
+}).catch(function(){
+  var el = document.getElementById('spots-remaining');
+  if (el) el.textContent = 'Limited consultation slots — inquire below';
+});
+</script>
 <script>
 document.getElementById('consultForm').addEventListener('submit', function(e){
   e.preventDefault();

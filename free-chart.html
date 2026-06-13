@@ -6,7 +6,59 @@
 <title>Zi Wei Dou Shu Calculator · Free Chart in 30 Seconds</title>
 <meta name="description" content="Free Zi Wei Dou Shu calculator — generate your Purple Star Astrology 12-palace natal chart instantly. Enter birth date and Chinese birth hour for Life, Wealth, Career palace readings in English.">
 <link rel="canonical" href="https://metaphysicflow.com/free-chart.html">
-<meta name="robots" content="noindex, follow">
+<link rel="dns-prefetch" href="https://gumroad.com">
+<link rel="preconnect" href="https://api.gumroad.com" crossorigin>
+<script>(function(){var n=location.search&&/[?&](date|year|month|day|hour|q)=/.test(location.search);var m=document.createElement('meta');m.name='robots';m.content=n?'noindex, follow':'index, follow';document.head.appendChild(m);})();</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Zi Wei Dou Shu Calculator — Free Purple Star Chart",
+  "url": "https://metaphysicflow.com/free-chart.html",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "Web browser",
+  "inLanguage": "en",
+  "screenshot": "https://metaphysicflow.com/images/og-chart.jpg",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Guanlan Energy",
+    "url": "https://metaphysicflow.com"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to Generate Your Zi Wei Dou Shu Chart",
+  "description": "Enter your birth date and hour to receive a free 12-palace Purple Star Astrology chart in English.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Enter date of birth",
+      "text": "Provide your Gregorian birth date on the chart form."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Select birth hour",
+      "text": "Choose your Chinese two-hour birth branch (Zi, Chou, Yin, etc.) for accurate palace placement."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Receive 12-palace chart",
+      "text": "View your Life, Wealth, and Career palace highlights plus the full twelve-palace matrix instantly."
+    }
+  ]
+}
+</script>
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://metaphysicflow.com/free-chart.html">
 <meta property="og:title" content="Zi Wei Dou Shu Calculator · Free Chart in 30 Seconds">
@@ -22,7 +74,7 @@
 <script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=optional" rel="stylesheet">
 <style>
   :root {
     --bg-primary: #0d0d12;
@@ -1233,6 +1285,15 @@
     line-height: 1.75;
   }
 
+  .gate-embedded .fi-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(201, 168, 76, 0.55);
+    margin-bottom: 0.35rem;
+  }
   .gate-embedded .fi {
     width: 100%;
     padding: 0.75rem 1rem;
@@ -1631,6 +1692,27 @@
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+  .chart-personal-cta {
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    border: 1px solid rgba(201, 168, 76, 0.28);
+    background: rgba(201, 168, 76, 0.06);
+  }
+  .chart-personal-cta h2 {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .chart-personal-cta h2 strong,
+  .chart-personal-cta h2 em {
+    color: var(--gold-light);
+    font-style: normal;
+    font-weight: 600;
+  }
   #cta-block {
     position: relative;
     z-index: 1;
@@ -2020,6 +2102,46 @@
   .palace-life-card:last-child { margin-bottom: 0; }
   .palace-life-card.expanded { border-left-color: rgba(201, 169, 110, 0.28); }
   .palace-life-card.locked .palace-full-body { display: none; }
+  .palace-life-card.locked .teaser {
+    filter: blur(4px);
+    user-select: none;
+  }
+  .palace-life-card.locked .star-name { opacity: 0.85; }
+  .palace-group--locked {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
+  }
+  #email-gate-embedded:not(.gate-visible) {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    pointer-events: none;
+  }
+  #email-gate-embedded.gate-visible {
+    opacity: 1;
+    max-height: none;
+    pointer-events: auto;
+  }
+  .post-gate-upsell {
+    max-width: 640px;
+    margin: 1.5rem auto 2rem;
+    padding: 1.25rem;
+    text-align: center;
+    border: 1px solid rgba(201, 168, 76, 0.28);
+    background: rgba(201, 168, 76, 0.06);
+  }
+  .post-gate-upsell h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.45;
+  }
+  .post-gate-upsell h3 strong { color: var(--gold-light); font-weight: 600; }
   .topic-tag {
     font-family: 'Cinzel', serif;
     font-size: 10px;
@@ -2245,6 +2367,11 @@
     </div>
   </section>
 
+  <div id="chart-personal-cta" class="chart-personal-cta" hidden>
+    <h2 id="chart-personal-cta-heading">Your <strong><em id="chart-personal-star">—</em></strong> in <strong><span id="chart-personal-branch">—宮</span></strong> — unlock the full reading</h2>
+    <a class="btn-gold" href="https://lleonard88.gumroad.com/l/acvsfx?wanted=true" data-product="life-palace-dive">Get Your Full Life Palace Reading — $9.90</a>
+  </div>
+
   <section id="three-pillars">
     <h2 class="screen-heading">What The Stars Say About You</h2>
     <div class="pillars-grid" id="pillars-grid"></div>
@@ -2268,8 +2395,10 @@
       <h2>Unlock Your Full 12-Palace Cosmic Map</h2>
       <p>Enter your email to unlock all remaining palace readings instantly — free on this page. No paid report required.</p>
       <form id="gate-form" onsubmit="return submitGate(event)">
-        <input class="fi" type="text" id="gate-name" placeholder="Your name" autocomplete="name">
-        <input class="fi" type="email" id="gate-email" placeholder="Your email address" autocomplete="email" required>
+        <label class="fi-label" for="gate-name">Your name</label>
+        <input class="fi" type="text" id="gate-name" placeholder="Your name" autocomplete="given-name">
+        <label class="fi-label" for="gate-email">Email address</label>
+        <input class="fi" type="email" id="gate-email" placeholder="Your email address" autocomplete="email" inputmode="email" required>
         <button class="btn-gold" type="submit" id="gate-submit-btn">Unlock My Full Chart</button>
       </form>
       <div id="gate-embedded-success" class="gate-embedded-success">
@@ -2805,6 +2934,7 @@
   "url": "https://metaphysicflow.com/free-chart.html",
   "applicationCategory": "LifestyleApplication",
   "operatingSystem": "Web",
+  "screenshot": "https://metaphysicflow.com/images/og-chart.jpg",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "description": "Free online Zi Wei Dou Shu natal chart calculator with 12-palace Purple Star Astrology readings in English."
 }

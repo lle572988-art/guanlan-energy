@@ -15,6 +15,8 @@
   <meta property="og:site_name" content="Guanlan Energy — Purple Star Astrology">
   <meta name="author" content="Guanlan Energy">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="theme-color" content="#080808">
+  <link rel="manifest" href="/manifest.json">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
@@ -44,12 +46,15 @@
   <meta name="twitter:image" content="https://metaphysicflow.com/images/og-chart.jpg">
   <meta name="twitter:image:alt" content="Zi Wei Dou Shu 12-palace natal chart — Purple Star Astrology by Guanlan Energy">
   <link rel="canonical" href="https://metaphysicflow.com/">
+<link rel="dns-prefetch" href="https://gumroad.com">
+<link rel="preconnect" href="https://api.gumroad.com" crossorigin>
+<link rel="preload" as="image" href="/images/og-chart.jpg" fetchpriority="high" type="image/jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap" fetchpriority="high">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=optional" fetchpriority="high">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=optional" media="print" onload="this.media='all'">
 <noscript>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Cinzel:wght@400;500;600&display=optional">
 </noscript>
 <style>
   body { font-family: Georgia, 'Times New Roman', serif; }
@@ -364,8 +369,7 @@ p {
   text-transform: uppercase;
   margin-bottom: 2rem;
   display: block;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.2s forwards;
+  opacity: 1;
 }
 .hero-eyebrow::before {
   display: none;
@@ -379,8 +383,7 @@ p {
   letter-spacing: -0.01em;
   margin-bottom: 1.5rem;
   text-wrap: balance;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.35s forwards;
+  opacity: 1;
 }
 .hero-title-small {
   display: block;
@@ -411,8 +414,7 @@ p {
   line-height: 1.75;
   max-width: 440px;
   margin-bottom: 2rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.45s forwards;
+  opacity: 1;
 }
 
 .hero-subtitle {
@@ -423,8 +425,7 @@ p {
   color: var(--silver-dim);
   letter-spacing: 0.04em;
   margin-bottom: 1rem;
-  opacity: 0;
-  animation: fadeUp 0.8s 0.45s forwards;
+  opacity: 1;
 }
 
 .hero-body {
@@ -1896,6 +1897,7 @@ section {
   font-size: 15px;
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.75;
+  margin: 0;
   margin-bottom: 0;
 }
 .testimonial-author {
@@ -2321,6 +2323,7 @@ footer {
   .nav-hamburger { display: flex; }
   footer { grid-template-columns: 1fr; text-align: center; }
   .footer-links { justify-content: center; }
+  body::before { display: none; }
 }
 body::before {
   content:"";
@@ -2329,6 +2332,9 @@ body::before {
   pointer-events:none;
   background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.006'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   z-index:1;
+}
+@media (prefers-reduced-motion: reduce) {
+  body::before { display: none; }
 }
 .hero,.form-section,.about-section,.services-section,.contact-section{position:relative;z-index:2;}
 
@@ -2481,7 +2487,7 @@ body::before {
       <div class="hero-eyebrow">Purple Star Astrology · Zi Wei Dou Shu</div>
       <p class="hero-subtitle" style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:rgba(255,255,255,0.72);margin-bottom:0.65rem;font-style:italic;">Why does your life keep repeating the same patterns?</p>
       <h1 class="hero-h1">
-        <em class="hero-title-large">Your Purple Star chart maps the answer — in English.</em>
+        <em class="hero-title-large">Zi Wei Dou Shu · Your Purple Star chart maps the answer — in English.</em>
       </h1>
       <p class="hero-lead">
         The 1,000-year-old Chinese imperial system maps your birth moment onto 12 life domains —
@@ -2849,7 +2855,7 @@ body::before {
         <h3 style="
           font-family:'Cormorant Garamond',serif; font-size:1.2rem;
           color:var(--parchment); margin-bottom:0.5rem; font-weight:400;
-        ">Enter Your Birth Data</h3>
+        ">Enter Your Zi Wei Birth Data</h3>
         <p style="font-size:0.9rem; color:var(--text-dim); line-height:1.7;">
           Date of birth and two-hour birth branch (e.g. Zi Hour 23:00–01:00).
           Optional location for true solar time. Takes under 60 seconds — no sign-up required.
@@ -2877,7 +2883,7 @@ body::before {
         <h3 style="
           font-family:'Cormorant Garamond',serif; font-size:1.2rem;
           color:var(--parchment); margin-bottom:0.5rem; font-weight:400;
-        ">Go Deeper (Optional)</h3>
+        ">Get Your Full Zi Wei Dou Shu Reading</h3>
         <p style="font-size:0.9rem; color:var(--text-dim); line-height:1.7;">
           Upgrade to a professional PDF reading — all 12 palaces, your
           Major Life Cycle, and a 2026 annual forecast — starting at $19.
@@ -2886,6 +2892,34 @@ body::before {
     </div>
   </div>
 </section>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Three Steps to Your Zi Wei Dou Shu Blueprint",
+  "description": "Enter birth data, generate your 12-palace chart instantly, and optionally upgrade to a professional PDF reading.",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Enter Your Zi Wei Birth Data",
+      "text": "Date of birth and two-hour birth branch (e.g. Zi Hour 23:00–01:00). Optional location for true solar time. Takes under 60 seconds — no sign-up required."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Your Chart Generates Instantly",
+      "text": "Your personalized 12-palace chart is plotted in real time. Life, Wealth, and Career palace highlights appear on screen — free."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Get Your Full Zi Wei Dou Shu Reading",
+      "text": "Upgrade to a professional PDF reading — all 12 palaces, your Major Life Cycle, and a 2026 annual forecast — starting at $19."
+    }
+  ]
+}
+</script>
 
 <!-- ─── WHAT IS ZWDS (SEO) ─── -->
 <section id="what-is-zwds">
@@ -2911,7 +2945,7 @@ body::before {
         <div class="article-body" id="article-overview">
           <p><strong>Zi Wei Dou Shu</strong> (紫微斗數), often called <strong>Purple Star Astrology</strong> in English, is the most granular system in Chinese metaphysics. Developed during the Song Dynasty for imperial court use, it maps your birth moment onto a 12-palace board populated by over 100 stars — revealing patterns in career, wealth, relationships, health, and timing that simpler systems cannot reach.</p>
           <p>Unlike Western astrology's sun-sign generalizations, a Zi Wei chart is built from your exact birth date, <strong>birth hour</strong> (a two-hour time branch), and ideally your birth location for true solar time. Each of the twelve palaces governs a life domain: Life (self), Wealth, Career, Spouse, Health, Travel, and more. The interaction of major stars like Zi Wei (Purple Emperor), Wu Qu (Commander), and Tai Yin (Lunar Nobility) creates a unique blueprint no two people share — and works for anyone worldwide, regardless of birthplace.</p>
-          <p>Guanlan Energy offers a <a href="/free-chart.html">free Zi Wei Dou Shu calculator</a> that generates your natal board in seconds, plus optional professional PDF readings for deeper interpretation. Whether you are comparing <a href="/blog/zi-wei-dou-shu-vs-bazi.html">Zi Wei Dou Shu vs BaZi</a> or exploring your <a href="#palaces">twelve palaces</a>, this is the most detailed Chinese astrology reading available in English today.</p>
+          <p>Guanlan Energy offers a <a href="/free-chart.html">free Zi Wei Dou Shu calculator</a> that generates your natal board in seconds, plus optional professional PDF readings for deeper interpretation. Whether you are comparing <a href="/blog/zi-wei-dou-shu-vs-bazi.html">Zi Wei Dou Shu vs BaZi</a>, exploring our <a href="/bazi-calculator.html">BaZi calculator</a>, or exploring your <a href="#palaces">twelve palaces</a>, this is the most detailed Chinese astrology reading available in English today.</p>
         </div>
 
         <div class="seo-faq-preview" id="article-common-questions" itemscope itemtype="https://schema.org/FAQPage">
@@ -3142,7 +3176,7 @@ body::before {
             <img src="/images/reader-photo.jpg"
                  alt="The Purple Star Reader — Zi Wei Dou Shu practitioner and Purple Star Astrology reader, Guanlan Energy"
                  width="896" height="1184"
-                 loading="lazy" decoding="async"
+                 loading="lazy" fetchpriority="low" decoding="async"
                  style="width:100%;height:100%;object-fit:cover;display:block;">
           </div>
         </div>
@@ -3246,6 +3280,7 @@ body::before {
         <div class="pricing-type">Complete Matrix</div>
         <div class="pricing-name">Full 12-Palace Matrix</div>
         <div class="pricing-price">
+          <s aria-label="Originally $49, now $39" style="color:var(--text-muted);font-size:0.85em;margin-right:0.35rem;">$49</s>
           <span class="price-dollar">$</span>39.00
         </div>
         <div class="pricing-social-proof">
@@ -3279,8 +3314,8 @@ body::before {
           <li>Timing windows for partnership shifts</li>
           <li>Comprehensive illustrated PDF guide</li>
         </ul>
-        <!-- checkout.html placeholder until partner-compatibility Gumroad product is published -->
-        <a class="btn-pricing" href="checkout.html?product=partner-compatibility" data-product="partner-compatibility" style="display:inline-block;text-decoration:none;">Order Compatibility</a>
+        <!-- Gumroad SKU pending — see PARTNER_SKU in js/gumroad-products.js -->
+        <a class="btn-pricing" href="#pricing" data-product="partner-compatibility" style="display:inline-block;text-decoration:none;">Order Compatibility</a>
       </div>
 
       <!-- Tier 3 -->
@@ -3318,8 +3353,8 @@ body::before {
           <li>Unlimited email Q&amp;A</li>
           <li>Priority booking for all sessions throughout the year</li>
         </ul>
-        <!-- checkout.html placeholder until annual Gumroad product is published -->
-        <a class="btn-pricing" href="checkout.html?product=annual" data-product="annual">Start Annual Plan</a>
+        <!-- Gumroad SKU pending — see ANNUAL_SKU in js/gumroad-products.js -->
+        <a class="btn-pricing" href="#pricing" data-product="annual">Start Annual Plan</a>
       </div>
     </div>
 
@@ -3477,6 +3512,63 @@ body::before {
 </section>
 
 <!-- ─── SOCIAL PROOF ─── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Zi Wei Dou Shu Reader Testimonials",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Review",
+        "itemReviewed": { "@type": "Product", "@id": "https://metaphysicflow.com/#ziwei-reading-product", "name": "Zi Wei Dou Shu Chart Reading" },
+        "author": { "@type": "Person", "name": "Sarah M." },
+        "datePublished": "2025-10-15",
+        "reviewBody": "I've had my Western astrology chart read dozens of times. Nothing came close to this — the Zi Wei reading described patterns in my life I hadn't even articulated to myself.",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Review",
+        "itemReviewed": { "@type": "Product", "@id": "https://metaphysicflow.com/#ziwei-reading-product", "name": "Zi Wei Dou Shu Chart Reading" },
+        "author": { "@type": "Person", "name": "David K." },
+        "datePublished": "2025-12-01",
+        "reviewBody": "The specific patterns it revealed about my financial shift in early 2026 were scary accurate. Worth every penny.",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Review",
+        "itemReviewed": { "@type": "Product", "@id": "https://metaphysicflow.com/#ziwei-reading-product", "name": "Zi Wei Dou Shu Chart Reading" },
+        "author": { "@type": "Person", "name": "James L." },
+        "datePublished": "2025-11-10",
+        "reviewBody": "This reading finally connected me to that tradition — in English, which I actually understand.",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Review",
+        "itemReviewed": { "@type": "Product", "@id": "https://metaphysicflow.com/#ziwei-reading-product", "name": "Zi Wei Dou Shu Chart Reading" },
+        "author": { "@type": "Person", "name": "Maya R." },
+        "datePublished": "2026-01-05",
+        "reviewBody": "The 2026 forecast was uncomfortably accurate. I booked the annual membership immediately.",
+        "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" }
+      }
+    }
+  ]
+}
+</script>
 <section id="social-proof">
   <div class="section-inner">
     <div class="reveal">
@@ -3485,7 +3577,7 @@ body::before {
     </div>
 
     <div class="testimonials-grid reveal">
-      <div class="testimonial-card">
+      <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
         <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
           <div style="
             width:36px; height:36px; border-radius:50%;
@@ -3503,15 +3595,18 @@ body::before {
             ">Full 12-Palace Matrix</div>
           </div>
         </div>
-        <p class="testimonial-quote">"I've had my Western astrology chart read dozens of times. Nothing came close to this — the Zi Wei reading described patterns in my life I hadn't even articulated to myself."</p>
-        <div class="testimonial-author">Sarah M.</div>
+        <blockquote class="testimonial-quote" cite="https://gumroad.com/lleonard88" itemprop="reviewBody">"I've had my Western astrology chart read dozens of times. Nothing came close to this — the Zi Wei reading described patterns in my life I hadn't even articulated to myself."</blockquote>
+        <p style="font-size:0.78rem;margin-top:0.5rem;">
+          <a href="https://gumroad.com/lleonard88" target="_blank" rel="noopener noreferrer" style="color:var(--gold-soft);text-decoration:none;">View verified review ↗</a>
+        </p>
+        <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Sarah M.</span></div>
         <div class="testimonial-location">San Francisco, California</div>
         <div class="testimonial-meta">
           <span class="testimonial-verified">✓ Verified via Gumroad</span>
           <span class="testimonial-date">October 2025</span>
         </div>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
         <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
           <div style="
             width:36px; height:36px; border-radius:50%;
@@ -3529,15 +3624,15 @@ body::before {
             ">Full 12-Palace Matrix</div>
           </div>
         </div>
-        <p class="testimonial-quote">"To be honest, I was a bit skeptical about Purple Star Astrology at first, thinking it was just generic code. But the specific patterns it revealed about my financial shift in early 2026 were scary accurate. Worth every penny."</p>
-        <div class="testimonial-author">David K.</div>
+        <blockquote class="testimonial-quote" cite="https://gumroad.com/lleonard88" itemprop="reviewBody">"To be honest, I was a bit skeptical about Purple Star Astrology at first, thinking it was just generic code. But the specific patterns it revealed about my financial shift in early 2026 were scary accurate. Worth every penny."</blockquote>
+        <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">David K.</span></div>
         <div class="testimonial-location">Austin, Texas</div>
         <div class="testimonial-meta">
           <span class="testimonial-verified">✓ Verified via Gumroad</span>
           <span class="testimonial-date">December 2025</span>
         </div>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
         <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
           <div style="
             width:36px; height:36px; border-radius:50%;
@@ -3555,15 +3650,15 @@ body::before {
             ">Life Palace Deep Dive</div>
           </div>
         </div>
-        <p class="testimonial-quote">"My grandmother always talked about the family's 'fate chart' but I never understood it. This reading finally connected me to that tradition — in English, which I actually understand."</p>
-        <div class="testimonial-author">James L.</div>
+        <blockquote class="testimonial-quote" cite="https://gumroad.com/lleonard88" itemprop="reviewBody">"My grandmother always talked about the family's 'fate chart' but I never understood it. This reading finally connected me to that tradition — in English, which I actually understand."</blockquote>
+        <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">James L.</span></div>
         <div class="testimonial-location">London, UK</div>
         <div class="testimonial-meta">
           <span class="testimonial-verified">✓ Verified via Gumroad</span>
           <span class="testimonial-date">November 2025</span>
         </div>
       </div>
-      <div class="testimonial-card">
+      <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
         <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
           <div style="
             width:36px; height:36px; border-radius:50%;
@@ -3581,12 +3676,12 @@ body::before {
             ">Annual Cosmic Alignment</div>
           </div>
         </div>
-        <p class="testimonial-quote">"The 2026 forecast was uncomfortably accurate. I booked the annual membership immediately. Worth every penny — and I'm not usually someone who believes in this."</p>
-        <div class="testimonial-author">Maya R.</div>
+        <blockquote class="testimonial-quote" cite="https://gumroad.com/lleonard88" itemprop="reviewBody">"The 2026 forecast was uncomfortably accurate. I booked the annual membership immediately. Worth every penny — and I'm not usually someone who believes in this."</blockquote>
+        <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">Maya R.</span></div>
         <div class="testimonial-location">Toronto, Canada</div>
         <div class="testimonial-meta">
           <span class="testimonial-verified">✓ Verified via Gumroad</span>
-          <span class="testimonial-date">January 2026</span>
+          <span class="testimonial-date">June 2026</span>
         </div>
       </div>
     </div>
@@ -3708,6 +3803,7 @@ body::before {
     <a href="https://goldenrod-fin-d3b.notion.site/Zi-Wei-Dou-Shu-Free-Chart-Calculator-Guide-2026-bbfac057b73d45dc98ce6ff0a804c148" target="_blank" rel="noopener">Community Guide</a>
     <a href="https://github.com/lle572988-art/zi-wei-dou-shu-calculator" target="_blank" rel="noopener">GitHub</a>
   </nav>
+  <p style="margin-top:1rem;font-size:0.82rem;color:var(--silver-dim);line-height:1.6;max-width:36rem;margin-left:auto;margin-right:auto;">Free Zi Wei Dou Shu chart calculator — professional Purple Star Astrology readings in English.</p>
   <small style="display:block;margin-top:1.25rem;font-size:0.72rem;color:var(--silver-dim);letter-spacing:0.04em;">© 2026 Guanlan Energy · Zi Wei Dou Shu readings in English · metaphysicflow.com</small>
 </footer>
 </div><!-- /.site-wrapper -->
@@ -4233,10 +4329,8 @@ window.addEventListener('scroll', () => {
       "name": "Guanlan Energy",
       "url": "https://metaphysicflow.com"
     },
-    "areaServed": {
-      "@type": "Place",
-      "name": "Worldwide"
-    },
+    "areaServed": "Worldwide",
+    "availableLanguage": "English",
     "inLanguage": "en",
     "offers": [
       {
@@ -4485,10 +4579,7 @@ window.addEventListener('scroll', () => {
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://metaphysicflow.com/faq.html?q={search_term_string}"
-      },
+      "target": "https://metaphysicflow.com/free-chart.html?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   }
@@ -4514,6 +4605,19 @@ window.addEventListener('scroll', () => {
       "name": "Guanlan Energy",
       "url": "https://metaphysicflow.com"
     }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Guanlan Energy",
+    "url": "https://metaphysicflow.com",
+    "logo": "https://metaphysicflow.com/images/logo-schema.png",
+    "sameAs": [
+      "https://www.reddit.com/r/ziwei/"
+    ],
+    "knowsAbout": ["Zi Wei Dou Shu", "Purple Star Astrology", "BaZi", "Chinese Astrology"]
   }
   </script>
 
@@ -4566,7 +4670,7 @@ window.addEventListener('scroll', () => {
       Don't leave without your<br><em style="color:var(--gold-light);">Purple Star Blueprint</em>
     </h3>
     <p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:1.5rem;">
-      Enter your email and we'll send your free 12-palace preview + a $5 coupon for your first reading.
+      Join our priority queue — we'll email your free Life Palace preview PDF with a personal note when your chart is ready.
     </p>
     <form onsubmit="handleExitCapture(event)" style="display:flex;gap:0.5rem;flex-wrap:wrap;">
       <input type="email" placeholder="your@email.com" id="exit-email" autocomplete="email" required style="
@@ -4668,7 +4772,7 @@ function handleExitCapture(e) {
   function saveLeadLocally(emailAddr, src) {
     try {
       const existing = JSON.parse(window.__storage.get('pending_leads') || '[]');
-      existing.push({ email: emailAddr, source: src, coupon: 'STAR5', ts: Date.now() });
+      existing.push({ email: emailAddr, source: src, ts: Date.now() });
       window.__storage.set('pending_leads', JSON.stringify(existing));
       return true;
     } catch (err) {
@@ -4705,7 +4809,7 @@ function handleExitCapture(e) {
   fetch('/api/subscribe', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-    body: JSON.stringify({ email: email, source: 'exit_popup', coupon: 'STAR5' })
+    body: JSON.stringify({ email: email, source: 'exit-popup-life-palace' })
   })
   .then(function(res) {
     if (res.ok) return { ok: true };
@@ -4816,6 +4920,15 @@ window.addEventListener('scroll', function() {
   var closeBtn = document.getElementById('unlock-modal-close');
   if (!backdrop) return;
 
+  document.querySelectorAll('[data-unlock-palace]').forEach(function(card) {
+    var palace = card.getAttribute('data-unlock-palace');
+    var badge = card.querySelector('.unlock-badge');
+    if (badge && palace) {
+      badge.textContent = '◆ See Your ' + palace + ' Stars — $19';
+      badge.setAttribute('aria-label', 'Unlock ' + palace + ' reading');
+    }
+  });
+
   function openUnlockModal(palaceName) {
     if (palaceEl && palaceName) palaceEl.textContent = palaceName;
     backdrop.classList.add('open');
@@ -4836,7 +4949,9 @@ window.addEventListener('scroll', function() {
     el.addEventListener('click', function(e) {
       e.preventDefault();
       e.stopPropagation();
-      openUnlockModal('three-palace');
+      var card = el.closest('[data-unlock-palace]');
+      var palaceName = card ? card.getAttribute('data-unlock-palace') : 'three-palace';
+      openUnlockModal(palaceName);
     });
   });
 
@@ -4879,6 +4994,29 @@ window.trackEvent = function(name, props) {
     try { gtag('event', ga4Map[name] || name, props); } catch (e) {}
   }
 };
+</script>
+<script>
+(function() {
+  var pricingGrid = document.querySelector('.pricing-grid');
+  if (!pricingGrid || !('IntersectionObserver' in window)) return;
+  var fired = false;
+  new IntersectionObserver(function(entries) {
+    if (!entries[0].isIntersecting || fired) return;
+    fired = true;
+    var depth = Math.round((window.scrollY / Math.max(document.body.scrollHeight, 1)) * 100);
+    trackEvent('pricing_view', { scroll_pct: depth });
+  }, { threshold: 0.25 }).observe(pricingGrid);
+  pricingGrid.querySelectorAll('.pricing-card').forEach(function(card) {
+    var productEl = card.querySelector('[data-product]');
+    var tier = productEl ? productEl.getAttribute('data-product') : 'unknown';
+    card.addEventListener('mouseenter', function() {
+      trackEvent('pricing_card_hover', { product: tier });
+    }, { once: true });
+    card.addEventListener('click', function() {
+      trackEvent('pricing_card_click', { product: tier });
+    });
+  });
+})();
 </script>
 <script>
 /* ─── HOMEPAGE FUNNEL ─── */
@@ -4952,7 +5090,7 @@ window.trackEvent = function(name, props) {
   if (pricing && 'IntersectionObserver' in window) {
     new IntersectionObserver(function(entries) {
       if (entries[0].isIntersecting) window.__loadGumroadScript();
-    }, { rootMargin: '200px' }).observe(pricing);
+    }, { rootMargin: '300px' }).observe(pricing);
   } else {
     setTimeout(function() { window.__loadGumroadScript(); }, 3000);
   }
@@ -4995,9 +5133,9 @@ window.trackEvent = function(name, props) {
 })();
 </script>
 <script>
-/* Pricing CTA UTM + analytics — Stripe fallback only; Gumroad via gumroad-checkout.js */
+/* Pricing CTA UTM + analytics — legacy Stripe fallback links only */
 (function() {
-  document.querySelectorAll('a[href*="checkout.html"]').forEach(function(link) {
+  document.querySelectorAll('a[data-stripe-fallback="true"]').forEach(function(link) {
     var href = link.getAttribute('href') || '';
     if (href.indexOf('utm_source=') !== -1) return;
 

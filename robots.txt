@@ -2,7 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /admin/
-Disallow: /free-chart.html
 Disallow: /blog/*.md
 Disallow: /*.md$
 
@@ -15,5 +14,5 @@ Sitemap: https://metaphysicflow.com/sitemap.xml
 # IndexNow 发现端点
 Sitemap: https://metaphysicflow.com/indexnow-links.xml
 
-# 友好爬取
-Crawl-delay: 1
+# 友好爬取（Googlebot 忽略 Crawl-delay；其他爬虫参考此间隔）
+Crawl-delay: 2
