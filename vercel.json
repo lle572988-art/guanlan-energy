@@ -82,6 +82,11 @@
       "source": "/passterra",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/blog/:slug.md",
+      "destination": "/blog/:slug.html",
+      "permanent": true
     }
   ],
   "rewrites": [

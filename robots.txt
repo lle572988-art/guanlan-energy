@@ -2,6 +2,8 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /admin/
+Disallow: /blog/*.md
+Disallow: /*.md$
 
 # 全量站点地图
 Sitemap: https://metaphysicflow.com/sitemap.xml
