@@ -46,7 +46,7 @@
       'text-transform:uppercase;color:#e8d4a0;font-weight:500' +
     '}' +
     '#guanlan-wa-float .guanlan-wa-sub{' +
-      'font-family:"EB Garamond",Georgia,serif;font-size:12px;color:rgba(240,235,224,.52);' +
+      'font-family:"Cormorant Garamond",Georgia,serif;font-size:12px;color:rgba(240,235,224,.52);' +
       'letter-spacing:.02em;font-style:italic' +
     '}' +
     '.guanlan-wa-btn,.wa-btn[data-guanlan-wa-cta],a.wa-btn{' +

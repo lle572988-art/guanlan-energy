@@ -1,0 +1,4 @@
+#!/bin/sh
+# Refresh article:modified_time for staged blog posts before commit.
+node scripts/update-dates.js --staged
+git add blog/*.html 2>/dev/null || true

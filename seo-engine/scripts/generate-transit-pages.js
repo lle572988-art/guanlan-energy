@@ -53,13 +53,13 @@ function generateTransitHTML(page) {
 <meta property="og:url" content="${escHtml(pageUrl)}">
 <meta property="og:image" content="${site.domain}${site.logo || '/images/og-chart.jpg'}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=EB+Garamond&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Cormorant+Garamond&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 ${JSON.stringify(schemaGraph, null, 2)}
 </script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0B0F1A; color: rgba(255,255,255,0.88); font-family: 'EB Garamond', Georgia, serif; line-height: 1.75; padding: 40px 20px; }
+  body { background: #0B0F1A; color: rgba(255,255,255,0.88); font-family: 'Cormorant Garamond', Georgia, serif; line-height: 1.75; padding: 40px 20px; }
   .container { max-width: 800px; margin: 0 auto; }
   nav { margin-bottom: 2rem; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; }
   nav a { color: rgba(201,169,110,0.55); text-decoration: none; margin-right: 1rem; }

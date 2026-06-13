@@ -11,6 +11,7 @@ window.onerror = function(msg, src, line, col, err) {
 const PALACE_ORDER = ['命宮','兄弟宮','夫妻宮','子女宮','財帛宮','疾厄宮','遷移宮','交友宮','官祿宮','田宅宮','福德宮','父母宮'];
 const PALACE_EN = ['Life & Destiny','Siblings','Spouse & Romance','Children & Creativity','Wealth','Health','Travel & Migration','Friends & Servants','Career & Status','Property','Virtue & Fortune','Parents'];
 const FREE_PALACE_INDICES = [0, 4, 8];
+const CAREER_PALACE_INDEX = 8;
 const ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
 const HOUR_LABELS = ['子時 · Zi (23:00–01:00)','丑時 · Chou (01:00–03:00)','寅時 · Yin (03:00–05:00)','卯時 · Mao (05:00–07:00)','辰時 · Chen (07:00–09:00)','巳時 · Si (09:00–11:00)','午時 · Wu (11:00–13:00)','未時 · Wei (13:00–15:00)','申時 · Shen (15:00–17:00)','酉時 · You (17:00–19:00)','戌時 · Xu (19:00–21:00)','亥時 · Hai (21:00–23:00)'];
 
@@ -175,15 +176,25 @@ function getParams() {
 // ─── STATE ───
 let chartState = {
   birthDate: '', year: 0, month: 0, day: 0, hourIndex: 0, hourLabel: '', country: '', email: '',
-  result: null, chartData: null, readings: [], activeCard: null, unlocked: false
+  result: null, chartData: null, readings: [], activeCard: null, unlocked: false, emailCaptured: false
 };
+
+function isEmailCaptured() {
+  return chartState.emailCaptured || !!chartState.email;
+}
+
+function isCareerGated(index) {
+  return index === CAREER_PALACE_INDEX && !isEmailCaptured();
+}
 
 function isFreePalace(index) {
   return FREE_PALACE_INDICES.indexOf(index) !== -1;
 }
 
 function isPalaceLocked(index) {
-  return !chartState.unlocked && !isFreePalace(index);
+  if (chartState.unlocked) return false;
+  if (isCareerGated(index)) return true;
+  return !isFreePalace(index);
 }
 
 const STAR_ARCHETYPE = {
@@ -724,8 +735,28 @@ function renderYearForecast(meta, readings) {
   });
 }
 
+function renderCareerGateHtml(index) {
+  return ''
+    + '<div class="career-gate-inline" id="career-gate-' + index + '">'
+    + '<p class="career-gate-copy">Your Career &amp; Status palace is ready — enter your email to receive this reading.</p>'
+    + '<input type="email" class="fi career-gate-email" id="career-gate-email-' + index + '" placeholder="your@email.com" autocomplete="email" required>'
+    + '<button type="button" class="btn-gold career-gate-btn" data-career-gate="' + index + '">Email me this palace reading</button>'
+    + '</div>';
+}
+
+function renderCareerUpsellHtml() {
+  return ''
+    + '<div class="career-upsell-cta">'
+    + '<p class="career-upsell-lead">Go deeper on Life, Wealth &amp; Career — the three palaces that drive daily decisions.</p>'
+    + '<div class="career-upsell-actions">'
+    + '<a href="https://lleonard88.gumroad.com/l/lfoxf?wanted=true" class="btn-gold" data-product="three-palace-snapshot">Three-Palace Report — $19</a>'
+    + '<a href="https://lleonard88.gumroad.com/l/tiuyjr?wanted=true" class="btn-gold btn-gold-outline" data-product="full-chart">Full 12-Palace Matrix — $39</a>'
+    + '</div></div>';
+}
+
 function renderPalaceLifeCard(reading, index, readings) {
   var locked = isPalaceLocked(index);
+  var careerGated = isCareerGated(index);
   var lifeDisplay = index === 0 ? resolveLifePalaceDisplay(readings) : null;
   var starCn = (reading.majorStars && reading.majorStars[0]) || '';
   var card = document.createElement('div');
@@ -738,16 +769,37 @@ function renderPalaceLifeCard(reading, index, readings) {
   var fullHtml = lifeDisplay
     ? lifePalaceFullHtml(lifeDisplay, lifeDisplay.reading)
     : palaceExpandedBody(reading);
-  var btnLabel = locked ? 'Unlock — Free with Email' : 'Reveal Full Reading';
+  var btnLabel = careerGated ? '' : (locked ? 'Unlock — Free with Email' : 'Reveal Full Reading');
+  var bodyBlock = careerGated
+    ? renderCareerGateHtml(index)
+    : ('<div class="palace-full-body" id="palace-body-' + index + '">' + fullHtml
+      + (index === CAREER_PALACE_INDEX && isEmailCaptured() ? renderCareerUpsellHtml() : '')
+      + '</div>');
   card.innerHTML = ''
     + '<div class="topic-tag">' + (TOPIC_TAGS[reading.palaceCn] || reading.palaceEn.toUpperCase()) + '</div>'
     + '<h3 class="star-name">' + title + '</h3>'
-    + '<p class="teaser">' + teaser + '</p>'
-    + '<div class="palace-full-body" id="palace-body-' + index + '">' + fullHtml + '</div>'
-    + '<button type="button" class="card-action" data-index="' + index + '">' + btnLabel + '</button>';
-  card.querySelector('.card-action').addEventListener('click', function() {
-    handlePalaceAction(index);
-  });
+    + '<p class="teaser">' + (careerGated ? 'Your Career &amp; Status palace is calculated — email unlocks the full reading.' : teaser) + '</p>'
+    + bodyBlock
+    + (btnLabel ? '<button type="button" class="card-action" data-index="' + index + '">' + btnLabel + '</button>' : '');
+  if (careerGated) {
+    var gateBtn = card.querySelector('[data-career-gate]');
+    if (gateBtn) {
+      gateBtn.addEventListener('click', function() { submitCareerGate(index); });
+    }
+    var gateEmail = card.querySelector('#career-gate-email-' + index);
+    if (gateEmail) {
+      gateEmail.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          submitCareerGate(index);
+        }
+      });
+    }
+  } else {
+    card.querySelector('.card-action').addEventListener('click', function() {
+      handlePalaceAction(index);
+    });
+  }
   if (!locked) {
     card.classList.add('expanded');
   }
@@ -755,6 +807,10 @@ function renderPalaceLifeCard(reading, index, readings) {
 }
 
 function handlePalaceAction(index) {
+  if (isCareerGated(index)) {
+    submitCareerGate(index);
+    return;
+  }
   if (isPalaceLocked(index)) {
     var gate = document.getElementById('email-gate-embedded');
     if (gate) gate.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -853,16 +909,76 @@ function refreshPalaceCard(index) {
   }
   var bodyEl = document.getElementById('palace-body-' + index);
   if (bodyEl) {
-    bodyEl.innerHTML = lifeDisplay
+    var fullHtml = lifeDisplay
       ? lifePalaceFullHtml(lifeDisplay, lifeDisplay.reading)
       : palaceExpandedBody(reading);
+    bodyEl.innerHTML = fullHtml + (index === CAREER_PALACE_INDEX && isEmailCaptured() ? renderCareerUpsellHtml() : '');
   }
+}
+
+function submitCareerGate(index) {
+  var emailEl = document.getElementById('career-gate-email-' + index);
+  var email = emailEl ? emailEl.value.trim() : (chartState.email || '');
+  if (!isValidEmail(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  var btn = document.querySelector('[data-career-gate="' + index + '"]');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+  }
+  chartState.email = email;
+  chartState.emailCaptured = true;
+  captureLead(email, 'Chart Reader', 'career-palace-gate');
+  if (window.trackEvent) trackEvent('career_gate_submit');
+  else if (window.plausible) plausible('career_gate_submit');
+
+  var card = document.getElementById('palace-card-' + index);
+  if (card) {
+    card.classList.remove('locked');
+    card.classList.add('expanded');
+    var gate = document.getElementById('career-gate-' + index);
+    if (gate) gate.remove();
+    var reading = chartState.readings && chartState.readings[index];
+    if (reading) {
+      var bodyHtml = palaceExpandedBody(reading) + renderCareerUpsellHtml();
+      var bodyWrap = document.createElement('div');
+      bodyWrap.className = 'palace-full-body';
+      bodyWrap.id = 'palace-body-' + index;
+      bodyWrap.innerHTML = bodyHtml;
+      var teaserEl = card.querySelector('.teaser');
+      if (teaserEl) teaserEl.textContent = wordTeaser(reading.hook || pillarBody(reading), 15);
+      var actionBtn = card.querySelector('.card-action');
+      if (actionBtn) actionBtn.remove();
+      card.appendChild(bodyWrap);
+    }
+  } else {
+    refreshPalaceCard(index);
+  }
+}
+
+// ─── RESULT PAGE SEO (noindex + canonical without query params) ───
+function applyResultPageSeo() {
+  var base = 'https://metaphysicflow.com/free-chart.html';
+  var canonical = document.querySelector('link[rel="canonical"]');
+  if (canonical) canonical.setAttribute('href', base);
+  var robots = document.querySelector('meta[name="robots"]');
+  if (!robots) {
+    robots = document.createElement('meta');
+    robots.setAttribute('name', 'robots');
+    document.head.appendChild(robots);
+  }
+  robots.setAttribute('content', 'noindex, follow');
 }
 
 // ─── MAIN ───
 function init() {
   try {
     const params = getParams();
+    if (params.date || window.location.search) {
+      applyResultPageSeo();
+    }
     chartState.birthDate = params.date;
     chartState.year = params.year;
     chartState.month = params.month;
@@ -882,6 +998,8 @@ function init() {
     } catch (e) { /* ignore */ }
 
     if (params.email) {
+      chartState.email = params.email;
+      chartState.emailCaptured = true;
       const gateEmail = document.getElementById('gate-email');
       if (gateEmail && !gateEmail.value) gateEmail.value = params.email;
     }
@@ -1009,6 +1127,7 @@ function submitGate(event) {
 
 window.init = init;
 window.submitGate = submitGate;
+window.submitCareerGate = submitCareerGate;
 window.closeCard = closeCard;
 window.unlockAllPalaces = unlockAllPalaces;
 

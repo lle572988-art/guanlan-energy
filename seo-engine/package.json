@@ -13,6 +13,7 @@
     "seo:gap-batch2": "node scripts/generate-gap-pages.js --matrix=../data/gap-batch2-matrix.json",
     "seo:blog-schema": "node scripts/inject-blog-schema.js",
     "seo:blog-links": "node scripts/inject-blog-related-links.js",
+    "seo:blog-main": "node scripts/inject-blog-main.js",
     "seo:transit": "node scripts/build-transit-matrix.js",
     "seo:generate": "SEO_DATA=../data/infinite-matrix.json node scripts/generate-pages.js && node scripts/generate-transit-pages.js && node scripts/generate-horoscope-pages.js",
     "seo:inject": "node ../scripts/inject-conversion-widget.js",
