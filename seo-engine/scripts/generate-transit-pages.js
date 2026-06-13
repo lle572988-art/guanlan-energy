@@ -118,6 +118,15 @@ ${JSON.stringify(schemaGraph, null, 2)}
     <a href="${ctaHref}" class="btn">Access Free Calculator</a>
   </div>
 
+  <nav aria-label="2026 transit series" style="margin-top:2rem;padding:1rem 1.25rem;border:1px solid rgba(201,169,110,0.22);">
+    <p style="margin:0;color:rgba(255,255,255,0.72);"><strong style="color:#C9A96E;">High-intent transit guides</strong> ·
+    <a href="/pages/transit/2026-lian-zhen-hua-ji-in-career-palace.html" style="color:#C9A96E;">2026 Lian Zhen · Career</a> ·
+    <a href="/pages/transit/2026-lian-zhen-hua-ji-in-wealth-palace.html" style="color:#C9A96E;">Wealth</a> ·
+    <a href="/pages/horoscope/2026-annual-forecast.html" style="color:#C9A96E;">2026 forecast hub</a> ·
+    <a href="/pages/feng-shui-partner-every-life-stage-vs-zwds.html" style="color:#C9A96E;">Feng Shui vs chart</a>
+    </p>
+  </nav>
+
   <footer>
     <p>${escHtml(site.name || site.brand_name)} · <a href="${faqHref}">Official FAQ</a> · <a href="${ctaHref}">Free Chart</a></p>
   </footer>

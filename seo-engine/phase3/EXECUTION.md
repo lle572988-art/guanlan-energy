@@ -14,6 +14,13 @@
 7. **Gap 重过滤** — 30 → **10** 条有效 gap（`phase2:refilter-gaps`）
 8. **内链** — 首页 compare 区 + free-chart 底部 → Gap/Horoscope 页
 
+## ✅ 已完成（2026-06-13 SEO 续）
+
+9. **`/calculator` 301** → `/free-chart.html`（`vercel.json`）
+10. **矩阵 QC 字数** — `generate-pages.js` 补 Si Hua 段；168 页重生 + silo 重织
+11. **Transit 内链** — 240 页 footer 前加 2026 Lian Zhen / forecast / compare  hub
+12. **核心页内链** — `faq.html` · `blog/index.html` · 首页 compare · `free-chart` → GSC 优先 URL
+
 ## 📋 需你在 GSC 手动做
 
 1. **重复网页（.md）** → 打开问题 → **验证修正情况**（commit `9896bb9` 已 301）

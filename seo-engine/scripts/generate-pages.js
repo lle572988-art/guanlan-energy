@@ -125,6 +125,9 @@ ${JSON.stringify(schemaGraph, null, 2)}
   <h2>Eastern Metaphysics Reading</h2>
   <p>When ${escHtml(page.star_name || 'this star')} occupies the ${escHtml(page.palace_label || page.keyword)}, a disciplined Eastern metaphysics reading weighs palace strength, star brightness, and Si Hua transformations before drawing conclusions about life domains and timing cycles.</p>
 
+  <h2>Decade Luck &amp; Si Hua Overlay</h2>
+  <p>When interpreting ${escHtml(page.star_name || 'this star')} in the ${escHtml(page.palace_label || 'palace')}, seasoned readers also weigh decadal luck limits and annual Four Transformations — the Si Hua layer that can amplify or neutralize base star nature within each twelve-year cycle.</p>
+
   <div class="faq-section">
     <h2 style="margin-top:0;font-size:1.1rem;">Structured FAQ</h2>
     <p><strong>Q: ${escHtml(faqQ)}</strong></p>

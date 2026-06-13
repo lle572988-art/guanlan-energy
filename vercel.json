@@ -84,6 +84,16 @@
       "permanent": true
     },
     {
+      "source": "/calculator",
+      "destination": "/free-chart.html",
+      "permanent": true
+    },
+    {
+      "source": "/calculator/:path*",
+      "destination": "/free-chart.html",
+      "permanent": true
+    },
+    {
       "source": "/blog/:slug.md",
       "destination": "/blog/:slug.html",
       "permanent": true
