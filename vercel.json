@@ -374,8 +374,12 @@
       "maxDuration": 60,
       "memory": 256
     },
+    "api/upload-compass-image.mjs": {
+      "maxDuration": 30,
+      "memory": 256
+    },
     "api/compass-cure-image.js": {
-      "maxDuration": 120,
+      "maxDuration": 60,
       "memory": 512
     },
     "api/collect-lead.mjs": {

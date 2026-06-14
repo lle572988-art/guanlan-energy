@@ -171,7 +171,7 @@
   function setCureStatus(msg, isError) {
     var node = el('xrayCureStatus');
     if (!node) return;
-    node.textContent = msg || '';
+    node.textContent = isError ? userSafeError(msg) : (msg || '');
     node.style.color = isError ? '#9a4b3b' : 'var(--ink-faint)';
   }
 
@@ -263,11 +263,23 @@
     setCureStatus('Staging your room with ' + meta.element + ' cures…');
 
     try {
+      var imageUrl = '';
+      var uploadRes = await fetch('/api/upload-compass-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dataUrl: state.cureDataUrl }),
+      });
+      var uploadData = await readApiJson(uploadRes);
+      if (!uploadRes.ok) {
+        throw new Error(uploadData.error || 'Could not upload photo');
+      }
+      imageUrl = uploadData.url;
+
       var res = await fetch('/api/compass-cure-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          dataUrl: state.cureDataUrl,
+          imageUrl: imageUrl,
           element: meta.element,
           room: state.room,
           star: meta.star,
@@ -381,7 +393,7 @@
       .then(function (img) {
         state.image = img;
         state.imageDataUrl = resizeToDataUrl(img, 1280);
-        state.cureDataUrl = resizeToDataUrl(img, 640);
+        state.cureDataUrl = resizeToDataUrl(img, 512);
         state.imageUrl = state.imageDataUrl;
         state.cureUrl = '';
         setUploadStatus(file.name + ' — mapping flying stars…', false);

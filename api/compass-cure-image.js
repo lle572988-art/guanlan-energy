@@ -14,7 +14,7 @@ const CURE_PROMPTS = {
 };
 
 export const config = {
-  maxDuration: 120,
+  maxDuration: 60,
 };
 
 async function hostOnBlob(path, buf, contentType) {
