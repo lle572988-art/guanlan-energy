@@ -1,6 +1,9 @@
 // api/compass-cure-image.js — Room cure staging via Fal img2img (Wow #3)
 import { put } from '@vercel/blob';
-import { getFalApiKey } from '../server/lib/blob-env.mjs';
+
+function getFalApiKey() {
+  return (process.env.FAL_API_KEY || process.env.FAL_KEY || '').trim();
+}
 
 const CURE_PROMPTS = {
   metal: 'subtle brass bowl, white crystals, round metal decor on shelf, calm minimalist feng shui cure',

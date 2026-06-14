@@ -372,13 +372,11 @@
     },
     "api/generate-image.js": {
       "maxDuration": 60,
-      "memory": 256,
-      "includeFiles": "server/lib/**"
+      "memory": 256
     },
     "api/compass-cure-image.js": {
       "maxDuration": 60,
-      "memory": 256,
-      "includeFiles": "server/lib/**"
+      "memory": 256
     },
     "api/collect-lead.mjs": {
       "maxDuration": 60,

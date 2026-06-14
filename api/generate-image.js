@@ -1,6 +1,9 @@
 // api/generate-image.js — Fal Flux → Vercel Blob (FAL_API_KEY / FAL_KEY in env)
 import { put } from '@vercel/blob';
-import { getFalApiKey } from '../server/lib/blob-env.mjs';
+
+function getFalApiKey() {
+  return (process.env.FAL_API_KEY || process.env.FAL_KEY || '').trim();
+}
 
 const ALLOWED_ELEMENTS = new Set(['metal', 'wood', 'water', 'fire', 'earth']);
 
