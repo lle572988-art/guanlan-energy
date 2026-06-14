@@ -305,6 +305,22 @@
       "destination": "/compass/heatmap/index.html"
     },
     {
+      "source": "/compass/family",
+      "destination": "/compass/family/index.html"
+    },
+    {
+      "source": "/compass/family/",
+      "destination": "/compass/family/index.html"
+    },
+    {
+      "source": "/compass/moving",
+      "destination": "/compass/moving/index.html"
+    },
+    {
+      "source": "/compass/moving/",
+      "destination": "/compass/moving/index.html"
+    },
+    {
       "source": "/compass/facing/:slug",
       "destination": "/compass/facing/:slug.html"
     },

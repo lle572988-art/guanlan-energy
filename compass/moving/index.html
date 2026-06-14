@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Moving Day Feng Shui · Auspicious Dates | The Living Compass</title>
+<meta name="description" content="Pick a moving day with fewer flying-star clashes at your front door facing — monthly Five Yellow and wealth stars ranked for the next 90 days.">
+<link rel="canonical" href="https://metaphysicflow.com/compass/moving/">
+<link rel="stylesheet" href="/compass/shared.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="/js/plausible-init.js"></script>
+<style>
+.hero{padding:36px 0 24px;}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,4vw,2.6rem);line-height:1.12;margin-bottom:12px;}
+.hero h1 em{font-style:italic;color:var(--celadon);}
+.lead{color:var(--ink-soft);max-width:42em;line-height:1.6;margin-bottom:20px;}
+.panel{border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.42);padding:18px;max-width:480px;}
+.panel label{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;}
+.panel input,.panel select{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--paper);margin-bottom:12px;font-size:15px;}
+.mov-results{margin-top:32px;}
+.mov-results[hidden]{display:none!important;}
+.mov-block{margin-bottom:24px;}
+.mov-block h2{font-family:'Fraunces',serif;font-size:1.15rem;margin-bottom:10px;}
+.mov-list{list-style:none;border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;background:rgba(255,255,255,.45);}
+.mov-list li{padding:10px 0;border-bottom:1px solid rgba(31,42,38,.08);font-size:.92rem;color:var(--ink-soft);}
+.mov-list li:last-child{border-bottom:none;}
+.mov-list--avoid{border-color:rgba(154,75,59,.25);background:rgba(154,75,59,.06);}
+.mov-list--avoid strong{color:#9a4b3b;}
+</style>
+</head>
+<body>
+
+<nav class="lc-nav">
+  <a href="/compass/" class="lc-brand">
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="#7A9B8E"/><circle cx="20" cy="20" r="2.4" fill="#A88A52"/></svg>
+    <div class="name">The Living Compass<span>Moving · 搬家吉日</span></div>
+  </a>
+  <div class="lc-nav-links">
+    <a href="/compass/family/">Family</a>
+    <a href="/compass/heatmap/">Heatmap</a>
+    <a href="/compass/">Compass</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow" style="margin-bottom:12px;">Act 4 · LTV · 搬家择日</p>
+    <h1>When to <em>move</em> with fewer star clashes</h1>
+    <p class="lead">Moving is when you still choose room layout and door facing. We rank the next 30–120 days by annual + monthly flying stars at your <strong>front door sector</strong> — not full BaZi 择日, but a practical shortlist.</p>
+  </header>
+
+  <div class="panel">
+    <label for="movFacing">Home faces (front door outward)</label>
+    <select id="movFacing">
+      <option value="N">North</option><option value="NE">Northeast</option><option value="E">East</option>
+      <option value="SE">Southeast</option><option value="S" selected>South</option><option value="SW">Southwest</option>
+      <option value="W">West</option><option value="NW">Northwest</option>
+    </select>
+    <label for="movStart">Start from</label>
+    <input type="date" id="movStart">
+    <label for="movDays">Days to scan</label>
+    <select id="movDays">
+      <option value="60">60 days</option>
+      <option value="90" selected>90 days</option>
+      <option value="120">120 days</option>
+    </select>
+    <button type="button" class="btn" id="movBtn" style="width:100%;">Find moving windows</button>
+  </div>
+
+  <section class="mov-results" id="movResults" hidden>
+    <p id="movHeadline" style="font-family:'Fraunces',serif;font-size:1.1rem;line-height:1.45;margin-bottom:20px;color:var(--ink);"></p>
+    <div class="mov-block">
+      <h2>Best windows</h2>
+      <ul class="mov-list" id="movBest"></ul>
+    </div>
+    <div class="mov-block">
+      <h2>Moderate picks</h2>
+      <ul class="mov-list" id="movOk"></ul>
+    </div>
+    <div class="mov-block">
+      <h2>Dates to avoid</h2>
+      <ul class="mov-list mov-list--avoid" id="movAvoid"></ul>
+    </div>
+    <p style="font-size:.88rem;color:var(--ink-faint);margin-top:12px;">Tip: confirm facing on the lease walk-through, then run <a href="/compass/xray/">Energy X-Ray</a> before boxes arrive.</p>
+    <div class="compass-cta" style="margin-top:24px;">
+      <a href="/compass/heatmap/" class="btn">Scrub 2026 monthly heatmap</a>
+      <a href="/compass/guides/moving-day-feng-shui" class="btn btn-ghost" style="margin-left:8px;">Moving checklist guide</a>
+    </div>
+  </section>
+</main>
+
+<footer class="lc-footer"><div class="wrap"><p>A <a href="/">MetaphysicFlow</a> product</p></div></footer>
+
+<script src="/js/xuankong-flying-star.js"></script>
+<script src="/js/compass-moving-app.js?v=20260614d"></script>
+</body>
+</html>

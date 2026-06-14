@@ -54,8 +54,8 @@ Until products exist on Gumroad, empty SKUs force Stripe checkout.
 | 黄金漏斗 $19 / $39 / $49 | ✅ |
 | pSEO 矩阵 (347+ URLs) | ✅ |
 | 主站导流 | ✅ nav → `/compass/` |
-| 伴侣/家庭 LTV | 🔶 guide; dedicated SKU later |
-| 社群雷达 | 🔶 `seo-engine/phase3/social-monitor` |
+| 伴侣/家庭 LTV | ✅ `/compass/family/` tool + guide |
+| 搬家择日 | ✅ `/compass/moving/` + guide |
 
 ## Manual smoke test after deploy
 

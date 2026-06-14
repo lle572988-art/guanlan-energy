@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Partner & Family Feng Shui · Two Kuas One Home | The Living Compass</title>
+<meta name="description" content="Compare two Kua numbers for partners or family — sleep, desk, and conversation directions without fighting over one correct bearing.">
+<link rel="canonical" href="https://metaphysicflow.com/compass/family/">
+<link rel="stylesheet" href="/compass/shared.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="/js/plausible-init.js"></script>
+<style>
+.hero{padding:36px 0 24px;}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,4vw,2.6rem);line-height:1.12;margin-bottom:12px;}
+.hero h1 em{font-style:italic;color:var(--celadon);}
+.lead{color:var(--ink-soft);max-width:42em;line-height:1.6;margin-bottom:20px;}
+.fam-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.panel{border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,.42);padding:18px;}
+.panel label{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px;}
+.panel input,.panel select{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--paper);margin-bottom:10px;font-size:15px;}
+.fam-results{margin-top:32px;}
+.fam-results[hidden]{display:none!important;}
+.fam-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.kua-card{border:1px solid var(--line);border-radius:9px;padding:16px;background:rgba(255,255,255,.5);}
+.kua-label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);}
+.kua-num{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--brass);margin:6px 0;}
+.kua-meta{font-size:.9rem;color:var(--ink-soft);margin-bottom:10px;}
+.kua-dirs{list-style:none;font-size:.88rem;color:var(--ink-soft);}
+.kua-dirs li{padding:4px 0;}
+.fam-plan{list-style:none;border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:rgba(122,155,142,.08);}
+.fam-plan li{padding:10px 0;border-bottom:1px solid rgba(31,42,38,.08);font-size:.94rem;color:var(--ink-soft);}
+.fam-plan li:last-child{border-bottom:none;}
+.fam-warn{color:#9a4b3b;}
+.fam-ok{color:var(--celadon);}
+.fam-err{color:#9a4b3b;font-size:.9rem;margin-top:10px;}
+.fam-err[hidden]{display:none;}
+@media(max-width:720px){.fam-grid,.fam-cards{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav class="lc-nav">
+  <a href="/compass/" class="lc-brand">
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="#7A9B8E"/><circle cx="20" cy="20" r="2.4" fill="#A88A52"/></svg>
+    <div class="name">The Living Compass<span>Family · two Kuas</span></div>
+  </a>
+  <div class="lc-nav-links">
+    <a href="/compass/xray/">X-Ray</a>
+    <a href="/compass/moving/">Moving days</a>
+    <a href="/compass/">Compass</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow" style="margin-bottom:12px;">Act 4 · LTV · 伴侣合盘</p>
+    <h1>Two charts, <em>one home</em></h1>
+    <p class="lead">Ba Zhai is personal. Your partner's wealth direction may differ from yours — that is normal. Map sleep, desk, and talk bearings before you argue over one "correct" wall.</p>
+  </header>
+
+  <div class="fam-grid">
+    <div class="panel">
+      <label for="famLabelA">Name (optional)</label>
+      <input type="text" id="famLabelA" placeholder="Partner A" maxlength="40">
+      <label for="famDobA">Birth date</label>
+      <input type="date" id="famDobA">
+      <label for="famGenderA">Gender</label>
+      <select id="famGenderA"><option value="female">Woman</option><option value="male">Man</option></select>
+    </div>
+    <div class="panel">
+      <label for="famLabelB">Name (optional)</label>
+      <input type="text" id="famLabelB" placeholder="Partner B" maxlength="40">
+      <label for="famDobB">Birth date</label>
+      <input type="date" id="famDobB">
+      <label for="famGenderB">Gender</label>
+      <select id="famGenderB"><option value="female">Woman</option><option value="male">Man</option></select>
+    </div>
+  </div>
+
+  <button type="button" class="btn" id="famBtn" style="margin-top:16px;">Compare our directions</button>
+  <p class="fam-err" id="famErr" hidden></p>
+
+  <section class="fam-results" id="famResults" hidden>
+    <div class="fam-cards">
+      <div class="kua-card" id="famCardA"></div>
+      <div class="kua-card" id="famCardB"></div>
+    </div>
+    <p class="eyebrow" style="margin-bottom:10px;">Household plan</p>
+    <ul class="fam-plan" id="famPlan"></ul>
+    <div class="compass-cta" style="margin-top:28px;">
+      <h3>Layer flying stars on your floor plan</h3>
+      <p>Personal directions show <em>you</em>. Annual stars show the <em>house</em>. Combine both in Energy X-Ray.</p>
+      <a href="/compass/xray/" class="btn">Open Energy X-Ray</a>
+      <a href="/compass/order/" class="btn btn-ghost" style="margin-left:8px;">Full home report — $39</a>
+    </div>
+  </section>
+</main>
+
+<footer class="lc-footer"><div class="wrap"><p>A <a href="/">MetaphysicFlow</a> product</p></div></footer>
+
+<script src="/lunar.js"></script>
+<script src="/js/bazhai-engine.js"></script>
+<script src="/js/xuankong-flying-star.js"></script>
+<script src="/js/compass-intake.js"></script>
+<script src="/js/compass-family-app.js?v=20260614d"></script>
+</body>
+</html>
