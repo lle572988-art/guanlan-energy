@@ -177,6 +177,141 @@ const GUIDES = [
     ],
     xrayCta: true,
   },
+  {
+    slug: 'cant-sleep-bedroom',
+    title: 'Can\'t Sleep? Feng Shui Bedroom Fixes · Personal Directions',
+    description: 'Insomnia isn\'t always stress — your headboard wall and bedroom sector stars may clash with your Kua. Practical bedroom feng shui without moving walls.',
+    h1: 'Can\'t sleep? Check your bedroom feng shui',
+    intro: 'Before you blame blue light or caffeine, check whether your bed fights <strong>your personal chart</strong>. In Ba Zhai, sleeping toward Jue Ming (绝命) or with a draining star in the bedroom sector quietly erodes rest — even in a "pretty" room.',
+    sections: [
+      {
+        h2: 'Step 1 — Headboard on Tian Yi, not Jue Ming',
+        p: 'Calculate your Kua. Your Tian Yi (天医) direction is the wall your headboard should anchor to — it supports recovery. Never sleep with your head pointing toward Jue Ming, even if the room layout "looks right."',
+      },
+      {
+        h2: 'Step 2 — Scan 2026 stars in the bedroom sector',
+        p: 'If Two Black (illness) or Five Yellow (misfortune) sits in your bedroom this year, keep the room quiet, decluttered, and add metal cures (white, grey, brass). Avoid renovation and loud electronics there.',
+      },
+      {
+        h2: 'Step 3 — Break the door line without drama',
+        p: 'Feet toward the door isn\'t always fatal — but a direct rush from the door into the bed line adds unrest. A solid headboard, screen, or heavy rug between door and bed often helps within one night.',
+      },
+    ],
+    xrayCta: true,
+    heatmapCta: true,
+  },
+  {
+    slug: 'money-leaving-home',
+    title: 'Money Keeps Leaving? Feng Shui Wealth Drain Fixes',
+    description: 'Wealth energy leaking in feng shui — bathroom in SE wealth sector, front door aligned with drain, or personal Kua facing wrong. Fixes without renovating.',
+    h1: 'Money keeps leaving — where is wealth draining?',
+    intro: 'Classical feng shui doesn\'t promise lottery wins — but it <strong>does map where money energy wants to flow</strong> versus where it gets flushed, argued, or blocked. Two layers: your personal Sheng Qi direction and the home\'s wealth sectors in 2026 flying stars.',
+    sections: [
+      {
+        h2: 'Personal layer — face Sheng Qi when you earn',
+        p: 'Your Sheng Qi (生气) direction is where you should <em>face</em> during income work — desk, calls, trading screen. If you work with your back to it, momentum feels like uphill even when you\'re skilled.',
+      },
+      {
+        h2: 'House layer — Southeast and star 8 in 2026',
+        p: 'Traditionally the wealth corner is Southeast — but annual flying stars shift. In 2026, star 8 (wealth momentum) may land elsewhere. Upload your floor plan in Energy X-Ray to see which room actually holds wealth energy <em>this year</em>.',
+      },
+      {
+        h2: 'Classic drains to close',
+        p: 'Bathroom or toilet in the active wealth sector — keep door closed, add earth element. Front door directly aligned with back door or large window — slow the rush with plants or screens. Leaks, clutter, and broken items in the wealth zone signal "money out."',
+      },
+    ],
+    xrayCta: true,
+  },
+  {
+    slug: 'desk-position-promotion',
+    title: 'Desk Position for Promotion · Feng Shui Career Direction',
+    description: 'Where should your desk face for career growth? Ba Zhai Sheng Qi bearing plus 2026 flying stars on your office sector — not generic "command position" tips.',
+    h1: 'Desk position for promotion — face your power direction',
+    intro: 'The viral "command position" (see the door, back to wall) helps security — but <strong>career momentum in Ba Zhai is personal</strong>. Your Sheng Qi (生气) direction is where your body should face when doing high-stakes work: proposals, interviews, sales calls.',
+    sections: [
+      {
+        h2: 'Find your Sheng Qi bearing first',
+        p: 'Use the free Living Compass with your birth date and gender. Note the compass direction labeled wealth & vitality — that is where your torso and eyes should point during focused career work.',
+      },
+      {
+        h2: 'Office sector vs personal direction',
+        p: 'If your home office sits in a sector holding star 6 (authority) or star 8 (wealth) in 2026, that room amplifies promotion energy — especially when your desk also faces Sheng Qi. Star 3 (conflict) or 7 (sharp edges) calls for softer decor and less confrontation there.',
+      },
+      {
+        h2: 'Three desk moves this week',
+        p: 'Rotate chair so you face Sheng Qi while working — not just "away from the window." Clear clutter behind you for support. Add one metal object if Five Yellow visits the office sector this month (see the 2026 heatmap).',
+      },
+    ],
+    xrayCta: true,
+    heatmapCta: true,
+  },
+  {
+    slug: 'sell-house-fast',
+    title: 'Feng Shui to Sell Your House Faster · Curb Appeal Meets Energy',
+    description: 'Prepare a home for sale with feng shui — clear the entrance, calm the facing sector stars, and present wealth energy without superstition or renovation.',
+    h1: 'Feng shui to sell your house — what buyers feel in 30 seconds',
+    intro: 'Buyers decide emotionally in the foyer. Feng shui for selling isn\'t about hiding problems — it\'s about <strong>presenting flow, light, and calm authority</strong> at the front door and wealth path. No crystals required.',
+    sections: [
+      {
+        h2: 'Front door = opportunity mouth',
+        p: 'Clean, well-lit entry; working hardware; nothing blocking the door from opening fully. The facing sector\'s 2026 star colors the "first impression" — calm a harsh star with metal or earth, brighten a good star with fresh paint and plants.',
+      },
+      {
+        h2: 'Wealth path from door to main living',
+        p: 'Buyers should see a clear, inviting path — no shoes avalanche, no dark corridor. If the wealth sector (often SE, but check flying stars) is a messy storage room, declutter before photos and showings.',
+      },
+      {
+        h2: 'Personalize after you calculate facing',
+        p: 'Know which direction the home faces, then preview annual stars on the floor plan. Sellers who understand the home\'s energy map answer buyer questions with confidence — and price with clarity.',
+      },
+    ],
+    xrayCta: true,
+  },
+  {
+    slug: 'bad-luck-areas-2026',
+    title: 'Bad Luck Areas in Your House 2026 · Five Yellow & Flying Stars',
+    description: 'Where is negative energy in your home in 2026? Identify Five Yellow, Two Black, and conflict stars by sector — and what to do without fear-based feng shui.',
+    h1: 'Bad luck areas in your house in 2026',
+    intro: 'Searchers want a map, not a sermon. In 2026 flying star feng shui, <strong>Five Yellow (五黄)</strong> and <strong>Two Black (二黑)</strong> are the sectors to handle with care — not panic. No renovation, extra metal, and quiet use are the classic response.',
+    sections: [
+      {
+        h2: 'Annual baseline for 2026',
+        p: 'The year\'s center star is 7 Red — sectors rotate from there. Your home\'s "bad luck zones" depend on <em>facing direction</em> and layout — the same year feels different in a north-facing vs south-facing house.',
+      },
+      {
+        h2: 'Monthly shifts matter',
+        p: 'Five Yellow can visit your bedroom in March but leave by summer. Use the free 2026 heatmap to scrub month-by-month and avoid digging or major furniture moves when caution stars sit on rooms you use daily.',
+      },
+      {
+        h2: 'Empowering cures (not fear)',
+        p: 'Metal element (white, grey, brass, round shapes) calms Five Yellow. Keep affected sectors clean and quiet. This is stewardship, not superstition — you\'re managing energy flow like you manage lighting or airflow.',
+      },
+    ],
+    xrayCta: true,
+    heatmapCta: true,
+  },
+  {
+    slug: 'wealth-corner-home',
+    title: 'Wealth Corner of My Home · Feng Shui Money Area 2026',
+    description: 'Where is the wealth corner in feng shui? Southeast tradition plus your personal Sheng Qi direction and 2026 flying star 8 — find your real money sector.',
+    h1: 'Where is the wealth corner of my home?',
+    intro: 'Instagram says "far left corner from the door." Classical feng shui says <strong>three wealth corners</strong>: traditional Southeast bagua, your personal Sheng Qi direction, and wherever star 8 (wealth momentum) sits in 2026.',
+    sections: [
+      {
+        h2: 'Southeast — the classical money area',
+        p: 'Standing inside your front door, Southeast is the traditional wealth gua. But if that corner is a bathroom or closet, the metaphor is literal — money energy gets flushed or hidden. Close doors, add earth, keep it active with light.',
+      },
+      {
+        h2: 'Your personal wealth direction',
+        p: 'Ba Zhai maps Sheng Qi (生气) — your body\'s wealth & vitality bearing. Face that direction at your desk; place active income work there. It may differ from Southeast entirely.',
+      },
+      {
+        h2: '2026 flying star overlay',
+        p: 'Star 8 White is the premier wealth star — but it lands in a different room sector each year. Overlay the annual grid on your floor plan to see if your office, kitchen, or entry holds 2026\'s momentum star.',
+      },
+    ],
+    xrayCta: true,
+  },
 ];
 
 function compassCta(extra) {
@@ -286,13 +421,17 @@ function writeGuide(guide) {
   const xray = guide.xrayCta
     ? '<p style="margin-top:20px;"><a href="/compass/xray/" class="btn btn-ghost">Preview 2026 flying stars on your photo →</a></p>'
     : '';
+  const heatmap = guide.heatmapCta
+    ? '<p style="margin-top:12px;"><a href="/compass/heatmap/" class="btn btn-ghost">Scrub the 2026 monthly heatmap →</a></p>'
+    : '';
 
   const body = `
 <p class="eyebrow">Living Compass guide</p>
 <h1>${guide.h1}</h1>
 <p class="intro">${guide.intro}</p>
 ${sectionsHtml}
-${xray}`;
+${xray}
+${heatmap}`;
 
   const html = pageShell({
     title: guide.title,
@@ -409,6 +548,7 @@ function collectSitemapUrls() {
     `${base}/compass/xray/`,
     `${base}/compass/order/`,
     `${base}/compass/heatmap/`,
+    `${base}/compass/guides/`,
   ];
   Object.keys(KUA_PAGES).forEach((n) => urls.push(`${base}/compass/kua/${n}`));
   GUIDES.forEach((g) => urls.push(`${base}/compass/guides/${g.slug}`));

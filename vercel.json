@@ -281,6 +281,14 @@
       "destination": "/compass/guides/:slug.html"
     },
     {
+      "source": "/compass/guides",
+      "destination": "/compass/guides/index.html"
+    },
+    {
+      "source": "/compass/guides/",
+      "destination": "/compass/guides/index.html"
+    },
+    {
       "source": "/compass/order",
       "destination": "/compass/order/index.html"
     },
