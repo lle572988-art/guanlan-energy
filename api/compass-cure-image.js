@@ -132,20 +132,6 @@ export default async function handler(req, res) {
 
   try {
     const body = parseBody(req);
-
-    if (body.probe === 'fal') {
-      try {
-        const probeUrl = await runFalImg2img(
-          falKey,
-          'https://fal.media/files/koala/Chls9L2ZnvuipUTEwlnJC.png',
-          'test probe interior',
-        );
-        return res.status(200).json({ probe: true, url: probeUrl });
-      } catch (probeErr) {
-        return res.status(200).json({ probe: true, error: probeErr.message });
-      }
-    }
-
     const imageInput = resolveFalImageInput(body);
     const element = String(body.element || 'metal').toLowerCase();
     const cureHint = CURE_PROMPTS[element] || CURE_PROMPTS.metal;
