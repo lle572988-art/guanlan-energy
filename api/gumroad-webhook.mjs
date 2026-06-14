@@ -13,6 +13,50 @@ const PRODUCT_LABELS = {
   annual: 'Annual Cosmic Alignment',
 };
 
+const PERMALINK_PRODUCT = {
+  acvsfx: 'life-palace-dive',
+  lfoxf: 'three-palace-snapshot',
+  tiuyjr: 'full-chart',
+  lozmm: 'live-reading',
+};
+
+const PRODUCT_USD = {
+  'life-palace-dive': 9.9,
+  'three-palace-snapshot': 19,
+  'full-chart': 39,
+  'live-reading': 99,
+  acvsfx: 9.9,
+  lfoxf: 19,
+  tiuyjr: 39,
+  lozmm: 99,
+};
+
+async function trackPlausiblePurchase(productId, priceCents) {
+  const pid = String(productId || '').toLowerCase();
+  const mapped = PERMALINK_PRODUCT[pid] || pid;
+  let amount = PRODUCT_USD[mapped] || PRODUCT_USD[pid] || 0;
+  if (priceCents != null && priceCents !== '') {
+    const parsed = Number(priceCents) / 100;
+    if (Number.isFinite(parsed) && parsed > 0) amount = parsed;
+  }
+  try {
+    const payload = {
+      name: 'Purchase-Success',
+      url: `${SITE}/thank-you.html?product=${encodeURIComponent(mapped)}&ref=gumroad-webhook`,
+      domain: 'metaphysicflow.com',
+      props: { product: mapped, channel: 'gumroad_webhook' },
+    };
+    if (amount > 0) payload.revenue = { currency: 'USD', amount };
+    await fetch('https://plausible.io/api/event', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.error('[gumroad-webhook] Plausible event', err.message);
+  }
+}
+
 async function sendResendEmail(apiKey, payload, entityRefId) {
   const headers = {
     Authorization: `Bearer ${apiKey}`,
@@ -238,11 +282,17 @@ export default async function handler(request, context) {
     const dripEmail = body.email || body.purchaser_email || '';
     const dripProduct = String(productId).toLowerCase();
     const dripSaleId = saleId;
-    const dripPromise = sendPurchaseDrip(dripEmail, dripProduct, dripSaleId, kv).catch((err) => {
-      console.error('[gumroad-webhook] drip error:', err.message);
-    });
+    const dripPrice = body.price || body.full_price || body.recurrence_price || '';
+    const asyncWork = Promise.all([
+      sendPurchaseDrip(dripEmail, dripProduct, dripSaleId, kv).catch((err) => {
+        console.error('[gumroad-webhook] drip error:', err.message);
+      }),
+      trackPlausiblePurchase(dripProduct, dripPrice).catch((err) => {
+        console.error('[gumroad-webhook] plausible error:', err.message);
+      }),
+    ]);
     if (context && typeof context.waitUntil === 'function') {
-      context.waitUntil(dripPromise);
+      context.waitUntil(asyncWork);
     }
     if (kv && dripSaleId) {
       try {

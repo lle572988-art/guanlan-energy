@@ -10,6 +10,13 @@
     lozmm: 'live-reading'
   };
 
+  var PRODUCT_USD = {
+    'life-palace-dive': 9.9,
+    'three-palace-snapshot': 19,
+    'full-chart': 39,
+    'live-reading': 99
+  };
+
   var THANK_YOU = 'https://metaphysicflow.com/thank-you.html';
   var STORAGE_KEY = 'guanlan_birth';
 
@@ -90,7 +97,11 @@
 
     var url = THANK_YOU + (productKey ? '?product=' + encodeURIComponent(productKey) : '');
     if (window.gtag) gtag('event', 'purchase', { item_name: productKey || 'gumroad', item_category: 'ziwei_reading' });
-    if (window.plausible) plausible('purchase_complete', { props: { product: productKey || 'unknown', channel: 'gumroad_overlay' } });
+    if (window.plausible) {
+      var saleValue = PRODUCT_USD[productKey] || 0;
+      plausible('Purchase-Success', { revenue: { currency: 'USD', amount: saleValue }, props: { product: productKey || 'unknown', channel: 'gumroad_overlay' } });
+      plausible('purchase_complete', { props: { product: productKey || 'unknown', channel: 'gumroad_overlay' } });
+    }
     window.location.replace(url);
   }
 
@@ -168,6 +179,7 @@
       gtag('event', 'begin_checkout', props);
     }
     if (window.plausible) {
+      plausible('Click-Buy-Report', { props: { product: product, value: PRODUCT_USD[product] || 0 } });
       plausible('purchase_click', { props: { product: product, channel: 'gumroad_overlay' } });
     }
   }

@@ -226,6 +226,7 @@ h1{font-size:28px;font-weight:400;color:#e8d4a0;margin-bottom:12px}
   var purchaseValues={'life-palace-dive':9.9,'three-palace-snapshot':19,'full-chart':39,'live-reading':99,'partner-compatibility':59,'annual':199};
   var purchaseValue=purchaseValues[product]||39;
   window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};
+  plausible('Purchase-Success',{revenue:{currency:'USD',amount:purchaseValue},props:{product:product||'unknown',tier:tier||'unknown'}});
   plausible('purchase_complete',{props:{product:product||'unknown',value:purchaseValue,tier:tier||'unknown'}});
   if(window.gtag){
     var txnId=p.get('sale_id')||p.get('order')||Date.now().toString()+Math.random().toString(36).slice(2);

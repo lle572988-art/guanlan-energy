@@ -1121,7 +1121,10 @@ function runChartCalculation(params) {
       try { sessionStorage.setItem('chart_generated', '1'); } catch (e) {}
     });
     fetch('/api/stats', { method: 'POST', keepalive: true }).catch(function () {});
-    if (window.plausible) plausible('chart_ready');
+    if (window.plausible) {
+      plausible('Submit-Free-Chart');
+      plausible('chart_ready');
+    }
     if (window.gtag) gtag('event', 'chart_ready', { page: 'free-chart' });
   } catch (err) {
     showError(err);
