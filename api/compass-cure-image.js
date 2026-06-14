@@ -134,24 +134,16 @@ export default async function handler(req, res) {
     const body = parseBody(req);
 
     if (body.probe === 'fal') {
-      const probe = await falFetch(
-        falKey,
-        'https://queue.fal.run/fal-ai/flux/dev/image-to-image',
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            image_url: 'https://fal.media/files/koala/Chls9L2ZnvuipUTEwlnJC.png',
-            prompt: 'test probe',
-          }),
-        },
-      );
-      return res.status(200).json({
-        probe: true,
-        falStatus: probe.status,
-        falOk: probe.ok,
-        detail: probe.data?.detail || null,
-        requestId: probe.data?.request_id || null,
-      });
+      try {
+        const probeUrl = await runFalImg2img(
+          falKey,
+          'https://fal.media/files/koala/Chls9L2ZnvuipUTEwlnJC.png',
+          'test probe interior',
+        );
+        return res.status(200).json({ probe: true, url: probeUrl });
+      } catch (probeErr) {
+        return res.status(200).json({ probe: true, error: probeErr.message });
+      }
     }
 
     const imageInput = resolveFalImageInput(body);
@@ -177,9 +169,14 @@ export default async function handler(req, res) {
     if (msg.includes('Image too large')) {
       return res.status(400).json({ error: msg });
     }
+    if (/exhausted balance|user is locked/i.test(msg)) {
+      return res.status(503).json({
+        error: 'AI cure preview is temporarily unavailable — billing limit reached.',
+      });
+    }
     if (/authentication|api key|access application/i.test(msg)) {
       return res.status(503).json({ error: 'AI cure preview is not configured yet' });
     }
-    return res.status(502).json({ error: 'Cure image generation failed' });
+    return res.status(502).json({ error: msg || 'Cure image generation failed' });
   }
 }

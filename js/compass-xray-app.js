@@ -277,7 +277,8 @@
       var data = await readApiJson(res);
       if (!res.ok) {
         var msg = data.error || 'Generation failed';
-        if (res.status === 503) msg = 'AI cure preview is warming up — your flying star map above is still complete.';
+        if (res.status === 503 && data.error) msg = data.error;
+        if (res.status === 503 && !data.error) msg = 'AI cure preview is warming up — your flying star map above is still complete.';
         throw new Error(msg);
       }
 
