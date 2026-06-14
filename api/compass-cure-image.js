@@ -1,7 +1,8 @@
 // api/compass-cure-image.js — Room cure staging via Fal img2img (Wow #3)
 function getFalApiKey() {
   const raw = (process.env.FAL_API_KEY || process.env.FAL_KEY || '').trim();
-  return raw.replace(/[\r\n\t]/g, '');
+  const cleaned = raw.replace(/[^\x21-\x7E]/g, '');
+  return cleaned.length > 256 ? cleaned.slice(0, 256) : cleaned;
 }
 
 const CURE_PROMPTS = {
@@ -15,7 +16,6 @@ const CURE_PROMPTS = {
 export const config = {
   runtime: 'nodejs',
   maxDuration: 60,
-  api: { bodyParser: { sizeLimit: '4mb' } },
 };
 
 function parseBody(req) {
@@ -132,6 +132,28 @@ export default async function handler(req, res) {
 
   try {
     const body = parseBody(req);
+
+    if (body.probe === 'fal') {
+      const probe = await falFetch(
+        falKey,
+        'https://queue.fal.run/fal-ai/flux/dev/image-to-image',
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            image_url: 'https://fal.media/files/koala/Chls9L2ZnvuipUTEwlnJC.png',
+            prompt: 'test probe',
+          }),
+        },
+      );
+      return res.status(200).json({
+        probe: true,
+        falStatus: probe.status,
+        falOk: probe.ok,
+        detail: probe.data?.detail || null,
+        requestId: probe.data?.request_id || null,
+      });
+    }
+
     const imageInput = resolveFalImageInput(body);
     const element = String(body.element || 'metal').toLowerCase();
     const cureHint = CURE_PROMPTS[element] || CURE_PROMPTS.metal;
