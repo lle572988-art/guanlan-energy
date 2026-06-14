@@ -10,9 +10,7 @@ const CURE_PROMPTS = {
 };
 
 export const config = {
-  runtime: 'nodejs',
   maxDuration: 60,
-  api: { bodyParser: { sizeLimit: '8mb' } },
 };
 
 async function resolveImageUrl(body) {
@@ -26,14 +24,12 @@ async function resolveImageUrl(body) {
   if (!match) return null;
 
   const buf = Buffer.from(match[2], 'base64');
-  if (buf.length > 6 * 1024 * 1024) {
-    throw new Error('Image too large — resize before upload');
+  if (buf.length > 2 * 1024 * 1024) {
+    throw new Error('Image too large — use a smaller photo');
   }
 
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    // Fal needs a fetchable URL — data URLs work but are huge; prefer returning after Fal without re-hosting
-    console.warn('[compass-cure-image] BLOB_READ_WRITE_TOKEN missing — passing data URL to Fal');
-    return dataUrl;
+    throw new Error('BLOB_NOT_CONFIGURED');
   }
 
   const ext = match[1].includes('png') ? 'png' : 'jpg';
@@ -55,10 +51,11 @@ export default async function handler(req, res) {
 
   const falKey = process.env.FAL_API_KEY;
   if (!falKey) {
-    return res.status(503).json({
-      error: 'AI cure preview is not configured yet',
-      detail: 'FAL_API_KEY missing on server — flying star overlay still works without cure preview.',
-    });
+    return res.status(503).json({ error: 'AI cure preview is not configured yet' });
+  }
+
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    return res.status(503).json({ error: 'Image upload not configured on server' });
   }
 
   try {
@@ -101,7 +98,7 @@ export default async function handler(req, res) {
         const parsed = JSON.parse(errText);
         detail = parsed.detail || parsed.message || detail;
       } catch { /* raw text */ }
-      return res.status(502).json({ error: 'Cure image generation failed', detail });
+      return res.status(502).json({ error: 'Cure image generation failed' });
     }
 
     const data = await falRes.json();
@@ -123,9 +120,11 @@ export default async function handler(req, res) {
     return res.status(200).json({ url: blob.url, element, room });
   } catch (err) {
     console.error('[compass-cure-image]', err.message);
-    const msg = err.message === 'Image too large — resize before upload'
+    const msg = err.message === 'Image too large — use a smaller photo'
       ? err.message
-      : 'Internal error';
+      : err.message === 'BLOB_NOT_CONFIGURED'
+        ? 'Image upload not configured on server'
+        : 'Internal error';
     return res.status(500).json({ error: msg });
   }
 }

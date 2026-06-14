@@ -21,7 +21,7 @@ Regenerate SEO: `node scripts/generate-compass-seo.mjs`
 |----------|----------------|
 | `STRIPE_SECRET_KEY` | Stripe checkout fallback |
 | `STRIPE_WEBHOOK_SECRET` | Auto HTML report after Stripe pay |
-| `BLOB_READ_WRITE_TOKEN` | Report storage + image upload for AI cure |
+| `BLOB_READ_WRITE_TOKEN` | Report storage + **required** for AI cure (upload photo to Blob before Fal) |
 | `RESEND_API_KEY` | Buyer email with report link |
 | `RESEND_FROM_EMAIL` | Optional sender override |
 | `FAL_API_KEY` | AI cure Before/After (`/api/compass-cure-image`) |

@@ -8,6 +8,7 @@
     image: null,
     imageUrl: '',
     imageDataUrl: '',
+    cureDataUrl: '',
     facing: 'S',
     year: 2026,
     chart: null,
@@ -225,8 +226,29 @@
     track('compass_xray_scan', { facing: state.facing, year: state.year, has_image: !!state.image });
   }
 
+  function userSafeError(msg) {
+    if (!msg) return 'Could not generate preview. Try again in a moment.';
+    if (/DOCTYPE|Unexpected token|SyntaxError|is not valid JSON/i.test(msg)) {
+      return 'Preview service is busy — try a smaller photo or wait a minute. Your flying star map above is still complete.';
+    }
+    return msg;
+  }
+
+  function readApiJson(res) {
+    return res.text().then(function (text) {
+      if (!text) return {};
+      try {
+        return JSON.parse(text);
+      } catch (e) {
+        var err = new Error(userSafeError(''));
+        err.httpStatus = res.status;
+        throw err;
+      }
+    });
+  }
+
   async function generateCure() {
-    if (!state.image || !state.imageDataUrl || state.cureLoading) return;
+    if (!state.image || !state.cureDataUrl || state.cureLoading) return;
 
     var meta = facingCureMeta();
     var roomSel = el('xrayRoom');
@@ -245,15 +267,15 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          dataUrl: state.imageDataUrl,
+          dataUrl: state.cureDataUrl,
           element: meta.element,
           room: state.room,
           star: meta.star,
         }),
       });
-      var data = await res.json();
+      var data = await readApiJson(res);
       if (!res.ok) {
-        var msg = data.error || data.detail || 'Generation failed';
+        var msg = data.error || 'Generation failed';
         if (res.status === 503) msg = 'AI cure preview is warming up — your flying star map above is still complete.';
         throw new Error(msg);
       }
@@ -273,7 +295,7 @@
       }
       track('compass_cure_generated', { element: meta.element, star: meta.star, room: state.room });
     } catch (err) {
-      setCureStatus(err.message || 'Could not generate preview. Try again in a moment.', true);
+      setCureStatus(userSafeError(err.message), true);
       track('compass_cure_error', { message: err.message });
     } finally {
       state.cureLoading = false;
@@ -359,6 +381,7 @@
       .then(function (img) {
         state.image = img;
         state.imageDataUrl = resizeToDataUrl(img, 1280);
+        state.cureDataUrl = resizeToDataUrl(img, 640);
         state.imageUrl = state.imageDataUrl;
         state.cureUrl = '';
         setUploadStatus(file.name + ' — mapping flying stars…', false);
