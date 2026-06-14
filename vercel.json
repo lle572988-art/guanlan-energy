@@ -301,6 +301,10 @@
       "destination": "/compass/facing/:slug.html"
     },
     {
+      "source": "/compass/born/:year",
+      "destination": "/compass/born/:year.html"
+    },
+    {
       "source": "/compass/2026/:slug",
       "destination": "/compass/2026/:slug.html"
     },

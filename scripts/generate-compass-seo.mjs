@@ -79,6 +79,37 @@ const ROOMS = [
 ];
 
 const FACING_YEAR = 2026;
+const BIRTH_YEAR_START = 1960;
+const BIRTH_YEAR_END = 2012;
+
+const ZODIAC = ['Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Goat', 'Monkey', 'Rooster', 'Dog', 'Pig'];
+
+function reduceDigit(n) {
+  n = Math.abs(n);
+  while (n > 9) {
+    n = String(n).split('').reduce((a, d) => a + parseInt(d, 10), 0);
+  }
+  return n;
+}
+
+/** Matches client Ba Zhai logic in compass/index.html */
+function kuaForBirthYear(year, gender) {
+  const base = reduceDigit(year % 100);
+  let k;
+  if (year < 2000) {
+    k = gender === 'male' ? 10 - base : 5 + base;
+  } else {
+    k = gender === 'male' ? 9 - base : 6 + base;
+  }
+  k = reduceDigit(k);
+  if (k === 5) k = gender === 'male' ? 2 : 8;
+  if (k === 0) k = 9;
+  return k;
+}
+
+function zodiacForYear(year) {
+  return ZODIAC[(year - 4) % 12];
+}
 
 const GUIDES = [
   {
@@ -326,6 +357,51 @@ function writeFacingRoom(dir, room) {
   console.log('  facing/' + slug + '.html');
 }
 
+function kuaSummary(kua, genderLabel) {
+  const data = KUA_PAGES[kua];
+  if (!data) return `<p>${genderLabel}: Kua ${kua} — <a href="/compass/">calculate exact directions</a>.</p>`;
+  return `<p><strong>${genderLabel} · Kua ${kua}</strong> (${data.han} · ${data.group} Group) — wealth faces <strong>${data.wealth}</strong>, health headboard <strong>${data.health}</strong>, relationships <strong>${data.love}</strong>. <a href="/compass/kua/${kua}">Full Kua ${kua} map →</a></p>`;
+}
+
+function writeBirthYearPage(year) {
+  const canonical = `https://metaphysicflow.com/compass/born/${year}`;
+  const zodiac = zodiacForYear(year);
+  const kuaM = kuaForBirthYear(year, 'male');
+  const kuaF = kuaForBirthYear(year, 'female');
+  const title = `Feng Shui for People Born in ${year} · Kua & Lucky Directions`;
+  const description = `Born in ${year} (${zodiac})? Your Ba Zhai Kua differs by gender — men often Kua ${kuaM}, women Kua ${kuaF}. Personal lucky directions for wealth, sleep, and desk facing.`;
+
+  const body = `
+<p class="eyebrow">Birth year · ${year} · ${zodiac}</p>
+<h1>Feng shui for people born in ${year}</h1>
+<p class="intro">Searching "feng shui for ${year} births" lands you on generic tips. <strong>Eight Mansions (八宅)</strong> is personal: your Kua number comes from birth year <em>and gender</em>, then maps four lucky and four draining directions.</p>
+
+<h2>Your likely Kua numbers</h2>
+<p class="intro" style="font-size:.95rem;">Uses the classical solar-year formula (same as our free Living Compass). If you were born <strong>before Feb 4</strong>, you may belong to the prior year's chart — use the calculator with your exact date.</p>
+${kuaSummary(kuaM, 'Man born in ' + year)}
+${kuaSummary(kuaF, 'Woman born in ' + year)}
+
+<h2>What to do with this</h2>
+<ul style="color:var(--ink-soft);line-height:1.65;margin-bottom:16px;padding-left:1.2rem;">
+  <li>Headboard on your <strong>Tian Yi (天医)</strong> wall for sleep and recovery</li>
+  <li>Face <strong>Sheng Qi (生气)</strong> at your desk for momentum and income work</li>
+  <li>Avoid sleeping toward <strong>Jue Ming (绝命)</strong> — your most draining bearing</li>
+</ul>
+
+<h2>Layer ${FACING_YEAR} flying stars on your home</h2>
+<p>Your Kua tells you <em>which way to face</em>. Annual flying stars tell you <em>what energy sits in each room sector this year</em>. Map both on your floor plan with the free tools below.</p>
+<p>
+  <a href="/compass/?date=${year}-07-01&gender=female&auto=1" class="btn">Reveal my compass (sample date)</a>
+</p>
+<p style="font-size:.9rem;color:var(--ink-faint);">Opens the calculator with Jul 1, ${year} — change to your exact birthday for precision.</p>`;
+
+  const html = pageShell({ title, description, canonical, body, schemaName: title });
+  const outDir = path.join(ROOT, 'compass', 'born');
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, `${year}.html`), html);
+  console.log('  born/' + year + '.html');
+}
+
 function collectSitemapUrls() {
   const base = 'https://metaphysicflow.com';
   const urls = [
@@ -340,6 +416,9 @@ function collectSitemapUrls() {
     urls.push(`${base}/compass/2026/${d.slug}-facing-house`);
     ROOMS.forEach((r) => urls.push(`${base}/compass/facing/${d.slug}-${r.slug}`));
   });
+  for (let y = BIRTH_YEAR_START; y <= BIRTH_YEAR_END; y += 1) {
+    urls.push(`${base}/compass/born/${y}`);
+  }
   return urls;
 }
 
@@ -367,5 +446,8 @@ DIRS.forEach((d) => {
   writeYearFacing(d);
   ROOMS.forEach((r) => writeFacingRoom(d, r));
 });
+for (let y = BIRTH_YEAR_START; y <= BIRTH_YEAR_END; y += 1) {
+  writeBirthYearPage(y);
+}
 syncSitemap(collectSitemapUrls());
 console.log('Done.');
