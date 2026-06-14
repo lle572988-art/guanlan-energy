@@ -69,6 +69,21 @@ export default async function handler(req, res) {
         description: 'Quarterly in-depth reports · Solar term reminders · Unlimited email Q&A · Priority booking all year.',
         unit_amount: 19900,
       },
+      'compass-room': {
+        name: 'Energy X-Ray · Single Room Report',
+        description: 'One room deep-dive — 2026 flying stars, personal Kua overlay, and three-step cures. Illustrated PDF within 48h.',
+        unit_amount: 1900,
+      },
+      'compass-home': {
+        name: 'Energy X-Ray · Full Home Report',
+        description: 'Whole-home flying star map, four personal directions, room-by-room cures, and printable checklist. PDF within 48h.',
+        unit_amount: 3900,
+      },
+      'compass-home-year': {
+        name: 'Home + 2026 Year Energy Forecast',
+        description: 'Full home X-Ray plus 2026 monthly flying star calendar and activation windows. PDF within 48h.',
+        unit_amount: 4900,
+      },
     };
 
     let selected;

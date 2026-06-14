@@ -24,6 +24,24 @@ export const GUMROAD_PRODUCTS = {
     price: '$99',
     checkout: 'https://lleonard88.gumroad.com/l/lozmm?wanted=true',
   },
+  compassrm: {
+    key: 'compass-room',
+    name: 'Energy X-Ray · Single Room',
+    price: '$19',
+    checkout: '',
+  },
+  compasshm: {
+    key: 'compass-home',
+    name: 'Energy X-Ray · Full Home',
+    price: '$39',
+    checkout: '',
+  },
+  compassyr: {
+    key: 'compass-home-year',
+    name: 'Home + 2026 Year Report',
+    price: '$49',
+    checkout: '',
+  },
 };
 
 export function resolveGumroadProduct(body) {
@@ -71,6 +89,10 @@ export function extractBirthContext(body) {
   if (params.guanlan_hour) fields['Birth hour'] = params.guanlan_hour;
   if (params.guanlan_country) fields['Birth city / country'] = params.guanlan_country;
   if (params.guanlan_main_star) fields['Life Palace star'] = params.guanlan_main_star;
+  if (params.guanlan_facing) fields['Home facing'] = params.guanlan_facing;
+  if (params.guanlan_xray_year) fields['Flying star year'] = params.guanlan_xray_year;
+  if (params.guanlan_gender) fields['Gender'] = params.guanlan_gender;
+  if (params.guanlan_kua) fields['Kua number'] = params.guanlan_kua;
 
   const gumroadCustomLabels = [
     ['Date of birth (YYYY-MM-DD)', 'Date of birth'],

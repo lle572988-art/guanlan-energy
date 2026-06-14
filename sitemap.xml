@@ -31,6 +31,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://metaphysicflow.com/compass/order/</loc>
+    <lastmod>2026-06-14T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
     <loc>https://metaphysicflow.com/compass/kua/1</loc>
     <lastmod>2026-06-14T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>

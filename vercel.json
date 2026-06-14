@@ -281,6 +281,14 @@
       "destination": "/compass/guides/:slug.html"
     },
     {
+      "source": "/compass/order",
+      "destination": "/compass/order/index.html"
+    },
+    {
+      "source": "/compass/order/",
+      "destination": "/compass/order/index.html"
+    },
+    {
       "source": "/((?!hubs/|blog/|scan/|compass/|longtail/|images/|pages/|api/|js/|[a-z0-9_-]+\\.[a-z0-9]+).*)",
       "destination": "/index.html"
     }

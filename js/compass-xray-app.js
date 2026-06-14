@@ -112,6 +112,14 @@
     }
 
     if (lock) lock.hidden = false;
+
+    if (global.CompassIntake) {
+      global.CompassIntake.save({
+        facing: state.facing,
+        year: state.year,
+        hasImage: !!state.image,
+      });
+    }
   }
 
   function runScan() {
@@ -129,6 +137,17 @@
       results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     track('compass_xray_scan', { facing: state.facing, year: state.year, has_image: !!state.image });
+  }
+
+  function downloadPreview() {
+    if (!state.chart || !global.CompassReport || !global.XuanKong) return;
+    var intake = (global.CompassIntake && global.CompassIntake.load()) || {
+      facing: state.facing,
+      year: state.year,
+    };
+    var data = global.CompassReport.buildReportData(intake, state.chart, global.XuanKong.insightsForFacing(state.chart, state.facing));
+    global.CompassReport.openPrintable(data, 'preview');
+    track('compass_xray_preview_pdf', { year: state.year });
   }
 
   function bindUpload() {
@@ -175,6 +194,9 @@
     var btn = el('xrayScanBtn');
     if (btn) btn.addEventListener('click', runScan);
 
+    var previewBtn = el('xrayPreviewBtn');
+    if (previewBtn) previewBtn.addEventListener('click', downloadPreview);
+
     window.addEventListener('resize', function () {
       if (state.chart) drawOverlay();
     });
@@ -188,5 +210,5 @@
     init();
   }
 
-  global.CompassXRay = { runScan: runScan, getState: function () { return state; } };
+  global.CompassXRay = { runScan: runScan, getState: function () { return state; }, downloadPreview: downloadPreview };
 })(window);

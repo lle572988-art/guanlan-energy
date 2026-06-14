@@ -7,14 +7,20 @@
     acvsfx: 'life-palace-dive',
     lfoxf: 'three-palace-snapshot',
     tiuyjr: 'full-chart',
-    lozmm: 'live-reading'
+    lozmm: 'live-reading',
+    compassrm: 'compass-room',
+    compasshm: 'compass-home',
+    compassyr: 'compass-home-year'
   };
 
   var PRODUCT_USD = {
     'life-palace-dive': 9.9,
     'three-palace-snapshot': 19,
     'full-chart': 39,
-    'live-reading': 99
+    'live-reading': 99,
+    'compass-room': 19,
+    'compass-home': 39,
+    'compass-home-year': 49
   };
 
   var THANK_YOU = 'https://metaphysicflow.com/thank-you.html';
@@ -75,6 +81,9 @@
       '&guanlan_hour=' + encodeURIComponent(birth.hourLabel);
     if (birth.country) out += '&guanlan_country=' + encodeURIComponent(birth.country);
     if (birth.mainStar) out += '&guanlan_main_star=' + encodeURIComponent(birth.mainStar);
+    if (global.CompassIntake && global.CompassIntake.appendCompassParams) {
+      out = global.CompassIntake.appendCompassParams(out);
+    }
     return out;
   }
 

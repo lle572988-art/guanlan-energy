@@ -93,7 +93,7 @@
         </select>
       </div>
       <button type="button" class="btn" id="xrayScanBtn" style="width:100%;">Reveal energy map</button>
-      <p class="upload-hint" style="margin-top:12px;">Free preview. Full room-by-room cures and PDF report — Phase 2.</p>
+      <p class="upload-hint" style="margin-top:12px;">Free sector preview · Full PDF report unlocks below.</p>
     </div>
     <div>
       <div id="xrayCanvasWrap">
@@ -110,11 +110,14 @@
     </div>
 
     <div class="xray-lock" id="xrayLock" hidden>
-      <h3>Full home report · coming soon</h3>
-      <p>Room-by-room cures, missing-corner analysis, and a printable PDF — $39 full home tier from the playbook.</p>
-      <a href="/compass/" class="btn">Get your personal compass first →</a>
+      <h3>Unlock your full home report</h3>
+      <p>A feng shui master charges $800–1,500 for this. Your illustrated PDF — room cures, personal Kua, and 2026 stars — is <strong>$39</strong>.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:16px 0;">
+        <button type="button" class="btn btn-ghost" id="xrayPreviewBtn">Download free snapshot</button>
+        <a href="/compass/order/" class="btn">Order full home — $39</a>
+      </div>
       <div class="blur-teaser">
-        <strong>Sample locked page:</strong> Your wealth corner (SE) is a bathroom — money energy is being flushed. Step 1: keep door closed. Step 2: add earth element. Step 3: relocate desk to NE…
+        <strong>Inside the full report:</strong> Your wealth corner (SE) is a bathroom — money energy is being flushed. Step 1: keep door closed. Step 2: add earth element. Step 3: relocate desk to NE…
       </div>
     </div>
   </section>
@@ -122,7 +125,7 @@
   <div class="compass-cta">
     <h3>Directions are personal — not generic</h3>
     <p>Your flying star map shows the house. Your Kua compass shows <em>you</em>. Combine both for the full picture.</p>
-    <a href="/compass/" class="btn">Calculate my Kua compass</a>
+    <a href="/compass/order/" class="btn">View report pricing</a>
   </div>
 </main>
 
@@ -134,6 +137,9 @@
 </footer>
 
 <script src="/js/xuankong-flying-star.js"></script>
+<script src="/js/bazhai-engine.js"></script>
+<script src="/js/compass-intake.js"></script>
+<script src="/js/compass-report.js"></script>
 <script src="/js/compass-xray-app.js"></script>
 </body>
 </html>

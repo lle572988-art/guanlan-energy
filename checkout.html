@@ -110,6 +110,30 @@ var CATALOG = {
     desc: 'Year-round cosmic guidance — quarterly in-depth reports, solar term reminders, and priority access.',
     features: ['Quarterly in-depth reports', 'Solar term reminders', 'Unlimited email Q&A', 'Priority session booking', 'Full year of alignment support'],
     stripe: 'annual'
+  },
+  'compass-room': {
+    tier: 'Living Compass · Room',
+    name: 'Energy X-Ray · Single Room',
+    price: '$19.00',
+    desc: 'One room analyzed — 2026 flying stars on your photo, personal Kua directions, and three-step cures.',
+    features: ['One room sector map', '2026 annual flying stars', 'Personal Kua overlay', 'Three-step cure plan', 'PDF within 48 hours'],
+    stripe: 'compass-room'
+  },
+  'compass-home': {
+    tier: 'Living Compass · Full Home ★',
+    name: 'Energy X-Ray · Full Home Report',
+    price: '$39.00',
+    desc: 'Whole-home energy map — every sector, your four personal directions, and a printable action checklist.',
+    features: ['Full 9-sector 2026 map', 'Ba Zhai personal directions', 'Room-by-room cure notes', 'Wealth & caution zones highlighted', 'Illustrated PDF · 48h delivery'],
+    stripe: 'compass-home'
+  },
+  'compass-home-year': {
+    tier: 'Living Compass · Home + Year',
+    name: 'Home + 2026 Year Forecast',
+    price: '$49.00',
+    desc: 'Full home X-Ray plus monthly 2026 flying star calendar and best activation windows.',
+    features: ['Everything in Full Home', '2026 month-by-month stars', 'Renovation timing notes', 'Annual scarcity — 2026 only', 'PDF · 48h delivery'],
+    stripe: 'compass-home-year'
   }
 };
 
@@ -149,7 +173,7 @@ function trackCheckout(productId) {
   if (window.gtag) {
     gtag('event', 'begin_checkout', {
       item_name: productId,
-      item_category: 'ziwei_reading',
+      item_category: productId.indexOf('compass') === 0 ? 'compass_xray' : 'ziwei_reading',
       source_section: 'checkout_page'
     });
   }
