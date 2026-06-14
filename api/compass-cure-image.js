@@ -9,7 +9,11 @@ const CURE_PROMPTS = {
   earth: 'ceramic vases, earth-tone textiles, stable grounded decor, yellow ochre accents',
 };
 
-export const config = { runtime: 'nodejs', maxDuration: 60 };
+export const config = {
+  runtime: 'nodejs',
+  maxDuration: 60,
+  api: { bodyParser: { sizeLimit: '8mb' } },
+};
 
 async function resolveImageUrl(body) {
   let imageUrl = body.imageUrl || body.image_url;
@@ -27,6 +31,8 @@ async function resolveImageUrl(body) {
   }
 
   if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    // Fal needs a fetchable URL — data URLs work but are huge; prefer returning after Fal without re-hosting
+    console.warn('[compass-cure-image] BLOB_READ_WRITE_TOKEN missing — passing data URL to Fal');
     return dataUrl;
   }
 
@@ -48,7 +54,12 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const falKey = process.env.FAL_API_KEY;
-  if (!falKey) return res.status(500).json({ error: 'FAL_API_KEY not configured' });
+  if (!falKey) {
+    return res.status(503).json({
+      error: 'AI cure preview is not configured yet',
+      detail: 'FAL_API_KEY missing on server — flying star overlay still works without cure preview.',
+    });
+  }
 
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body || {});
@@ -78,14 +89,19 @@ export default async function handler(req, res) {
         image_url: imageUrl,
         strength: 0.52,
         num_images: 1,
-        image_size: 'square_hd',
+        output_format: 'jpeg',
       }),
     });
 
     if (!falRes.ok) {
       const errText = await falRes.text();
       console.error('[compass-cure-image] fal error:', falRes.status, errText.slice(0, 300));
-      return res.status(502).json({ error: 'Cure image generation failed', detail: errText.slice(0, 120) });
+      let detail = errText.slice(0, 120);
+      try {
+        const parsed = JSON.parse(errText);
+        detail = parsed.detail || parsed.message || detail;
+      } catch { /* raw text */ }
+      return res.status(502).json({ error: 'Cure image generation failed', detail });
     }
 
     const data = await falRes.json();

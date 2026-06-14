@@ -152,6 +152,20 @@
     if (after && state.cureUrl) after.src = state.cureUrl;
   }
 
+  function setUploadStatus(msg, isError) {
+    var preview = el('xrayUploadPreview');
+    if (!preview) return;
+    preview.textContent = msg || '';
+    preview.hidden = !msg;
+    preview.style.color = isError ? '#9a4b3b' : 'var(--ink-faint)';
+  }
+
+  function isImageFile(file) {
+    if (!file) return false;
+    if (file.type && file.type.match(/^image\//)) return true;
+    return /\.(heic|heif|jpg|jpeg|png|webp|gif|bmp)$/i.test(file.name || '');
+  }
+
   function setCureStatus(msg, isError) {
     var node = el('xrayCureStatus');
     if (!node) return;
@@ -237,7 +251,11 @@
         }),
       });
       var data = await res.json();
-      if (!res.ok) throw new Error(data.error || data.detail || 'Generation failed');
+      if (!res.ok) {
+        var msg = data.error || data.detail || 'Generation failed';
+        if (res.status === 503) msg = 'AI cure preview is warming up — your flying star map above is still complete.';
+        throw new Error(msg);
+      }
 
       state.cureUrl = data.url;
       updateCurePanel();
@@ -295,24 +313,28 @@
   }
 
   function loadFile(file) {
-    if (!file.type.match(/^image\//)) return;
+    if (!isImageFile(file)) {
+      setUploadStatus('Please upload a JPG, PNG, or HEIC photo.', true);
+      return;
+    }
+    setUploadStatus('Loading photo…', false);
     var reader = new FileReader();
+    reader.onerror = function () {
+      setUploadStatus('Could not read this file — try another photo.', true);
+    };
     reader.onload = function (e) {
       var img = new Image();
+      img.onerror = function () {
+        setUploadStatus('This image format is not supported in your browser — try JPG or PNG.', true);
+      };
       img.onload = function () {
         state.image = img;
         state.imageDataUrl = resizeToDataUrl(img, 1280);
         state.imageUrl = state.imageDataUrl;
         state.cureUrl = '';
-        var preview = el('xrayUploadPreview');
-        if (preview) {
-          preview.textContent = file.name;
-          preview.hidden = false;
-        }
-        if (state.chart) {
-          drawOverlay();
-          updateCurePanel();
-        }
+        setUploadStatus(file.name + ' — mapping 2026 flying stars…', false);
+        drawOverlay();
+        runScan();
       };
       img.src = e.target.result;
     };
@@ -335,6 +357,8 @@
   function init() {
     applyIntake();
     bindUpload();
+    drawOverlay();
+
     var btn = el('xrayScanBtn');
     if (btn) btn.addEventListener('click', runScan);
 
