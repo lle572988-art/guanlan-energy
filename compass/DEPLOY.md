@@ -8,7 +8,7 @@ Auto-deploy: push to `main` → Vercel builds `metaphysicflow.com`.
 |------|-----|
 | Wow #1 · 活罗盘 | https://metaphysicflow.com/compass/ |
 | Wow #2 · X-Ray | https://metaphysicflow.com/compass/xray/ |
-| Wow #3 · AI cure | X-Ray → Generate cure preview |
+| Wow #3 · Cure preview | X-Ray → Generate cure preview (client Canvas, free) |
 | 留存 · Heatmap | https://metaphysicflow.com/compass/heatmap/ |
 | 第3幕 · Pricing | https://metaphysicflow.com/compass/order/ |
 | pSEO hub | https://metaphysicflow.com/compass/guides/ |
@@ -24,7 +24,7 @@ Regenerate SEO: `node scripts/generate-compass-seo.mjs`
 | `BLOB_READ_WRITE_TOKEN` + `BLOB_STORE_ID` | Auto-injected when **Storage → guanlan-leads → Connect to Project** (Preview + Production). Do not hand-copy old store tokens. |
 | `RESEND_API_KEY` | Buyer email with report link |
 | `RESEND_FROM_EMAIL` | Optional sender override |
-| `FAL_API_KEY` or `FAL_KEY` | AI cure Before/After (`/api/compass-cure-image`) |
+| `FAL_API_KEY` or `FAL_KEY` | Optional — legacy `/api/compass-cure-image` (X-Ray uses free Canvas) |
 | `CRON_SECRET` | Monthly briefs for `compass-annual` pass |
 
 Stripe webhook URL: `https://metaphysicflow.com/api/stripe-webhook`  

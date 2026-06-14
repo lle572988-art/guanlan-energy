@@ -1,5 +1,5 @@
 /**
- * Energy X-Ray — upload + facing + flying star overlay + AI cure preview.
+ * Energy X-Ray — upload + facing + flying star overlay + instant cure preview (Canvas).
  */
 (function (global) {
   'use strict';
@@ -171,7 +171,7 @@
   function setCureStatus(msg, isError) {
     var node = el('xrayCureStatus');
     if (!node) return;
-    node.textContent = isError ? userSafeError(msg) : (msg || '');
+    node.textContent = msg || '';
     node.style.color = isError ? '#9a4b3b' : 'var(--ink-faint)';
   }
 
@@ -226,30 +226,13 @@
     track('compass_xray_scan', { facing: state.facing, year: state.year, has_image: !!state.image });
   }
 
-  function userSafeError(msg, apiError) {
-    if (apiError) return apiError;
-    if (!msg) return 'Could not generate preview. Try again in a moment.';
-    if (/DOCTYPE|Unexpected token|SyntaxError|is not valid JSON/i.test(msg)) {
-      return 'Preview service is busy — try a smaller photo or wait a minute. Your flying star map above is still complete.';
-    }
-    return msg;
-  }
-
-  function readApiJson(res) {
-    return res.text().then(function (text) {
-      if (!text) return {};
-      try {
-        return JSON.parse(text);
-      } catch (e) {
-        var err = new Error(userSafeError('', res.status >= 500 ? 'Preview service is busy — wait a minute and try again.' : ''));
-        err.httpStatus = res.status;
-        throw err;
-      }
-    });
-  }
-
   async function generateCure() {
-    if (!state.image || !state.cureDataUrl || state.cureLoading) return;
+    if (!state.image || state.cureLoading) return;
+
+    if (!global.CompassCureCanvas) {
+      setCureStatus('Preview module did not load — refresh the page.', true);
+      return;
+    }
 
     var meta = facingCureMeta();
     var roomSel = el('xrayRoom');
@@ -259,30 +242,22 @@
     state.cureLoading = true;
     if (btn) {
       btn.disabled = true;
-      btn.textContent = 'Generating… ~60–90s';
+      btn.textContent = 'Rendering…';
     }
     setCureStatus('Staging your room with ' + meta.element + ' cures…');
 
     try {
-      var res = await fetch('/api/compass-cure-image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          dataUrl: state.cureDataUrl,
-          element: meta.element,
-          room: state.room,
-          star: meta.star,
-        }),
+      await new Promise(function (resolve) {
+        requestAnimationFrame(function () {
+          setTimeout(resolve, 280);
+        });
       });
-      var data = await readApiJson(res);
-      if (!res.ok) {
-        var msg = data.error || 'Generation failed';
-        if (res.status === 503 && data.error) msg = data.error;
-        if (res.status === 503 && !data.error) msg = 'AI cure preview is warming up — your flying star map above is still complete.';
-        throw new Error(msg);
-      }
 
-      state.cureUrl = data.url;
+      state.cureUrl = global.CompassCureCanvas.render(state.image, {
+        element: meta.element,
+        facing: state.facing,
+        room: state.room,
+      });
       updateCurePanel();
       setCureStatus('Preview ready — illustrative staging, not a renovation plan.');
 
@@ -295,10 +270,10 @@
           cureElement: meta.element,
         });
       }
-      track('compass_cure_generated', { element: meta.element, star: meta.star, room: state.room });
+      track('compass_cure_generated', { element: meta.element, star: meta.star, room: state.room, mode: 'canvas' });
     } catch (err) {
-      setCureStatus(userSafeError(err.message), true);
-      track('compass_cure_error', { message: err.message });
+      setCureStatus(err.message || 'Could not render preview — try another photo.', true);
+      track('compass_cure_error', { message: err.message, mode: 'canvas' });
     } finally {
       state.cureLoading = false;
       if (btn) {
