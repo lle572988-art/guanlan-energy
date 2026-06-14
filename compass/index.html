@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Living Compass · Free Personal Feng Shui Direction Calculator | The Living Compass</title>
-<meta name="description" content="Discover your Ba Zhai Kua number and four lucky directions — free, instant, personalized. The Living Compass maps your wealth, health, and harmony bearings from your birth date.">
+<title>The Living Compass — Your personal feng shui directions</title>
+<meta name="description" content="Read your personal energy compass — the directions that carry your wealth, health, and love — calculated from the day you were born. Real Eight Mansions (Ba Zhai) feng shui, not generic tips.">
 <link rel="canonical" href="https://metaphysicflow.com/compass/">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#EAE7DF">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://metaphysicflow.com/compass/">
-<meta property="og:title" content="Living Compass · Your Personal Feng Shui Directions">
-<meta property="og:description" content="Free Ba Zhai calculator — your wealth, health, and harmony directions mapped on a breathing compass. Save and share your personal energy map.">
+<meta property="og:title" content="The Living Compass — Your personal feng shui directions">
+<meta property="og:description" content="Your wealth, health, and love directions — calculated from your birth date. Real Ba Zhai feng shui, not generic tips.">
 <meta property="og:site_name" content="The Living Compass">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-T82Z7E5ELB');</script>
 <script src="/js/plausible-init.js"></script>
@@ -35,581 +35,576 @@
     "name": "Guanlan Energy",
     "url": "https://metaphysicflow.com"
   },
-  "description": "Free personal Ba Zhai direction calculator with animated compass visualization."
+  "description": "Personal Eight Mansions direction calculator with interactive compass visualization."
 }
 </script>
 <style>
-:root {
-  --rice: #EAE7DF;
-  --celadon: #7A9B8E;
-  --ink: #1F2A26;
-  --brass: #A88A52;
-  --ink-muted: rgba(31, 42, 38, 0.55);
-  --celadon-dim: rgba(122, 155, 142, 0.35);
-  --wood: #5B8C5A;
-  --fire: #C0573B;
-  --earth: #C9A24B;
-  --metal: #D8D5CC;
-  --water: #2E4A5B;
-  --font-display: Fraunces, Georgia, serif;
-  --font-body: "Hanken Grotesk", system-ui, sans-serif;
-  --font-cn: "Noto Serif SC", serif;
-  --font-mono: ui-monospace, "Geist Mono", monospace;
+:root{
+  --paper:#EAE7DF;--paper2:#E3E0D7;--celadon:#7A9B8E;--celadon-soft:#94B0A3;
+  --ink:#1F2A26;--ink-soft:#3C4A45;--ink-faint:#6B7873;--brass:#A88A52;
+  --line:rgba(31,42,38,0.12);--line-soft:rgba(31,42,38,0.07);--radius:14px;--maxw:1120px;
 }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--ink);
-  background: var(--rice);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--paper);
+  background-image:radial-gradient(120% 80% at 50% -10%, rgba(122,155,142,0.10), transparent 60%);
+  color:var(--ink);font-family:'Hanken Grotesk',-apple-system,system-ui,sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
 }
-
-a { color: var(--celadon); text-decoration: none; }
-a:hover { color: var(--ink); }
-
-/* ── Nav ── */
-.lc-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.25rem 1.5rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--celadon-dim);
+.serif{font-family:'Fraunces',Georgia,serif;}
+.han{font-family:'Noto Serif SC',serif;}
+.mono{font-family:'IBM Plex Mono',monospace;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-faint);}
+.btn{
+  display:inline-block;font-family:'Hanken Grotesk',sans-serif;font-size:15px;font-weight:600;
+  letter-spacing:.01em;color:var(--paper);background:var(--ink);border:1px solid var(--ink);
+  border-radius:999px;padding:14px 30px;cursor:pointer;transition:transform .18s,background .25s,box-shadow .25s;
+  text-decoration:none;
 }
+.btn:hover{background:#10160f;transform:translateY(-1px);box-shadow:0 10px 26px rgba(31,42,38,0.16);}
+.btn:active{transform:translateY(0);}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none;}
+.btn-ghost:hover{background:rgba(31,42,38,0.04);border-color:var(--ink-faint);box-shadow:none;}
 
-.lc-nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
-  color: var(--ink);
+.lc-nav{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:var(--maxw);margin:0 auto;background:rgba(234,227,223,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft);}
+.lc-nav-links{display:flex;align-items:center;gap:20px;}
+.lc-nav-links a{font-size:14px;color:var(--ink-soft);text-decoration:none;}
+.lc-nav-links a:hover{color:var(--celadon);}
+.lc-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;}
+.lc-brand svg{width:30px;height:30px;opacity:.92;}
+.lc-brand .name{font-family:'Fraunces',serif;font-weight:500;font-size:17px;letter-spacing:.02em;line-height:1;}
+.lc-brand .name span{display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.24em;color:var(--ink-faint);margin-top:4px;text-transform:uppercase;}
+
+.lc-hero{padding:30px 0 70px;}
+.lc-hero-grid{display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;}
+.lc-h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2.6rem,4.6vw,4rem);line-height:1.04;letter-spacing:-0.015em;margin-bottom:22px;text-wrap:balance;}
+.lc-h1 em{font-style:italic;color:var(--celadon);}
+.lc-lead{font-size:1.08rem;color:var(--ink-soft);line-height:1.62;max-width:30em;margin-bottom:30px;}
+
+.lc-form{background:rgba(255,255,255,0.42);border:1px solid var(--line);border-radius:var(--radius);padding:22px;max-width:430px;backdrop-filter:blur(4px);}
+.lc-form .row{margin-bottom:16px;}
+.lc-form label{display:block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;}
+.lc-input,.lc-select{width:100%;font-family:'Hanken Grotesk',sans-serif;font-size:16px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:13px 14px;outline:none;transition:border-color .2s,box-shadow .2s;}
+.lc-input:focus,.lc-select:focus{border-color:var(--celadon);box-shadow:0 0 0 3px rgba(122,155,142,0.16);}
+.lc-seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.lc-seg button{font-family:'Hanken Grotesk',sans-serif;font-size:15px;color:var(--ink-soft);background:var(--paper);border:1px solid var(--line);border-radius:9px;padding:12px;cursor:pointer;transition:all .18s;}
+.lc-seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink);}
+.lc-seg.shake{animation:shakex .4s ease;}
+@keyframes shakex{0%,100%{transform:translateX(0);}25%{transform:translateX(-6px);}75%{transform:translateX(6px);}}
+.lc-form .hint{font-size:12px;color:var(--ink-faint);margin-top:7px;line-height:1.5;}
+.lc-form .btn{width:100%;margin-top:6px;}
+.lc-err{color:#9a4b3b;font-size:13.5px;margin-top:10px;display:none;padding:10px 14px;background:rgba(154,75,59,0.08);border:1px solid rgba(154,75,59,0.2);border-radius:8px;line-height:1.4;}
+
+.lc-compass-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.lc-compass{width:min(440px,86vw);aspect-ratio:1/1;position:relative;}
+.compass-caption{font-size:13px;color:var(--ink-faint);text-align:center;max-width:34ch;}
+
+.lc-result{display:none;padding:24px 0 40px;}
+.lc-result.show{display:block;animation:fadeup .7s ease both;}
+@keyframes fadeup{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.result-head{text-align:center;max-width:680px;margin:0 auto 14px;}
+.kua-badge{font-family:'Fraunces',serif;font-weight:300;color:var(--brass);font-size:clamp(3rem,7vw,4.6rem);line-height:1;letter-spacing:-0.01em;}
+.kua-title{font-family:'Fraunces',serif;font-size:1.5rem;color:var(--ink);margin-top:6px;}
+.kua-title .han{color:var(--celadon);margin-right:.35em;}
+.kua-sub{font-size:.95rem;color:var(--ink-soft);margin-top:8px;max-width:38em;margin-left:auto;margin-right:auto;}
+.kua-group-pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:5px 14px;margin-top:14px;}
+.result-main{display:grid;grid-template-columns:minmax(0,440px) 1fr;gap:46px;align-items:start;margin-top:30px;}
+.detail-panel{border:1px solid var(--line);border-radius:var(--radius);background:rgba(255,255,255,0.4);padding:20px 22px;min-height:128px;transition:border-color .25s;}
+.detail-panel .dp-dir{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);}
+.detail-panel .dp-star{font-family:'Fraunces',serif;font-size:1.4rem;margin:4px 0 2px;}
+.detail-panel .dp-star .han{font-size:.86em;margin-right:.3em;}
+.detail-panel .dp-meaning{font-size:.9rem;color:var(--celadon);font-weight:600;letter-spacing:.01em;}
+.detail-panel .dp-advice{font-size:.95rem;color:var(--ink-soft);margin-top:10px;line-height:1.55;}
+.detail-hint{font-size:12.5px;color:var(--ink-faint);margin-top:12px;text-align:center;}
+.allies h3,.caution h3{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin:0 0 12px;}
+.caution h3{margin-top:26px;}
+.dir-row{display:flex;align-items:center;gap:14px;padding:13px 0;border-top:1px solid var(--line-soft);}
+.dir-chip{flex-shrink:0;width:46px;height:46px;border-radius:11px;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;letter-spacing:.04em;}
+.dir-meta .m1{font-family:'Fraunces',serif;font-size:1.05rem;line-height:1.2;}
+.dir-meta .m1 .han{color:var(--celadon);margin-right:.3em;font-size:.9em;}
+.dir-meta .m2{font-size:.85rem;color:var(--ink-soft);margin-top:2px;}
+.quickwins{margin-top:34px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(122,155,142,0.07);padding:22px 24px;}
+.quickwins h3{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px;}
+.qw-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 30px;}
+.qw{display:flex;gap:12px;align-items:flex-start;}
+.qw .qd{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--brass);border:1px solid var(--brass);border-radius:7px;padding:3px 8px;flex-shrink:0;margin-top:2px;}
+.qw .qt{font-size:.95rem;color:var(--ink-soft);line-height:1.45;}
+.qw .qt b{color:var(--ink);font-weight:600;}
+.result-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;}
+.next-strip{margin-top:40px;text-align:center;border-top:1px solid var(--line);padding-top:30px;}
+.next-strip .ns-lead{font-family:'Fraunces',serif;font-style:italic;font-size:1.25rem;color:var(--ink);margin-bottom:6px;}
+.next-strip .ns-sub{font-size:.95rem;color:var(--ink-soft);max-width:46ch;margin:0 auto 16px;}
+
+.lc-depth{border-top:1px solid var(--line);padding:62px 0;}
+.depth-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.depth-grid h2{font-family:'Fraunces',serif;font-weight:300;font-size:2rem;line-height:1.15;color:var(--ink);margin-bottom:14px;}
+.depth-grid h2 em{font-style:italic;color:var(--celadon);}
+.depth-grid p{color:var(--ink-soft);margin-bottom:14px;max-width:40ch;}
+.depth-compare{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;}
+.depth-compare>div{display:grid;grid-template-columns:1fr 1fr;}
+.depth-compare .c{padding:16px 18px;font-size:.92rem;border-bottom:1px solid var(--line-soft);}
+.depth-compare .c.them{color:var(--ink-faint);}
+.depth-compare .c.us{color:var(--ink);background:rgba(122,155,142,0.08);border-left:1px solid var(--line-soft);}
+.depth-compare .hdr{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;}
+
+.lc-footer{border-top:1px solid var(--line);padding:34px 0 50px;color:var(--ink-faint);font-size:13px;}
+.lc-footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;}
+.lc-footer .disc{max-width:62ch;line-height:1.55;}
+.lc-footer .legal a{color:var(--celadon);}
+
+@media(max-width:860px){
+  .lc-hero-grid{grid-template-columns:1fr;gap:34px;}
+  .lc-hero-copy{order:1;}.lc-compass-wrap{order:2;}
+  .lc-form{max-width:none;}
+  .result-main{grid-template-columns:1fr;gap:30px;}
+  .qw-grid{grid-template-columns:1fr;}
+  .depth-grid{grid-template-columns:1fr;gap:26px;}
+  .lc-nav-links .lc-nav-mf{display:none;}
 }
-
-.lc-nav-sigil {
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--celadon);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lc-nav-sigil svg { width: 18px; height: 18px; }
-
-.lc-nav-name {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-}
-
-.lc-nav-name span {
-  display: block;
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-top: 2px;
-}
-
-.lc-nav-links {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  list-style: none;
-}
-
-.lc-nav-links a {
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  text-decoration: none;
-}
-
-.lc-nav-links a:hover { color: var(--celadon); }
-
-.lc-nav-mf {
-  font-size: 0.72rem;
-  color: var(--ink-muted);
-  border-left: 1px solid var(--celadon-dim);
-  padding-left: 1.25rem;
-}
-
-/* ── Hero ── */
-.lc-hero {
-  text-align: center;
-  padding: 3rem 1.5rem 2rem;
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.lc-hero-tag {
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--celadon);
-  margin-bottom: 1rem;
-}
-
-.lc-hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(1.75rem, 4vw, 2.5rem);
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 0.75rem;
-  font-style: italic;
-}
-
-.lc-hero-quote {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--ink-muted);
-  margin-bottom: 2rem;
-  line-height: 1.5;
-}
-
-.lc-hero-canvas-wrap {
-  margin: 0 auto 1.5rem;
-  width: min(320px, 90vw);
-  aspect-ratio: 1;
-}
-
-.lc-hero-canvas-wrap canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* ── Form ── */
-.lc-form-section {
-  max-width: 480px;
-  margin: 0 auto 4rem;
-  padding: 0 1.5rem;
-}
-
-.lc-form {
-  background: rgba(255, 255, 255, 0.35);
-  border: 1px solid var(--celadon-dim);
-  padding: 2rem;
-  border-radius: 2px;
-}
-
-.lc-field { margin-bottom: 1.25rem; }
-
-.lc-field label {
-  display: block;
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin-bottom: 0.5rem;
-}
-
-.lc-field input[type="date"],
-.lc-field select {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--celadon-dim);
-  background: var(--rice);
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--ink);
-  border-radius: 2px;
-}
-
-.lc-gender-row {
-  display: flex;
-  gap: 1rem;
-}
-
-.lc-gender-opt {
-  flex: 1;
-  position: relative;
-}
-
-.lc-gender-opt input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.lc-gender-opt label {
-  display: block;
-  padding: 0.75rem;
-  text-align: center;
-  border: 1px solid var(--celadon-dim);
-  cursor: pointer;
-  font-size: 0.9rem;
-  border-radius: 2px;
-  transition: border-color 0.2s, background 0.2s;
-}
-
-.lc-gender-opt input:checked + label {
-  border-color: var(--celadon);
-  background: rgba(122, 155, 142, 0.12);
-}
-
-.lc-btn-primary {
-  width: 100%;
-  padding: 1rem;
-  margin-top: 0.5rem;
-  background: var(--ink);
-  color: var(--rice);
-  border: none;
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  border-radius: 2px;
-  transition: background 0.2s;
-}
-
-.lc-btn-primary:hover { background: #2a3832; }
-
-.lc-form-note {
-  font-size: 0.78rem;
-  color: var(--ink-muted);
-  text-align: center;
-  margin-top: 1rem;
-}
-
-/* ── Results ── */
-.lc-results {
-  max-width: 960px;
-  margin: 0 auto 4rem;
-  padding: 0 1.5rem;
-}
-
-.lc-results-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-  align-items: start;
-}
-
-@media (max-width: 768px) {
-  .lc-results-grid { grid-template-columns: 1fr; }
-  .lc-nav-links .lc-nav-mf { display: none; }
-}
-
-.lc-compass-panel {
-  text-align: center;
-}
-
-.lc-compass-canvas-wrap {
-  width: min(360px, 100%);
-  margin: 0 auto 1.5rem;
-  aspect-ratio: 1;
-}
-
-.lc-compass-canvas-wrap canvas {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.lc-kua-badge {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--brass);
-  letter-spacing: 0.08em;
-  margin-bottom: 0.35rem;
-}
-
-.lc-kua-title {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
-}
-
-.lc-kua-group {
-  font-family: var(--font-cn);
-  font-size: 0.9rem;
-  color: var(--ink-muted);
-}
-
-.lc-detail-panel h2 {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--celadon-dim);
-}
-
-.lc-pos-list {
-  list-style: none;
-  margin-bottom: 1.75rem;
-}
-
-.pos-row {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(122, 155, 142, 0.15);
-}
-
-.pos-row__dir {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--brass);
-  min-width: 2.5rem;
-  padding-top: 2px;
-}
-
-.pos-row__body strong {
-  display: block;
-  font-size: 0.9rem;
-  font-family: var(--font-cn);
-}
-
-.pos-row__body span {
-  font-size: 0.82rem;
-  color: var(--ink-muted);
-}
-
-.pos-row--caution .pos-row__dir { color: var(--fire); opacity: 0.7; }
-
-.lc-actions-title {
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--celadon);
-  margin-bottom: 0.75rem;
-}
-
-.lc-actions-list {
-  list-style: none;
-  margin-bottom: 2rem;
-}
-
-.lc-actions-list li {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 0.95rem;
-  padding: 0.5rem 0;
-  color: var(--ink);
-  border-left: 2px solid var(--celadon);
-  padding-left: 1rem;
-  margin-bottom: 0.5rem;
-}
-
-.lc-cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.lc-btn {
-  padding: 0.85rem 1.25rem;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: 1px solid var(--celadon);
-  background: transparent;
-  color: var(--ink);
-  cursor: pointer;
-  font-family: var(--font-body);
-  border-radius: 2px;
-  text-decoration: none;
-  display: inline-block;
-  transition: background 0.2s, border-color 0.2s;
-}
-
-.lc-btn:hover {
-  background: rgba(122, 155, 142, 0.12);
-}
-
-.lc-btn--brass {
-  border-color: var(--brass);
-  color: var(--brass);
-}
-
-.lc-btn--solid {
-  background: var(--ink);
-  color: var(--rice);
-  border-color: var(--ink);
-}
-
-.lc-btn--solid:hover {
-  background: #2a3832;
-  color: var(--rice);
-}
-
-/* ── Footer / cross-brand ── */
-.lc-footer {
-  border-top: 1px solid var(--celadon-dim);
-  padding: 2.5rem 1.5rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.lc-footer p {
-  font-size: 0.78rem;
-  color: var(--ink-muted);
-  margin-bottom: 0.5rem;
-}
-
-.lc-footer a { color: var(--celadon); }
-
-.lc-teaser {
-  max-width: 640px;
-  margin: 0 auto 3rem;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  border: 1px dashed var(--celadon-dim);
-  border-radius: 2px;
-}
-
-.lc-teaser h3 {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-}
-
-.lc-teaser p {
-  font-size: 0.88rem;
-  color: var(--ink-muted);
-}
-
-[hidden] { display: none !important; }
+@media(prefers-reduced-motion:reduce){.lc-result.show{animation:none!important;}}
 </style>
 </head>
 <body>
 
-<header>
-  <nav class="lc-nav" aria-label="Living Compass">
-    <a href="/compass/" class="lc-nav-brand">
-      <div class="lc-nav-sigil" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" stroke="#7A9B8E" stroke-width="1.2">
-          <circle cx="12" cy="12" r="9"/>
-          <line x1="12" y1="3" x2="12" y2="21"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <polygon points="12,5 14,10 12,9 10,10" fill="#A88A52" stroke="#A88A52"/>
-        </svg>
+<nav class="lc-nav">
+  <a href="/compass/" class="lc-brand">
+    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="20" cy="20" r="18" stroke="#7A9B8E" stroke-width="1.1"/>
+      <circle cx="20" cy="20" r="11" stroke="#A88A52" stroke-width="0.8" opacity="0.8"/>
+      <path d="M20 4 L20 36 M4 20 L36 20" stroke="#1F2A26" stroke-width="0.7" opacity="0.5"/>
+      <circle cx="20" cy="20" r="2.4" fill="#A88A52"/>
+    </svg>
+    <div class="name">The Living Compass<span>静水流深 · feng shui</span></div>
+  </a>
+  <div class="lc-nav-links">
+    <a href="#how">How it reads you</a>
+    <a href="/feng-shui-scan.html">Room scan</a>
+    <a href="/" class="lc-nav-mf">MetaphysicFlow</a>
+  </div>
+</nav>
+
+<header class="lc-hero">
+  <div class="wrap">
+    <div class="lc-hero-grid">
+      <div class="lc-hero-copy">
+        <div class="eyebrow" style="margin-bottom:22px;">Eight Mansions · 八宅 · Personal directions</div>
+        <h1 class="lc-h1">Your home already <em>knows you.</em></h1>
+        <p class="lc-lead">Every person is born facing certain directions that carry their wealth, health, and love — and others that quietly drain them. Read your personal compass, calculated from the day you were born.</p>
+
+        <div class="lc-form" id="compassForm">
+          <div class="row">
+            <label for="dob">Date of birth</label>
+            <input class="lc-input" type="date" id="dob">
+          </div>
+          <div class="row">
+            <label>I am</label>
+            <div class="lc-seg" id="genderSeg">
+              <button type="button" data-g="female" aria-pressed="false">Woman</button>
+              <button type="button" data-g="male" aria-pressed="false">Man</button>
+            </div>
+            <p class="hint">The classical Eight Mansions formula uses birth year and gender.</p>
+          </div>
+          <button class="btn" type="button" id="submitBtn">Reveal my compass</button>
+          <div class="lc-err" id="formErr"></div>
+        </div>
       </div>
-      <div class="lc-nav-name">
-        The Living Compass
-        <span>活罗盘 · Quiet Power</span>
+
+      <div class="lc-compass-wrap">
+        <div class="lc-compass">
+          <canvas id="heroCanvas" width="880" height="880" style="width:100%;height:100%;"></canvas>
+        </div>
+        <p class="compass-caption" id="compassCaption">A compass at rest. Add your birth date to resolve it to <em>you</em>.</p>
       </div>
-    </a>
-    <ul class="lc-nav-links">
-      <li><a href="#lc-form-section">Calculate</a></li>
-      <li><a href="/feng-shui-scan.html">Room Scan</a></li>
-      <li class="lc-nav-mf"><a href="/">MetaphysicFlow · Zi Wei</a></li>
-    </ul>
-  </nav>
+    </div>
+  </div>
 </header>
 
-<main>
-  <section class="lc-hero" id="lc-hero">
-    <p class="lc-hero-tag">Free · Ba Zhai · Eight Mansions</p>
-    <h1>Your home already knows you.<br>We just help you read it.</h1>
-    <p class="lc-hero-quote">Your personal wealth, health, and harmony directions — calculated from your birth date, not generic tips.</p>
-    <div class="lc-hero-canvas-wrap">
-      <canvas id="lc-hero-canvas" width="400" height="400" aria-hidden="true"></canvas>
+<section class="lc-result" id="result">
+  <div class="wrap">
+    <div class="result-head">
+      <div class="eyebrow" style="margin-bottom:12px;">Your reading</div>
+      <div class="kua-badge">Kua <span id="rKua">–</span></div>
+      <div class="kua-title"><span class="han" id="rGuaHan"></span><span id="rGuaEn"></span></div>
+      <div class="kua-sub" id="rChar"></div>
+      <div class="kua-group-pill" id="rGroup"></div>
     </div>
-  </section>
-
-  <section class="lc-form-section" id="lc-form-section">
-    <form class="lc-form" id="lc-form" aria-label="Living Compass calculator">
-      <div class="lc-field">
-        <label for="lc-birth-date">Birth date</label>
-        <input type="date" id="lc-birth-date" name="birth-date" required aria-required="true">
-      </div>
-      <div class="lc-field">
-        <label>Gender · 性别</label>
-        <div class="lc-gender-row">
-          <div class="lc-gender-opt">
-            <input type="radio" name="lc-gender" id="lc-gender-female" value="female" checked>
-            <label for="lc-gender-female">Female</label>
-          </div>
-          <div class="lc-gender-opt">
-            <input type="radio" name="lc-gender" id="lc-gender-male" value="male">
-            <label for="lc-gender-male">Male</label>
-          </div>
+    <div class="result-main">
+      <div>
+        <div class="lc-compass" style="margin:0 auto;">
+          <canvas id="resultCanvas" width="880" height="880" style="width:100%;height:100%;"></canvas>
         </div>
+        <p class="detail-hint">Tap any direction on the compass to read it.</p>
       </div>
-      <div class="lc-field">
-        <label for="lc-house-facing">House facing (optional)</label>
-        <select id="lc-house-facing" name="house-facing" aria-describedby="lc-facing-hint">
-          <option value="">— Not sure yet —</option>
-          <option value="N">North</option>
-          <option value="NE">Northeast</option>
-          <option value="E">East</option>
-          <option value="SE">Southeast</option>
-          <option value="S">South</option>
-          <option value="SW">Southwest</option>
-          <option value="W">West</option>
-          <option value="NW">Northwest</option>
-        </select>
-        <p class="lc-form-note" id="lc-facing-hint">The direction your front door or main window faces outward.</p>
-      </div>
-      <button type="submit" class="lc-btn-primary">Reveal my compass</button>
-      <p class="lc-form-note">No signup · Pure math · Lunar year adjusted</p>
-    </form>
-  </section>
-
-  <section class="lc-results" id="lc-results" hidden>
-    <div class="lc-results-grid">
-      <div class="lc-compass-panel">
-        <div class="lc-compass-canvas-wrap">
-          <canvas id="lc-compass-canvas" width="400" height="400" aria-label="Your personal direction compass"></canvas>
+      <div>
+        <div class="detail-panel" id="detailPanel">
+          <div class="dp-dir" id="dpDir">–</div>
+          <div class="dp-star"><span class="han" id="dpHan"></span><span id="dpEn"></span></div>
+          <div class="dp-meaning" id="dpMeaning"></div>
+          <div class="dp-advice" id="dpAdvice"></div>
         </div>
-        <p class="lc-kua-badge" id="lc-kua-num"></p>
-        <h2 class="lc-kua-title" id="lc-kua-title"></h2>
-        <p class="lc-kua-group" id="lc-kua-group"></p>
-      </div>
-      <div class="lc-detail-panel">
-        <h2>Auspicious · 四吉位</h2>
-        <ul class="lc-pos-list" id="lc-auspicious-list"></ul>
-        <h2>Use with care · 四凶位</h2>
-        <ul class="lc-pos-list" id="lc-inauspicious-list"></ul>
-        <p class="lc-actions-title">Your three moves</p>
-        <ul class="lc-actions-list" id="lc-actions-list"></ul>
-        <div class="lc-cta-row">
-          <button type="button" class="lc-btn lc-btn--brass" id="lc-save-btn">Save my compass</button>
-          <button type="button" class="lc-btn" id="lc-copy-btn">Copy image</button>
-          <a href="/feng-shui-scan.html" class="lc-btn lc-btn--solid" id="lc-home-cta">See my home →</a>
-          <button type="button" class="lc-btn" id="lc-again-btn">Recalculate</button>
+        <div class="allies" style="margin-top:24px;">
+          <h3>Your four allies — face these</h3>
+          <div id="allyList"></div>
+        </div>
+        <div class="caution">
+          <h3>Handle with care — avoid for bed &amp; desk</h3>
+          <div id="cautionList"></div>
         </div>
       </div>
     </div>
-  </section>
+    <div class="quickwins">
+      <h3>Do these today</h3>
+      <div class="qw-grid" id="quickwins"></div>
+    </div>
+    <div class="result-cta">
+      <button class="btn" type="button" id="saveBtn">Save my compass</button>
+      <button class="btn btn-ghost" type="button" id="againBtn">Read another birth date</button>
+      <a href="/feng-shui-scan.html" class="btn btn-ghost" id="homeCta">See my home →</a>
+    </div>
+    <div class="next-strip">
+      <div class="ns-lead">Your compass shows <em>where.</em> Your home shows what's blocking it.</div>
+      <p class="ns-sub">Upload a room photo for a quick energy scan — or wait for the full floor-plan X-Ray in Phase 2.</p>
+      <a href="/feng-shui-scan.html" class="btn">Try room scan</a>
+    </div>
+  </div>
+</section>
 
-  <section class="lc-teaser" aria-label="Coming soon">
-    <h3>Energy X-Ray · Coming in Phase 2</h3>
-    <p>Upload your floor plan — we'll overlay flying stars on your actual rooms and show what blocks your best directions.</p>
-  </section>
-</main>
+<section class="lc-depth" id="how">
+  <div class="wrap">
+    <div class="depth-grid">
+      <div>
+        <div class="eyebrow" style="margin-bottom:14px;">Why this reads true</div>
+        <h2>Most apps give everyone the <em>same</em> advice. Your chart is yours alone.</h2>
+        <p>"Put your bed in the command position" is a tip. It's the same for all eight billion of us. The Eight Mansions tradition (八宅) is different: your birth year and gender resolve to one of eight Kua charts, each with its own map of helpful and harmful directions.</p>
+        <p>Two people in the same room get opposite advice — because the energy is personal, not architectural.</p>
+      </div>
+      <div class="depth-compare">
+        <div>
+          <div class="c them hdr">Generic feng shui apps</div>
+          <div class="c us hdr">The Living Compass</div>
+          <div class="c them">"Don't face your bed at the door"</div>
+          <div class="c us">Your exact good &amp; bad directions, by Kua</div>
+          <div class="c them">Same tips for everyone</div>
+          <div class="c us">A different chart for each person</div>
+          <div class="c them">Declutter &amp; vibes</div>
+          <div class="c us">Classical 八宅 calculation</div>
+          <div class="c them" style="border-bottom:none;">Pretty, but shallow</div>
+          <div class="c us" style="border-bottom:none;">Personal, and it shows its working</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <footer class="lc-footer">
-  <p>The Living Compass is a <a href="/">MetaphysicFlow</a> product by Guanlan Energy.</p>
-  <p>Empowerment, not prophecy · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+  <div class="wrap">
+    <div class="lc-brand">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="width:26px;height:26px;">
+        <circle cx="20" cy="20" r="18" stroke="#7A9B8E" stroke-width="1.1"/>
+        <circle cx="20" cy="20" r="2.4" fill="#A88A52"/>
+      </svg>
+      <div class="name" style="font-size:15px;">The Living Compass</div>
+    </div>
+    <p class="disc">A <a href="/">MetaphysicFlow</a> product by Guanlan Energy. For reflection and wellbeing, not a substitute for professional advice. Solar year boundary around Feb 4; late-January births may belong to the previous year. <span class="legal"><a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></span></p>
+  </div>
 </footer>
 
-<canvas id="lc-share-canvas" hidden aria-hidden="true"></canvas>
+<script>
+(function(){
+"use strict";
 
-<script src="/lunar.js"></script>
-<script src="/js/bazhai-engine.js"></script>
-<script src="/js/living-compass-canvas.js"></script>
-<script src="/js/living-compass-app.js"></script>
+function track(event, props) {
+  if (window.plausible) window.plausible(event, props ? { props: props } : undefined);
+  if (window.gtag) window.gtag('event', event, props || {});
+}
+
+var DIRS=["N","NE","E","SE","S","SW","W","NW"];
+var DIR_ANGLE={N:0,NE:45,E:90,SE:135,S:180,SW:225,W:270,NW:315};
+var DIR_NAME={N:"North",NE:"Northeast",E:"East",SE:"Southeast",S:"South",SW:"Southwest",W:"West",NW:"Northwest"};
+var STARS={
+  shengqi:{cn:"生氣",en:"Sheng Qi",label:"Wealth & Vitality",good:true,rank:0,advice:"Face this way when you work. Ideal for your main door, your desk, and where you take action."},
+  tianyi:{cn:"天醫",en:"Tian Yi",label:"Health & Recovery",good:true,rank:1,advice:"The best wall for your bed's headboard. Supports rest, healing, and a nourishing kitchen."},
+  yannian:{cn:"延年",en:"Yan Nian",label:"Love & Relationships",good:true,rank:2,advice:"Face here in heartfelt conversations. Strengthens bonds, patience, and longevity."},
+  fuwei:{cn:"伏位",en:"Fu Wei",label:"Stability & Focus",good:true,rank:3,advice:"Calm, grounding energy. Great for a study, a meditation spot, or steady deep work."},
+  huohai:{cn:"禍害",en:"Huo Hai",label:"Minor Setbacks",good:false,rank:4,advice:"Small frustrations gather here. Fine for a hallway or closet — not your bed."},
+  liusha:{cn:"六煞",en:"Liu Sha",label:"Stress & Friction",good:false,rank:5,advice:"Tension and disputes pool here. Avoid sleeping or working facing this direction."},
+  wugui:{cn:"五鬼",en:"Wu Gui",label:"Conflict & Instability",good:false,rank:6,advice:"The Five Ghosts — arguments and misplaced things. Best kept for storage or a bathroom."},
+  jueming:{cn:"絕命",en:"Jue Ming",label:"Greatest Drain",good:false,rank:7,advice:"The most draining direction. Never your bed or desk — perfect for a toilet or storage."}
+};
+var RANK_FILL=["#A88A52","#7A9B8E","#94B0A3","#B6C7BD","#9AA3A0","#6E7A75","#4A5550","#323B37"];
+var RANK_TEXT=["#FBF7EE","#F3F6F2","#1F2A26","#1F2A26","#FBF7EE","#FBF7EE","#FBF7EE","#FBF7EE"];
+var MANSIONS={
+  1:{shengqi:"SE",tianyi:"E",yannian:"S",fuwei:"N",huohai:"W",wugui:"NE",liusha:"NW",jueming:"SW"},
+  2:{shengqi:"NE",tianyi:"W",yannian:"NW",fuwei:"SW",huohai:"E",wugui:"SE",liusha:"S",jueming:"N"},
+  3:{shengqi:"S",tianyi:"N",yannian:"SE",fuwei:"E",huohai:"SW",wugui:"NW",liusha:"NE",jueming:"W"},
+  4:{shengqi:"N",tianyi:"S",yannian:"E",fuwei:"SE",huohai:"NE",wugui:"SW",liusha:"W",jueming:"NW"},
+  6:{shengqi:"W",tianyi:"NE",yannian:"SW",fuwei:"NW",huohai:"SE",wugui:"S",liusha:"N",jueming:"E"},
+  7:{shengqi:"NW",tianyi:"SW",yannian:"NE",fuwei:"W",huohai:"N",wugui:"E",liusha:"SE",jueming:"S"},
+  8:{shengqi:"SW",tianyi:"NW",yannian:"W",fuwei:"NE",huohai:"S",wugui:"N",liusha:"E",jueming:"SE"},
+  9:{shengqi:"E",tianyi:"SE",yannian:"N",fuwei:"S",huohai:"NW",wugui:"W",liusha:"SW",jueming:"NE"}
+};
+var KUA_INFO={
+  1:{han:"坎",en:"Kan · The Water",group:"East",char:"A deep current — adaptable, intuitive, quietly relentless in finding your way through."},
+  2:{han:"坤",en:"Kun · The Earth",group:"West",char:"Steady and nourishing — the one people lean on, strongest when patient."},
+  3:{han:"震",en:"Zhen · The Thunder",group:"East",char:"A spark of initiative — fast, expressive, happiest when starting things."},
+  4:{han:"巽",en:"Xun · The Wind",group:"East",char:"Gentle but far-reaching — persuasive, flexible, you move people without force."},
+  6:{han:"乾",en:"Qian · The Heaven",group:"West",char:"A natural strategist — clear-eyed, principled, built to lead from the front."},
+  7:{han:"兌",en:"Dui · The Lake",group:"West",char:"Warm and magnetic — you connect, charm, and bring ease wherever you land."},
+  8:{han:"艮",en:"Gen · The Mountain",group:"West",char:"Grounded and still — thoughtful, self-contained, immovable once decided."},
+  9:{han:"離",en:"Li · The Fire",group:"East",char:"Bright and visible — passionate, illuminating, you draw the eye and the room."}
+};
+
+function reduceDigit(n){n=Math.abs(n);while(n>9){n=String(n).split("").reduce(function(a,d){return a+(+d);},0);}return n;}
+function kuaNumber(year,gender){
+  var base=reduceDigit(year%100),k;
+  if(year<2000){k=(gender==="male")?(10-base):(5+base);}
+  else{k=(gender==="male")?(9-base):(6+base);}
+  k=reduceDigit(k);if(k===5)k=(gender==="male")?2:8;if(k===0)k=9;return k;
+}
+function solarYear(dateStr){var p=dateStr.split("-");var y=+p[0],m=+p[1],d=+p[2];if(m<2||(m===2&&d<4))y-=1;return y;}
+
+var CX=440,CY=440,R_OUT=380,R_IN=215;
+function polarPt(r,aDeg){var rad=aDeg*Math.PI/180;return[CX+r*Math.sin(rad),CY-r*Math.cos(rad)];}
+
+function drawCompass(canvas,kua,interactive){
+  var ctx=canvas.getContext("2d");
+  var W=canvas.width,H=canvas.height;
+  ctx.clearRect(0,0,W,H);
+  if(!kua){
+    ctx.strokeStyle="rgba(31,42,38,0.14)";ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.arc(CX,CY,R_OUT,0,Math.PI*2);ctx.stroke();
+    ctx.beginPath();ctx.arc(CX,CY,R_IN,0,Math.PI*2);ctx.stroke();
+    for(var i=0;i<24;i++){var a=i*15;var p1=polarPt(R_OUT-16,a),p2=polarPt(R_OUT,a);ctx.beginPath();ctx.moveTo(p1[0],p1[1]);ctx.lineTo(p2[0],p2[1]);ctx.stroke();}
+    ctx.strokeStyle="#7A9B8E";ctx.lineWidth=2;ctx.globalAlpha=0.5;ctx.beginPath();ctx.arc(CX,CY,170,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=1;
+    ctx.fillStyle="#A88A52";ctx.beginPath();ctx.arc(CX,CY,6,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle="rgba(31,42,38,0.35)";ctx.font="34px 'Noto Serif SC',serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("羅盤",CX,CY+4);
+    var guaChars={N:"坎",NE:"艮",E:"震",SE:"巽",S:"離",SW:"坤",W:"兌",NW:"乾"};
+    ctx.font="26px 'Noto Serif SC',serif";ctx.fillStyle="rgba(122,155,142,0.55)";
+    DIRS.forEach(function(d){var p=polarPt(280,DIR_ANGLE[d]);ctx.fillText(guaChars[d],p[0],p[1]+8);});
+    return;
+  }
+  var map=MANSIONS[kua];
+  var dirStar={};Object.keys(map).forEach(function(k){dirStar[map[k]]=k;});
+  var hitAreas=[];
+  DIRS.forEach(function(d){
+    var key=dirStar[d],st=STARS[key];
+    var ca=DIR_ANGLE[d];
+    ctx.beginPath();
+    ctx.arc(CX,CY,R_IN,(ca-22.5-90)*Math.PI/180,(ca+22.5-90)*Math.PI/180);
+    ctx.arc(CX,CY,R_OUT,(ca+22.5-90)*Math.PI/180,(ca-22.5-90)*Math.PI/180,true);
+    ctx.closePath();
+    ctx.fillStyle=RANK_FILL[st.rank];
+    if(!st.good)ctx.globalAlpha=0.6;
+    ctx.fill();
+    ctx.globalAlpha=1;
+    ctx.strokeStyle="#EAE7DF";ctx.lineWidth=3;ctx.stroke();
+    var lp=polarPt((R_OUT+R_IN)/2,DIR_ANGLE[d]);
+    ctx.fillStyle=RANK_TEXT[st.rank];ctx.font="600 26px 'IBM Plex Mono',monospace";ctx.textAlign="center";ctx.textBaseline="middle";
+    ctx.fillText(d,lp[0],lp[1]+2);
+    hitAreas.push({dir:d,key:key,angle:DIR_ANGLE[d]});
+  });
+  ctx.beginPath();ctx.arc(CX,CY,125,0,Math.PI*2);ctx.fillStyle="#EAE7DF";ctx.fill();
+  ctx.strokeStyle="rgba(31,42,38,0.12)";ctx.lineWidth=1.5;ctx.stroke();
+  ctx.fillStyle="#A88A52";ctx.font="300 80px 'Fraunces',serif";ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.fillText(String(kua),CX,CY-4);
+  ctx.fillStyle="#6B7873";ctx.font="500 20px 'IBM Plex Mono',monospace";ctx.fillText("KUA",CX,CY+42);
+  if(interactive){canvas._hitAreas=hitAreas;canvas._dirStar=dirStar;}
+}
+
+function handleCanvasClick(e){
+  var canvas=e.target;
+  if(!canvas._hitAreas)return;
+  var rect=canvas.getBoundingClientRect();
+  var scaleX=canvas.width/rect.width,scaleY=canvas.height/rect.height;
+  var mx=(e.clientX-rect.left)*scaleX,my=(e.clientY-rect.top)*scaleY;
+  var dx=mx-CX,dy=my-CY;
+  var dist=Math.sqrt(dx*dx+dy*dy);
+  if(dist<R_IN||dist>R_OUT)return;
+  var angle=Math.atan2(dx,-dy)*180/Math.PI;
+  if(angle<0)angle+=360;
+  var best=null,bestDiff=999;
+  canvas._hitAreas.forEach(function(h){
+    var diff=Math.abs(angle-h.angle);
+    if(diff>180)diff=360-diff;
+    if(diff<bestDiff){bestDiff=diff;best=h;}
+  });
+  if(best&&bestDiff<25)showDetail(best.dir,best.key);
+}
+
+function showDetail(dir,key){
+  var st=STARS[key];
+  document.getElementById("dpDir").textContent=DIR_NAME[dir]+" · "+st.cn;
+  document.getElementById("dpHan").textContent=st.cn;
+  document.getElementById("dpEn").textContent=" "+st.en;
+  document.getElementById("dpMeaning").textContent=st.label;
+  document.getElementById("dpMeaning").style.color=st.good?"#7A9B8E":"#9a4b3b";
+  document.getElementById("dpAdvice").textContent=st.advice;
+  document.getElementById("detailPanel").style.borderColor=st.good?"rgba(122,155,142,0.5)":"rgba(154,75,59,0.35)";
+}
+
+var heroCanvas=document.getElementById("heroCanvas");
+var resultCanvas=document.getElementById("resultCanvas");
+drawCompass(heroCanvas,null,false);
+
+resultCanvas.addEventListener("click",handleCanvasClick);
+resultCanvas.addEventListener("touchend",function(e){
+  e.preventDefault();
+  var t=e.changedTouches[0];
+  handleCanvasClick({target:resultCanvas,clientX:t.clientX,clientY:t.clientY});
+});
+
+var gender=null;
+var segBtns=document.querySelectorAll("#genderSeg button");
+segBtns.forEach(function(b){
+  b.addEventListener("click",function(){
+    gender=b.getAttribute("data-g");
+    segBtns.forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");});
+  });
+});
+
+function runReading(){
+  var dob=document.getElementById("dob").value;
+  var err=document.getElementById("formErr");
+  if(!dob&&!gender){
+    err.textContent="Please enter your date of birth and choose Woman or Man.";
+    err.style.display="block";return;
+  }
+  if(!dob){
+    err.textContent="Please enter your date of birth.";
+    err.style.display="block";return;
+  }
+  if(!gender){
+    err.textContent="Please choose Woman or Man — the classical formula needs this.";
+    err.style.display="block";
+    var seg=document.getElementById("genderSeg");
+    seg.classList.remove("shake");void seg.offsetWidth;seg.classList.add("shake");
+    return;
+  }
+  err.style.display="none";
+
+  var kua=kuaNumber(solarYear(dob),gender);
+  var info=KUA_INFO[kua],map=MANSIONS[kua];
+
+  drawCompass(heroCanvas,kua,false);
+  document.getElementById("compassCaption").textContent="Your compass — Kua "+kua+", "+info.en.split(" · ")[1]+".";
+
+  document.getElementById("rKua").textContent=kua;
+  document.getElementById("rGuaHan").textContent=info.han;
+  document.getElementById("rGuaEn").textContent=info.en;
+  document.getElementById("rChar").textContent=info.char;
+  document.getElementById("rGroup").textContent=(info.group==="East"?"East Group · 東四命":"West Group · 西四命");
+
+  drawCompass(resultCanvas,kua,true);
+  showDetail(map.shengqi,"shengqi");
+
+  function dirChip(dir,rank){return '<div class="dir-chip" style="background:'+RANK_FILL[rank]+';color:'+RANK_TEXT[rank]+'">'+dir+'</div>';}
+  var aH="",cH="";
+  ["shengqi","tianyi","yannian","fuwei"].forEach(function(k){
+    var st=STARS[k],d=map[k];
+    aH+='<div class="dir-row">'+dirChip(d,st.rank)+'<div class="dir-meta"><div class="m1"><span class="han">'+st.cn+'</span> '+DIR_NAME[d]+'</div><div class="m2">'+st.label+'</div></div></div>';
+  });
+  ["huohai","liusha","wugui","jueming"].forEach(function(k){
+    var st=STARS[k],d=map[k];
+    cH+='<div class="dir-row">'+dirChip(d,st.rank)+'<div class="dir-meta"><div class="m1"><span class="han">'+st.cn+'</span> '+DIR_NAME[d]+'</div><div class="m2">'+st.label+'</div></div></div>';
+  });
+  document.getElementById("allyList").innerHTML=aH;
+  document.getElementById("cautionList").innerHTML=cH;
+
+  var qw=[
+    {d:map.tianyi,t:"Put your bed's <b>headboard against the "+DIR_NAME[map.tianyi]+"</b> wall for restful sleep."},
+    {d:map.shengqi,t:"<b>Face "+DIR_NAME[map.shengqi]+"</b> at your desk to support success and momentum."},
+    {d:map.yannian,t:"For closeness, <b>face "+DIR_NAME[map.yannian]+"</b> during meals and conversations."},
+    {d:map.jueming,t:"Never sleep or work <b>facing "+DIR_NAME[map.jueming]+"</b> — it's your most draining direction."}
+  ];
+  var qH="";qw.forEach(function(x){qH+='<div class="qw"><span class="qd">'+x.d+'</span><span class="qt">'+x.t+'</span></div>';});
+  document.getElementById("quickwins").innerHTML=qH;
+
+  var res=document.getElementById("result");
+  res.classList.add("show");
+  setTimeout(function(){res.scrollIntoView({behavior:"smooth",block:"start"});},50);
+  track("living_compass_calculate",{kua:kua,group:info.group});
+}
+
+document.getElementById("submitBtn").addEventListener("click",runReading);
+
+document.getElementById("againBtn").addEventListener("click",function(){
+  document.getElementById("result").classList.remove("show");
+  drawCompass(heroCanvas,null,false);
+  document.getElementById("compassCaption").innerHTML='A compass at rest. Add your birth date to resolve it to <em>you</em>.';
+  window.scrollTo({top:0,behavior:"smooth"});
+  track("living_compass_reset");
+});
+
+document.getElementById("saveBtn").addEventListener("click",function(){
+  var kua=+document.getElementById("rKua").textContent;
+  if(!kua||!KUA_INFO[kua])return;
+  var info=KUA_INFO[kua],map=MANSIONS[kua];
+  var W=1080,H=1350;
+  var c=document.createElement("canvas");c.width=W;c.height=H;
+  var ctx=c.getContext("2d");
+  ctx.fillStyle="#1F2A26";ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle="#A88A52";ctx.lineWidth=1.5;ctx.strokeRect(30,30,W-60,H-60);
+  ctx.fillStyle="#7A9B8E";ctx.font="22px monospace";ctx.textAlign="center";
+  ctx.fillText("THE LIVING COMPASS",540,120);
+  var sCX=540,sCY=540,sRout=280,sRin=160;
+  var dirStar={};Object.keys(map).forEach(function(k){dirStar[map[k]]=k;});
+  DIRS.forEach(function(d){
+    var key=dirStar[d],st=STARS[key];
+    var ca=DIR_ANGLE[d];
+    ctx.beginPath();
+    ctx.arc(sCX,sCY,sRin,(ca-22.5-90)*Math.PI/180,(ca+22.5-90)*Math.PI/180);
+    ctx.arc(sCX,sCY,sRout,(ca+22.5-90)*Math.PI/180,(ca-22.5-90)*Math.PI/180,true);
+    ctx.closePath();
+    ctx.fillStyle=RANK_FILL[st.rank];if(!st.good)ctx.globalAlpha=0.7;
+    ctx.fill();ctx.globalAlpha=1;
+    ctx.strokeStyle="#11201A";ctx.lineWidth=3;ctx.stroke();
+    var rad=ca*Math.PI/180;
+    var lx=sCX+((sRout+sRin)/2)*Math.sin(rad),ly=sCY-((sRout+sRin)/2)*Math.cos(rad);
+    ctx.fillStyle=RANK_TEXT[st.rank];ctx.font="bold 22px monospace";ctx.textAlign="center";ctx.textBaseline="middle";
+    ctx.fillText(d,lx,ly);
+  });
+  ctx.beginPath();ctx.arc(sCX,sCY,100,0,Math.PI*2);ctx.fillStyle="#1F2A26";ctx.fill();
+  ctx.strokeStyle="#A88A52";ctx.lineWidth=1.5;ctx.stroke();
+  ctx.fillStyle="#A88A52";ctx.font="62px Georgia,serif";ctx.textAlign="center";ctx.textBaseline="middle";
+  ctx.fillText(String(kua),sCX,sCY-6);
+  ctx.fillStyle="#94B0A3";ctx.font="18px monospace";ctx.fillText("KUA",sCX,sCY+36);
+  ctx.fillStyle="#EAE7DF";ctx.font="italic 40px Georgia,serif";ctx.fillText(info.en,540,880);
+  ctx.fillStyle="#7A9B8E";ctx.font="20px monospace";ctx.fillText((info.group==="East"?"EAST GROUP":"WEST GROUP")+"  ·  YOUR ALLIES",540,930);
+  ["shengqi","tianyi","yannian","fuwei"].forEach(function(k,i){
+    var st=STARS[k];
+    ctx.fillStyle="#EAE7DF";ctx.font="30px Georgia,serif";ctx.textAlign="center";
+    ctx.fillText(map[k]+"  ·  "+st.label,540,990+i*54);
+  });
+  ctx.fillStyle="#6B7873";ctx.font="18px monospace";ctx.fillText("metaphysicflow.com/compass",540,1290);
+  try{
+    var a=document.createElement("a");
+    a.download="my-compass-kua-"+kua+".png";
+    a.href=c.toDataURL("image/png");
+    a.click();
+    track("living_compass_download",{kua:kua});
+  }catch(e){alert("Long-press the compass image to save it.");}
+});
+
+/* URL deep link: ?date=1990-03-08&gender=female&auto=1 */
+(function(){
+  var p=new URLSearchParams(window.location.search);
+  var date=p.get("date");
+  if(date&&/^\d{4}-\d{2}-\d{2}$/.test(date)){
+    document.getElementById("dob").value=date;
+    var g=p.get("gender");
+    if(g==="male"||g==="female"){
+      gender=g;
+      segBtns.forEach(function(x){
+        x.setAttribute("aria-pressed",x.getAttribute("data-g")===g?"true":"false");
+      });
+    }
+    if(p.get("auto")==="1")setTimeout(runReading,100);
+  }
+  track("living_compass_landing");
+})();
+})();
+</script>
 </body>
 </html>
