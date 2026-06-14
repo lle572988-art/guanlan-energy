@@ -1,5 +1,6 @@
-// api/generate-image.js — Fal Flux → Vercel Blob (FAL_API_KEY in env only)
+// api/generate-image.js — Fal Flux → Vercel Blob (FAL_API_KEY / FAL_KEY in env)
 import { put } from '@vercel/blob';
+import { getFalApiKey } from '../server/lib/blob-env.mjs';
 
 const ALLOWED_ELEMENTS = new Set(['metal', 'wood', 'water', 'fire', 'earth']);
 
@@ -25,12 +26,9 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const falKey = process.env.FAL_API_KEY;
+  const falKey = getFalApiKey();
   if (!falKey) {
     return res.status(500).json({ error: 'FAL_API_KEY not configured' });
-  }
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    return res.status(500).json({ error: 'BLOB_READ_WRITE_TOKEN not configured' });
   }
 
   try {
@@ -73,16 +71,20 @@ export default async function handler(req, res) {
 
     const imgRes = await fetch(imageUrl);
     if (!imgRes.ok) {
-      return res.status(502).json({ error: 'Failed to fetch generated image' });
+      return res.status(200).json({ url: imageUrl, element });
     }
 
     const imgBuf = await imgRes.arrayBuffer();
-    const { url } = await put(`energy/${element}-${Date.now()}.png`, Buffer.from(imgBuf), {
-      access: 'public',
-      contentType: 'image/png',
-    });
-
-    return res.status(200).json({ url, element });
+    try {
+      const { url } = await put(`energy/${element}-${Date.now()}.png`, Buffer.from(imgBuf), {
+        access: 'public',
+        contentType: 'image/png',
+      });
+      return res.status(200).json({ url, element });
+    } catch (blobErr) {
+      console.warn('[generate-image] blob put failed, returning Fal URL:', blobErr.message);
+      return res.status(200).json({ url: imageUrl, element });
+    }
   } catch (err) {
     console.error('[generate-image] error:', err);
     return res.status(500).json({ error: 'Server error' });

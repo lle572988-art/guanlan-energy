@@ -21,10 +21,10 @@ Regenerate SEO: `node scripts/generate-compass-seo.mjs`
 |----------|----------------|
 | `STRIPE_SECRET_KEY` | Stripe checkout fallback |
 | `STRIPE_WEBHOOK_SECRET` | Auto HTML report after Stripe pay |
-| `BLOB_READ_WRITE_TOKEN` | Report storage + **required** for AI cure (upload photo to Blob before Fal) |
+| `BLOB_READ_WRITE_TOKEN` or Blob OIDC on Vercel | Reports + cure image hosting (Production uses OIDC if token not in `process.env`) |
 | `RESEND_API_KEY` | Buyer email with report link |
 | `RESEND_FROM_EMAIL` | Optional sender override |
-| `FAL_API_KEY` | AI cure Before/After (`/api/compass-cure-image`) |
+| `FAL_API_KEY` or `FAL_KEY` | AI cure Before/After (`/api/compass-cure-image`) |
 | `CRON_SECRET` | Monthly briefs for `compass-annual` pass |
 
 Stripe webhook URL: `https://metaphysicflow.com/api/stripe-webhook`  

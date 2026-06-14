@@ -1,5 +1,6 @@
 // api/compass-cure-image.js — Room cure staging via Fal img2img (Wow #3)
 import { put } from '@vercel/blob';
+import { getFalApiKey } from '../server/lib/blob-env.mjs';
 
 const CURE_PROMPTS = {
   metal: 'subtle brass bowl, white crystals, round metal decor on shelf, calm minimalist feng shui cure',
@@ -13,8 +14,18 @@ export const config = {
   maxDuration: 60,
 };
 
+async function hostOnBlob(path, buf, contentType) {
+  try {
+    const blob = await put(path, buf, { access: 'public', contentType });
+    return blob.url;
+  } catch (err) {
+    console.warn('[compass-cure-image] blob put failed:', err.message);
+    return null;
+  }
+}
+
 async function resolveImageUrl(body) {
-  let imageUrl = body.imageUrl || body.image_url;
+  const imageUrl = body.imageUrl || body.image_url;
   const dataUrl = body.dataUrl || body.data_url;
   if (imageUrl) return imageUrl;
 
@@ -28,16 +39,12 @@ async function resolveImageUrl(body) {
     throw new Error('Image too large — use a smaller photo');
   }
 
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    throw new Error('BLOB_NOT_CONFIGURED');
-  }
-
   const ext = match[1].includes('png') ? 'png' : 'jpg';
-  const blob = await put(`compass/uploads/${Date.now()}.${ext}`, buf, {
-    access: 'public',
-    contentType: match[1],
-  });
-  return blob.url;
+  const hosted = await hostOnBlob(`compass/uploads/${Date.now()}.${ext}`, buf, match[1]);
+  if (hosted) return hosted;
+
+  // Fal accepts data URLs when Blob OIDC/token is unavailable at runtime
+  return dataUrl;
 }
 
 export default async function handler(req, res) {
@@ -49,13 +56,9 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const falKey = process.env.FAL_API_KEY;
+  const falKey = getFalApiKey();
   if (!falKey) {
     return res.status(503).json({ error: 'AI cure preview is not configured yet' });
-  }
-
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    return res.status(503).json({ error: 'Image upload not configured on server' });
   }
 
   try {
@@ -93,11 +96,6 @@ export default async function handler(req, res) {
     if (!falRes.ok) {
       const errText = await falRes.text();
       console.error('[compass-cure-image] fal error:', falRes.status, errText.slice(0, 300));
-      let detail = errText.slice(0, 120);
-      try {
-        const parsed = JSON.parse(errText);
-        detail = parsed.detail || parsed.message || detail;
-      } catch { /* raw text */ }
       return res.status(502).json({ error: 'Cure image generation failed' });
     }
 
@@ -105,26 +103,17 @@ export default async function handler(req, res) {
     const outUrl = data?.images?.[0]?.url;
     if (!outUrl) return res.status(502).json({ error: 'No image returned' });
 
-    if (!process.env.BLOB_READ_WRITE_TOKEN) {
-      return res.status(200).json({ url: outUrl, element, room });
-    }
-
     const imgRes = await fetch(outUrl);
     if (!imgRes.ok) return res.status(200).json({ url: outUrl, element, room });
 
     const imgBuf = await imgRes.arrayBuffer();
-    const blob = await put(`compass/cures/${Date.now()}.jpg`, Buffer.from(imgBuf), {
-      access: 'public',
-      contentType: 'image/jpeg',
-    });
-    return res.status(200).json({ url: blob.url, element, room });
+    const hosted = await hostOnBlob(`compass/cures/${Date.now()}.jpg`, Buffer.from(imgBuf), 'image/jpeg');
+    return res.status(200).json({ url: hosted || outUrl, element, room });
   } catch (err) {
     console.error('[compass-cure-image]', err.message);
     const msg = err.message === 'Image too large — use a smaller photo'
       ? err.message
-      : err.message === 'BLOB_NOT_CONFIGURED'
-        ? 'Image upload not configured on server'
-        : 'Internal error';
+      : 'Internal error';
     return res.status(500).json({ error: msg });
   }
 }
