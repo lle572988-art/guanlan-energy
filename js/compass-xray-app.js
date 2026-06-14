@@ -226,7 +226,8 @@
     track('compass_xray_scan', { facing: state.facing, year: state.year, has_image: !!state.image });
   }
 
-  function userSafeError(msg) {
+  function userSafeError(msg, apiError) {
+    if (apiError) return apiError;
     if (!msg) return 'Could not generate preview. Try again in a moment.';
     if (/DOCTYPE|Unexpected token|SyntaxError|is not valid JSON/i.test(msg)) {
       return 'Preview service is busy — try a smaller photo or wait a minute. Your flying star map above is still complete.';
@@ -240,7 +241,7 @@
       try {
         return JSON.parse(text);
       } catch (e) {
-        var err = new Error(userSafeError(''));
+        var err = new Error(userSafeError('', res.status >= 500 ? 'Preview service is busy — wait a minute and try again.' : ''));
         err.httpStatus = res.status;
         throw err;
       }
@@ -263,34 +264,15 @@
     setCureStatus('Staging your room with ' + meta.element + ' cures…');
 
     try {
-      var curePayload;
-      var uploadRes = await fetch('/api/upload-compass-image', {
+      var res = await fetch('/api/compass-cure-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ dataUrl: state.cureDataUrl }),
-      });
-      var uploadData = await readApiJson(uploadRes);
-      if (uploadRes.ok && uploadData.url) {
-        curePayload = {
-          imageUrl: uploadData.url,
-          element: meta.element,
-          room: state.room,
-          star: meta.star,
-        };
-      } else {
-        setCureStatus('Sending photo directly to AI (Blob bypass)…', false);
-        curePayload = {
+        body: JSON.stringify({
           dataUrl: state.cureDataUrl,
           element: meta.element,
           room: state.room,
           star: meta.star,
-        };
-      }
-
-      var res = await fetch('/api/compass-cure-image', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(curePayload),
+        }),
       });
       var data = await readApiJson(res);
       if (!res.ok) {

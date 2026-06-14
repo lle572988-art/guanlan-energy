@@ -397,7 +397,8 @@
     },
     "api/compass-cure-image.js": {
       "maxDuration": 60,
-      "memory": 512
+      "memory": 512,
+      "includeFiles": "server/lib/**"
     },
     "api/collect-lead.mjs": {
       "maxDuration": 60,

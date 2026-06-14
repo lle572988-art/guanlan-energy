@@ -78,6 +78,8 @@ const API_RULES = [
   { prefix: 'ab-stats', path: '/api/ab-stats', methods: ['GET'], windowSec: 60, max: 10 },
   { prefix: 'gumroad-ping', path: '/api/gumroad-ping', methods: ['POST'], windowSec: 60, max: 15 },
   { prefix: 'generate-image', path: '/api/generate-image', methods: ['POST'], windowSec: 86400, max: 2 },
+  { prefix: 'compass-cure-image', path: '/api/compass-cure-image', methods: ['POST'], windowSec: 3600, max: 8 },
+  { prefix: 'upload-compass-image', path: '/api/upload-compass-image', methods: ['POST'], windowSec: 3600, max: 20 },
   { prefix: 'api-default', path: '/api', methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], windowSec: 60, max: 20 },
 ];
 
