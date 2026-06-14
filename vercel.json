@@ -313,6 +313,18 @@
       "destination": "/compass/born/:year.html"
     },
     {
+      "source": "/compass/2026/zodiac/:animal",
+      "destination": "/compass/2026/zodiac/:animal.html"
+    },
+    {
+      "source": "/compass/2026/zodiac",
+      "destination": "/compass/2026/zodiac/index.html"
+    },
+    {
+      "source": "/compass/2026/zodiac/",
+      "destination": "/compass/2026/zodiac/index.html"
+    },
+    {
       "source": "/compass/2026/:slug",
       "destination": "/compass/2026/:slug.html"
     },

@@ -312,7 +312,121 @@ const GUIDES = [
     ],
     xrayCta: true,
   },
+  {
+    slug: 'checklist-before-buying',
+    title: 'Feng Shui Checklist Before Buying a House · 7-Point Audit',
+    description: 'Before you offer on a home, check facing direction, missing corners, bathroom placement, and 2026 flying stars. A practical buyer checklist — not superstition.',
+    h1: 'Feng shui checklist before buying a house',
+    intro: 'A beautiful listing can still fight your chart — or carry 2026\'s Five Yellow in the master suite. Use this <strong>seven-point audit</strong> on your second visit, before inspection fever sets in.',
+    sections: [
+      {
+        h2: '1. Confirm true facing',
+        p: 'Stand at the front door looking outward — that is the facing direction (坐向). Note it precisely (N, NE, E…). Every flying star map keys off this. Photograph the door from outside for later X-Ray upload.',
+      },
+      {
+        h2: '2. Calculate your Kua fit',
+        p: 'A west-facing gem can drain an East Group Kua person. Run the free Living Compass with your birth date — check whether the layout lets you sleep on Tian Yi and work facing Sheng Qi without absurd furniture yoga.',
+      },
+      {
+        h2: '3. Scan missing corners',
+        p: 'If the floor plan "cuts off" Northwest, West, or Southwest, classical texts flag relationship, children, or authority stress. Soft cures (lights, mirrors used carefully, heavy objects) can compensate — but know what you\'re buying.',
+      },
+      {
+        h2: '4. Bathroom vs kitchen placement',
+        p: 'Toilet sharing a wall with the stove, or a bathroom dominating the Southeast wealth gua, is a classic drain pattern. Not a veto — but a negotiation point or cure budget item.',
+      },
+      {
+        h2: '5. Preview 2026 stars on the plan',
+        p: 'Overlay the annual grid before you commit. Avoid closing on a home where Five Yellow sits in the nursery if you\'re planning renovation or a newborn — unless you have a clear metal-cure plan.',
+      },
+      {
+        h2: '6. Entry and rear door alignment',
+        p: 'Front door shooting straight to a back door or picture window can rush energy out. Screens, plants, or angled furniture slow the flow — note if the layout allows that.',
+      },
+      {
+        h2: '7. Sleep and desk test',
+        p: 'Stand in the primary bedroom and home office: can the bed headboard anchor on your Tian Yi wall? Can the desk face Sheng Qi? If not, will you actually re-orient — or is this wishful thinking?',
+      },
+    ],
+    xrayCta: true,
+    heatmapCta: true,
+  },
+  {
+    slug: 'missing-corner-love',
+    title: 'Missing Corner Feng Shui for Love & Relationships',
+    description: 'A missing Southwest or West corner affects partnership energy in classical bagua. Soft cures and personal Yan Nian direction — without demolition.',
+    h1: 'Missing corner feng shui for love',
+    intro: 'L-shaped flats and clipped corners are common — especially in cities. Classical bagua links <strong>Southwest</strong> to partnership and <strong>West</strong> to children and joy. When those sectors are "missing," relationship energy can feel thin — but cures exist.',
+    sections: [
+      {
+        h2: 'Identify what is actually missing',
+        p: 'Overlay a bagua grid on your floor plan (front door as mouth of chi). A missing SW corner often means the relationship gua is literally not in the built footprint — outdoor patio, neighbor wall, or cut-out shape.',
+      },
+      {
+        h2: 'Soft cures without construction',
+        p: 'Bright light and earth tones in the SW sector of the <em>whole</em> home (even if the corner is outside). Pairs of objects (two candles, two stones) as symbolism — not clutter. Healthy plants with round leaves in SW when light allows.',
+      },
+      {
+        h2: 'Personal Yan Nian direction',
+        p: 'Ba Zhai maps Yan Nian (延年) — your relationship bearing. Face that direction during meals and important conversations; sit there when you want closeness. Personal direction often outperforms generic "put pink in SW" tips.',
+      },
+    ],
+    xrayCta: true,
+  },
+  {
+    slug: 'missing-corner-career',
+    title: 'Missing Corner Feng Shui for Career & Authority',
+    description: 'Missing North or Northwest corners and career stalls? Map flying stars, desk facing, and classical bagua fixes without renovating.',
+    h1: 'Missing corner feng shui for career',
+    intro: 'A clipped <strong>North</strong> or <strong>Northwest</strong> corner can correlate with career feeling blocked — not because the universe punishes you, but because the sectors linked to water/career path and authority (乾位) are literally absent from your living space.',
+    sections: [
+      {
+        h2: 'North — path and narrative',
+        p: 'North governs career flow in many bagua schools. If missing, strengthen the North sector of the interior grid with water imagery (small fountain, dark blue accents), clear pathways, and no blocked closets.',
+      },
+      {
+        h2: 'Northwest — mentors and authority',
+        p: 'NW (乾) connects to leadership and helpful people. Missing NW? Place metal objects (brass, round bowl) in the NW zone inside the home; keep that area uncluttered for "room" for mentors to arrive.',
+      },
+      {
+        h2: 'Desk facing beats corner anxiety',
+        p: 'Your personal Sheng Qi direction for focused work often matters more than perfect architecture. Calculate Kua, rotate the desk, then layer 2026 flying stars on the office sector via X-Ray.',
+      },
+    ],
+    xrayCta: true,
+    heatmapCta: true,
+  },
 ];
+
+const ZODIAC_2026 = [
+  { slug: 'rat', label: 'Rat', cn: '鼠', sampleYears: '1960, 1972, 1984, 1996, 2008, 2020' },
+  { slug: 'ox', label: 'Ox', cn: '牛', sampleYears: '1961, 1973, 1985, 1997, 2009, 2021' },
+  { slug: 'tiger', label: 'Tiger', cn: '虎', sampleYears: '1962, 1974, 1986, 1998, 2010, 2022' },
+  { slug: 'rabbit', label: 'Rabbit', cn: '兔', sampleYears: '1963, 1975, 1987, 1999, 2011, 2023' },
+  { slug: 'dragon', label: 'Dragon', cn: '龙', sampleYears: '1964, 1976, 1988, 2000, 2012, 2024' },
+  { slug: 'snake', label: 'Snake', cn: '蛇', sampleYears: '1965, 1977, 1989, 2001, 2013, 2025' },
+  { slug: 'horse', label: 'Horse', cn: '马', sampleYears: '1966, 1978, 1990, 2002, 2014, 2026', yearAnimal: true },
+  { slug: 'goat', label: 'Goat', cn: '羊', sampleYears: '1967, 1979, 1991, 2003, 2015, 2027' },
+  { slug: 'monkey', label: 'Monkey', cn: '猴', sampleYears: '1968, 1980, 1992, 2004, 2016, 2028' },
+  { slug: 'rooster', label: 'Rooster', cn: '鸡', sampleYears: '1969, 1981, 1993, 2005, 2017, 2029' },
+  { slug: 'dog', label: 'Dog', cn: '狗', sampleYears: '1970, 1982, 1994, 2006, 2018, 2030' },
+  { slug: 'pig', label: 'Pig', cn: '猪', sampleYears: '1971, 1983, 1995, 2007, 2019, 2031' },
+];
+
+const ZODIAC_2026_TIPS = {
+  rat: 'Rats benefit from clarifying water paths in the North sector — career narrative and sleep hygiene matter in a fast Horse year.',
+  ox: 'Ox natives thrive on steady earth tones; avoid over-committing in sectors holding conflict star 3 this year.',
+  tiger: 'Tigers get visibility boosts when desk faces personal Sheng Qi — channel Horse-year momentum without burnout.',
+  rabbit: 'Rabbits should watch romance sector stars (often SW) — freshen lighting and pair symbols if the corner feels stale.',
+  dragon: 'Dragons align with Horse-year fire — celebrate wins publicly but soften sharp corners where star 7 visits.',
+  snake: 'Snakes gain from quiet metal cures where Five Yellow rotates — plan renovation timing via the monthly heatmap.',
+  horse: '2026 is your namesake year — visibility star 9 can amplify marketing and moves. Protect rest: headboard on Tian Yi, not Jue Ming.',
+  goat: 'Goats stabilize with earth element in SW; partnership conversations face Yan Nian for best results.',
+  monkey: 'Monkeys should leverage NW authority stars when present — network intentionally, declutter metal clutter if star 7 lands there.',
+  rooster: 'Roosters benefit from metal accents when illness star 2 visits bedroom — keep routines, not panic.',
+  dog: 'Dogs harmonize Horse fire with water accents in the North career path — avoid arguing in conflict-star sectors.',
+  pig: 'Pigs welcome celebration energy in social zones — star 9 sectors are for hosting; still face Sheng Qi when earning.',
+};
 
 function compassCta(extra) {
   return `
@@ -541,6 +655,103 @@ ${kuaSummary(kuaF, 'Woman born in ' + year)}
   console.log('  born/' + year + '.html');
 }
 
+function writeZodiac2026Page(z) {
+  const canonical = `https://metaphysicflow.com/compass/2026/zodiac/${z.slug}`;
+  const yearBadge = z.yearAnimal ? ' · Year of the Horse' : '';
+  const title = `2026 Feng Shui for ${z.label} (${z.cn})${yearBadge}`;
+  const description = `${z.label} (${z.cn}) feng shui in 2026 — Horse year flying stars, personal Kua directions, and practical cures. Sample birth years: ${z.sampleYears}.`;
+  const tip = ZODIAC_2026_TIPS[z.slug];
+  const horseNote = z.yearAnimal
+    ? '<p><strong>2026 is your zodiac year (本命年).</strong> Visibility star 9 can amplify wins — but protect sleep and avoid overexposure in draining sectors. Headboard on Tian Yi, not Jue Ming.</p>'
+    : '';
+
+  const body = `
+<p class="eyebrow">2026 · ${z.label} ${z.cn} · Horse year</p>
+<h1>2026 feng shui for ${z.label.toLowerCase()} (${z.cn})</h1>
+<p class="intro">Zodiac is one layer; <strong>Ba Zhai Kua</strong> is personal. Born in ${z.sampleYears}? Your lucky directions depend on exact birth date and gender — not the animal alone.</p>
+${horseNote}
+<h2>${z.label} in a Horse year</h2>
+<p>${tip}</p>
+<h2>Three layers to stack</h2>
+<p><strong>1. Personal Kua</strong> — Sheng Qi for wealth work, Tian Yi for sleep, Yan Nian for partnership talks.</p>
+<p><strong>2. 2026 flying stars</strong> — Five Yellow, Two Black, and star 9 rotate through room sectors month by month.</p>
+<p><strong>3. Your home's facing</strong> — door direction sets the annual grid. <a href="/compass/heatmap/">Scrub the monthly heatmap</a> before renovating or signing leases.</p>
+<p><a href="/compass/" class="btn">Calculate my Kua →</a> <a href="/compass/xray/" class="btn btn-ghost" style="margin-left:8px;">Free X-Ray preview</a></p>`;
+
+  const html = pageShell({ title, description, canonical, body, schemaName: title });
+  const outDir = path.join(ROOT, 'compass', '2026', 'zodiac');
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, `${z.slug}.html`), html);
+  console.log('  2026/zodiac/' + z.slug + '.html');
+}
+
+function writeZodiacHub() {
+  const canonical = 'https://metaphysicflow.com/compass/2026/zodiac/';
+  const cards = ZODIAC_2026.map((z) => {
+    const badge = z.yearAnimal ? ' <span style="font-size:.75rem;color:var(--brass);">2026 year</span>' : '';
+    return `<a class="guide-card" href="/compass/2026/zodiac/${z.slug}"><h2>${z.label} ${z.cn}${badge}</h2><p>${z.sampleYears}</p></a>`;
+  }).join('\n    ');
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Zodiac Feng Shui · Horse Year · All 12 Signs</title>
+<meta name="description" content="2026 Horse year feng shui for all 12 Chinese zodiac signs — personal Kua, flying stars, and monthly heatmap tools on every page.">
+<link rel="canonical" href="${canonical}">
+<link rel="stylesheet" href="/compass/shared.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.hero{padding:40px 0 20px;}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,4vw,2.6rem);}
+.guide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0;}
+.guide-card{border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:rgba(255,255,255,.4);text-decoration:none;color:inherit;display:block;transition:border-color .2s,background .2s;}
+.guide-card:hover{border-color:var(--celadon);background:rgba(122,155,142,.08);}
+.guide-card h2{font-family:'Fraunces',serif;font-size:1.05rem;margin-bottom:6px;color:var(--ink);}
+.guide-card p{font-size:.88rem;color:var(--ink-soft);line-height:1.5;}
+@media(max-width:900px){.guide-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.guide-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="lc-nav">
+  <a href="/compass/" class="lc-brand">
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="#7A9B8E"/><circle cx="20" cy="20" r="2.4" fill="#A88A52"/></svg>
+    <div class="name">The Living Compass<span>2026 Zodiac</span></div>
+  </a>
+  <div class="lc-nav-links">
+    <a href="/compass/heatmap/">Heatmap</a>
+    <a href="/compass/guides/">Guides</a>
+    <a href="/compass/">Compass</a>
+  </div>
+</nav>
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow" style="margin-bottom:12px;">丙午 · Year of the Horse · 2026</p>
+    <h1>2026 feng shui by zodiac sign</h1>
+    <p style="color:var(--ink-soft);max-width:40em;line-height:1.6;">Each sign gets Horse-year context — then stack your personal Kua and home facing with the free tools below.</p>
+  </header>
+  <div class="guide-grid">
+    ${cards}
+  </div>
+  <div class="compass-cta">
+    <h3>Personal beats generic</h3>
+    <p>Zodiac pages explain the year — the compass calculates your exact directions.</p>
+    <a href="/compass/" class="btn">Reveal my compass</a>
+    <a href="/compass/heatmap/" class="btn btn-ghost" style="margin-left:8px;">2026 heatmap</a>
+  </div>
+</main>
+<footer class="lc-footer"><div class="wrap"><p><a href="/">MetaphysicFlow</a></p></div></footer>
+</body>
+</html>`;
+
+  const outDir = path.join(ROOT, 'compass', '2026', 'zodiac');
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, 'index.html'), html);
+  console.log('  2026/zodiac/index.html');
+}
+
 function collectSitemapUrls() {
   const base = 'https://metaphysicflow.com';
   const urls = [
@@ -549,9 +760,11 @@ function collectSitemapUrls() {
     `${base}/compass/order/`,
     `${base}/compass/heatmap/`,
     `${base}/compass/guides/`,
+    `${base}/compass/2026/zodiac/`,
   ];
   Object.keys(KUA_PAGES).forEach((n) => urls.push(`${base}/compass/kua/${n}`));
   GUIDES.forEach((g) => urls.push(`${base}/compass/guides/${g.slug}`));
+  ZODIAC_2026.forEach((z) => urls.push(`${base}/compass/2026/zodiac/${z.slug}`));
   DIRS.forEach((d) => {
     urls.push(`${base}/compass/2026/${d.slug}-facing-house`);
     ROOMS.forEach((r) => urls.push(`${base}/compass/facing/${d.slug}-${r.slug}`));
@@ -589,5 +802,7 @@ DIRS.forEach((d) => {
 for (let y = BIRTH_YEAR_START; y <= BIRTH_YEAR_END; y += 1) {
   writeBirthYearPage(y);
 }
+writeZodiacHub();
+ZODIAC_2026.forEach(writeZodiac2026Page);
 syncSitemap(collectSitemapUrls());
 console.log('Done.');
