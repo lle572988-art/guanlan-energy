@@ -61,5 +61,14 @@ Until products exist on Gumroad, empty SKUs force Stripe checkout.
 
 1. `/compass/` → birth date → compass resolves → Save my compass downloads PNG
 2. `/compass/xray/` → upload photo → grid appears → insights below
+   - iPhone HEIC: should show "Converting HEIC…" then overlay
+   - If stuck: hard refresh (`?v=` on scripts bypasses old CDN cache)
 3. `/checkout.html?product=compass-home` → Stripe or Gumroad
 4. `/api/cron/compass-monthly` with `Authorization: Bearer $CRON_SECRET` (after first annual sale)
+
+### Upload not working?
+
+- Use **https://metaphysicflow.com/compass/xray/** (not `/feng-shui-scan` — that page is a demo scanner)
+- Upload maps **flying stars on your photo** — it does not AI-label furniture
+- HEIC needs `heic2any` (loaded on xray page) or export JPG from iPhone
+- **Generate cure preview** needs `FAL_API_KEY` on Vercel (overlay works without it)

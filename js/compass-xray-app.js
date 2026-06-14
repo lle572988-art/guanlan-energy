@@ -61,7 +61,8 @@
     if (!canvas || !wrap) return;
 
     var ctx = canvas.getContext('2d');
-    var w = wrap.clientWidth;
+    var w = wrap.clientWidth || wrap.offsetWidth;
+    if (!w) w = Math.min(640, (global.innerWidth || 360) - 48);
     var h = Math.round(w * 0.75);
     canvas.width = w;
     canvas.height = h;
@@ -312,34 +313,61 @@
     });
   }
 
+  function isHeicFile(file) {
+    return /\.(heic|heif)$/i.test(file.name || '') || /heic|heif/i.test(file.type || '');
+  }
+
+  function fileToDisplayableBlob(file) {
+    if (!isHeicFile(file)) return Promise.resolve(file);
+    if (!global.heic2any) {
+      return Promise.reject(new Error(
+        'HEIC photo detected — on iPhone: Settings → Camera → Formats → Most Compatible, or export as JPG.'
+      ));
+    }
+    return global.heic2any({ blob: file, toType: 'image/jpeg', quality: 0.9 }).then(function (result) {
+      return result instanceof Blob ? result : result[0];
+    }).catch(function () {
+      return Promise.reject(new Error('Could not open HEIC — save as JPG and upload again.'));
+    });
+  }
+
+  function blobToImage(blob) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onerror = function () { reject(new Error('Could not read this file — try another photo.')); };
+      reader.onload = function (e) {
+        var img = new Image();
+        img.onerror = function () {
+          reject(new Error('This image format is not supported — try JPG or PNG.'));
+        };
+        img.onload = function () { resolve(img); };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(blob);
+    });
+  }
+
   function loadFile(file) {
     if (!isImageFile(file)) {
       setUploadStatus('Please upload a JPG, PNG, or HEIC photo.', true);
       return;
     }
-    setUploadStatus('Loading photo…', false);
-    var reader = new FileReader();
-    reader.onerror = function () {
-      setUploadStatus('Could not read this file — try another photo.', true);
-    };
-    reader.onload = function (e) {
-      var img = new Image();
-      img.onerror = function () {
-        setUploadStatus('This image format is not supported in your browser — try JPG or PNG.', true);
-      };
-      img.onload = function () {
+    setUploadStatus(isHeicFile(file) ? 'Converting HEIC…' : 'Loading photo…', false);
+    track('compass_xray_upload');
+    fileToDisplayableBlob(file)
+      .then(blobToImage)
+      .then(function (img) {
         state.image = img;
         state.imageDataUrl = resizeToDataUrl(img, 1280);
         state.imageUrl = state.imageDataUrl;
         state.cureUrl = '';
-        setUploadStatus(file.name + ' — mapping 2026 flying stars…', false);
+        setUploadStatus(file.name + ' — mapping flying stars…', false);
         drawOverlay();
         runScan();
-      };
-      img.src = e.target.result;
-    };
-    reader.readAsDataURL(file);
-    track('compass_xray_upload');
+      })
+      .catch(function (err) {
+        setUploadStatus(err.message || 'Could not read this file — try another photo.', true);
+      });
   }
 
   function applyIntake() {
@@ -369,8 +397,17 @@
     if (cureBtn) cureBtn.addEventListener('click', generateCure);
 
     window.addEventListener('resize', function () {
-      if (state.chart) drawOverlay();
+      if (state.chart || state.image) drawOverlay();
     });
+
+    var wrap = el('xrayCanvasWrap');
+    if (wrap && global.ResizeObserver) {
+      new global.ResizeObserver(function () {
+        if (state.chart || state.image) drawOverlay();
+      }).observe(wrap);
+    }
+
+    requestAnimationFrame(function () { drawOverlay(); });
 
     track('compass_xray_landing');
   }
