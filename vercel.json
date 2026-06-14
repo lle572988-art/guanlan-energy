@@ -321,6 +321,22 @@
       "destination": "/compass/moving/index.html"
     },
     {
+      "source": "/compass/tools",
+      "destination": "/compass/tools/index.html"
+    },
+    {
+      "source": "/compass/tools/",
+      "destination": "/compass/tools/index.html"
+    },
+    {
+      "source": "/compass/share",
+      "destination": "/compass/share/index.html"
+    },
+    {
+      "source": "/compass/share/",
+      "destination": "/compass/share/index.html"
+    },
+    {
       "source": "/compass/facing/:slug",
       "destination": "/compass/facing/:slug.html"
     },

@@ -946,6 +946,8 @@ function collectSitemapUrls() {
     `${base}/compass/heatmap/`,
     `${base}/compass/family/`,
     `${base}/compass/moving/`,
+    `${base}/compass/tools/`,
+    `${base}/compass/share/`,
     `${base}/compass/guides/`,
     `${base}/compass/2026/zodiac/`,
     `${base}/compass/city/`,

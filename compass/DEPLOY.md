@@ -56,6 +56,8 @@ Until products exist on Gumroad, empty SKUs force Stripe checkout.
 | 主站导流 | ✅ nav → `/compass/` |
 | 伴侣/家庭 LTV | ✅ `/compass/family/` tool + guide |
 | 搬家择日 | ✅ `/compass/moving/` + guide |
+| 工具枢纽 + 传播模板 | ✅ `/compass/tools/` · `/compass/share/` |
+| 社群雷达 | 🔶 `compass/OUTREACH.md` + `npm run reddit:radar` |
 
 ## Manual smoke test after deploy
 

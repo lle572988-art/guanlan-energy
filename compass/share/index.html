@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Share Your Feng Shui Results · TikTok &amp; IG Templates</title>
+<meta name="description" content="Copy-paste hooks and captions for Living Compass and Energy X-Ray — built for TikTok, Reels, and Stories.">
+<link rel="canonical" href="https://metaphysicflow.com/compass/share/">
+<link rel="stylesheet" href="/compass/shared.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="/js/plausible-init.js"></script>
+<style>
+.hero{padding:36px 0 20px;}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,4vw,2.5rem);line-height:1.12;margin-bottom:12px;}
+.hero h1 em{font-style:italic;color:var(--celadon);}
+.lead{color:var(--ink-soft);max-width:42em;line-height:1.6;margin-bottom:20px;}
+.template{border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px;background:rgba(255,255,255,.42);}
+.template h2{font-family:'Fraunces',serif;font-size:1.1rem;margin-bottom:10px;}
+.template pre{font-family:'Hanken Grotesk',sans-serif;font-size:.92rem;color:var(--ink-soft);white-space:pre-wrap;line-height:1.55;background:var(--paper);padding:14px;border-radius:9px;border:1px solid var(--line-soft);margin-bottom:10px;}
+.copy-btn{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper);cursor:pointer;}
+.copy-btn:hover{border-color:var(--celadon);}
+.hint{font-size:12px;color:var(--ink-faint);margin-top:8px;}
+</style>
+</head>
+<body>
+
+<nav class="lc-nav">
+  <a href="/compass/" class="lc-brand">
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="#7A9B8E"/><circle cx="20" cy="20" r="2.4" fill="#A88A52"/></svg>
+    <div class="name">The Living Compass<span>Share · 病毒回路</span></div>
+  </a>
+  <div class="lc-nav-links">
+    <a href="/compass/tools/">Tools</a>
+    <a href="/compass/xray/">X-Ray</a>
+    <a href="/compass/">Compass</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow" style="margin-bottom:12px;">Growth · 4.3 病毒回路</p>
+    <h1>Share what <em>you</em> found</h1>
+    <p class="lead">Two assets people actually post: your personal compass PNG and your Energy X-Ray Before/After. Copy a hook, add your result, link the free tool — help first, not hard sell.</p>
+  </header>
+
+  <div class="template">
+    <h2>TikTok / Reels · X-Ray hook</h2>
+    <pre id="tpl-xray">I X-rayed my apartment's feng shui for 2026 and… my wealth corner is literally the bathroom 😭
+
+Free overlay on your own photo (flying stars, not random AI):
+metaphysicflow.com/compass/xray/
+
+#fengshui #apartment #2026energy #homeenergy</pre>
+    <button type="button" class="copy-btn" data-copy="tpl-xray">Copy text</button>
+  </div>
+
+  <div class="template">
+    <h2>Stories · Living Compass</h2>
+    <pre id="tpl-compass">My Kua directions are NOT generic feng shui tips — they're calculated from my birth date.
+
+Wealth faces [YOUR DIRECTION] · Sleep headboard [YOUR WALL]
+
+Free compass + save PNG:
+metaphysicflow.com/compass/</pre>
+    <button type="button" class="copy-btn" data-copy="tpl-compass">Copy text</button>
+  </div>
+
+  <div class="template">
+    <h2>Reddit / forum · helpful reply</h2>
+    <pre id="tpl-reddit">If you want to check your home's 2026 flying stars on your actual floor plan (free), this overlays the annual grid on a photo you upload: https://metaphysicflow.com/compass/xray/
+
+For personal sleep/desk directions (Ba Zhai / Kua), that's separate and also free: https://metaphysicflow.com/compass/
+
+Not a substitute for a human consultant, but it's real math — not a random "energy reading."</pre>
+    <button type="button" class="copy-btn" data-copy="tpl-reddit">Copy text</button>
+  </div>
+
+  <p class="hint">After saving your compass PNG or cure Before/After, post the image + paste caption. Tag optional — the link carries SEO.</p>
+
+  <div class="compass-cta" style="margin-top:28px;">
+    <a href="/compass/xray/" class="btn">Make your X-Ray</a>
+    <a href="/compass/" class="btn btn-ghost" style="margin-left:8px;">Reveal my compass</a>
+  </div>
+</main>
+
+<footer class="lc-footer"><div class="wrap"><p>A <a href="/">MetaphysicFlow</a> product</p></div></footer>
+
+<script>
+document.querySelectorAll('.copy-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var id = btn.getAttribute('data-copy');
+    var node = document.getElementById(id);
+    if (!node) return;
+    var text = node.textContent;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){ btn.textContent = 'Copied'; });
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'Copied';
+    }
+    setTimeout(function(){ btn.textContent = 'Copy text'; }, 2000);
+  });
+});
+</script>
+</body>
+</html>
