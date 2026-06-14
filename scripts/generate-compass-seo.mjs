@@ -80,7 +80,7 @@ const ROOMS = [
 
 const FACING_YEAR = 2026;
 const BIRTH_YEAR_START = 1940;
-const BIRTH_YEAR_END = 2015;
+const BIRTH_YEAR_END = 2025;
 
 const CITIES = [
   { slug: 'new-york', label: 'New York', tip: 'Pre-war walk-ups and L-shaped lofts often clip corners — map the bagua on your actual footprint, not the building outline.' },
@@ -422,6 +422,74 @@ const GUIDES = [
     ],
     xrayCta: true,
     heatmapCta: true,
+  },
+  {
+    slug: 'partner-family-feng-shui',
+    title: 'Partner & Family Feng Shui · Two Kuas in One Home',
+    description: 'Different Kua numbers in one household? Map sleep, desk, and shared spaces without fighting over one "correct" direction.',
+    h1: 'Partner and family feng shui — two charts, one home',
+    intro: 'Classical Ba Zhai is <strong>personal</strong>. Your partner\'s Sheng Qi direction may differ from yours — that is normal, not a relationship curse. The goal is clarity: who sleeps where, who works facing which bearing, and which shared rooms get neutral cures.',
+    sections: [
+      {
+        h2: 'Calculate both Kuas first',
+        p: 'Run the Living Compass for each adult\'s birth date and gender. Note Sheng Qi, Tian Yi, Yan Nian, and Jue Ming for both — conflicts usually appear when two people share one desk wall or bed orientation.',
+      },
+      {
+        h2: 'Bedroom priority: Tian Yi for sleep',
+        p: 'If only one wall allows a true headboard anchor, prioritize the person with the stronger sleep issue on Tian Yi. The other partner can use Yan Nian for conversations and Sheng Qi at a separate desk.',
+      },
+      {
+        h2: 'Shared spaces use flying stars',
+        p: 'Personal directions govern how you orient your body. Annual flying stars govern what energy sits in each room sector in 2026 — layer both on your floor plan with the free X-Ray and heatmap.',
+      },
+    ],
+    xrayCta: true,
+    heatmapCta: true,
+  },
+  {
+    slug: 'moving-day-feng-shui',
+    title: 'Auspicious Moving Day Feng Shui · What to Check First',
+    description: 'Before you sign a lease or move boxes, confirm facing direction, 2026 flying stars, and personal Kua fit — a practical moving checklist.',
+    h1: 'Feng shui for moving day — what to check',
+    intro: 'Moving is the highest-leverage moment for spatial feng shui: you can choose <strong>which room is yours</strong>, where the desk lands, and whether the front door facing supports your Kua before furniture is bolted down.',
+    sections: [
+      {
+        h2: 'Confirm true facing before lease',
+        p: 'Stand at the front door looking outward — that is the facing. Photograph it and run the 2026 heatmap before you sign. Avoid locking into a layout where Five Yellow sits in the nursery if you are planning a newborn year.',
+      },
+      {
+        h2: 'Unpack with personal directions',
+        p: 'Place the bed headboard on your Tian Yi wall first — even if the mattress is on the floor on day one. Set the desk to face Sheng Qi before you open email on the kitchen table.',
+      },
+      {
+        h2: 'First month cures',
+        p: 'Scrub the monthly heatmap for your first 90 days — renovation, drilling, and major furniture moves are safer when conflict stars are not in the sector you are editing.',
+      },
+    ],
+    xrayCta: true,
+    heatmapCta: true,
+  },
+  {
+    slug: 'studio-apartment-feng-shui',
+    title: 'Studio Apartment Feng Shui · One Room, Personal Directions',
+    description: 'Small rental or studio? Ba Zhai still works — orientation and portable cures beat perfect architecture.',
+    h1: 'Studio apartment feng shui — one room, still personal',
+    intro: 'A studio forces every function into one footprint — but <strong>your bearings are still personal</strong>. You cannot add walls, but you can choose which direction you sleep, work, and eat facing.',
+    sections: [
+      {
+        h2: 'Divide by function, not walls',
+        p: 'Mark sleep zone, work zone, and entry zone on the floor plan. Align sleep with Tian Yi, desk with Sheng Qi, and keep the entry uncluttered — even a rug line can signal the "mouth of chi."',
+      },
+      {
+        h2: 'Portable cures only',
+        p: 'Plants, metal bowls, screens, and curtains move with you. Avoid drilling or painting — classical renters\' fixes that landlords accept.',
+      },
+      {
+        h2: 'Preview stars before you buy furniture',
+        p: 'Upload a photo to Energy X-Ray — see which sector is bathroom-adjacent or holds 2026 caution stars before you commit to a loft bed orientation.',
+      },
+    ],
+    xrayCta: true,
   },
 ];
 

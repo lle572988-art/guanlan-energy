@@ -2452,12 +2452,13 @@ body::before {
       </g>
     </svg>
     <div class="nav-name">
-      Guanlan Energy
-      <span>观澜能量 · Purple Star Astrology</span>
+      MetaphysicFlow
+      <span>Guanlan Energy · Purple Star Astrology</span>
     </div>
   </div>
   <ul class="nav-links">
     <li><a href="#palaces">How It Works</a></li>
+    <li><a href="/compass/">Living Compass</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#pricing">Services</a></li>
     <li><a href="/bazi-calculator.html">BaZi Calculator</a></li>
@@ -2472,6 +2473,7 @@ body::before {
 <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 <nav class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
   <a href="#palaces">How It Works</a>
+  <a href="/compass/">Living Compass</a>
   <a href="#about">About</a>
   <a href="#pricing">Services</a>
   <a href="/bazi-calculator.html">BaZi Calculator</a>
@@ -4309,7 +4311,7 @@ function handleSubmit(event) {
       window.__session.set('chart_generated', '1');
     } catch (e) {}
     try {
-      window.location.href = '/free-chart?' + params.toString();
+      window.location.href = '/free-chart.html?' + params.toString();
     } catch (err) {
       resetSubmitBtn();
       console.error('Navigation failed:', err);
