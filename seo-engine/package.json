@@ -31,10 +31,15 @@
     "phase2:refilter-gaps": "node phase2/competitor-intel/refilter-gap-report.js",
     "phase3:schema-audit": "node phase3/schema-engine/audit-schema.js --sample",
     "phase3:social-scan": "python3 phase3/social-monitor/social_monitor.py --mode scan",
-    "phase3:social-full": "python3 phase3/social-monitor/social_monitor.py --mode full"
+    "phase3:social-full": "python3 phase3/social-monitor/social_monitor.py --mode full",
+    "phase3:reddit-radar": "node phase3/social-monitor/reddit_radar.mjs",
+    "phase3:reddit-radar:dry": "node phase3/social-monitor/reddit_radar.mjs --dry-run"
   },
   "dependencies": {
     "googleapis": "^173.0.0",
     "https-proxy-agent": "^9.1.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
   }
 }

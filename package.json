@@ -40,7 +40,9 @@
     "phase2:qc": "npm run phase2:qc --prefix seo-engine",
     "phase2:full": "npm run phase2:full --prefix seo-engine",
     "karma:test": "node scripts/test-karma-fulfillment.mjs",
-    "karma:send": "node scripts/test-karma-fulfillment.mjs --send"
+    "karma:send": "node scripts/test-karma-fulfillment.mjs --send",
+    "reddit:radar": "npm run phase3:reddit-radar --prefix seo-engine",
+    "reddit:radar:dry": "npm run phase3:reddit-radar:dry --prefix seo-engine"
   },
   "repository": {
     "type": "git",

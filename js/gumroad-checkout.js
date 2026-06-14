@@ -97,9 +97,16 @@
 
     var url = THANK_YOU + (productKey ? '?product=' + encodeURIComponent(productKey) : '');
     if (window.gtag) gtag('event', 'purchase', { item_name: productKey || 'gumroad', item_category: 'ziwei_reading' });
-    if (window.plausible) {
+    if (window.trackPlausible) {
       var saleValue = PRODUCT_USD[productKey] || 0;
-      plausible('Purchase-Success', { revenue: { currency: 'USD', amount: saleValue }, props: { product: productKey || 'unknown', channel: 'gumroad_overlay' } });
+      trackPlausible('Purchase-Success', {
+        revenue: { currency: 'USD', amount: saleValue },
+        props: { product: productKey || 'unknown', channel: 'gumroad_overlay' },
+      });
+      trackPlausible('purchase_complete', { props: { product: productKey || 'unknown', channel: 'gumroad_overlay' } });
+    } else if (window.plausible) {
+      var saleValueFallback = PRODUCT_USD[productKey] || 0;
+      plausible('Purchase-Success', { revenue: { currency: 'USD', amount: saleValueFallback }, props: { product: productKey || 'unknown', channel: 'gumroad_overlay' } });
       plausible('purchase_complete', { props: { product: productKey || 'unknown', channel: 'gumroad_overlay' } });
     }
     window.location.replace(url);
@@ -178,7 +185,10 @@
     if (window.gtag) {
       gtag('event', 'begin_checkout', props);
     }
-    if (window.plausible) {
+    if (window.trackPlausible) {
+      trackPlausible('Click-Buy-Report', { props: { product: product, value: PRODUCT_USD[product] || 0 } });
+      trackPlausible('purchase_click', { props: { product: product, channel: 'gumroad_overlay' } });
+    } else if (window.plausible) {
       plausible('Click-Buy-Report', { props: { product: product, value: PRODUCT_USD[product] || 0 } });
       plausible('purchase_click', { props: { product: product, channel: 'gumroad_overlay' } });
     }

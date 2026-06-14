@@ -26,6 +26,7 @@
   <!-- Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-T82Z7E5ELB');</script>
+  <script src="/js/plausible-init.js"></script>
 
   <!-- Open Graph / Social Media Preview -->
   <meta property="og:type" content="website">
@@ -4255,6 +4256,8 @@ function handleSubmit(event) {
 
   if (window.trackEvent) trackEvent('form_submit', { source: 'hero_form' });
   else {
+    if (window.trackPlausible) trackPlausible('Submit-Free-Chart');
+    else if (window.plausible) plausible('Submit-Free-Chart');
     if (window.plausible) plausible('form_submit');
     if (window.gtag) gtag('event', 'generate_lead', { event_category: 'hero_form' });
   }
@@ -5272,6 +5275,5 @@ window.trackEvent = function(name, props) {
 })();
 </script>
 <script defer data-domain="metaphysicflow.com" src="https://plausible.io/js/script.tagged-events.js"></script>
-<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)};</script>
 </body>
 </html>

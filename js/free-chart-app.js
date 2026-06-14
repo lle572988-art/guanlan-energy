@@ -917,6 +917,11 @@ function setupPricingFunnelTracking() {
   chartState._pricingFunnelBound = true;
   document.querySelectorAll('[data-product]').forEach(function (el) {
     el.addEventListener('click', function () {
+      if (window.trackPlausible) {
+        trackPlausible('Click-Buy-Report', { props: { product: el.getAttribute('data-product') || 'unknown' } });
+      } else if (window.plausible) {
+        plausible('Click-Buy-Report', { props: { product: el.getAttribute('data-product') || 'unknown' } });
+      }
       if (window.plausible) plausible('pricing_cta_click', { props: { product: el.getAttribute('data-product') || 'unknown' } });
     });
   });
@@ -1121,10 +1126,9 @@ function runChartCalculation(params) {
       try { sessionStorage.setItem('chart_generated', '1'); } catch (e) {}
     });
     fetch('/api/stats', { method: 'POST', keepalive: true }).catch(function () {});
-    if (window.plausible) {
-      plausible('Submit-Free-Chart');
-      plausible('chart_ready');
-    }
+    if (window.trackPlausible) trackPlausible('Submit-Free-Chart');
+    else if (window.plausible) plausible('Submit-Free-Chart');
+    if (window.plausible) plausible('chart_ready');
     if (window.gtag) gtag('event', 'chart_ready', { page: 'free-chart' });
   } catch (err) {
     showError(err);

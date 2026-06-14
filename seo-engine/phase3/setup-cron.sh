@@ -15,6 +15,9 @@ cat << CRON_ENTRIES
 # Daily 06:00 — Reddit scan + reply drafts (DeepSeek via AI_API_KEY)
 0 6 * * * cd $PROJECT_DIR && AI_API_KEY=\$AI_API_KEY python3 seo-engine/phase3/social-monitor/social_monitor.py --mode full >> $LOG_DIR/social-monitor.log 2>&1
 
+# Daily 07:30 — Reddit 玄学焦虑截流雷达 (Resend alert)
+30 7 * * * cd $PROJECT_DIR && RESEND_API_KEY=\$RESEND_API_KEY TEST_EMAIL=\$TEST_EMAIL node seo-engine/phase3/social-monitor/reddit_radar.mjs >> $LOG_DIR/reddit-radar.log 2>&1
+
 # Weekly Fri 07:00 — Schema audit sample + sitemap refresh
 0 7 * * 5 cd $PROJECT_DIR/seo-engine && node phase3/schema-engine/audit-schema.js --sample >> $LOG_DIR/schema-audit.log 2>&1 && npm run seo:sitemap >> $LOG_DIR/sitemap.log 2>&1
 
