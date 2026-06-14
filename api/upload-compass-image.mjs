@@ -1,5 +1,5 @@
-// api/upload-compass-image.mjs — Host room photo on Blob for cure API (small follow-up JSON)
-import { put } from '@vercel/blob';
+// api/upload-compass-image.mjs — Host room photo on Blob for cure API
+import { putPublicBlob } from '../server/lib/compass-blob.mjs';
 
 export const config = {
   runtime: 'nodejs',
@@ -31,13 +31,16 @@ export default async function handler(req, res) {
     }
 
     const ext = match[1].includes('png') ? 'png' : 'jpg';
-    const blob = await put(`compass/uploads/${Date.now()}.${ext}`, buf, {
-      access: 'public',
-      contentType: match[1],
-    });
+    const blob = await putPublicBlob(`compass/uploads/${Date.now()}.${ext}`, buf, match[1]);
     return res.status(200).json({ url: blob.url });
   } catch (err) {
     console.error('[upload-compass-image]', err.message);
-    return res.status(500).json({ error: 'Could not upload image' });
+    if (err.message === 'BLOB_NOT_CONFIGURED') {
+      return res.status(503).json({
+        error: 'Blob storage not linked to this deployment',
+        code: 'blob_not_configured',
+      });
+    }
+    return res.status(500).json({ error: 'Could not upload image', code: 'blob_upload_failed' });
   }
 }

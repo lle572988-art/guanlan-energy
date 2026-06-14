@@ -263,27 +263,34 @@
     setCureStatus('Staging your room with ' + meta.element + ' cures…');
 
     try {
-      var imageUrl = '';
+      var curePayload;
       var uploadRes = await fetch('/api/upload-compass-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ dataUrl: state.cureDataUrl }),
       });
       var uploadData = await readApiJson(uploadRes);
-      if (!uploadRes.ok) {
-        throw new Error(uploadData.error || 'Could not upload photo');
+      if (uploadRes.ok && uploadData.url) {
+        curePayload = {
+          imageUrl: uploadData.url,
+          element: meta.element,
+          room: state.room,
+          star: meta.star,
+        };
+      } else {
+        setCureStatus('Sending photo directly to AI (Blob bypass)…', false);
+        curePayload = {
+          dataUrl: state.cureDataUrl,
+          element: meta.element,
+          room: state.room,
+          star: meta.star,
+        };
       }
-      imageUrl = uploadData.url;
 
       var res = await fetch('/api/compass-cure-image', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          imageUrl: imageUrl,
-          element: meta.element,
-          room: state.room,
-          star: meta.star,
-        }),
+        body: JSON.stringify(curePayload),
       });
       var data = await readApiJson(res);
       if (!res.ok) {

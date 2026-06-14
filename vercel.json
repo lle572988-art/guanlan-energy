@@ -376,7 +376,8 @@
     },
     "api/upload-compass-image.mjs": {
       "maxDuration": 30,
-      "memory": 256
+      "memory": 256,
+      "includeFiles": "server/lib/compass-blob.mjs"
     },
     "api/compass-cure-image.js": {
       "maxDuration": 60,
