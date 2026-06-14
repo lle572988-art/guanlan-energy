@@ -265,6 +265,22 @@
       "destination": "/compass/index.html"
     },
     {
+      "source": "/compass/xray",
+      "destination": "/compass/xray/index.html"
+    },
+    {
+      "source": "/compass/xray/",
+      "destination": "/compass/xray/index.html"
+    },
+    {
+      "source": "/compass/kua/:num",
+      "destination": "/compass/kua/:num.html"
+    },
+    {
+      "source": "/compass/guides/:slug",
+      "destination": "/compass/guides/:slug.html"
+    },
+    {
       "source": "/((?!hubs/|blog/|scan/|compass/|longtail/|images/|pages/|api/|js/|[a-z0-9_-]+\\.[a-z0-9]+).*)",
       "destination": "/index.html"
     }

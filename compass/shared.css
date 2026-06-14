@@ -1,0 +1,42 @@
+/* The Living Compass — shared Quiet Power tokens */
+:root{
+  --paper:#EAE7DF;--celadon:#7A9B8E;--ink:#1F2A26;--ink-soft:#3C4A45;
+  --ink-faint:#6B7873;--brass:#A88A52;--line:rgba(31,42,38,0.12);--radius:14px;--maxw:1120px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--celadon);text-decoration:none;}
+a:hover{color:var(--ink);}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-faint);}
+.btn{
+  display:inline-block;font-size:15px;font-weight:600;color:var(--paper);background:var(--ink);
+  border:1px solid var(--ink);border-radius:999px;padding:14px 30px;cursor:pointer;
+  text-decoration:none;transition:transform .18s,background .25s;
+}
+.btn:hover{background:#10160f;transform:translateY(-1px);color:var(--paper);}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);}
+.btn-ghost:hover{background:rgba(31,42,38,0.04);}
+.lc-nav{
+  position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
+  padding:18px 28px;max-width:var(--maxw);margin:0 auto;
+  background:rgba(234,227,223,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(31,42,38,0.07);
+}
+.lc-nav-links{display:flex;gap:20px;align-items:center;}
+.lc-nav-links a{font-size:14px;color:var(--ink-soft);text-decoration:none;}
+.lc-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;}
+.lc-brand svg{width:30px;height:30px;}
+.lc-brand .name{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:17px;}
+.lc-brand .name span{display:block;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.24em;color:var(--ink-faint);margin-top:4px;text-transform:uppercase;}
+.lc-footer{border-top:1px solid var(--line);padding:34px 0 50px;color:var(--ink-faint);font-size:13px;margin-top:60px;}
+.lc-footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;}
+.compass-cta{
+  margin:40px 0;padding:28px;border:1px solid var(--line);border-radius:var(--radius);
+  background:rgba(122,155,142,0.08);text-align:center;
+}
+.compass-cta h3{font-family:'Fraunces',serif;font-weight:400;font-size:1.35rem;margin-bottom:8px;}
+.compass-cta p{color:var(--ink-soft);font-size:.95rem;margin-bottom:16px;max-width:36em;margin-left:auto;margin-right:auto;}
