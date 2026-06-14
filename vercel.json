@@ -257,7 +257,15 @@
       "destination": "/consultation.html"
     },
     {
-      "source": "/((?!hubs/|blog/|scan/|longtail/|images/|pages/|api/|js/|[a-z0-9_-]+\\.[a-z0-9]+).*)",
+      "source": "/compass",
+      "destination": "/compass/index.html"
+    },
+    {
+      "source": "/compass/",
+      "destination": "/compass/index.html"
+    },
+    {
+      "source": "/((?!hubs/|blog/|scan/|compass/|longtail/|images/|pages/|api/|js/|[a-z0-9_-]+\\.[a-z0-9]+).*)",
       "destination": "/index.html"
     }
   ],

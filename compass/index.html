@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Living Compass · Free Personal Feng Shui Direction Calculator | The Living Compass</title>
+<meta name="description" content="Discover your Ba Zhai Kua number and four lucky directions — free, instant, personalized. The Living Compass maps your wealth, health, and harmony bearings from your birth date.">
+<link rel="canonical" href="https://metaphysicflow.com/compass/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#EAE7DF">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://metaphysicflow.com/compass/">
+<meta property="og:title" content="Living Compass · Your Personal Feng Shui Directions">
+<meta property="og:description" content="Free Ba Zhai calculator — your wealth, health, and harmony directions mapped on a breathing compass. Save and share your personal energy map.">
+<meta property="og:site_name" content="The Living Compass">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Hanken+Grotesk:wght@400;500;600&family=Noto+Serif+SC:wght@400;500&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T82Z7E5ELB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-T82Z7E5ELB');</script>
+<script src="/js/plausible-init.js"></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "The Living Compass",
+  "alternateName": "Ba Zhai Kua Calculator",
+  "url": "https://metaphysicflow.com/compass/",
+  "applicationCategory": "LifestyleApplication",
+  "operatingSystem": "Web browser",
+  "inLanguage": "en",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "provider": {
+    "@type": "Organization",
+    "name": "Guanlan Energy",
+    "url": "https://metaphysicflow.com"
+  },
+  "description": "Free personal Ba Zhai direction calculator with animated compass visualization."
+}
+</script>
+<style>
+:root {
+  --rice: #EAE7DF;
+  --celadon: #7A9B8E;
+  --ink: #1F2A26;
+  --brass: #A88A52;
+  --ink-muted: rgba(31, 42, 38, 0.55);
+  --celadon-dim: rgba(122, 155, 142, 0.35);
+  --wood: #5B8C5A;
+  --fire: #C0573B;
+  --earth: #C9A24B;
+  --metal: #D8D5CC;
+  --water: #2E4A5B;
+  --font-display: Fraunces, Georgia, serif;
+  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+  --font-cn: "Noto Serif SC", serif;
+  --font-mono: ui-monospace, "Geist Mono", monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--rice);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--celadon); text-decoration: none; }
+a:hover { color: var(--ink); }
+
+/* ── Nav ── */
+.lc-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--celadon-dim);
+}
+
+.lc-nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.lc-nav-sigil {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--celadon);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lc-nav-sigil svg { width: 18px; height: 18px; }
+
+.lc-nav-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.lc-nav-name span {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.lc-nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  list-style: none;
+}
+
+.lc-nav-links a {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+
+.lc-nav-links a:hover { color: var(--celadon); }
+
+.lc-nav-mf {
+  font-size: 0.72rem;
+  color: var(--ink-muted);
+  border-left: 1px solid var(--celadon-dim);
+  padding-left: 1.25rem;
+}
+
+/* ── Hero ── */
+.lc-hero {
+  text-align: center;
+  padding: 3rem 1.5rem 2rem;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.lc-hero-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--celadon);
+  margin-bottom: 1rem;
+}
+
+.lc-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
+
+.lc-hero-quote {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--ink-muted);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.lc-hero-canvas-wrap {
+  margin: 0 auto 1.5rem;
+  width: min(320px, 90vw);
+  aspect-ratio: 1;
+}
+
+.lc-hero-canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ── Form ── */
+.lc-form-section {
+  max-width: 480px;
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+}
+
+.lc-form {
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--celadon-dim);
+  padding: 2rem;
+  border-radius: 2px;
+}
+
+.lc-field { margin-bottom: 1.25rem; }
+
+.lc-field label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 0.5rem;
+}
+
+.lc-field input[type="date"],
+.lc-field select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--celadon-dim);
+  background: var(--rice);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+  border-radius: 2px;
+}
+
+.lc-gender-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.lc-gender-opt {
+  flex: 1;
+  position: relative;
+}
+
+.lc-gender-opt input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.lc-gender-opt label {
+  display: block;
+  padding: 0.75rem;
+  text-align: center;
+  border: 1px solid var(--celadon-dim);
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-radius: 2px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.lc-gender-opt input:checked + label {
+  border-color: var(--celadon);
+  background: rgba(122, 155, 142, 0.12);
+}
+
+.lc-btn-primary {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 0.5rem;
+  background: var(--ink);
+  color: var(--rice);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+
+.lc-btn-primary:hover { background: #2a3832; }
+
+.lc-form-note {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* ── Results ── */
+.lc-results {
+  max-width: 960px;
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+}
+
+.lc-results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .lc-results-grid { grid-template-columns: 1fr; }
+  .lc-nav-links .lc-nav-mf { display: none; }
+}
+
+.lc-compass-panel {
+  text-align: center;
+}
+
+.lc-compass-canvas-wrap {
+  width: min(360px, 100%);
+  margin: 0 auto 1.5rem;
+  aspect-ratio: 1;
+}
+
+.lc-compass-canvas-wrap canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.lc-kua-badge {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--brass);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+}
+
+.lc-kua-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.lc-kua-group {
+  font-family: var(--font-cn);
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+}
+
+.lc-detail-panel h2 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--celadon-dim);
+}
+
+.lc-pos-list {
+  list-style: none;
+  margin-bottom: 1.75rem;
+}
+
+.pos-row {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(122, 155, 142, 0.15);
+}
+
+.pos-row__dir {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--brass);
+  min-width: 2.5rem;
+  padding-top: 2px;
+}
+
+.pos-row__body strong {
+  display: block;
+  font-size: 0.9rem;
+  font-family: var(--font-cn);
+}
+
+.pos-row__body span {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+.pos-row--caution .pos-row__dir { color: var(--fire); opacity: 0.7; }
+
+.lc-actions-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--celadon);
+  margin-bottom: 0.75rem;
+}
+
+.lc-actions-list {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.lc-actions-list li {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  padding: 0.5rem 0;
+  color: var(--ink);
+  border-left: 2px solid var(--celadon);
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.lc-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.lc-btn {
+  padding: 0.85rem 1.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--celadon);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: var(--font-body);
+  border-radius: 2px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.lc-btn:hover {
+  background: rgba(122, 155, 142, 0.12);
+}
+
+.lc-btn--brass {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+
+.lc-btn--solid {
+  background: var(--ink);
+  color: var(--rice);
+  border-color: var(--ink);
+}
+
+.lc-btn--solid:hover {
+  background: #2a3832;
+  color: var(--rice);
+}
+
+/* ── Footer / cross-brand ── */
+.lc-footer {
+  border-top: 1px solid var(--celadon-dim);
+  padding: 2.5rem 1.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.lc-footer p {
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  margin-bottom: 0.5rem;
+}
+
+.lc-footer a { color: var(--celadon); }
+
+.lc-teaser {
+  max-width: 640px;
+  margin: 0 auto 3rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 1px dashed var(--celadon-dim);
+  border-radius: 2px;
+}
+
+.lc-teaser h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.lc-teaser p {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}
+
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="lc-nav" aria-label="Living Compass">
+    <a href="/compass/" class="lc-nav-brand">
+      <div class="lc-nav-sigil" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7A9B8E" stroke-width="1.2">
+          <circle cx="12" cy="12" r="9"/>
+          <line x1="12" y1="3" x2="12" y2="21"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <polygon points="12,5 14,10 12,9 10,10" fill="#A88A52" stroke="#A88A52"/>
+        </svg>
+      </div>
+      <div class="lc-nav-name">
+        The Living Compass
+        <span>活罗盘 · Quiet Power</span>
+      </div>
+    </a>
+    <ul class="lc-nav-links">
+      <li><a href="#lc-form-section">Calculate</a></li>
+      <li><a href="/feng-shui-scan.html">Room Scan</a></li>
+      <li class="lc-nav-mf"><a href="/">MetaphysicFlow · Zi Wei</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="lc-hero" id="lc-hero">
+    <p class="lc-hero-tag">Free · Ba Zhai · Eight Mansions</p>
+    <h1>Your home already knows you.<br>We just help you read it.</h1>
+    <p class="lc-hero-quote">Your personal wealth, health, and harmony directions — calculated from your birth date, not generic tips.</p>
+    <div class="lc-hero-canvas-wrap">
+      <canvas id="lc-hero-canvas" width="400" height="400" aria-hidden="true"></canvas>
+    </div>
+  </section>
+
+  <section class="lc-form-section" id="lc-form-section">
+    <form class="lc-form" id="lc-form" aria-label="Living Compass calculator">
+      <div class="lc-field">
+        <label for="lc-birth-date">Birth date</label>
+        <input type="date" id="lc-birth-date" name="birth-date" required aria-required="true">
+      </div>
+      <div class="lc-field">
+        <label>Gender · 性别</label>
+        <div class="lc-gender-row">
+          <div class="lc-gender-opt">
+            <input type="radio" name="lc-gender" id="lc-gender-female" value="female" checked>
+            <label for="lc-gender-female">Female</label>
+          </div>
+          <div class="lc-gender-opt">
+            <input type="radio" name="lc-gender" id="lc-gender-male" value="male">
+            <label for="lc-gender-male">Male</label>
+          </div>
+        </div>
+      </div>
+      <div class="lc-field">
+        <label for="lc-house-facing">House facing (optional)</label>
+        <select id="lc-house-facing" name="house-facing" aria-describedby="lc-facing-hint">
+          <option value="">— Not sure yet —</option>
+          <option value="N">North</option>
+          <option value="NE">Northeast</option>
+          <option value="E">East</option>
+          <option value="SE">Southeast</option>
+          <option value="S">South</option>
+          <option value="SW">Southwest</option>
+          <option value="W">West</option>
+          <option value="NW">Northwest</option>
+        </select>
+        <p class="lc-form-note" id="lc-facing-hint">The direction your front door or main window faces outward.</p>
+      </div>
+      <button type="submit" class="lc-btn-primary">Reveal my compass</button>
+      <p class="lc-form-note">No signup · Pure math · Lunar year adjusted</p>
+    </form>
+  </section>
+
+  <section class="lc-results" id="lc-results" hidden>
+    <div class="lc-results-grid">
+      <div class="lc-compass-panel">
+        <div class="lc-compass-canvas-wrap">
+          <canvas id="lc-compass-canvas" width="400" height="400" aria-label="Your personal direction compass"></canvas>
+        </div>
+        <p class="lc-kua-badge" id="lc-kua-num"></p>
+        <h2 class="lc-kua-title" id="lc-kua-title"></h2>
+        <p class="lc-kua-group" id="lc-kua-group"></p>
+      </div>
+      <div class="lc-detail-panel">
+        <h2>Auspicious · 四吉位</h2>
+        <ul class="lc-pos-list" id="lc-auspicious-list"></ul>
+        <h2>Use with care · 四凶位</h2>
+        <ul class="lc-pos-list" id="lc-inauspicious-list"></ul>
+        <p class="lc-actions-title">Your three moves</p>
+        <ul class="lc-actions-list" id="lc-actions-list"></ul>
+        <div class="lc-cta-row">
+          <button type="button" class="lc-btn lc-btn--brass" id="lc-save-btn">Save my compass</button>
+          <button type="button" class="lc-btn" id="lc-copy-btn">Copy image</button>
+          <a href="/feng-shui-scan.html" class="lc-btn lc-btn--solid" id="lc-home-cta">See my home →</a>
+          <button type="button" class="lc-btn" id="lc-again-btn">Recalculate</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lc-teaser" aria-label="Coming soon">
+    <h3>Energy X-Ray · Coming in Phase 2</h3>
+    <p>Upload your floor plan — we'll overlay flying stars on your actual rooms and show what blocks your best directions.</p>
+  </section>
+</main>
+
+<footer class="lc-footer">
+  <p>The Living Compass is a <a href="/">MetaphysicFlow</a> product by Guanlan Energy.</p>
+  <p>Empowerment, not prophecy · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+</footer>
+
+<canvas id="lc-share-canvas" hidden aria-hidden="true"></canvas>
+
+<script src="/lunar.js"></script>
+<script src="/js/bazhai-engine.js"></script>
+<script src="/js/living-compass-canvas.js"></script>
+<script src="/js/living-compass-app.js"></script>
+</body>
+</html>
