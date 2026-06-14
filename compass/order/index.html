@@ -26,6 +26,23 @@
 .tier li{padding:6px 0;border-bottom:1px solid rgba(31,42,38,.06);}
 .tier li::before{content:'◉ ';color:var(--celadon);}
 .anchor{font-size:.82rem;color:var(--ink-faint);margin-top:32px;text-align:center;}
+.report-showcase{max-width:720px;margin:36px auto;padding:0;}
+.report-showcase h2{font-family:'Fraunces',serif;font-weight:400;font-size:1.35rem;text-align:center;margin-bottom:6px;}
+.report-showcase .sub{text-align:center;color:var(--ink-soft);font-size:.92rem;margin-bottom:20px;}
+.report-mock{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:rgba(255,255,255,.5);}
+.report-cover{padding:28px 24px;background:linear-gradient(145deg,#1F2A26,#2a3832);color:#EAE7DF;}
+.report-cover .badge{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;color:#7A9B8E;text-transform:uppercase;}
+.report-cover h3{font-family:'Fraunces',serif;font-weight:300;font-size:1.5rem;margin:12px 0 6px;}
+.report-cover p{font-size:.88rem;color:rgba(234,227,223,.75);}
+.report-page{padding:22px 24px;border-top:1px solid var(--line);}
+.report-page h4{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--celadon);margin-bottom:10px;}
+.report-page ul{font-size:.88rem;color:var(--ink-soft);list-style:none;}
+.report-page li{padding:6px 0;border-bottom:1px solid rgba(31,42,38,.06);}
+.report-locked{position:relative;padding:22px 24px;border-top:1px solid var(--line);min-height:120px;}
+.report-locked .blur{filter:blur(6px);user-select:none;pointer-events:none;opacity:.55;font-size:.88rem;color:var(--ink-soft);line-height:1.6;}
+.report-locked .lock-msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(234,227,223,.72);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);}
+.report-anchor{text-align:center;margin-top:14px;font-size:.95rem;color:var(--ink-soft);}
+.report-anchor strong{color:var(--ink);}
 @media(max-width:900px){.tiers{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -46,8 +63,36 @@
   <header class="hero">
     <p class="eyebrow" style="margin-bottom:14px;">Golden funnel · Act 3</p>
     <h1>Your map is half visible.<br>Get the full home report.</h1>
-    <p>A feng shui master charges $800–1,500 for a home audit. Yours is delivered as a PDF — clear, actionable, no renovation required.</p>
+    <p>A feng shui master charges $800–1,500 for a home audit. Yours is delivered as a printable HTML report — clear, actionable, no renovation required.</p>
   </header>
+
+  <section class="report-showcase" aria-labelledby="report-showcase-title">
+    <h2 id="report-showcase-title">Inside your Energy X-Ray report</h2>
+    <p class="sub">Not a wall of text — a clear home map you can print. Sample page below; full report unlocks every sector.</p>
+    <div class="report-mock">
+      <div class="report-cover">
+        <span class="badge">The Living Compass</span>
+        <h3>Energy X-Ray · Full Home Report</h3>
+        <p>2026 flying stars · Personal Kua 6 · Home faces South · Prepared for you</p>
+      </div>
+      <div class="report-page">
+        <h4>Executive snapshot · visible in full report</h4>
+        <ul>
+          <li><strong>Southeast · star 8</strong> — Wealth &amp; momentum. Prime desk or income work this year.</li>
+          <li><strong>South · star 4</strong> — Romance &amp; study at your front door sector — keep bright and fresh.</li>
+          <li><strong>Northwest · star 2</strong> — Illness star in bedroom zone — keep quiet; add metal accents.</li>
+        </ul>
+      </div>
+      <div class="report-locked">
+        <div class="blur">
+          <p><strong>Room-by-room cures</strong> — Bathroom in wealth sector: keep door closed, add earth element, relocate desk to northeast study in Q2…</p>
+          <p><strong>2026 monthly calendar</strong> — March Five Yellow in bedroom, Q2 wealth star shifts to office…</p>
+        </div>
+        <div class="lock-msg">Full sector map + cures in your report</div>
+      </div>
+    </div>
+    <p class="report-anchor">A feng shui master charges <strong>$800–1,500</strong> for this audit. Yours is <strong>$39</strong>.</p>
+  </section>
 
   <div class="intake" id="orderIntake">
     <p class="eyebrow" style="margin-bottom:14px;">Delivery details</p>
@@ -64,6 +109,12 @@
       <option value="SE">Southeast</option><option value="S" selected>South</option><option value="SW">Southwest</option>
       <option value="W">West</option><option value="NW">Northwest</option>
     </select>
+    <label for="orderYear">Flying star year</label>
+    <select id="orderYear">
+      <option value="2026" selected>2026</option>
+      <option value="2025">2025</option>
+      <option value="2027">2027</option>
+    </select>
     <p style="font-size:12px;color:var(--ink-faint);margin-top:4px;">Pulled from your X-Ray scan when available.</p>
   </div>
 
@@ -75,7 +126,7 @@
         <li>One room 2026 map</li>
         <li>Personal Kua overlay</li>
         <li>3-step cures</li>
-        <li>PDF · 48h</li>
+        <li>PDF · emailed instantly</li>
       </ul>
       <a href="/checkout.html?product=compass-room" class="btn btn-ghost order-btn" data-product="compass-room">Order room report</a>
     </div>
@@ -87,7 +138,8 @@
         <li>Whole-home 9 sectors</li>
         <li>Four personal directions</li>
         <li>Room-by-room cures</li>
-        <li>Printable checklist</li>
+        <li>HTML report · print as PDF</li>
+        <li>Emailed within minutes</li>
       </ul>
       <a href="/checkout.html?product=compass-home" class="btn order-btn" data-product="compass-home">Order full home →</a>
     </div>
@@ -96,15 +148,14 @@
       <div class="price">$49</div>
       <ul>
         <li>Everything in Full Home</li>
-        <li>Monthly 2026 calendar</li>
-        <li>Renovation timing</li>
-        <li>2026-only report</li>
+        <li>2026 quarterly calendar</li>
+        <li>Emailed within minutes</li>
       </ul>
       <a href="/checkout.html?product=compass-home-year" class="btn btn-ghost order-btn" data-product="compass-home-year">Order home + year</a>
     </div>
   </div>
 
-  <p class="anchor">30-day satisfaction guarantee · Secure checkout via Stripe or Gumroad · PDF within 48 hours</p>
+  <p class="anchor">30-day satisfaction guarantee · Secure checkout via Stripe or Gumroad · Report link emailed within minutes · <a href="/compass/gumroad-setup.html" style="color:var(--ink-faint);">Seller setup</a></p>
 
   <div class="compass-cta">
     <h3>Not scanned yet?</h3>
@@ -123,13 +174,14 @@
     if (intake.dob) document.getElementById('orderDob').value = intake.dob;
     if (intake.gender) document.getElementById('orderGender').value = intake.gender;
     if (intake.facing) document.getElementById('orderFacing').value = intake.facing;
+    if (intake.year) document.getElementById('orderYear').value = String(intake.year);
   }
   function persist() {
     CompassIntake.save({
       dob: document.getElementById('orderDob').value,
       gender: document.getElementById('orderGender').value,
       facing: document.getElementById('orderFacing').value,
-      year: intake && intake.year || 2026,
+      year: parseInt(document.getElementById('orderYear').value, 10) || 2026,
     });
   }
   document.querySelectorAll('.order-btn').forEach(function(btn){
@@ -138,7 +190,7 @@
       CompassIntake.track('compass_order_click', { product: btn.getAttribute('data-product') });
     });
   });
-  ['orderDob','orderGender','orderFacing'].forEach(function(id){
+  ['orderDob','orderGender','orderFacing','orderYear'].forEach(function(id){
     document.getElementById(id).addEventListener('change', persist);
   });
   CompassIntake.track('compass_order_view');

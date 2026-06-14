@@ -181,6 +181,8 @@ body{
   <div class="lc-nav-links">
     <a href="#how">How it reads you</a>
     <a href="/compass/xray/">Energy X-Ray</a>
+    <a href="/compass/heatmap/">2026 Heatmap</a>
+    <a href="/compass/order/">Reports</a>
     <a href="/compass/guides/bed-direction">Guides</a>
     <a href="/" class="lc-nav-mf">MetaphysicFlow</a>
   </div>
@@ -262,12 +264,14 @@ body{
     <div class="result-cta">
       <button class="btn" type="button" id="saveBtn">Save my compass</button>
       <button class="btn btn-ghost" type="button" id="againBtn">Read another birth date</button>
-      <a href="/feng-shui-scan.html" class="btn btn-ghost" id="homeCta">See my home →</a>
+      <a href="/compass/order/" class="btn btn-ghost" id="homeCta">Full home report →</a>
     </div>
     <div class="next-strip">
       <div class="ns-lead">Your compass shows <em>where.</em> Your home shows what's blocking it.</div>
-      <p class="ns-sub">Map 2026 flying stars on your floor plan — free preview, full cures coming in Phase 2.</p>
+      <p class="ns-sub">Map 2026 flying stars on your floor plan — free X-Ray preview, AI cure staging, full report $39.</p>
       <a href="/compass/xray/" class="btn">Try Energy X-Ray</a>
+      <a href="/compass/heatmap/" class="btn btn-ghost" style="margin-left:8px;">2026 heatmap</a>
+      <a href="/compass/order/" class="btn btn-ghost" style="margin-left:8px;">Order report — $39</a>
     </div>
   </div>
 </section>
@@ -312,6 +316,7 @@ body{
   </div>
 </footer>
 
+<script src="/js/compass-intake.js"></script>
 <script>
 (function(){
 "use strict";
@@ -487,6 +492,10 @@ function runReading(){
 
   var kua=kuaNumber(solarYear(dob),gender);
   var info=KUA_INFO[kua],map=MANSIONS[kua];
+
+  if (window.CompassIntake) {
+    CompassIntake.save({ dob: dob, gender: gender, kua: kua });
+  }
 
   drawCompass(heroCanvas,kua,false);
   document.getElementById("compassCaption").textContent="Your compass — Kua "+kua+", "+info.en.split(" · ")[1]+".";

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Living Compass · Gumroad + Stripe Setup</title>
+<meta name="robots" content="noindex"/>
+<link rel="stylesheet" href="/compass/shared.css">
+<style>
+  body{padding:2rem 1.25rem;}
+  main{max-width:640px;margin:0 auto;}
+  h1{font-family:'Fraunces',serif;font-weight:300;font-size:1.75rem;margin-bottom:1rem;}
+  h2{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--celadon);margin:2rem 0 .75rem;}
+  .step{border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;background:rgba(255,255,255,.35);}
+  code{font-family:'IBM Plex Mono',monospace;font-size:12px;background:rgba(31,42,38,.06);padding:2px 6px;border-radius:4px;}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0;}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;}
+  th{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--ink-faint);}
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Internal · The Living Compass</p>
+  <h1>Energy X-Ray checkout setup</h1>
+  <p style="color:var(--ink-soft);line-height:1.6;">Until Gumroad products exist, compass orders use <strong>Stripe</strong> via <code>checkout.html</code>. Gumroad Ping + auto-report already work when you add products.</p>
+
+  <h2>Gumroad products to create</h2>
+  <table>
+    <thead><tr><th>Product</th><th>Price</th><th>Suggested slug</th><th>SKU variable</th></tr></thead>
+    <tbody>
+      <tr><td>Energy X-Ray · Single Room</td><td>$19</td><td><code>compassrm</code></td><td><code>COMPASS_ROOM_SKU</code></td></tr>
+      <tr><td>Energy X-Ray · Full Home</td><td>$39</td><td><code>compasshm</code></td><td><code>COMPASS_HOME_SKU</code></td></tr>
+      <tr><td>Home + 2026 Year</td><td>$49</td><td><code>compassyr</code></td><td><code>COMPASS_YEAR_SKU</code></td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:14px;color:var(--ink-soft);">Paste slugs into <code>js/gumroad-products.js</code>. Checkout URL params: <code>guanlan_dob</code>, <code>guanlan_gender</code>, <code>guanlan_facing</code>, <code>guanlan_xray_year</code>.</p>
+
+  <h2>Stripe webhook (auto delivery)</h2>
+  <div class="step">
+    <p>Dashboard → Webhooks → <code>https://metaphysicflow.com/api/stripe-webhook</code></p>
+    <p>Event: <code>checkout.session.completed</code></p>
+    <p>Vercel env: <code>STRIPE_WEBHOOK_SECRET</code>, <code>BLOB_READ_WRITE_TOKEN</code>, <code>RESEND_API_KEY</code></p>
+  </div>
+
+  <h2>Gumroad Ping (already wired)</h2>
+  <div class="step">
+    <p>Ping URL: <code>https://metaphysicflow.com/api/gumroad-ping</code></p>
+    <p>On sale → generates HTML report on Blob → emails buyer link. No Zi Wei drip emails for compass products.</p>
+  </div>
+
+  <h2>Thank-you redirects</h2>
+  <div class="step">
+    <p>Already in <code>js/gumroad-products.js</code> → <code>GUANLAN_GUMROAD_THANK_YOU</code> for each compass key.</p>
+  </div>
+
+  <p style="margin-top:2rem;"><a href="/compass/order/">← Living Compass pricing</a> · <a href="/gumroad-setup.html">Zi Wei Gumroad setup</a></p>
+</main>
+</body>
+</html>

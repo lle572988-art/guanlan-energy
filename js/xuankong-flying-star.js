@@ -30,6 +30,19 @@
     9: { cn: '九紫', en: 'Nine Purple', label: 'Celebration & visibility', nature: 'good', color: '#9B7BB8', text: '#FBF7EE' },
   };
 
+  /** Five-element cure to apply when a sector holds a challenging star */
+  var STAR_CURE = {
+    1: { element: 'water', hint: 'Activate with water features or focused career work.' },
+    2: { element: 'metal', hint: 'Keep quiet and clean; add white, grey, or brass metal decor.' },
+    3: { element: 'fire', hint: 'Reduce noise; soften with warm light — avoid excess wood clutter.' },
+    4: { element: 'wood', hint: 'Fresh plants and study-friendly light support romance and learning.' },
+    5: { element: 'metal', hint: 'No renovation here. Metal cures only — brass, white, round shapes.' },
+    6: { element: 'metal', hint: 'Keep uncluttered; metal accents support authority and mentors.' },
+    7: { element: 'water', hint: 'Soften sharp corners; use dark blue accents and rounded decor.' },
+    8: { element: 'earth', hint: 'Prime wealth sector — stable earth tones and active income work.' },
+    9: { element: 'fire', hint: 'Celebration star — warm lighting and social visibility.' },
+  };
+
   function annualCenterStar(year) {
     var y = parseInt(year, 10) || new Date().getFullYear();
     var offset = y - 2024;
@@ -38,8 +51,15 @@
     return center;
   }
 
-  function buildAnnualChart(year) {
-    var center = annualCenterStar(year);
+  function monthlyCenterStar(year, month) {
+    var base = annualCenterStar(year);
+    var m = parseInt(month, 10) || 1;
+    var c = base - (m - 1);
+    while (c < 1) c += 9;
+    return c;
+  }
+
+  function buildChartFromCenter(center, meta) {
     var chart = {};
     var star = center;
     for (var i = 0; i < FLY_ORDER.length; i++) {
@@ -48,7 +68,8 @@
       if (star < 1) star = 9;
     }
     return {
-      year: parseInt(year, 10),
+      year: meta.year,
+      month: meta.month || null,
       centerStar: center,
       chart: chart,
       cells: GRID_LAYOUT.map(function (row) {
@@ -68,6 +89,56 @@
         });
       }),
     };
+  }
+
+  function buildAnnualChart(year) {
+    var y = parseInt(year, 10) || new Date().getFullYear();
+    return buildChartFromCenter(annualCenterStar(y), { year: y, month: null });
+  }
+
+  function buildMonthlyChart(year, month) {
+    var y = parseInt(year, 10) || new Date().getFullYear();
+    var m = parseInt(month, 10) || 1;
+    return buildChartFromCenter(monthlyCenterStar(y, m), { year: y, month: m });
+  }
+
+  function monthlyTimeline(year) {
+    var y = parseInt(year, 10) || new Date().getFullYear();
+    var names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return names.map(function (label, i) {
+      var month = i + 1;
+      var center = monthlyCenterStar(y, month);
+      var info = STAR_INFO[center];
+      return {
+        month: month,
+        label: label,
+        center: center,
+        centerLabel: info.en,
+        nature: info.nature,
+      };
+    });
+  }
+
+  function sectorAlerts(chart, sectors) {
+    if (!chart || !sectors) return [];
+    var alerts = [];
+    Object.keys(sectors).forEach(function (key) {
+      var dir = sectors[key];
+      if (!dir || dir === 'center' || !chart.chart[dir]) return;
+      var star = chart.chart[dir];
+      if (star === 5 || star === 2 || star === 7) {
+        var info = STAR_INFO[star];
+        alerts.push({
+          room: key,
+          direction: dir,
+          dirLabel: DIR_LABEL[dir],
+          star: star,
+          label: info.label,
+          severity: star === 5 ? 'high' : 'medium',
+        });
+      }
+    });
+    return alerts;
   }
 
   function insightsForFacing(result, facing) {
@@ -109,9 +180,14 @@
     DIRECTIONS: DIRECTIONS,
     GRID_LAYOUT: GRID_LAYOUT,
     STAR_INFO: STAR_INFO,
+    STAR_CURE: STAR_CURE,
     DIR_LABEL: DIR_LABEL,
     annualCenterStar: annualCenterStar,
+    monthlyCenterStar: monthlyCenterStar,
     buildAnnualChart: buildAnnualChart,
+    buildMonthlyChart: buildMonthlyChart,
+    monthlyTimeline: monthlyTimeline,
+    sectorAlerts: sectorAlerts,
     insightsForFacing: insightsForFacing,
   };
 })(typeof window !== 'undefined' ? window : global);

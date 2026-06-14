@@ -73,7 +73,20 @@
     return !!(data && data.dob && data.hourLabel);
   }
 
-  function appendGuanlanParams(href, birth) {
+  function isCompassProduct(product) {
+    return product && product.indexOf('compass') === 0;
+  }
+
+  function hasCompassIntake() {
+    if (!window.CompassIntake) return false;
+    var ci = window.CompassIntake.load();
+    return ci && ci.dob && ci.gender;
+  }
+
+  function appendGuanlanParams(href, birth, product) {
+    if (isCompassProduct(product) && window.CompassIntake) {
+      return window.CompassIntake.appendCompassParams(href);
+    }
     if (!hasBirth(birth)) return href;
     var sep = href.indexOf('?') === -1 ? '?' : '&';
     var out = href + sep +
@@ -81,8 +94,8 @@
       '&guanlan_hour=' + encodeURIComponent(birth.hourLabel);
     if (birth.country) out += '&guanlan_country=' + encodeURIComponent(birth.country);
     if (birth.mainStar) out += '&guanlan_main_star=' + encodeURIComponent(birth.mainStar);
-    if (global.CompassIntake && global.CompassIntake.appendCompassParams) {
-      out = global.CompassIntake.appendCompassParams(out);
+    if (window.CompassIntake && window.CompassIntake.appendCompassParams) {
+      out = window.CompassIntake.appendCompassParams(out);
     }
     return out;
   }
@@ -274,9 +287,102 @@
     submit.addEventListener('click', handler);
   }
 
+  function ensureCompassModal() {
+    if (document.getElementById('guanlan-compass-modal')) return;
+
+    var style = document.createElement('style');
+    style.textContent =
+      '#guanlan-compass-modal{position:fixed;inset:0;z-index:2147483647;background:rgba(31,42,38,.88);display:none;align-items:center;justify-content:center;padding:1rem}' +
+      '#guanlan-compass-modal.open{display:flex}' +
+      '#guanlan-compass-modal .panel{max-width:420px;width:100%;background:#EAE7DF;border:1px solid rgba(122,155,142,.35);padding:1.75rem;color:#1F2A26;font-family:Georgia,serif}' +
+      '#guanlan-compass-modal h3{margin:0 0 .5rem;font-weight:400;color:#1F2A26;font-size:1.35rem}' +
+      '#guanlan-compass-modal p{margin:0 0 1rem;font-size:.9rem;color:#6B7873;line-height:1.5}' +
+      '#guanlan-compass-modal label{display:block;font-size:.75rem;letter-spacing:.08em;color:#7A9B8E;margin:.75rem 0 .35rem;text-transform:uppercase;font-family:sans-serif}' +
+      '#guanlan-compass-modal input,#guanlan-compass-modal select{width:100%;box-sizing:border-box;background:#FBF7EE;border:1px solid rgba(31,42,38,.15);color:#1F2A26;padding:.65rem .75rem;font-size:.95rem}' +
+      '#guanlan-compass-modal .actions{display:flex;gap:.5rem;margin-top:1.25rem;flex-wrap:wrap}' +
+      '#guanlan-compass-modal .btn-gold{flex:1;min-width:140px;background:#1F2A26;color:#EAE7DF;border:none;padding:.75rem 1rem;font-family:sans-serif;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}' +
+      '#guanlan-compass-modal .btn-ghost{background:transparent;border:1px solid rgba(31,42,38,.25);color:#6B7873;padding:.75rem 1rem;cursor:pointer;font-size:.75rem}';
+    document.head.appendChild(style);
+
+    var wrap = document.createElement('div');
+    wrap.id = 'guanlan-compass-modal';
+    wrap.innerHTML =
+      '<div class="panel" role="dialog" aria-labelledby="guanlan-compass-title">' +
+        '<h3 id="guanlan-compass-title">Home details for your X-Ray</h3>' +
+        '<p>Birth date and gender resolve your Kua directions. Facing tells us which sector is at your front door.</p>' +
+        '<label for="guanlan-compass-dob">Date of birth</label>' +
+        '<input id="guanlan-compass-dob" type="date" required />' +
+        '<label for="guanlan-compass-gender">Gender (for Kua)</label>' +
+        '<select id="guanlan-compass-gender" required>' +
+          '<option value="female">Woman</option><option value="male">Man</option>' +
+        '</select>' +
+        '<label for="guanlan-compass-facing">Home faces (front door outward)</label>' +
+        '<select id="guanlan-compass-facing">' +
+          '<option value="N">North</option><option value="NE">Northeast</option><option value="E">East</option>' +
+          '<option value="SE">Southeast</option><option value="S" selected>South</option><option value="SW">Southwest</option>' +
+          '<option value="W">West</option><option value="NW">Northwest</option>' +
+        '</select>' +
+        '<div class="actions">' +
+          '<button type="button" class="btn-gold" id="guanlan-compass-submit">Continue to checkout</button>' +
+          '<button type="button" class="btn-ghost" id="guanlan-compass-cancel">Cancel</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(wrap);
+
+    document.getElementById('guanlan-compass-cancel').addEventListener('click', function() {
+      wrap.classList.remove('open');
+    });
+  }
+
+  function showCompassModal(onReady) {
+    ensureCompassModal();
+    var modal = document.getElementById('guanlan-compass-modal');
+    var existing = window.CompassIntake ? window.CompassIntake.load() : null;
+    var dobEl = document.getElementById('guanlan-compass-dob');
+    var genderEl = document.getElementById('guanlan-compass-gender');
+    var facingEl = document.getElementById('guanlan-compass-facing');
+    if (existing) {
+      if (existing.dob) dobEl.value = existing.dob;
+      if (existing.gender) genderEl.value = existing.gender;
+      if (existing.facing) facingEl.value = existing.facing;
+    }
+    modal.classList.add('open');
+
+    var submit = document.getElementById('guanlan-compass-submit');
+    var handler = function() {
+      if (!dobEl.value) { dobEl.focus(); return; }
+      window.CompassIntake.save({
+        dob: dobEl.value,
+        gender: genderEl.value,
+        facing: facingEl.value,
+        year: existing && existing.year || 2026,
+      });
+      modal.classList.remove('open');
+      submit.removeEventListener('click', handler);
+      onReady();
+    };
+    submit.addEventListener('click', handler);
+  }
+
+  function ensureCheckoutIntake(product, onReady) {
+    if (isCompassProduct(product)) {
+      if (!hasCompassIntake()) {
+        showCompassModal(onReady);
+        return;
+      }
+      onReady();
+      return;
+    }
+    if (!hasBirth(getBirthPrefill())) {
+      showBirthModal(onReady);
+      return;
+    }
+    onReady();
+  }
+
   function buildCheckoutUrl(baseHref, birth, product, section) {
     var href = baseHref || '';
-    href = appendGuanlanParams(href, birth);
+    href = appendGuanlanParams(href, birth, product);
     if (href.indexOf('utm_source=') === -1) {
       var sep = href.indexOf('?') === -1 ? '?' : '&';
       href += sep + 'utm_source=site&utm_medium=cta&utm_campaign=pricing&utm_content=' +
@@ -305,7 +411,7 @@
     launch();
   }
 
-  window.GuanlanGumroad = {
+    window.GuanlanGumroad = {
     openCheckout: function(url, product, section) {
       section = section || 'checkout';
       product = product || 'gumroad';
@@ -314,12 +420,9 @@
         trackCheckoutClick(product, section);
         openOverlayCheckout(finalUrl);
       }
-      if (!hasBirth(getBirthPrefill())) {
-        showBirthModal(launch);
-        return;
-      }
-      launch();
-    }
+      ensureCheckoutIntake(product, launch);
+    },
+    ensureIntake: ensureCheckoutIntake
   };
 
   function attachPricingLink(link, product, section, birth) {
@@ -333,20 +436,15 @@
     link.classList.remove('gumroad-button');
 
     link.addEventListener('click', function(e) {
-      if (!hasBirth(getBirthPrefill())) {
-        e.preventDefault();
-        e.stopPropagation();
-        showBirthModal(function() {
-          link.setAttribute('href', buildCheckoutUrl(base, getBirthPrefill(), product, section));
-          showEscapeBar();
-          trackCheckoutClick(product, section);
-          openOverlayCheckout(link.getAttribute('href'));
-        });
-        return false;
-      }
-      link.setAttribute('href', buildCheckoutUrl(base, getBirthPrefill(), product, section));
-      showEscapeBar();
-      trackCheckoutClick(product, section);
+      e.preventDefault();
+      e.stopPropagation();
+      ensureCheckoutIntake(product, function() {
+        link.setAttribute('href', buildCheckoutUrl(base, getBirthPrefill(), product, section));
+        showEscapeBar();
+        trackCheckoutClick(product, section);
+        openOverlayCheckout(link.getAttribute('href'));
+      });
+      return false;
     });
   }
 

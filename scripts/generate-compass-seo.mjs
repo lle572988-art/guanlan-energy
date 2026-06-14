@@ -60,6 +60,26 @@ const KUA_PAGES = {
   },
 };
 
+const DIRS = [
+  { slug: 'north', label: 'North', code: 'N' },
+  { slug: 'northeast', label: 'Northeast', code: 'NE' },
+  { slug: 'east', label: 'East', code: 'E' },
+  { slug: 'southeast', label: 'Southeast', code: 'SE' },
+  { slug: 'south', label: 'South', code: 'S' },
+  { slug: 'southwest', label: 'Southwest', code: 'SW' },
+  { slug: 'west', label: 'West', code: 'W' },
+  { slug: 'northwest', label: 'Northwest', code: 'NW' },
+];
+
+const ROOMS = [
+  { slug: 'bedroom', label: 'bedroom', title: 'Bedroom', tip: 'Sleep and recovery — headboard wall and door lines matter most.' },
+  { slug: 'kitchen', label: 'kitchen', title: 'Kitchen', tip: 'Nourishment and wealth flow — stove position and element balance.' },
+  { slug: 'office', label: 'home office', title: 'Home Office', tip: 'Desk facing and sector stars affect focus and income work.' },
+  { slug: 'living-room', label: 'living room', title: 'Living Room', tip: 'Social energy and visibility — sofa orientation and entry flow.' },
+];
+
+const FACING_YEAR = 2026;
+
 const GUIDES = [
   {
     slug: 'bed-direction',
@@ -131,9 +151,12 @@ const GUIDES = [
 function compassCta(extra) {
   return `
 <div class="compass-cta">
-  <h3>See your personal compass</h3>
-  <p>Free Ba Zhai calculator — your four lucky directions and four to avoid, mapped on a living compass.</p>
+  <h3>Map it on your home</h3>
+  <p>Free Ba Zhai compass plus 2026 flying star X-Ray preview — then unlock the full PDF.</p>
   <a href="/compass/" class="btn">Reveal my compass</a>
+  <a href="/compass/xray/" class="btn btn-ghost" style="margin-left:8px;">Free X-Ray preview</a>
+  <a href="/compass/order/" class="btn btn-ghost" style="margin-left:8px;">Full report — $39</a>
+  <a href="/compass/heatmap/" class="btn btn-ghost" style="margin-left:8px;">2026 heatmap</a>
   ${extra || ''}
 </div>`;
 }
@@ -253,7 +276,96 @@ ${xray}`;
   console.log('  guides/' + guide.slug + '.html');
 }
 
+function writeYearFacing(dir) {
+  const slug = `${dir.slug}-facing-house`;
+  const canonical = `https://metaphysicflow.com/compass/2026/${slug}`;
+  const title = `${FACING_YEAR} Flying Star Feng Shui for a ${dir.label}-Facing House`;
+  const description = `${FACING_YEAR} annual and monthly flying stars for homes facing ${dir.label}. Where wealth, caution, and renovation risk land this year.`;
+
+  const body = `
+<p class="eyebrow">${FACING_YEAR} · 玄空飞星 · ${dir.label}</p>
+<h1>${FACING_YEAR} flying stars for a ${dir.label.toLowerCase()}-facing house</h1>
+<p class="intro">When your front door looks <strong>${dir.label.toLowerCase()}</strong>, the door sector carries the year's dominant star — and every other room inherits a different ${FACING_YEAR} energy signature.</p>
+<h2>What sits at your door in ${FACING_YEAR}</h2>
+<p>Use the free Energy X-Ray with facing set to <strong>${dir.code}</strong> to see the full nine-sector grid on your floor plan. The ${dir.label} sector is your facing palace — it sets the tone for visitors, opportunities, and how energy enters.</p>
+<h2>Month-by-month shifts</h2>
+<p>Annual stars are the baseline; monthly stars move caution and wealth zones through the home. Scrub the <a href="/compass/heatmap/">2026 home energy heatmap</a> to see when Five Yellow or Eight White land on your bedroom or office.</p>
+<h2>Pair with your personal Kua</h2>
+<p>Flying stars describe the <em>house</em>. Your Ba Zhai Kua describes <em>you</em>. A ${dir.label.toLowerCase()}-facing home can be excellent for one Kua and draining for another — calculate yours first.</p>
+<p><a href="/compass/?facing=${dir.code}" class="btn">Calculate my Kua →</a></p>`;
+
+  const html = pageShell({ title, description, canonical, body, schemaName: title });
+  const outDir = path.join(ROOT, 'compass', '2026');
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, `${slug}.html`), html);
+  console.log('  2026/' + slug + '.html');
+}
+
+function writeFacingRoom(dir, room) {
+  const slug = `${dir.slug}-${room.slug}`;
+  const canonical = `https://metaphysicflow.com/compass/facing/${slug}`;
+  const title = `Is a ${dir.label}-Facing ${room.title} Good Feng Shui?`;
+  const description = `${dir.label}-facing ${room.title} feng shui — how annual flying stars and your personal Kua interact. Practical fixes without renovating.`;
+
+  const body = `
+<p class="eyebrow">Facing × room · ${dir.label} · ${room.title}</p>
+<h1>Is a ${dir.label.toLowerCase()}-facing ${room.title.toLowerCase()} good feng shui?</h1>
+<p class="intro">A ${dir.label.toLowerCase()}-facing home places the <strong>${room.title.toLowerCase()}</strong> in a specific sector of the bagua grid. Whether that sector is helpful or draining depends on <em>your personal Kua</em> and <em>this year's flying stars</em> — not a one-size rule.</p>
+<p>${room.tip}</p>
+<h2>Check two layers</h2>
+<p><strong>1. Personal Ba Zhai</strong> — your birth year and gender resolve four lucky directions. A ${dir.label.toLowerCase()}-facing layout may align your ${room.title.toLowerCase()} with Tian Yi (health) or Jue Ming (draining) — only your Kua chart knows.</p>
+<p><strong>2. ${FACING_YEAR} flying stars</strong> — each sector holds a different annual star. In ${FACING_YEAR} the center star is 7 Red; Five Yellow and Two Black rotate through rooms month by month.</p>
+<p><a href="/compass/2026/${dir.slug}-facing-house" class="btn btn-ghost">${FACING_YEAR} stars for ${dir.label.toLowerCase()}-facing homes →</a></p>
+<h2>Quick fixes without moving walls</h2>
+<p>Adjust orientation (headboard wall, desk facing), add element cures for the star in that sector, and use the monthly heatmap to avoid renovating when Five Yellow visits your ${room.title.toLowerCase()} zone.</p>`;
+
+  const html = pageShell({ title, description, canonical, body, schemaName: title });
+  const outDir = path.join(ROOT, 'compass', 'facing');
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, `${slug}.html`), html);
+  console.log('  facing/' + slug + '.html');
+}
+
+function collectSitemapUrls() {
+  const base = 'https://metaphysicflow.com';
+  const urls = [
+    `${base}/compass/`,
+    `${base}/compass/xray/`,
+    `${base}/compass/order/`,
+    `${base}/compass/heatmap/`,
+  ];
+  Object.keys(KUA_PAGES).forEach((n) => urls.push(`${base}/compass/kua/${n}`));
+  GUIDES.forEach((g) => urls.push(`${base}/compass/guides/${g.slug}`));
+  DIRS.forEach((d) => {
+    urls.push(`${base}/compass/2026/${d.slug}-facing-house`);
+    ROOMS.forEach((r) => urls.push(`${base}/compass/facing/${d.slug}-${r.slug}`));
+  });
+  return urls;
+}
+
+function syncSitemap(urls) {
+  const sitemapPath = path.join(ROOT, 'sitemap.xml');
+  let xml = fs.readFileSync(sitemapPath, 'utf8');
+  xml = xml.replace(/<url>\s*<loc>https:\/\/metaphysicflow\.com\/compass\/[\s\S]*?<\/url>\s*/g, '');
+  xml = xml.replace(/\s*<loc>https:\/\/metaphysicflow\.com\/compass\/[\s\S]*?<\/url>\s*/g, '');
+  const lastmod = new Date().toISOString();
+  const block = urls.map((loc) => `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.7</priority>\n  </url>`).join('\n');
+  const marker = /  <url>\s*\n\s*<loc>https:\/\/metaphysicflow\.com\/forecast\.html<\/loc>/;
+  if (!marker.test(xml)) {
+    console.warn('Sitemap marker not found — skip sync');
+    return;
+  }
+  xml = xml.replace(marker, block + '\n  <url>\n    <loc>https://metaphysicflow.com/forecast.html</loc>');
+  fs.writeFileSync(sitemapPath, xml);
+  console.log('  sitemap.xml updated (' + urls.length + ' compass URLs)');
+}
+
 console.log('Generating Living Compass SEO pages…');
 Object.keys(KUA_PAGES).forEach((n) => writeKuaPage(n, KUA_PAGES[n]));
 GUIDES.forEach(writeGuide);
+DIRS.forEach((d) => {
+  writeYearFacing(d);
+  ROOMS.forEach((r) => writeFacingRoom(d, r));
+});
+syncSitemap(collectSitemapUrls());
 console.log('Done.');

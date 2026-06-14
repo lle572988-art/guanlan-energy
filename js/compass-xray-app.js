@@ -1,5 +1,5 @@
 /**
- * Energy X-Ray prototype — upload + facing + 2026 flying star overlay.
+ * Energy X-Ray — upload + facing + flying star overlay + AI cure preview.
  */
 (function (global) {
   'use strict';
@@ -7,9 +7,13 @@
   var state = {
     image: null,
     imageUrl: '',
+    imageDataUrl: '',
     facing: 'S',
     year: 2026,
     chart: null,
+    cureUrl: '',
+    cureLoading: false,
+    room: 'living room',
   };
 
   function track(event, props) {
@@ -18,6 +22,38 @@
   }
 
   function el(id) { return document.getElementById(id); }
+
+  function resizeToDataUrl(img, maxDim) {
+    var w = img.width;
+    var h = img.height;
+    if (w > maxDim || h > maxDim) {
+      if (w > h) {
+        h = Math.round(h * maxDim / w);
+        w = maxDim;
+      } else {
+        w = Math.round(w * maxDim / h);
+        h = maxDim;
+      }
+    }
+    var c = document.createElement('canvas');
+    c.width = w;
+    c.height = h;
+    c.getContext('2d').drawImage(img, 0, 0, w, h);
+    return c.toDataURL('image/jpeg', 0.85);
+  }
+
+  function facingCureMeta() {
+    if (!state.chart || !global.XuanKong) return { element: 'metal', hint: 'Add calm metal accents in the facing sector.', star: null };
+    var star = state.chart.chart[state.facing];
+    var cure = global.XuanKong.STAR_CURE && global.XuanKong.STAR_CURE[star];
+    if (cure) return { element: cure.element, hint: cure.hint, star: star };
+    var info = global.XuanKong.STAR_INFO[star];
+    return {
+      element: 'metal',
+      hint: info ? info.label : 'Add balanced decor in the facing sector.',
+      star: star,
+    };
+  }
 
   function drawOverlay() {
     var canvas = el('xrayCanvas');
@@ -91,6 +127,38 @@
     ctx.fillText('Facing: ' + state.facing, w - pad - 4, h - pad - 6);
   }
 
+  function updateCurePanel() {
+    var panel = el('xrayCure');
+    if (!panel) return;
+
+    var show = state.chart && state.image;
+    panel.hidden = !show;
+    if (!show) return;
+
+    var meta = facingCureMeta();
+    var hint = el('xrayCureHint');
+    if (hint) {
+      var dirLabel = global.XuanKong.DIR_LABEL[state.facing] || state.facing;
+      hint.textContent = 'Facing sector (' + dirLabel + ', star ' + meta.star + '): ' + meta.hint;
+    }
+
+    var before = el('xrayCureBefore');
+    if (before && state.imageDataUrl) before.src = state.imageDataUrl;
+
+    var compare = el('xrayCureCompare');
+    if (compare) compare.hidden = !state.cureUrl;
+
+    var after = el('xrayCureAfter');
+    if (after && state.cureUrl) after.src = state.cureUrl;
+  }
+
+  function setCureStatus(msg, isError) {
+    var node = el('xrayCureStatus');
+    if (!node) return;
+    node.textContent = msg || '';
+    node.style.color = isError ? '#9a4b3b' : 'var(--ink-faint)';
+  }
+
   function renderInsights() {
     if (!state.chart || !global.XuanKong) return;
     var ins = global.XuanKong.insightsForFacing(state.chart, state.facing);
@@ -112,12 +180,14 @@
     }
 
     if (lock) lock.hidden = false;
+    updateCurePanel();
 
     if (global.CompassIntake) {
       global.CompassIntake.save({
         facing: state.facing,
         year: state.year,
         hasImage: !!state.image,
+        room: state.room,
       });
     }
   }
@@ -127,6 +197,7 @@
     state.facing = (el('xrayFacing') && el('xrayFacing').value) || 'S';
     state.year = parseInt((el('xrayYear') && el('xrayYear').value) || '2026', 10);
     state.chart = global.XuanKong.buildAnnualChart(state.year);
+    state.cureUrl = '';
 
     drawOverlay();
     renderInsights();
@@ -137,6 +208,61 @@
       results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     track('compass_xray_scan', { facing: state.facing, year: state.year, has_image: !!state.image });
+  }
+
+  async function generateCure() {
+    if (!state.image || !state.imageDataUrl || state.cureLoading) return;
+
+    var meta = facingCureMeta();
+    var roomSel = el('xrayRoom');
+    state.room = (roomSel && roomSel.value) || 'living room';
+
+    var btn = el('xrayCureBtn');
+    state.cureLoading = true;
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Generating… ~30s';
+    }
+    setCureStatus('Staging your room with ' + meta.element + ' cures…');
+
+    try {
+      var res = await fetch('/api/compass-cure-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          dataUrl: state.imageDataUrl,
+          element: meta.element,
+          room: state.room,
+          star: meta.star,
+        }),
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.detail || 'Generation failed');
+
+      state.cureUrl = data.url;
+      updateCurePanel();
+      setCureStatus('Preview ready — illustrative staging, not a renovation plan.');
+
+      if (global.CompassIntake) {
+        global.CompassIntake.save({
+          facing: state.facing,
+          year: state.year,
+          room: state.room,
+          cureUrl: state.cureUrl,
+          cureElement: meta.element,
+        });
+      }
+      track('compass_cure_generated', { element: meta.element, star: meta.star, room: state.room });
+    } catch (err) {
+      setCureStatus(err.message || 'Could not generate preview. Try again in a moment.', true);
+      track('compass_cure_error', { message: err.message });
+    } finally {
+      state.cureLoading = false;
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = state.cureUrl ? 'Regenerate cure preview' : 'Generate cure preview';
+      }
+    }
   }
 
   function downloadPreview() {
@@ -175,13 +301,18 @@
       var img = new Image();
       img.onload = function () {
         state.image = img;
-        state.imageUrl = e.target.result;
+        state.imageDataUrl = resizeToDataUrl(img, 1280);
+        state.imageUrl = state.imageDataUrl;
+        state.cureUrl = '';
         var preview = el('xrayUploadPreview');
         if (preview) {
           preview.textContent = file.name;
           preview.hidden = false;
         }
-        if (state.chart) drawOverlay();
+        if (state.chart) {
+          drawOverlay();
+          updateCurePanel();
+        }
       };
       img.src = e.target.result;
     };
@@ -189,13 +320,29 @@
     track('compass_xray_upload');
   }
 
+  function applyIntake() {
+    var intake = global.CompassIntake && global.CompassIntake.load();
+    if (!intake) return;
+    if (intake.facing && el('xrayFacing')) el('xrayFacing').value = intake.facing;
+    if (intake.year && el('xrayYear')) el('xrayYear').value = String(intake.year);
+    if (intake.room && el('xrayRoom')) el('xrayRoom').value = intake.room;
+    if (intake.cureUrl) state.cureUrl = intake.cureUrl;
+    state.facing = intake.facing || state.facing;
+    state.year = intake.year || state.year;
+    state.room = intake.room || state.room;
+  }
+
   function init() {
+    applyIntake();
     bindUpload();
     var btn = el('xrayScanBtn');
     if (btn) btn.addEventListener('click', runScan);
 
     var previewBtn = el('xrayPreviewBtn');
     if (previewBtn) previewBtn.addEventListener('click', downloadPreview);
+
+    var cureBtn = el('xrayCureBtn');
+    if (cureBtn) cureBtn.addEventListener('click', generateCure);
 
     window.addEventListener('resize', function () {
       if (state.chart) drawOverlay();
@@ -210,5 +357,10 @@
     init();
   }
 
-  global.CompassXRay = { runScan: runScan, getState: function () { return state; }, downloadPreview: downloadPreview };
+  global.CompassXRay = {
+    runScan: runScan,
+    generateCure: generateCure,
+    getState: function () { return state; },
+    downloadPreview: downloadPreview,
+  };
 })(window);

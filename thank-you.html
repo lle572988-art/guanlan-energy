@@ -166,8 +166,11 @@ h1{font-size:28px;font-weight:400;color:#e8d4a0;margin-bottom:12px}
   if(tierSubs[tier])document.getElementById('thank-sub').textContent=tierSubs[tier];
   if(product.indexOf('compass')===0){
     document.getElementById('thank-headline').textContent='Your Energy X-Ray Report · Order Confirmed';
-    document.getElementById('thank-sub').textContent='Payment confirmed. Your home energy PDF is in our fulfillment queue — flying stars, personal Kua, and room cures included.';
-    document.getElementById('delivery-window').textContent='48 hours';
+    var stripePaid=p.get('stripe')==='1';
+    document.getElementById('thank-sub').textContent=stripePaid
+      ? 'Payment confirmed. Your personalized report is being generated — check your email in a few minutes for a link (save or print as PDF from your browser).'
+      : 'Payment confirmed. Your home energy report is in our fulfillment queue — flying stars, personal Kua, and room cures included.';
+    document.getElementById('delivery-window').textContent=stripePaid ? '5 minutes' : '48 hours';
   }
   var dob=p.get('dob')||p.get('date')||'';
   try{

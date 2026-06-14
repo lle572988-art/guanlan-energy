@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       timeout: 20000,
     });
     const origin = req.headers.origin || req.headers.referer?.replace(/\/[^/]*$/, '') || 'https://metaphysicflow.com';
-    const { product, price, description } = req.body || {};
+    const { product, price, description, facing, year, dob, gender } = req.body || {};
 
     const products = {
       'life-palace-dive': {
@@ -71,17 +71,17 @@ export default async function handler(req, res) {
       },
       'compass-room': {
         name: 'Energy X-Ray · Single Room Report',
-        description: 'One room deep-dive — 2026 flying stars, personal Kua overlay, and three-step cures. Illustrated PDF within 48h.',
+        description: 'One room deep-dive — 2026 flying stars, personal Kua overlay, and three-step cures. HTML report emailed instantly; print as PDF from your browser.',
         unit_amount: 1900,
       },
       'compass-home': {
         name: 'Energy X-Ray · Full Home Report',
-        description: 'Whole-home flying star map, four personal directions, room-by-room cures, and printable checklist. PDF within 48h.',
+        description: 'Whole-home flying star map, four personal directions, room-by-room cures, and printable checklist. HTML report emailed instantly.',
         unit_amount: 3900,
       },
       'compass-home-year': {
         name: 'Home + 2026 Year Energy Forecast',
-        description: 'Full home X-Ray plus 2026 monthly flying star calendar and activation windows. PDF within 48h.',
+        description: 'Full home X-Ray plus 2026 monthly flying star calendar and activation windows. HTML report emailed instantly.',
         unit_amount: 4900,
       },
     };
@@ -101,6 +101,15 @@ export default async function handler(req, res) {
       });
     }
 
+    const metadata = {
+      product: product || 'custom',
+      source: 'guanlan-energy',
+    };
+    if (facing) metadata.guanlan_facing = String(facing);
+    if (year) metadata.guanlan_xray_year = String(year);
+    if (dob) metadata.guanlan_dob = String(dob);
+    if (gender) metadata.guanlan_gender = String(gender);
+
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       line_items: [{
@@ -114,12 +123,10 @@ export default async function handler(req, res) {
         },
         quantity: 1,
       }],
-      success_url: `${origin}/?payment=success&product=${product || 'custom'}`,
-      cancel_url: `${origin}/checkout.html?product=${product || 'full-chart'}`,
-      metadata: {
-        product: product || 'custom',
-        source: 'guanlan-energy',
-      },
+      customer_email: undefined,
+      success_url: `${origin}/thank-you.html?product=${encodeURIComponent(product || 'custom')}&stripe=1`,
+      cancel_url: `${origin}/checkout.html?product=${encodeURIComponent(product || 'full-chart')}`,
+      metadata,
     });
 
     console.log('Stripe session created:', session.id, 'for:', product);

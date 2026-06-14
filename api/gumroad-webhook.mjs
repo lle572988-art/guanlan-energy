@@ -10,6 +10,9 @@ const PRODUCT_LABELS = {
   'full-chart': 'Full 12-Palace Matrix',
   'live-reading': 'Live Video Consultation',
   'partner-compatibility': 'Partner Compatibility Reading',
+  'compass-room': 'Energy X-Ray · Single Room',
+  'compass-home': 'Energy X-Ray · Full Home',
+  'compass-home-year': 'Home + 2026 Year Report',
   annual: 'Annual Cosmic Alignment',
 };
 
@@ -18,6 +21,9 @@ const PERMALINK_PRODUCT = {
   lfoxf: 'three-palace-snapshot',
   tiuyjr: 'full-chart',
   lozmm: 'live-reading',
+  compassrm: 'compass-room',
+  compasshm: 'compass-home',
+  compassyr: 'compass-home-year',
 };
 
 const PRODUCT_USD = {
@@ -29,6 +35,9 @@ const PRODUCT_USD = {
   lfoxf: 19,
   tiuyjr: 39,
   lozmm: 99,
+  compassrm: 19,
+  compasshm: 39,
+  compassyr: 49,
 };
 
 async function trackPlausiblePurchase(productId, priceCents) {
@@ -81,6 +90,11 @@ function emailShell(title, bodyHtml) {
     ${bodyHtml}
     <p style="font-style:italic;color:#7FA0BA;font-size:0.9rem;margin-top:1.5rem;">— Guanlan Energy · Purple Star Astrology</p>
   </div>`;
+}
+
+function isCompassPermalink(pid) {
+  var p = String(pid || '').toLowerCase();
+  return p.indexOf('compass') === 0 || p === 'compassrm' || p === 'compasshm' || p === 'compassyr';
 }
 
 async function sendPurchaseDrip(email, productId, saleId, kv) {
@@ -284,7 +298,7 @@ export default async function handler(request, context) {
     const dripSaleId = saleId;
     const dripPrice = body.price || body.full_price || body.recurrence_price || '';
     const asyncWork = Promise.all([
-      sendPurchaseDrip(dripEmail, dripProduct, dripSaleId, kv).catch((err) => {
+      isCompassPermalink(dripProduct) ? Promise.resolve() : sendPurchaseDrip(dripEmail, dripProduct, dripSaleId, kv).catch((err) => {
         console.error('[gumroad-webhook] drip error:', err.message);
       }),
       trackPlausiblePurchase(dripProduct, dripPrice).catch((err) => {

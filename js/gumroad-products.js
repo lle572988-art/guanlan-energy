@@ -18,6 +18,8 @@ function warnIfPlaceholder(url, label) {
 warnIfPlaceholder(PARTNER_INTAKE, 'Partner');
 warnIfPlaceholder(ANNUAL_INTAKE, 'Annual');
 
+/** When SKU empty, checkout.html uses Stripe automatically (empty string below). */
+
 function gumroadUrl(slug) {
   return slug ? 'https://lleonard88.gumroad.com/l/' + slug + '?wanted=true' : '';
 }

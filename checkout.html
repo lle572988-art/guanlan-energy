@@ -61,6 +61,7 @@ h1{font-size:26px;font-weight:400;letter-spacing:0.5px;margin-bottom:8px;color:#
 <script src="https://gumroad.com/js/gumroad.js"></script>
 <script src="/js/gumroad-checkout.js"></script>
 <script src="/js/gumroad-products.js"></script>
+<script src="/js/compass-intake.js"></script>
 <script>
 var CATALOG = {
   'life-palace-dive': {
@@ -115,8 +116,8 @@ var CATALOG = {
     tier: 'Living Compass · Room',
     name: 'Energy X-Ray · Single Room',
     price: '$19.00',
-    desc: 'One room analyzed — 2026 flying stars on your photo, personal Kua directions, and three-step cures.',
-    features: ['One room sector map', '2026 annual flying stars', 'Personal Kua overlay', 'Three-step cure plan', 'PDF within 48 hours'],
+    desc: 'One room analyzed — 2026 flying stars, personal Kua directions, and three-step cures.',
+    features: ['One room sector map', '2026 annual flying stars', 'Personal Kua overlay', 'Three-step cure plan', 'Emailed within minutes · print as PDF'],
     stripe: 'compass-room'
   },
   'compass-home': {
@@ -124,21 +125,23 @@ var CATALOG = {
     name: 'Energy X-Ray · Full Home Report',
     price: '$39.00',
     desc: 'Whole-home energy map — every sector, your four personal directions, and a printable action checklist.',
-    features: ['Full 9-sector 2026 map', 'Ba Zhai personal directions', 'Room-by-room cure notes', 'Wealth & caution zones highlighted', 'Illustrated PDF · 48h delivery'],
+    features: ['Full 9-sector 2026 map', 'Ba Zhai personal directions', 'Room-by-room cure notes', 'Wealth & caution zones highlighted', 'Report link emailed within minutes'],
     stripe: 'compass-home'
   },
   'compass-home-year': {
     tier: 'Living Compass · Home + Year',
     name: 'Home + 2026 Year Forecast',
     price: '$49.00',
-    desc: 'Full home X-Ray plus monthly 2026 flying star calendar and best activation windows.',
-    features: ['Everything in Full Home', '2026 month-by-month stars', 'Renovation timing notes', 'Annual scarcity — 2026 only', 'PDF · 48h delivery'],
+    desc: 'Full home X-Ray plus quarterly 2026 flying star calendar and best activation windows.',
+    features: ['Everything in Full Home', '2026 quarterly star shifts', 'Renovation timing notes', 'Annual scarcity — 2026 only', 'Emailed within minutes'],
     stripe: 'compass-home-year'
   }
 };
 
 function gumroadUrl(productKey) {
-  return window.GUANLAN_GUMROAD && window.GUANLAN_GUMROAD[productKey] ? window.GUANLAN_GUMROAD[productKey] : null;
+  var url = window.GUANLAN_GUMROAD && window.GUANLAN_GUMROAD[productKey];
+  if (!url || url.indexOf('gumroad.com') === -1) return null;
+  return url;
 }
 
 var params = new URLSearchParams(window.location.search);
@@ -161,11 +164,23 @@ product.features.forEach(function(f) {
 
 var trustEl = document.getElementById('trust-badges');
 var checkoutBtn = document.getElementById('checkout-btn');
+var isCompass = productKey.indexOf('compass') === 0;
+
+if (isCompass) {
+  document.querySelector('.back a').href = '/compass/order/';
+  document.querySelector('.back a').textContent = '← Back to Living Compass pricing';
+  document.querySelector('.footer').textContent = '© 2026 Guanlan Energy · The Living Compass · Secure checkout';
+}
+
 if (gumroad) {
-  trustEl.textContent = '🔒 Paid via Gumroad · PDF delivered within 24–48h';
+  trustEl.textContent = isCompass
+    ? '🔒 Paid via Gumroad · Report link emailed within minutes'
+    : '🔒 Paid via Gumroad · PDF delivered within 24–48h';
   checkoutBtn.textContent = 'Continue to Gumroad Checkout';
 } else {
-  trustEl.textContent = '🔒 Secure checkout · PDF delivered within 24–48h';
+  trustEl.textContent = isCompass
+    ? '🔒 Secure Stripe checkout · Report link emailed within minutes'
+    : '🔒 Secure checkout · PDF delivered within 24–48h';
   checkoutBtn.textContent = 'Complete Secure Checkout';
 }
 
@@ -195,27 +210,46 @@ document.getElementById('checkout-btn').addEventListener('click', async function
     return;
   }
 
-  btn.disabled = true;
-  btn.textContent = 'Redirecting to secure checkout…';
+  function runStripeCheckout() {
+    btn.disabled = true;
+    btn.textContent = 'Redirecting to secure checkout…';
 
-  try {
     trackCheckout(productKey);
-    var res = await fetch('/api/checkout', {
+    var payload = { product: product.stripe };
+    if (window.CompassIntake) {
+      var ci = CompassIntake.load();
+      if (ci) {
+        if (ci.facing) payload.facing = ci.facing;
+        if (ci.year) payload.year = ci.year;
+        if (ci.dob) payload.dob = ci.dob;
+        if (ci.gender) payload.gender = ci.gender;
+      }
+    }
+    fetch('/api/checkout', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ product: product.stripe })
-    });
-    var data = await res.json();
-    if (data.url) {
-      window.location.href = data.url;
-      return;
-    }
-    throw new Error(data.error || data.detail || 'Checkout unavailable');
-  } catch (e) {
-    errEl.textContent = e.message || 'Payment service unavailable. Please email hello@metaphysicflow.com.';
-    errEl.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Complete Secure Checkout';
+      body: JSON.stringify(payload)
+    })
+      .then(function(res) { return res.json().then(function(data) { return { ok: res.ok, data: data }; }); })
+      .then(function(result) {
+        if (result.data.url) {
+          window.location.href = result.data.url;
+          return;
+        }
+        throw new Error(result.data.error || result.data.detail || 'Checkout unavailable');
+      })
+      .catch(function(e) {
+        errEl.textContent = e.message || 'Payment service unavailable. Please email hello@metaphysicflow.com.';
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Complete Secure Checkout';
+      });
+  }
+
+  if (window.GuanlanGumroad && window.GuanlanGumroad.ensureIntake) {
+    window.GuanlanGumroad.ensureIntake(productKey, runStripeCheckout);
+  } else {
+    runStripeCheckout();
   }
 });
 </script>

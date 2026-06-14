@@ -7,6 +7,8 @@ import {
   extractBirthContext,
 } from '../server/lib/gumroad-catalog.js';
 import { lookupLeadByEmail, leadToBirthFields } from '../server/lib/lead-lookup.js';
+import { fulfillCompassOrder } from '../server/lib/fulfill-compass-order.js';
+import { isCompassProduct } from '../server/lib/generate-compass-report-html.js';
 
 const SALES_PATH = 'gumroad-sales.json';
 
@@ -47,27 +49,34 @@ async function notifySeller(meta, body, birthFields) {
   await Promise.all(recipients.map((to) => sendResend({ to, subject, html })));
 }
 
-function buyerEmailHtml(product, email, birthFields) {
+function buyerEmailHtml(product, email, birthFields, reportUrl) {
   const thanks = thankYouUrl(product.key);
-  const hasBirth = birthFields['Date of birth'] && birthFields['Birth hour'];
+  const isCompass = product.key && product.key.startsWith('compass');
+  const deliveryNote = isCompass && reportUrl
+    ? `Your Energy X-Ray report is ready — <a href="${reportUrl}" style="color:#7A9B8E;">open your report</a> (save or print as PDF from your browser).`
+    : isCompass
+      ? 'Your Energy X-Ray PDF will arrive within <strong>48 hours</strong> once we confirm your home details.'
+      : 'Your personalized PDF reading will be delivered to <strong>' + email + '</strong> within <strong>24–48 hours</strong>.';
+
+  const hasBirth = birthFields['Date of birth'] && (birthFields['Birth hour'] || birthFields['Gender'] || birthFields['Home facing']);
   const fieldLines = Object.entries(birthFields)
     .map(([k, v]) => `<li><strong>${k}:</strong> ${v}</li>`)
     .join('');
 
   return `
-    <div style="max-width:560px;margin:0 auto;font-family:Georgia,serif;background:#06100c;color:#f0ebe0;padding:2rem;">
-      <p style="font-family:sans-serif;font-size:11px;letter-spacing:2px;color:#c9a84c;text-transform:uppercase;">Guanlan Energy</p>
-      <h1 style="color:#e8d4a0;font-size:1.6rem;font-weight:400;">Thank you for your purchase</h1>
+    <div style="max-width:560px;margin:0 auto;font-family:Georgia,serif;background:${isCompass ? '#EAE7DF' : '#06100c'};color:${isCompass ? '#1F2A26' : '#f0ebe0'};padding:2rem;">
+      <p style="font-family:sans-serif;font-size:11px;letter-spacing:2px;color:${isCompass ? '#7A9B8E' : '#c9a84c'};text-transform:uppercase;">${isCompass ? 'The Living Compass' : 'Guanlan Energy'}</p>
+      <h1 style="color:${isCompass ? '#1F2A26' : '#e8d4a0'};font-size:1.6rem;font-weight:400;">Thank you for your purchase</h1>
       <p><strong>${product.name}</strong> (${product.price}) — order confirmed.</p>
-      <p>Your personalized PDF reading will be delivered to <strong>${email}</strong> within <strong>24–48 hours</strong>.</p>
+      <p>${deliveryNote}</p>
       ${hasBirth ? `
-        <p style="margin-top:1rem;color:rgba(240,235,224,0.75);">We received your birth details:</p>
-        <ul style="color:rgba(240,235,224,0.75);">${fieldLines}</ul>` : `
-        <p style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.25);padding:1rem;">
-          <strong>Action needed:</strong> Reply to this email with your <strong>date of birth</strong>, <strong>birth hour</strong> (e.g. Zi Hour 23:00–01:00), and birth city if known.
+        <p style="margin-top:1rem;color:${isCompass ? '#6B7873' : 'rgba(240,235,224,0.75)'};">We received your details:</p>
+        <ul style="color:${isCompass ? '#3C4A45' : 'rgba(240,235,224,0.75)'};">${fieldLines}</ul>` : `
+        <p style="background:${isCompass ? 'rgba(122,155,142,0.15)' : 'rgba(201,168,76,0.12)'};border:1px solid ${isCompass ? 'rgba(122,155,142,0.35)' : 'rgba(201,168,76,0.25)'};padding:1rem;">
+          <strong>Action needed:</strong> Reply to this email with your <strong>date of birth</strong>${isCompass ? ', <strong>gender</strong>, and <strong>home facing</strong>' : ', <strong>birth hour</strong> (e.g. Zi Hour 23:00–01:00), and birth city if known'}.
         </p>`}
-      <p><a href="${thanks}" style="display:inline-block;margin-top:1rem;padding:12px 24px;background:#c9a84c;color:#06100c;text-decoration:none;font-family:sans-serif;font-size:12px;letter-spacing:1px;">View next steps on our site</a></p>
-      <p style="font-size:0.85rem;color:rgba(240,235,224,0.45);margin-top:1.5rem;">Questions? hello@metaphysicflow.com</p>
+      <p><a href="${thanks}" style="display:inline-block;margin-top:1rem;padding:12px 24px;background:${isCompass ? '#1F2A26' : '#c9a84c'};color:${isCompass ? '#EAE7DF' : '#06100c'};text-decoration:none;font-family:sans-serif;font-size:12px;letter-spacing:1px;">View next steps on our site</a></p>
+      <p style="font-size:0.85rem;color:${isCompass ? '#6B7873' : 'rgba(240,235,224,0.45)'};margin-top:1.5rem;">Questions? hello@metaphysicflow.com</p>
     </div>`;
 }
 
@@ -181,10 +190,27 @@ export default async function handler(req, res) {
       await adjustSpots(refunded ? 1 : -1);
     }
 
+    let reportUrl = null;
+    if (!refunded && isCompassProduct(meta.key)) {
+      try {
+        const fulfilled = await fulfillCompassOrder({
+          productKey: meta.key,
+          email,
+          fields: mergedFields,
+          saleId: body.sale_id || body.order_number,
+        });
+        reportUrl = fulfilled?.url || null;
+      } catch (err) {
+        console.error('[gumroad-ping] compass fulfill:', err.message);
+      }
+    }
+
     await sendResend({
       to: email,
-      subject: `Your ${meta.name} — order confirmed (PDF in 24–48h)`,
-      html: buyerEmailHtml(meta, email, mergedFields),
+      subject: reportUrl
+        ? `Your Energy X-Ray report is ready · ${meta.name}`
+        : `Your ${meta.name} — order confirmed (PDF in 24–48h)`,
+      html: buyerEmailHtml(meta, email, mergedFields, reportUrl),
     });
 
     await notifySeller(meta, body, mergedFields);

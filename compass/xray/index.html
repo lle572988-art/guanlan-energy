@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Energy X-Ray · 2026 Flying Star Home Preview | The Living Compass</title>
-<meta name="description" content="Upload your room or floor plan, set your facing direction, and preview the 2026 flying star map overlaid on your space. Free preview — full cure report coming soon.">
+<meta name="description" content="Upload your room or floor plan, set your facing direction, and preview the 2026 flying star map overlaid on your space. Free preview plus AI cure staging.">
 <link rel="canonical" href="https://metaphysicflow.com/compass/xray/">
 <meta name="theme-color" content="#EAE7DF">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +38,17 @@
 .xray-lock h3{font-family:'Fraunces',serif;font-size:1.15rem;margin-bottom:8px;}
 .xray-lock p{color:var(--ink-soft);font-size:.92rem;margin-bottom:14px;}
 .blur-teaser{filter:blur(5px);user-select:none;pointer-events:none;opacity:.55;margin-top:20px;padding:16px;border:1px solid var(--line);border-radius:9px;font-size:.88rem;color:var(--ink-soft);}
+.xray-cure{margin-top:28px;padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:rgba(122,155,142,0.08);}
+.xray-cure[hidden]{display:none!important;}
+.xray-cure h3{font-family:'Fraunces',serif;font-size:1.2rem;margin-bottom:8px;}
+.xray-cure p{color:var(--ink-soft);font-size:.92rem;margin-bottom:12px;}
+.xray-cure select{width:100%;padding:12px;border:1px solid var(--line);border-radius:9px;background:var(--paper);margin-bottom:12px;}
+.cure-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;}
+.cure-shot{border:1px solid var(--line);border-radius:9px;overflow:hidden;background:#E3E0D7;}
+.cure-shot img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;}
+.cure-shot span{display:block;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;padding:8px 10px;color:var(--ink-faint);}
+#xrayCureStatus{font-size:12px;margin-top:12px;}
+@media(max-width:600px){.cure-compare{grid-template-columns:1fr;}}
 @media(max-width:860px){.xray-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -46,7 +57,7 @@
 <nav class="lc-nav">
   <a href="/compass/" class="lc-brand">
     <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="#7A9B8E" stroke-width="1.1"/><circle cx="20" cy="20" r="2.4" fill="#A88A52"/></svg>
-    <div class="name">The Living Compass<span>Energy X-Ray · prototype</span></div>
+    <div class="name">The Living Compass<span>Energy X-Ray · preview + cures</span></div>
   </a>
   <div class="lc-nav-links">
     <a href="/compass/">Compass</a>
@@ -109,9 +120,29 @@
       <ul class="xray-insight-list" id="xrayInsightList"></ul>
     </div>
 
+    <div class="xray-cure" id="xrayCure" hidden>
+      <p class="eyebrow" style="margin-bottom:10px;">Wow #3 · AI cure preview</p>
+      <h3>See your room with gentle cures</h3>
+      <p>Based on the star in your <strong>facing sector</strong>, we stage subtle feng shui decor — illustrative, not a renovation plan.</p>
+      <label for="xrayRoom" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);">Room type</label>
+      <select id="xrayRoom">
+        <option value="living room">Living room</option>
+        <option value="bedroom">Bedroom</option>
+        <option value="home office">Home office</option>
+        <option value="dining room">Dining room</option>
+      </select>
+      <p id="xrayCureHint" style="font-size:.9rem;color:var(--ink-soft);margin-bottom:14px;"></p>
+      <button type="button" class="btn" id="xrayCureBtn">Generate cure preview</button>
+      <p id="xrayCureStatus"></p>
+      <div class="cure-compare" id="xrayCureCompare" hidden>
+        <div class="cure-shot"><img id="xrayCureBefore" alt="Room before cures"><span>Before</span></div>
+        <div class="cure-shot"><img id="xrayCureAfter" alt="Room with staged cures"><span>After · AI staging</span></div>
+      </div>
+    </div>
+
     <div class="xray-lock" id="xrayLock" hidden>
       <h3>Unlock your full home report</h3>
-      <p>A feng shui master charges $800–1,500 for this. Your illustrated PDF — room cures, personal Kua, and 2026 stars — is <strong>$39</strong>.</p>
+      <p>A feng shui master charges $800–1,500 for this. Your personalized report — room cures, personal Kua, and 2026 stars — is <strong>$39</strong> and emailed within minutes.</p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:16px 0;">
         <button type="button" class="btn btn-ghost" id="xrayPreviewBtn">Download free snapshot</button>
         <a href="/compass/order/" class="btn">Order full home — $39</a>

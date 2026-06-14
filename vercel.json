@@ -289,6 +289,22 @@
       "destination": "/compass/order/index.html"
     },
     {
+      "source": "/compass/heatmap",
+      "destination": "/compass/heatmap/index.html"
+    },
+    {
+      "source": "/compass/heatmap/",
+      "destination": "/compass/heatmap/index.html"
+    },
+    {
+      "source": "/compass/facing/:slug",
+      "destination": "/compass/facing/:slug.html"
+    },
+    {
+      "source": "/compass/2026/:slug",
+      "destination": "/compass/2026/:slug.html"
+    },
+    {
       "source": "/((?!hubs/|blog/|scan/|compass/|longtail/|images/|pages/|api/|js/|[a-z0-9_-]+\\.[a-z0-9]+).*)",
       "destination": "/index.html"
     }
@@ -306,13 +322,21 @@
       "maxDuration": 60,
       "memory": 256
     },
+    "api/compass-cure-image.js": {
+      "maxDuration": 60,
+      "memory": 256
+    },
     "api/collect-lead.mjs": {
       "maxDuration": 60,
       "memory": 1024,
       "includeFiles": "server/lib/**"
     },
     "api/gumroad-ping.mjs": {
-      "maxDuration": 15,
+      "maxDuration": 30,
+      "includeFiles": "server/lib/**"
+    },
+    "api/stripe-webhook.mjs": {
+      "maxDuration": 30,
       "includeFiles": "server/lib/**"
     }
   }
