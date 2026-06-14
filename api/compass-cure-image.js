@@ -5,32 +5,10 @@ function getFalApiKey() {
   return (process.env.FAL_API_KEY || process.env.FAL_KEY || '').trim();
 }
 
-function findBlobReadWriteToken() {
-  const direct = (process.env.BLOB_READ_WRITE_TOKEN || '').trim();
-  if (direct) return direct;
-  for (const key of Object.keys(process.env)) {
-    if (/READ_WRITE_TOKEN$/i.test(key) && process.env[key]) {
-      return String(process.env[key]).trim();
-    }
-  }
-  return '';
-}
-
 async function hostOnBlob(path, buf, contentType) {
   try {
-    const token = findBlobReadWriteToken();
-    const base = { access: 'public', contentType };
-    if (token) {
-      const blob = await put(path, buf, { ...base, token });
-      return blob.url;
-    }
-    const oidc = (process.env.VERCEL_OIDC_TOKEN || '').trim();
-    const storeId = (process.env.BLOB_STORE_ID || '').trim();
-    if (oidc && storeId) {
-      const blob = await put(path, buf, { ...base, oidcToken: oidc, storeId });
-      return blob.url;
-    }
-    return null;
+    const blob = await put(path, buf, { access: 'public', contentType });
+    return blob.url;
   } catch (err) {
     console.warn('[compass-cure-image] blob put failed:', err.message);
     return null;

@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     return res.status(200).json({ url: blob.url });
   } catch (err) {
     console.error('[upload-compass-image]', err.message);
-    if (err.message === 'BLOB_NOT_CONFIGURED') {
+    if (/blob credentials|BLOB_READ_WRITE|BLOB_STORE/i.test(err.message)) {
       return res.status(503).json({
         error: 'Blob storage not linked to this deployment',
         code: 'blob_not_configured',

@@ -21,7 +21,7 @@ Regenerate SEO: `node scripts/generate-compass-seo.mjs`
 |----------|----------------|
 | `STRIPE_SECRET_KEY` | Stripe checkout fallback |
 | `STRIPE_WEBHOOK_SECRET` | Auto HTML report after Stripe pay |
-| `BLOB_READ_WRITE_TOKEN` or Blob OIDC | Reports + cure hosting — link **guanlan-leads** store to project in Vercel **Storage** (auto-injects `BLOB_STORE_ID` + OIDC) |
+| `BLOB_READ_WRITE_TOKEN` + `BLOB_STORE_ID` | Auto-injected when **Storage → guanlan-leads → Connect to Project** (Preview + Production). Do not hand-copy old store tokens. |
 | `RESEND_API_KEY` | Buyer email with report link |
 | `RESEND_FROM_EMAIL` | Optional sender override |
 | `FAL_API_KEY` or `FAL_KEY` | AI cure Before/After (`/api/compass-cure-image`) |
