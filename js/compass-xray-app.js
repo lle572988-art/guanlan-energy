@@ -258,7 +258,7 @@
     state.cureLoading = true;
     if (btn) {
       btn.disabled = true;
-      btn.textContent = 'Generating… ~30s';
+      btn.textContent = 'Generating… ~60–90s';
     }
     setCureStatus('Staging your room with ' + meta.element + ' cures…');
 

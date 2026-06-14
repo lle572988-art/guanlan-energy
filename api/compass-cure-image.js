@@ -14,7 +14,7 @@ const CURE_PROMPTS = {
 };
 
 export const config = {
-  maxDuration: 60,
+  maxDuration: 120,
 };
 
 async function hostOnBlob(path, buf, contentType) {
@@ -93,6 +93,7 @@ export default async function handler(req, res) {
         strength: 0.52,
         num_images: 1,
         output_format: 'jpeg',
+        num_inference_steps: 28,
       }),
     });
 
