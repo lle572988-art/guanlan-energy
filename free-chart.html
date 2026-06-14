@@ -866,6 +866,148 @@
     border-color: rgba(201, 169, 110, 0.45);
     color: rgba(201, 169, 110, 1);
   }
+  /* Soul Guardian Canvas */
+  .soul-guardian-section {
+    display: none;
+    max-width: 680px;
+    margin: 2rem auto 1rem;
+    padding: 0 2rem;
+    text-align: center;
+    scroll-margin-top: 5rem;
+  }
+  .sg-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .sg-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3vw, 2rem);
+    font-weight: 300;
+    color: var(--parchment);
+    margin-bottom: 0.5rem;
+  }
+  .sg-header p {
+    font-style: italic;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+  .sg-guardian-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--gold-light);
+    margin-bottom: 0.25rem;
+  }
+  .sg-guardian-virtue {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    color: var(--silver-dim);
+    margin-bottom: 1.5rem;
+  }
+  .sg-canvas-wrap {
+    max-width: 360px;
+    margin: 0 auto 1.25rem;
+    border: 1px solid rgba(201, 169, 110, 0.2);
+    box-shadow: 0 8px 48px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    border-radius: 2px;
+  }
+  #soulGuardianCanvas {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .sg-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+  .sg-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.2rem;
+    border-radius: 1px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid rgba(201, 169, 110, 0.3);
+    color: rgba(201, 169, 110, 0.85);
+    background: transparent;
+  }
+  .sg-btn:hover {
+    background: rgba(201, 169, 110, 0.06);
+    border-color: rgba(201, 169, 110, 0.45);
+    color: rgba(201, 169, 110, 1);
+  }
+  .sg-btn--primary {
+    background: rgba(201, 169, 110, 0.12);
+    border-color: rgba(201, 169, 110, 0.45);
+  }
+  .sg-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .energy-image-section {
+    display: none;
+    max-width: 680px;
+    margin: 2rem auto 3rem;
+    padding: 0 2rem;
+    text-align: center;
+    scroll-margin-top: 5rem;
+  }
+  .energy-img-element-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    color: var(--silver-dim);
+    margin-bottom: 1.25rem;
+  }
+  .energy-img-loading,
+  .energy-img-error {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    padding: 1rem 0;
+  }
+  .energy-img-error {
+    color: #c97474;
+  }
+  .energy-img-placeholder {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    padding: 1.5rem 1rem;
+    border: 1px dashed rgba(201, 169, 110, 0.25);
+    border-radius: 8px;
+    margin-top: 0.5rem;
+  }
+  .energy-img-result {
+    width: 100%;
+    max-width: 512px;
+    border-radius: 8px;
+    border: 1px solid rgba(201, 169, 110, 0.3);
+    display: block;
+    margin: 0 auto 1rem;
+  }
+  .energy-img-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
   .share-friend-hook {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
@@ -2393,7 +2535,46 @@
     <div class="hook-footer">
       <p class="hook-cycle-prophecy" id="hook-cycle-prophecy">—</p>
       <a class="hook-scroll" href="#three-pillars">↓ READ YOUR FULL BLUEPRINT</a>
+      <a class="hook-scroll" href="#energy-image-section" style="margin-top:0.75rem;display:inline-block;">↓ AI ELEMENT ENERGY ART</a>
     </div>
+  </section>
+
+  <section class="soul-guardian-section" id="soul-guardian-section" aria-label="Soul Guardian visual">
+    <div class="sg-header">
+      <div class="sg-eyebrow">YOUR SOUL GUARDIAN · 守護靈獸</div>
+      <h3>The stars gave you a form. Here is its face.</h3>
+      <p>Derived from your Life Palace star — a unique sigil you can save or share.</p>
+      <div class="sg-guardian-label" id="sg-guardian-name">Imperial Dragon</div>
+      <div class="sg-guardian-virtue" id="sg-guardian-virtue">Sovereign Presence</div>
+      <div class="sg-guardian-virtue" id="sg-guardian-meta" style="margin-top:-0.75rem;margin-bottom:1.25rem;">—</div>
+    </div>
+    <div class="sg-canvas-wrap">
+      <canvas id="soulGuardianCanvas" width="600" height="900" role="img" aria-label="Soul Guardian sigil artwork"></canvas>
+    </div>
+    <div class="sg-actions">
+      <button class="sg-btn sg-btn--primary" type="button" id="sg-download-btn" onclick="downloadSoulGuardian()">
+        ⬇ Save Guardian
+      </button>
+      <button class="sg-btn" type="button" id="sg-copy-image-btn" onclick="copySoulGuardianImage()">
+        📋 Copy for Stories
+      </button>
+      <button class="sg-btn" type="button" onclick="shareSoulGuardianTwitter()">
+        Share on X
+      </button>
+    </div>
+    <p class="sg-hint">Tip: Copy image → paste into Instagram Stories, or save as your lock screen.</p>
+  </section>
+
+  <section class="energy-image-section" id="energy-image-section" aria-label="AI element energy art">
+    <div class="sg-header">
+      <div class="sg-eyebrow">AI ELEMENT ENERGY · 五行能量图</div>
+      <h3>Your chart bureau, rendered as light.</h3>
+      <p>Abstract mandala from your dominant Five Element — unique each time.</p>
+      <div class="energy-img-element-label" id="energy-img-element-label">—</div>
+    </div>
+    <button type="button" class="sg-btn sg-btn--primary" id="gen-energy-img">Generate My Element Energy Art</button>
+    <div id="energy-img-wrap" style="margin-top:1rem;"></div>
+      <p class="sg-hint">Step 1: Click Generate below · Step 2: Your image appears here · Free 2/day</p>
   </section>
 
   <div id="chart-personal-cta" class="chart-personal-cta" hidden>
@@ -3010,7 +3191,9 @@
 <script src="/zwds-core.js?v=20260608b"></script>
 <script src="/js/ziwei-data.js?v=20260608b"></script>
 <script src="/js/zwds-chart-render.js?v=20260609a"></script>
-<script src="/js/free-chart-app.js?v=20260614a"></script>
+<script src="/js/soul-guardian-canvas.js?v=20260614a"></script>
+<script src="/js/energy-image.js?v=20260614b"></script>
+<script src="/js/free-chart-app.js?v=20260614e"></script>
 <script src="/js/result-particles.js?v=20260608h"></script>
 <script defer src="https://gumroad.com/js/gumroad.js"></script>
 <script defer src="/js/gumroad-checkout.js"></script>

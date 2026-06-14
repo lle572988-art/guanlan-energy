@@ -249,6 +249,14 @@
       "destination": "/consultation.html"
     },
     {
+      "source": "/free-chart",
+      "destination": "/free-chart.html"
+    },
+    {
+      "source": "/consultation",
+      "destination": "/consultation.html"
+    },
+    {
       "source": "/((?!hubs/|blog/|scan/|longtail/|images/|pages/|api/|js/|[a-z0-9_-]+\\.[a-z0-9]+).*)",
       "destination": "/index.html"
     }
@@ -261,6 +269,10 @@
     },
     "api/generate-reading.js": {
       "maxDuration": 30
+    },
+    "api/generate-image.js": {
+      "maxDuration": 60,
+      "memory": 256
     },
     "api/collect-lead.mjs": {
       "maxDuration": 60,

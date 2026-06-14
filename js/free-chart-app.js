@@ -141,10 +141,25 @@ function sanitizeCountryInput(raw) {
 // ─── URL PARAMS ───
 function getParams() {
   const p = new URLSearchParams(window.location.search);
-  const rawDate = p.get('dob') || p.get('date') || '';
-  const rawHour = (p.get('hour') || '').trim();
-  const country = sanitizeCountryInput(p.get('country') || '');
-  const email = (p.get('email') || '').trim();
+  let rawDate = p.get('dob') || p.get('date') || '';
+  let rawHour = (p.get('hour') || '').trim();
+  let country = sanitizeCountryInput(p.get('country') || '');
+  let email = (p.get('email') || '').trim();
+  let hourLabel = p.get('hourLabel') || '';
+
+  if (!rawDate || rawHour === '') {
+    try {
+      var launch = JSON.parse(sessionStorage.getItem('chart_launch_params') || 'null');
+      if (launch) {
+        if (!rawDate && launch.date) rawDate = launch.date;
+        if (rawHour === '' && launch.hour !== undefined && launch.hour !== null) {
+          rawHour = String(launch.hour);
+        }
+        if (!hourLabel && launch.hourLabel) hourLabel = launch.hourLabel;
+        if (!country && launch.country) country = sanitizeCountryInput(launch.country);
+      }
+    } catch (e) { /* ignore */ }
+  }
 
   let hour = 6;
   let hourBranch = '';
@@ -156,7 +171,7 @@ function getParams() {
     hour = HOUR_BRANCH_TO_INDEX[rawHour];
   }
 
-  const hourLabel = p.get('hourLabel') || HOUR_LABELS[hour] || '';
+  if (!hourLabel) hourLabel = HOUR_LABELS[hour] || '';
 
   let year = 1990, month = 1, day = 15;
   if (rawDate) {
@@ -167,7 +182,7 @@ function getParams() {
   }
 
   return {
-    date: rawDate.replace(/-/g, '/'),
+    date: rawDate ? rawDate.replace(/-/g, '/') : '',
     year, month, day,
     hour, hourBranch, hourLabel, country, email
   };
@@ -950,6 +965,28 @@ function populateResultsUI(result, params) {
   renderShareSection(window.__chartData);
   initShareButtons();
 
+  if (window.SoulGuardian && window.SoulGuardian.render) {
+    var lifeDisplayForGuardian = resolveLifePalaceDisplay(chartState.readings);
+    window.SoulGuardian.render({
+      starKey: lifeDisplayForGuardian.starCn || '__empty__',
+      persona: window.__chartData.persona,
+      element: meta.element,
+      theme2026: meta.theme2026,
+      strength: meta.strength,
+      lifeBranch: window.__chartData.lifeBranch,
+      tagline: window.__chartData.tagline,
+      birthDate: params.date,
+      hourLabel: params.hourLabel
+    });
+  }
+
+  if (window.EnergyImage && window.EnergyImage.bind) {
+    window.EnergyImage.bind({
+      bureau: result.bureau,
+      elementLabel: formatBureau(result.bureau)
+    });
+  }
+
   try {
     var stored = JSON.parse(sessionStorage.getItem('guanlan_birth') || '{}');
     stored.mainStar = window.__chartData.lifeStarEn || window.__chartData.persona || '';
@@ -1167,7 +1204,9 @@ function init() {
     }
 
     if (!params.date) {
-      throw new Error('Missing birth date — please return to the form and try again.');
+      hideLoadingScreen();
+      window.location.replace('/#chart-form');
+      return;
     }
 
     const loadingStatus = document.getElementById('loading-status');

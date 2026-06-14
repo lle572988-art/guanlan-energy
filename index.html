@@ -4288,6 +4288,15 @@ function handleSubmit(event) {
     country: country
   });
 
+  try {
+    sessionStorage.setItem('chart_launch_params', JSON.stringify({
+      date: dobInput.value,
+      hour: hourIndex,
+      hourLabel: hourLabel,
+      country: country
+    }));
+  } catch (e) { /* ignore */ }
+
   function resetSubmitBtn() {
     submitBtn.disabled = false;
     submitBtn.style.cursor = '';
@@ -4300,7 +4309,7 @@ function handleSubmit(event) {
       window.__session.set('chart_generated', '1');
     } catch (e) {}
     try {
-      window.location.href = '/free-chart.html?' + params.toString();
+      window.location.href = '/free-chart?' + params.toString();
     } catch (err) {
       resetSubmitBtn();
       console.error('Navigation failed:', err);
