@@ -15,6 +15,7 @@ const PRODUCT_TITLES = {
   'compass-room': 'Energy X-Ray · Single Room Report',
   'compass-home': 'Energy X-Ray · Full Home Report',
   'compass-home-year': 'Home + Annual Energy Forecast',
+  'compass-annual': 'Living Compass Annual · Home Energy Pass',
 };
 
 function gridTable(cells) {
@@ -43,7 +44,7 @@ function curesSection(kua, insights, tier) {
     html += `<h2>Your priority room · ${insights.facingLabel}</h2><p>${STAR_TIPS[insights.facingStar] || ''}</p>`;
   }
 
-  if (tier === 'compass-home-year') {
+  if (tier === 'compass-home-year' || tier === 'compass-annual') {
     const quarters = quarterlyCenters(insights?.year || 2026);
     html += '<h2>2026 quarterly centers</h2><table class="grid"><thead><tr><th>Quarter</th><th>Center star</th><th>Focus</th></tr></thead><tbody>';
     quarters.forEach((q) => {
@@ -52,6 +53,9 @@ function curesSection(kua, insights, tier) {
     });
     html += '</tbody></table>';
     html += '<p>Shift desk and renovation plans when the center star changes — avoid digging in sectors holding 5 Yellow.</p>';
+  }
+  if (tier === 'compass-annual') {
+    html += '<h2>Your annual pass</h2><p>Welcome to Living Compass Annual — monthly heatmap briefs and quarterly star updates for your facing. Scrub live at <strong>metaphysicflow.com/compass/heatmap/</strong> and email hello@metaphysicflow.com when your facing or room layout changes.</p>';
   }
   return html;
 }
@@ -113,5 +117,5 @@ export function buildCompassReportHtml({ productKey, dob, gender, facing, year, 
 }
 
 export function isCompassProduct(key) {
-  return key === 'compass-room' || key === 'compass-home' || key === 'compass-home-year';
+  return key === 'compass-room' || key === 'compass-home' || key === 'compass-home-year' || key === 'compass-annual';
 }

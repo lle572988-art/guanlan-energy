@@ -84,6 +84,11 @@ export default async function handler(req, res) {
         description: 'Full home X-Ray plus 2026 monthly flying star calendar and activation windows. HTML report emailed instantly.',
         unit_amount: 4900,
       },
+      'compass-annual': {
+        name: 'Living Compass Annual · Home Energy Pass',
+        description: 'Full home report plus 12 months of heatmap updates — monthly star briefs, quarterly shifts, and priority email Q&A.',
+        unit_amount: 7900,
+      },
     };
 
     let selected;

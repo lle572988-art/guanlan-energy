@@ -28,19 +28,25 @@ export const GUMROAD_PRODUCTS = {
     key: 'compass-room',
     name: 'Energy X-Ray · Single Room',
     price: '$19',
-    checkout: '',
+    checkout: 'https://lleonard88.gumroad.com/l/compassrm?wanted=true',
   },
   compasshm: {
     key: 'compass-home',
     name: 'Energy X-Ray · Full Home',
     price: '$39',
-    checkout: '',
+    checkout: 'https://lleonard88.gumroad.com/l/compasshm?wanted=true',
   },
   compassyr: {
     key: 'compass-home-year',
     name: 'Home + 2026 Year Report',
     price: '$49',
-    checkout: '',
+    checkout: 'https://lleonard88.gumroad.com/l/compassyr?wanted=true',
+  },
+  compassann: {
+    key: 'compass-annual',
+    name: 'Living Compass Annual Pass',
+    price: '$79',
+    checkout: 'https://lleonard88.gumroad.com/l/compassann?wanted=true',
   },
 };
 

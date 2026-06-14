@@ -79,8 +79,23 @@ const ROOMS = [
 ];
 
 const FACING_YEAR = 2026;
-const BIRTH_YEAR_START = 1960;
-const BIRTH_YEAR_END = 2012;
+const BIRTH_YEAR_START = 1950;
+const BIRTH_YEAR_END = 2015;
+
+const CITIES = [
+  { slug: 'new-york', label: 'New York', tip: 'Pre-war walk-ups and L-shaped lofts often clip corners — map the bagua on your actual footprint, not the building outline.' },
+  { slug: 'los-angeles', label: 'Los Angeles', tip: 'Sprawl layouts mean the “front” door may be a side courtyard entry — confirm facing from where you actually enter daily.' },
+  { slug: 'san-francisco', label: 'San Francisco', tip: 'Hills and bay windows change perceived orientation — stand at the door looking out, not from the street.' },
+  { slug: 'chicago', label: 'Chicago', tip: 'Lakefront high-rises: wealth and career sectors may align with water views — pair lake direction with your personal Sheng Qi.' },
+  { slug: 'seattle', label: 'Seattle', tip: 'Rainy NW climate — keep North and Northwest sectors bright and dry; metal cures work well when illness star 2 visits.' },
+  { slug: 'miami', label: 'Miami', tip: 'Strong South and Southeast sun — balance fire energy with water accents when annual stars stack heat in those sectors.' },
+  { slug: 'toronto', label: 'Toronto', tip: 'Condo towers with parking-level entries: the facing may differ from street address — use your lived entry door.' },
+  { slug: 'vancouver', label: 'Vancouver', tip: 'Mountain and water views often dominate one sector — declutter the opposite corner so energy circulates.' },
+  { slug: 'london', label: 'London', tip: 'Terraced houses with rear extensions create missing-corner patterns — soft cures in SW/NW often matter more than paint.' },
+  { slug: 'singapore', label: 'Singapore', tip: 'HDB and condo layouts are standardized but facing varies by block — flying stars still key off your unit’s door direction.' },
+  { slug: 'sydney', label: 'Sydney', tip: 'Harbour-facing units get strong visibility energy — star 9 sectors are for hosting; still sleep on Tian Yi, not Jue Ming.' },
+  { slug: 'austin', label: 'Austin', tip: 'Open-plan new builds rush energy from entry to backyard — screens and plants slow the flow without renovation.' },
+];
 
 const ZODIAC = ['Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Goat', 'Monkey', 'Rooster', 'Dog', 'Pig'];
 
@@ -752,6 +767,96 @@ function writeZodiacHub() {
   console.log('  2026/zodiac/index.html');
 }
 
+function writeCityFacing(city, dir) {
+  const slug = `${city.slug}-${dir.slug}-facing`;
+  const canonical = `https://metaphysicflow.com/compass/city/${slug}`;
+  const title = `${city.label} Feng Shui for a ${dir.label}-Facing Home · 2026 Stars`;
+  const description = `${dir.label}-facing homes in ${city.label} — 2026 flying stars, local layout tips, and personal Kua overlay. Free compass tools included.`;
+
+  const body = `
+<p class="eyebrow">${city.label} · ${dir.label} · ${FACING_YEAR}</p>
+<h1>${dir.label.toLowerCase()}-facing feng shui in ${city.label}</h1>
+<p class="intro">Searching “${city.label.toLowerCase()} ${dir.label.toLowerCase()} facing feng shui” lands on generic bagua tips. Start with <strong>true facing</strong> (${dir.code}) — then layer ${FACING_YEAR} annual stars and your personal Ba Zhai Kua.</p>
+<h2>Local layout note</h2>
+<p>${city.tip}</p>
+<h2>${FACING_YEAR} stars for ${dir.label.toLowerCase()}-facing homes</h2>
+<p>When your front door looks <strong>${dir.label.toLowerCase()}</strong>, the door sector carries the year's dominant star. <a href="/compass/2026/${dir.slug}-facing-house">${FACING_YEAR} flying stars for ${dir.label.toLowerCase()}-facing houses →</a></p>
+<p>Scrub month-by-month shifts on the <a href="/compass/heatmap/">2026 home energy heatmap</a> before renovating or signing a lease in ${city.label}.</p>
+<h2>Pair with your Kua</h2>
+<p>A ${dir.label.toLowerCase()}-facing layout can be excellent for one Kua and draining for another — calculate yours first.</p>
+<p><a href="/compass/?facing=${dir.code}" class="btn">Calculate my Kua →</a> <a href="/compass/xray/" class="btn btn-ghost" style="margin-left:8px;">Free X-Ray preview</a></p>`;
+
+  const html = pageShell({ title, description, canonical, body, schemaName: title });
+  const outDir = path.join(ROOT, 'compass', 'city');
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, `${slug}.html`), html);
+  console.log('  city/' + slug + '.html');
+}
+
+function writeCityHub() {
+  const canonical = 'https://metaphysicflow.com/compass/city/';
+  const cards = CITIES.map((c) => {
+    const links = DIRS.map((d) => `<a href="/compass/city/${c.slug}-${d.slug}-facing" style="font-size:.82rem;margin-right:8px;">${d.label}</a>`).join('');
+    return `<div class="guide-card" style="cursor:default;"><h2>${c.label}</h2><p style="margin-bottom:8px;">${c.tip.slice(0, 90)}…</p><div>${links}</div></div>`;
+  }).join('\n    ');
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>City Feng Shui Guides · Facing Direction by Metro | The Living Compass</title>
+<meta name="description" content="Feng shui for north, south, east, and west-facing homes in New York, LA, London, Singapore, and more — 2026 flying stars plus free Ba Zhai tools.">
+<link rel="canonical" href="${canonical}">
+<link rel="stylesheet" href="/compass/shared.css">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+.hero{padding:40px 0 20px;}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(2rem,4vw,2.6rem);}
+.guide-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:28px 0;}
+.guide-card{border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:rgba(255,255,255,.4);}
+.guide-card h2{font-family:'Fraunces',serif;font-size:1.05rem;margin-bottom:6px;color:var(--ink);}
+.guide-card p{font-size:.88rem;color:var(--ink-soft);line-height:1.5;}
+@media(max-width:700px){.guide-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav class="lc-nav">
+  <a href="/compass/" class="lc-brand">
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18" stroke="#7A9B8E"/><circle cx="20" cy="20" r="2.4" fill="#A88A52"/></svg>
+    <div class="name">The Living Compass<span>City guides</span></div>
+  </a>
+  <div class="lc-nav-links">
+    <a href="/compass/guides/">Guides</a>
+    <a href="/compass/heatmap/">Heatmap</a>
+    <a href="/compass/">Compass</a>
+  </div>
+</nav>
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow" style="margin-bottom:12px;">Geo pSEO · metro × facing</p>
+    <h1>Feng shui by city and facing</h1>
+    <p style="color:var(--ink-soft);max-width:40em;line-height:1.6;">Local layout quirks plus ${FACING_YEAR} flying stars — pick your metro, then your door direction.</p>
+  </header>
+  <div class="guide-grid">
+    ${cards}
+  </div>
+  <div class="compass-cta">
+    <h3>Personal beats generic</h3>
+    <p>City pages explain the house — the compass calculates your exact directions.</p>
+    <a href="/compass/" class="btn">Reveal my compass</a>
+  </div>
+</main>
+<footer class="lc-footer"><div class="wrap"><p><a href="/">MetaphysicFlow</a></p></div></footer>
+</body>
+</html>`;
+
+  const outDir = path.join(ROOT, 'compass', 'city');
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.writeFileSync(path.join(outDir, 'index.html'), html);
+  console.log('  city/index.html');
+}
+
 function collectSitemapUrls() {
   const base = 'https://metaphysicflow.com';
   const urls = [
@@ -761,10 +866,14 @@ function collectSitemapUrls() {
     `${base}/compass/heatmap/`,
     `${base}/compass/guides/`,
     `${base}/compass/2026/zodiac/`,
+    `${base}/compass/city/`,
   ];
   Object.keys(KUA_PAGES).forEach((n) => urls.push(`${base}/compass/kua/${n}`));
   GUIDES.forEach((g) => urls.push(`${base}/compass/guides/${g.slug}`));
   ZODIAC_2026.forEach((z) => urls.push(`${base}/compass/2026/zodiac/${z.slug}`));
+  CITIES.forEach((c) => {
+    DIRS.forEach((d) => urls.push(`${base}/compass/city/${c.slug}-${d.slug}-facing`));
+  });
   DIRS.forEach((d) => {
     urls.push(`${base}/compass/2026/${d.slug}-facing-house`);
     ROOMS.forEach((r) => urls.push(`${base}/compass/facing/${d.slug}-${r.slug}`));
@@ -804,5 +913,7 @@ for (let y = BIRTH_YEAR_START; y <= BIRTH_YEAR_END; y += 1) {
 }
 writeZodiacHub();
 ZODIAC_2026.forEach(writeZodiac2026Page);
+writeCityHub();
+CITIES.forEach((c) => DIRS.forEach((d) => writeCityFacing(c, d)));
 syncSitemap(collectSitemapUrls());
 console.log('Done.');

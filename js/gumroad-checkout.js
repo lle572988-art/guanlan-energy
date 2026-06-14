@@ -10,7 +10,8 @@
     lozmm: 'live-reading',
     compassrm: 'compass-room',
     compasshm: 'compass-home',
-    compassyr: 'compass-home-year'
+    compassyr: 'compass-home-year',
+    compassann: 'compass-annual'
   };
 
   var PRODUCT_USD = {
@@ -20,7 +21,8 @@
     'live-reading': 99,
     'compass-room': 19,
     'compass-home': 39,
-    'compass-home-year': 49
+    'compass-home-year': 49,
+    'compass-annual': 79
   };
 
   var THANK_YOU = 'https://metaphysicflow.com/thank-you.html';

@@ -2,9 +2,10 @@
 /** Paste slugs from Gumroad → Products → URL (gumroad.com/l/{slug}) */
 const PARTNER_SKU = ''; // Partner Compatibility Reading ($59)
 const ANNUAL_SKU = ''; // Annual Cosmic Alignment ($199)
-const COMPASS_ROOM_SKU = ''; // Energy X-Ray Single Room ($19)
-const COMPASS_HOME_SKU = ''; // Energy X-Ray Full Home ($39)
-const COMPASS_YEAR_SKU = ''; // Home + 2026 Year ($49)
+const COMPASS_ROOM_SKU = 'compassrm'; // Energy X-Ray Single Room ($19)
+const COMPASS_HOME_SKU = 'compasshm'; // Energy X-Ray Full Home ($39)
+const COMPASS_YEAR_SKU = 'compassyr'; // Home + 2026 Year ($49)
+const COMPASS_ANNUAL_SKU = 'compassann'; // Living Compass Annual Pass ($79)
 // Intake until Gumroad SKUs are live — consultation page with product param (replace with Tally when ready)
 const PARTNER_INTAKE = 'https://metaphysicflow.com/consultation.html?product=partner-compatibility#book';
 const ANNUAL_INTAKE = 'https://metaphysicflow.com/consultation.html?product=annual#book';
@@ -41,6 +42,7 @@ window.GUANLAN_GUMROAD['annual'] = ANNUAL_SKU
 window.GUANLAN_GUMROAD['compass-room'] = COMPASS_ROOM_SKU ? gumroadUrl(COMPASS_ROOM_SKU) : '';
 window.GUANLAN_GUMROAD['compass-home'] = COMPASS_HOME_SKU ? gumroadUrl(COMPASS_HOME_SKU) : '';
 window.GUANLAN_GUMROAD['compass-home-year'] = COMPASS_YEAR_SKU ? gumroadUrl(COMPASS_YEAR_SKU) : '';
+window.GUANLAN_GUMROAD['compass-annual'] = COMPASS_ANNUAL_SKU ? gumroadUrl(COMPASS_ANNUAL_SKU) : '';
 
 /** Paste into Gumroad → Product → Settings → Redirect after purchase */
 window.GUANLAN_GUMROAD_THANK_YOU = {
@@ -52,5 +54,6 @@ window.GUANLAN_GUMROAD_THANK_YOU = {
   'annual': 'https://metaphysicflow.com/thank-you.html?product=annual',
   'compass-room': 'https://metaphysicflow.com/thank-you.html?product=compass-room',
   'compass-home': 'https://metaphysicflow.com/thank-you.html?product=compass-home',
-  'compass-home-year': 'https://metaphysicflow.com/thank-you.html?product=compass-home-year'
+  'compass-home-year': 'https://metaphysicflow.com/thank-you.html?product=compass-home-year',
+  'compass-annual': 'https://metaphysicflow.com/thank-you.html?product=compass-annual'
 };

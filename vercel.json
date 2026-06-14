@@ -309,6 +309,18 @@
       "destination": "/compass/facing/:slug.html"
     },
     {
+      "source": "/compass/city/:slug",
+      "destination": "/compass/city/:slug.html"
+    },
+    {
+      "source": "/compass/city",
+      "destination": "/compass/city/index.html"
+    },
+    {
+      "source": "/compass/city/",
+      "destination": "/compass/city/index.html"
+    },
+    {
       "source": "/compass/born/:year",
       "destination": "/compass/born/:year.html"
     },

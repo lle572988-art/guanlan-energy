@@ -13,6 +13,7 @@ const PRODUCT_LABELS = {
   'compass-room': 'Energy X-Ray · Single Room',
   'compass-home': 'Energy X-Ray · Full Home',
   'compass-home-year': 'Home + 2026 Year Report',
+  'compass-annual': 'Living Compass Annual Pass',
   annual: 'Annual Cosmic Alignment',
 };
 
@@ -24,6 +25,7 @@ const PERMALINK_PRODUCT = {
   compassrm: 'compass-room',
   compasshm: 'compass-home',
   compassyr: 'compass-home-year',
+  compassann: 'compass-annual',
 };
 
 const PRODUCT_USD = {
@@ -38,6 +40,7 @@ const PRODUCT_USD = {
   compassrm: 19,
   compasshm: 39,
   compassyr: 49,
+  compassann: 79,
 };
 
 async function trackPlausiblePurchase(productId, priceCents) {
