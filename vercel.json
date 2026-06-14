@@ -374,6 +374,16 @@
     "api/stripe-webhook.mjs": {
       "maxDuration": 30,
       "includeFiles": "server/lib/**"
+    },
+    "api/cron/compass-monthly.mjs": {
+      "maxDuration": 60,
+      "includeFiles": "server/lib/**"
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/cron/compass-monthly",
+      "schedule": "0 9 1 * *"
+    }
+  ]
 }

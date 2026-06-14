@@ -43,6 +43,12 @@
     <p>Vercel env: <code>STRIPE_WEBHOOK_SECRET</code>, <code>BLOB_READ_WRITE_TOKEN</code>, <code>RESEND_API_KEY</code></p>
   </div>
 
+  <h2>Annual pass monthly emails</h2>
+  <div class="step">
+    <p>Cron: <code>0 9 1 * *</code> → <code>/api/cron/compass-monthly</code></p>
+    <p>Set <code>CRON_SECRET</code> in Vercel (auto-sent as Authorization bearer). Members stored in Blob <code>compass-annual-members.json</code> on <code>compass-annual</code> purchase.</p>
+  </div>
+
   <h2>Gumroad Ping (already wired)</h2>
   <div class="step">
     <p>Ping URL: <code>https://metaphysicflow.com/api/gumroad-ping</code></p>

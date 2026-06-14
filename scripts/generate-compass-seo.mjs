@@ -79,7 +79,7 @@ const ROOMS = [
 ];
 
 const FACING_YEAR = 2026;
-const BIRTH_YEAR_START = 1950;
+const BIRTH_YEAR_START = 1940;
 const BIRTH_YEAR_END = 2015;
 
 const CITIES = [
@@ -95,6 +95,18 @@ const CITIES = [
   { slug: 'singapore', label: 'Singapore', tip: 'HDB and condo layouts are standardized but facing varies by block — flying stars still key off your unit’s door direction.' },
   { slug: 'sydney', label: 'Sydney', tip: 'Harbour-facing units get strong visibility energy — star 9 sectors are for hosting; still sleep on Tian Yi, not Jue Ming.' },
   { slug: 'austin', label: 'Austin', tip: 'Open-plan new builds rush energy from entry to backyard — screens and plants slow the flow without renovation.' },
+  { slug: 'boston', label: 'Boston', tip: 'Triple-deckers and bay windows skew bagua — measure facing from the door you use, not the street-facing facade alone.' },
+  { slug: 'denver', label: 'Denver', tip: 'Mountain views often dominate West — balance with earth tones in East if that corner feels neglected.' },
+  { slug: 'dallas', label: 'Dallas', tip: 'Wide lots and side entries are common — confirm which door is the true “mouth of chi” before mapping stars.' },
+  { slug: 'houston', label: 'Houston', tip: 'Humidity and mold in North sectors — keep closets dry when illness star 2 rotates through.' },
+  { slug: 'phoenix', label: 'Phoenix', tip: 'Extreme South sun — use water and shade cures when fire stars stack in bedroom or office sectors.' },
+  { slug: 'atlanta', label: 'Atlanta', tip: 'Split-level homes shift room sectors — remap bagua per floor, not one grid for the whole stack.' },
+  { slug: 'portland', label: 'Portland', tip: 'Basement bedrooms in NW corners — add metal and light if Two Black visits that sector in 2026.' },
+  { slug: 'melbourne', label: 'Melbourne', tip: 'Heritage terraces with rear lanes — entry may face the lane, not the street number.' },
+  { slug: 'hong-kong', label: 'Hong Kong', tip: 'High-density towers: facing is unit-specific — use the door you lock at night, not the building lobby.' },
+  { slug: 'tokyo', label: 'Tokyo', tip: 'Compact flats with sliding doors — define one primary entry for flying star maps; screens slow rushing chi.' },
+  { slug: 'dubai', label: 'Dubai', tip: 'Glass towers and strong West sun — soften with curtains and water imagery when star 7 visits living zones.' },
+  { slug: 'berlin', label: 'Berlin', tip: 'Altbau courtyards mean “front” may face the Hinterhof — stand at your apartment door looking outward.' },
 ];
 
 const ZODIAC = ['Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Goat', 'Monkey', 'Rooster', 'Dog', 'Pig'];

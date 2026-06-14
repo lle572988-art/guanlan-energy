@@ -190,4 +190,65 @@ export function quarterlyCenters(year) {
   ];
 }
 
+function buildChartFromCenter(center, meta) {
+  const chart = {};
+  let star = center;
+  for (const dir of FLY_ORDER) {
+    chart[dir] = star;
+    star -= 1;
+    if (star < 1) star = 9;
+  }
+  return { year: meta.year, month: meta.month || null, centerStar: center, chart };
+}
+
+export function monthlyCenterStar(year, month) {
+  const base = annualCenterStar(year);
+  const m = parseInt(month, 10) || 1;
+  let c = base - (m - 1);
+  while (c < 1) c += 9;
+  return c;
+}
+
+export function buildMonthlyChart(year, month) {
+  const y = parseInt(year, 10) || new Date().getFullYear();
+  const m = parseInt(month, 10) || 1;
+  return buildChartFromCenter(monthlyCenterStar(y, m), { year: y, month: m });
+}
+
+/** Monthly brief for annual pass emails */
+export function monthlyBrief({ facing = 'S', year, month }) {
+  const y = parseInt(year, 10) || new Date().getFullYear();
+  const m = parseInt(month, 10) || (new Date().getMonth() + 1);
+  const chart = buildMonthlyChart(y, m);
+  const face = facing || 'S';
+  const faceStar = chart.chart[face];
+  const faceInfo = STAR_INFO[faceStar];
+  const centerInfo = STAR_INFO[chart.centerStar];
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const cautions = [];
+  const opportunities = [];
+  Object.keys(chart.chart).forEach((dir) => {
+    if (dir === 'center') return;
+    const n = chart.chart[dir];
+    const info = STAR_INFO[n];
+    const entry = { direction: dir, dirLabel: DIR_LABEL[dir], star: n, label: info.label, tip: STAR_TIPS[n] };
+    if (info.nature === 'bad' || n === 5) cautions.push(entry);
+    if (info.nature === 'good' && (n === 8 || n === 9 || n === 6)) opportunities.push(entry);
+  });
+  return {
+    year: y,
+    month: m,
+    monthLabel: monthNames[m - 1] || String(m),
+    centerStar: chart.centerStar,
+    centerLabel: centerInfo.label,
+    facing: face,
+    facingLabel: DIR_LABEL[face],
+    facingStar: faceStar,
+    facingLabelText: faceInfo.label,
+    headline: `${monthNames[m - 1]} ${y}: center star ${chart.centerStar} ${centerInfo.cn} — ${centerInfo.label}. Your door (${DIR_LABEL[face]}) holds star ${faceStar} ${faceInfo.cn}.`,
+    cautions: cautions.slice(0, 4),
+    opportunities: opportunities.slice(0, 3),
+  };
+}
+
 export { DIR_LABEL, STAR_INFO, STAR_TIPS, DIRECTIONS };

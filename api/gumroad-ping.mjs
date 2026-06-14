@@ -9,6 +9,7 @@ import {
 import { lookupLeadByEmail, leadToBirthFields } from '../server/lib/lead-lookup.js';
 import { fulfillCompassOrder } from '../server/lib/fulfill-compass-order.js';
 import { isCompassProduct } from '../server/lib/generate-compass-report-html.js';
+import { registerCompassAnnualMember } from '../server/lib/compass-annual-members.js';
 
 const SALES_PATH = 'gumroad-sales.json';
 
@@ -200,6 +201,16 @@ export default async function handler(req, res) {
           saleId: body.sale_id || body.order_number,
         });
         reportUrl = fulfilled?.url || null;
+        if (meta.key === 'compass-annual') {
+          await registerCompassAnnualMember({
+            email,
+            facing: mergedFields['Home facing'] || 'S',
+            dob: mergedFields['Date of birth'] || '',
+            gender: mergedFields.Gender || '',
+            year: parseInt(mergedFields['Flying star year'] || '2026', 10),
+            saleId: body.sale_id || body.order_number,
+          });
+        }
       } catch (err) {
         console.error('[gumroad-ping] compass fulfill:', err.message);
       }

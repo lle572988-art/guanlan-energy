@@ -4,6 +4,7 @@
 import Stripe from 'stripe';
 import { fulfillCompassOrder } from '../server/lib/fulfill-compass-order.js';
 import { isCompassProduct } from '../server/lib/generate-compass-report-html.js';
+import { registerCompassAnnualMember } from '../server/lib/compass-annual-members.js';
 
 export const config = {
   runtime: 'nodejs',
@@ -105,6 +106,16 @@ export default async function handler(req, res) {
           html: buyerHtml(productKey, result?.url, email),
         });
         console.log('[stripe-webhook] compass delivered', productKey, result?.url || 'no-blob');
+        if (productKey === 'compass-annual') {
+          await registerCompassAnnualMember({
+            email,
+            facing: fields['Home facing'] || 'S',
+            dob: fields['Date of birth'] || '',
+            gender: fields.Gender || '',
+            year: parseInt(fields['Flying star year'] || '2026', 10),
+            saleId: session.id,
+          });
+        }
       } catch (err) {
         console.error('[stripe-webhook] compass fulfill:', err.message);
       }
