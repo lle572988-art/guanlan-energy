@@ -6,6 +6,7 @@ const COMPASS_ROOM_SKU = 'compassrm'; // Energy X-Ray Single Room ($19)
 const COMPASS_HOME_SKU = 'majhir'; // 2026 Home Energy Report — Full Flying Star ($39)
 const COMPASS_YEAR_SKU = 'compassyr'; // Home + 2026 Year ($49)
 const COMPASS_ANNUAL_SKU = 'compassann'; // Living Compass Annual Pass ($79)
+const COMPASS_HOME_INTAKE = 'https://metaphysicflow.com/compass/intake/?product=compass-home';
 // Intake until Gumroad SKUs are live — consultation page with product param (replace with Tally when ready)
 const PARTNER_INTAKE = 'https://metaphysicflow.com/consultation.html?product=partner-compatibility#book';
 const ANNUAL_INTAKE = 'https://metaphysicflow.com/consultation.html?product=annual#book';
@@ -43,6 +44,13 @@ window.GUANLAN_GUMROAD['compass-room'] = COMPASS_ROOM_SKU ? gumroadUrl(COMPASS_R
 window.GUANLAN_GUMROAD['compass-home'] = COMPASS_HOME_SKU ? gumroadUrl(COMPASS_HOME_SKU) : '';
 window.GUANLAN_GUMROAD['compass-home-year'] = COMPASS_YEAR_SKU ? gumroadUrl(COMPASS_YEAR_SKU) : '';
 window.GUANLAN_GUMROAD['compass-annual'] = COMPASS_ANNUAL_SKU ? gumroadUrl(COMPASS_ANNUAL_SKU) : '';
+
+window.GUANLAN_COMPASS_INTAKE = {
+  'compass-home': COMPASS_HOME_INTAKE,
+  'compass-room': 'https://metaphysicflow.com/compass/intake/?product=compass-room',
+  'compass-home-year': 'https://metaphysicflow.com/compass/intake/?product=compass-home-year',
+  'compass-annual': 'https://metaphysicflow.com/compass/intake/?product=compass-annual',
+};
 
 /** Paste into Gumroad → Product → Settings → Redirect after purchase */
 window.GUANLAN_GUMROAD_THANK_YOU = {

@@ -342,7 +342,11 @@
 
   var orderBtn = document.getElementById('orderBtn');
   if (orderBtn) {
-    orderBtn.href = '/checkout.html?product=compass-home';
+    var orderHref = '/checkout.html?product=compass-home';
+    if (window.CompassIntake && CompassIntake.appendCompassParams) {
+      orderHref = CompassIntake.appendCompassParams(orderHref);
+    }
+    orderBtn.href = orderHref;
     orderBtn.addEventListener('click', function () {
       saveIntake();
       track('compass_xray_order_click');

@@ -337,6 +337,14 @@
       "destination": "/compass/share/index.html"
     },
     {
+      "source": "/compass/intake",
+      "destination": "/compass/intake/index.html"
+    },
+    {
+      "source": "/compass/intake/",
+      "destination": "/compass/intake/index.html"
+    },
+    {
       "source": "/compass/facing/:slug",
       "destination": "/compass/facing/:slug.html"
     },
@@ -406,6 +414,10 @@
       "includeFiles": "server/lib/**"
     },
     "api/gumroad-ping.mjs": {
+      "maxDuration": 30,
+      "includeFiles": "server/lib/**"
+    },
+    "api/compass-report-intake.mjs": {
       "maxDuration": 30,
       "includeFiles": "server/lib/**"
     },

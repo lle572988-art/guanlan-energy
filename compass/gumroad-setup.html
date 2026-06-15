@@ -8,33 +8,69 @@
 <link rel="stylesheet" href="/compass/shared.css">
 <style>
   body{padding:2rem 1.25rem;}
-  main{max-width:640px;margin:0 auto;}
+  main{max-width:720px;margin:0 auto;}
   h1{font-family:'Fraunces',serif;font-weight:300;font-size:1.75rem;margin-bottom:1rem;}
   h2{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--celadon);margin:2rem 0 .75rem;}
   .step{border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1.25rem;margin:1rem 0;background:rgba(255,255,255,.35);}
   code{font-family:'IBM Plex Mono',monospace;font-size:12px;background:rgba(31,42,38,.06);padding:2px 6px;border-radius:4px;}
   table{width:100%;border-collapse:collapse;font-size:14px;margin:12px 0;}
-  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
   th{font-family:'IBM Plex Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--ink-faint);}
+  pre{font-size:12px;line-height:1.55;background:rgba(31,42,38,.05);padding:12px;border-radius:8px;overflow-x:auto;white-space:pre-wrap;}
+  .cover-preview{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin:12px 0;}
+  .cover-preview img{width:100%;display:block;}
 </style>
 </head>
 <body>
 <main>
   <p class="eyebrow">Internal · The Living Compass</p>
   <h1>Energy X-Ray checkout setup</h1>
-  <p style="color:var(--ink-soft);line-height:1.6;">Until Gumroad products exist, compass orders use <strong>Stripe</strong> via <code>checkout.html</code>. Gumroad Ping + auto-report already work when you add products.</p>
+  <p style="color:var(--ink-soft);line-height:1.6;">Gumroad <code>majhir</code> ($39 full home) is wired. Post-purchase intake: <a href="/compass/intake/">/compass/intake/</a></p>
 
-  <h2>Gumroad products to create</h2>
+  <h2>majhir · 2026 Home Energy Report ($39) — LIVE</h2>
+  <table>
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Gumroad URL</td><td><code>https://lleonard88.gumroad.com/l/majhir</code></td></tr>
+    <tr><td>Site product key</td><td><code>compass-home</code></td></tr>
+    <tr><td>Checkout</td><td><code>/checkout.html?product=compass-home</code></td></tr>
+    <tr><td>Cover image (1280×720)</td><td><code>/images/compass/majhir-cover.svg</code> — export as PNG for Gumroad</td></tr>
+    <tr><td>Ping URL</td><td><code>https://metaphysicflow.com/api/gumroad-ping</code></td></tr>
+    <tr><td>Redirect after purchase</td><td><code>https://metaphysicflow.com/thank-you.html?product=compass-home</code> or direct <code>https://metaphysicflow.com/compass/intake/?product=compass-home</code></td></tr>
+    <tr><td>Post-purchase intake</td><td><code>COMPASS_HOME_INTAKE</code> in <code>js/gumroad-products.js</code></td></tr>
+  </table>
+  <div class="cover-preview"><img src="/images/compass/majhir-cover.svg" alt="Gumroad cover preview" width="640"></div>
+
+  <h2>Gumroad description (copy-paste)</h2>
+  <pre>**Your home has nine invisible energy sectors. In 2026, some of them are working for you — and some are quietly working against you.**
+
+This is a personalized Flying Star (玄空飛星) feng shui report for your specific home, based on your floor plan, facing direction, and the 2026 annual star chart.
+
+**What's inside your report:**
+
+→ Full 9-sector energy map overlaid on YOUR floor plan
+→ Every Flying Star explained — health, wealth, relationships
+→ Room-by-room cure recommendations
+→ Personal Kua + best directions for bed, desk, main door
+→ 2026 monthly activation calendar
+→ The one sector you must NOT renovate this year
+
+**How it works:**
+1. After purchase, submit floor plan + facing + birth date on our site
+2. Classical Xuan Kong methods — same system professional masters use
+3. Beautiful PDF within 24 hours
+
+**Satisfaction guarantee:** Email within 7 days for a full refund.</pre>
+
+  <h2>Other Gumroad products to create</h2>
   <table>
     <thead><tr><th>Product</th><th>Price</th><th>Suggested slug</th><th>SKU variable</th></tr></thead>
     <tbody>
       <tr><td>Energy X-Ray · Single Room</td><td>$19</td><td><code>compassrm</code></td><td><code>COMPASS_ROOM_SKU</code></td></tr>
-      <tr><td>2026 Home Energy Report (Full Home)</td><td>$39</td><td><code>majhir</code></td><td><code>COMPASS_HOME_SKU</code></td></tr>
+      <tr><td>2026 Home Energy Report (Full Home)</td><td>$39</td><td><code>majhir</code> ✓</td><td><code>COMPASS_HOME_SKU</code></td></tr>
       <tr><td>Home + 2026 Year</td><td>$49</td><td><code>compassyr</code></td><td><code>COMPASS_YEAR_SKU</code></td></tr>
       <tr><td>Living Compass Annual</td><td>$79</td><td><code>compassann</code></td><td><code>COMPASS_ANNUAL_SKU</code></td></tr>
     </tbody>
   </table>
-  <p style="font-size:14px;color:var(--ink-soft);">Paste slugs into <code>js/gumroad-products.js</code>. Checkout URL params: <code>guanlan_dob</code>, <code>guanlan_gender</code>, <code>guanlan_facing</code>, <code>guanlan_xray_year</code>.</p>
 
   <h2>Stripe webhook (auto delivery)</h2>
   <div class="step">
@@ -43,24 +79,19 @@
     <p>Vercel env: <code>STRIPE_WEBHOOK_SECRET</code>, <code>BLOB_READ_WRITE_TOKEN</code>, <code>RESEND_API_KEY</code></p>
   </div>
 
+  <h2>Intake API</h2>
+  <div class="step">
+    <p><code>POST /api/compass-report-intake</code> — stores intake in Blob, emails buyer + seller.</p>
+    <p>Fields: email, facing, dob, gender, floorPlanUrl, notes, product.</p>
+  </div>
+
   <h2>Annual pass monthly emails</h2>
   <div class="step">
     <p>Cron: <code>0 9 1 * *</code> → <code>/api/cron/compass-monthly</code></p>
-    <p>Set <code>CRON_SECRET</code> in Vercel (auto-sent as Authorization bearer). Members stored in Blob <code>compass-annual-members.json</code> on <code>compass-annual</code> purchase.</p>
+    <p>Set <code>CRON_SECRET</code> in Vercel.</p>
   </div>
 
-  <h2>Gumroad Ping (already wired)</h2>
-  <div class="step">
-    <p>Ping URL: <code>https://metaphysicflow.com/api/gumroad-ping</code></p>
-    <p>On sale → generates HTML report on Blob → emails buyer link. No Zi Wei drip emails for compass products.</p>
-  </div>
-
-  <h2>Thank-you redirects</h2>
-  <div class="step">
-    <p>Already in <code>js/gumroad-products.js</code> → <code>GUANLAN_GUMROAD_THANK_YOU</code> for each compass key.</p>
-  </div>
-
-  <p style="margin-top:2rem;"><a href="/compass/order/">← Living Compass pricing</a> · <a href="/gumroad-setup.html">Zi Wei Gumroad setup</a></p>
+  <p style="margin-top:2rem;"><a href="/compass/order/">← Living Compass pricing</a> · <a href="/compass/intake/">Intake form</a> · <a href="/gumroad-setup.html">Zi Wei Gumroad setup</a></p>
 </main>
 </body>
 </html>
