@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -25,6 +26,6 @@
     <text x="740" y="450">2</text>
   </g>
   <text x="640" y="580" text-anchor="middle" fill="#1F2A26" font-family="Georgia, serif" font-size="42" font-weight="400">Your 2026 Home Energy Report</text>
-  <text x="640" y="628" text-anchor="middle" fill="#6B7873" font-family="monospace" font-size="16" letter-spacing="4">FULL FLYING STAR ANALYSIS · $39</text>
+  <text x="640" y="628" text-anchor="middle" fill="#6B7873" font-family="monospace" font-size="16" letter-spacing="4">FULL FLYING STAR ANALYSIS - $39</text>
   <text x="640" y="660" text-anchor="middle" fill="#A88A52" font-family="monospace" font-size="12" letter-spacing="3">THE LIVING COMPASS</text>
 </svg>
