@@ -277,6 +277,10 @@
       "destination": "/compass/kua/:num.html"
     },
     {
+      "source": "/compass/kua/kua-:num",
+      "destination": "/compass/kua/kua-:num.html"
+    },
+    {
       "source": "/compass/guides/:slug",
       "destination": "/compass/guides/:slug.html"
     },
