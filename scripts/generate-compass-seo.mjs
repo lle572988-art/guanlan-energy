@@ -574,6 +574,14 @@ function pageShell({ title, description, canonical, body, schemaName }) {
   </a>
   <div class="lc-nav-links">
     <a href="/compass/#how">How it reads you</a>
+    <a href="/compass/xray/">Energy X-Ray</a>
+    <a href="/compass/family/">Family</a>
+    <a href="/compass/moving/">Moving days</a>
+    <a href="/compass/tools/">All tools</a>
+    <a href="/compass/share/">Share</a>
+    <a href="/compass/heatmap/">2026 Heatmap</a>
+    <a href="/compass/order/">Reports</a>
+    <a href="/compass/guides/">Guides</a>
     <a href="/" class="lc-nav-mf">MetaphysicFlow</a>
   </div>
 </nav>
@@ -816,6 +824,14 @@ function writeZodiacHub() {
   </a>
   <div class="lc-nav-links">
     <a href="/compass/#how">How it reads you</a>
+    <a href="/compass/xray/">Energy X-Ray</a>
+    <a href="/compass/family/">Family</a>
+    <a href="/compass/moving/">Moving days</a>
+    <a href="/compass/tools/">All tools</a>
+    <a href="/compass/share/">Share</a>
+    <a href="/compass/heatmap/">2026 Heatmap</a>
+    <a href="/compass/order/">Reports</a>
+    <a href="/compass/guides/">Guides</a>
     <a href="/" class="lc-nav-mf">MetaphysicFlow</a>
   </div>
 </nav>
@@ -906,6 +922,14 @@ function writeCityHub() {
   </a>
   <div class="lc-nav-links">
     <a href="/compass/#how">How it reads you</a>
+    <a href="/compass/xray/">Energy X-Ray</a>
+    <a href="/compass/family/">Family</a>
+    <a href="/compass/moving/">Moving days</a>
+    <a href="/compass/tools/">All tools</a>
+    <a href="/compass/share/">Share</a>
+    <a href="/compass/heatmap/">2026 Heatmap</a>
+    <a href="/compass/order/">Reports</a>
+    <a href="/compass/guides/">Guides</a>
     <a href="/" class="lc-nav-mf">MetaphysicFlow</a>
   </div>
 </nav>

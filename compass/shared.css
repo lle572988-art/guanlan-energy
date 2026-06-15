@@ -26,8 +26,13 @@ a:hover{color:var(--ink);}
   padding:18px 28px;max-width:var(--maxw);margin:0 auto;
   background:rgba(234,227,223,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(31,42,38,0.07);
 }
-.lc-nav-links{display:flex;gap:20px;align-items:center;}
+.lc-nav-links{display:flex;gap:20px;align-items:center;flex-wrap:wrap;justify-content:flex-end;}
 .lc-nav-links a{font-size:14px;color:var(--ink-soft);text-decoration:none;}
+@media(max-width:900px){
+  .lc-nav{flex-wrap:wrap;gap:12px;}
+  .lc-nav-links{gap:10px 14px;}
+  .lc-nav-links a{font-size:13px;}
+}
 .lc-brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;}
 .lc-brand svg{width:30px;height:30px;}
 .lc-brand .name{font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:17px;}
