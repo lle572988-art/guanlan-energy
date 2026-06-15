@@ -156,6 +156,26 @@ const HEAD_LINKS = `
 <link rel="stylesheet" href="/compass/shared.css">
 <script src="/js/plausible-init.js"></script>`;
 
+const AI_SEARCH_META = `
+<meta name="author" content="Guanlan Energy">
+<meta property="article:published_time" content="2026-01-15">
+<meta property="article:modified_time" content="2026-06-15">`;
+
+function articleLd(headline, description, url) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline,
+    datePublished: '2026-01-15',
+    dateModified: '2026-06-15',
+    author: { '@type': 'Person', name: 'Guanlan Energy', url: 'https://metaphysicflow.com' },
+    publisher: { '@type': 'Organization', name: 'The Living Compass', url: 'https://metaphysicflow.com/compass/' },
+    description,
+    mainEntityOfPage: url,
+    url,
+  });
+}
+
 function esc(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 }
@@ -262,7 +282,9 @@ function buildKuaPage(num) {
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${canonical}">
 <meta property="og:type" content="article">
+${AI_SEARCH_META}
 ${HEAD_LINKS}
+<script type="application/ld+json">${articleLd(meta.h1, desc, canonical)}</script>
 <script type="application/ld+json">${faqLd}</script>
 ${STYLES}
 </head>
@@ -409,7 +431,9 @@ function buildFacingPage({ slug, dir, label }) {
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${canonical}">
 <meta property="og:type" content="article">
+${AI_SEARCH_META}
 ${HEAD_LINKS}
+<script type="application/ld+json">${articleLd(h1, desc, canonical)}</script>
 <script type="application/ld+json">${faqLd}</script>
 ${STYLES}
 </head>
