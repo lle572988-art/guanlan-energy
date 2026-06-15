@@ -126,8 +126,13 @@ export function calculateBaZhai({ dob, gender, houseFacing }) {
   };
 }
 
+export const ANNUAL_2026 = {
+  center: 2, NW: 3, W: 4, NE: 5, S: 6, N: 7, SW: 8, E: 9, SE: 1,
+};
+
 export function annualCenterStar(year) {
   const y = parseInt(year, 10) || new Date().getFullYear();
+  if (y === 2026) return 2;
   const offset = y - 2024;
   let center = 9 - (offset % 9);
   if (center < 1) center += 9;
@@ -136,6 +141,17 @@ export function annualCenterStar(year) {
 
 export function buildAnnualChart(year) {
   const y = parseInt(year, 10) || 2026;
+  if (y === 2026) {
+    const chart = { ...ANNUAL_2026 };
+    const cells = GRID_LAYOUT.map((row) =>
+      row.map((direction) => {
+        const num = chart[direction];
+        const info = STAR_INFO[num];
+        return { direction, star: num, ...info };
+      }),
+    );
+    return { year: y, centerStar: chart.center, chart, cells };
+  }
   const center = annualCenterStar(y);
   const chart = {};
   let star = center;

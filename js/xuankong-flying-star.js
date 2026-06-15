@@ -43,8 +43,14 @@
     9: { element: 'fire', hint: 'Celebration star — warm lighting and social visibility.' },
   };
 
+  /** 2026 Bing Wu (丙午) annual chart — Two Black in center,顺飞 */
+  var ANNUAL_2026 = {
+    center: 2, NW: 3, W: 4, NE: 5, S: 6, N: 7, SW: 8, E: 9, SE: 1,
+  };
+
   function annualCenterStar(year) {
     var y = parseInt(year, 10) || new Date().getFullYear();
+    if (y === 2026) return 2;
     var offset = y - 2024;
     var center = 9 - (offset % 9);
     if (center < 1) center += 9;
@@ -57,6 +63,31 @@
     var c = base - (m - 1);
     while (c < 1) c += 9;
     return c;
+  }
+
+  function buildChartFromRecord(chart, meta) {
+    return {
+      year: meta.year,
+      month: meta.month || null,
+      centerStar: chart.center,
+      chart: chart,
+      cells: GRID_LAYOUT.map(function (row) {
+        return row.map(function (dir) {
+          var num = chart[dir];
+          var info = STAR_INFO[num] || STAR_INFO[5];
+          return {
+            direction: dir,
+            star: num,
+            cn: info.cn,
+            en: info.en,
+            label: info.label,
+            nature: info.nature,
+            color: info.color,
+            textColor: info.text,
+          };
+        });
+      }),
+    };
   }
 
   function buildChartFromCenter(center, meta) {
@@ -93,6 +124,7 @@
 
   function buildAnnualChart(year) {
     var y = parseInt(year, 10) || new Date().getFullYear();
+    if (y === 2026) return buildChartFromRecord(ANNUAL_2026, { year: y, month: null });
     return buildChartFromCenter(annualCenterStar(y), { year: y, month: null });
   }
 
@@ -182,6 +214,7 @@
     STAR_INFO: STAR_INFO,
     STAR_CURE: STAR_CURE,
     DIR_LABEL: DIR_LABEL,
+    ANNUAL_2026: ANNUAL_2026,
     annualCenterStar: annualCenterStar,
     monthlyCenterStar: monthlyCenterStar,
     buildAnnualChart: buildAnnualChart,
