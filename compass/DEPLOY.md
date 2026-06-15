@@ -37,7 +37,7 @@ Gumroad Ping: `https://metaphysicflow.com/api/gumroad-ping`
 | Slug | Price | SKU in `js/gumroad-products.js` |
 |------|-------|----------------------------------|
 | `compassrm` | $19 | `COMPASS_ROOM_SKU` |
-| `compasshm` | $39 | `COMPASS_HOME_SKU` |
+| `majhir` | $39 | `COMPASS_HOME_SKU` |
 | `compassyr` | $49 | `COMPASS_YEAR_SKU` |
 | `compassann` | $79 | `COMPASS_ANNUAL_SKU` |
 

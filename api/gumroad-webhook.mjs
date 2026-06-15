@@ -24,6 +24,7 @@ const PERMALINK_PRODUCT = {
   lozmm: 'live-reading',
   compassrm: 'compass-room',
   compasshm: 'compass-home',
+  majhir: 'compass-home',
   compassyr: 'compass-home-year',
   compassann: 'compass-annual',
 };
@@ -39,6 +40,7 @@ const PRODUCT_USD = {
   lozmm: 99,
   compassrm: 19,
   compasshm: 39,
+  majhir: 39,
   compassyr: 49,
   compassann: 79,
 };
@@ -97,7 +99,7 @@ function emailShell(title, bodyHtml) {
 
 function isCompassPermalink(pid) {
   var p = String(pid || '').toLowerCase();
-  return p.indexOf('compass') === 0 || p === 'compassrm' || p === 'compasshm' || p === 'compassyr';
+  return p.indexOf('compass') === 0 || p === 'compassrm' || p === 'compasshm' || p === 'majhir' || p === 'compassyr';
 }
 
 async function sendPurchaseDrip(email, productId, saleId, kv) {

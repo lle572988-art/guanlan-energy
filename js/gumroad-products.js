@@ -3,7 +3,7 @@
 const PARTNER_SKU = ''; // Partner Compatibility Reading ($59)
 const ANNUAL_SKU = ''; // Annual Cosmic Alignment ($199)
 const COMPASS_ROOM_SKU = 'compassrm'; // Energy X-Ray Single Room ($19)
-const COMPASS_HOME_SKU = 'compasshm'; // Energy X-Ray Full Home ($39)
+const COMPASS_HOME_SKU = 'majhir'; // 2026 Home Energy Report — Full Flying Star ($39)
 const COMPASS_YEAR_SKU = 'compassyr'; // Home + 2026 Year ($49)
 const COMPASS_ANNUAL_SKU = 'compassann'; // Living Compass Annual Pass ($79)
 // Intake until Gumroad SKUs are live — consultation page with product param (replace with Tally when ready)

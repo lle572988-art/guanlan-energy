@@ -34,7 +34,13 @@ export const GUMROAD_PRODUCTS = {
     key: 'compass-home',
     name: 'Energy X-Ray · Full Home',
     price: '$39',
-    checkout: 'https://lleonard88.gumroad.com/l/compasshm?wanted=true',
+    checkout: 'https://lleonard88.gumroad.com/l/majhir?wanted=true',
+  },
+  majhir: {
+    key: 'compass-home',
+    name: '2026 Home Energy Report — Full Flying Star Analysis',
+    price: '$39',
+    checkout: 'https://lleonard88.gumroad.com/l/majhir?wanted=true',
   },
   compassyr: {
     key: 'compass-home-year',

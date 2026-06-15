@@ -10,6 +10,7 @@
     lozmm: 'live-reading',
     compassrm: 'compass-room',
     compasshm: 'compass-home',
+    majhir: 'compass-home',
     compassyr: 'compass-home-year',
     compassann: 'compass-annual'
   };
