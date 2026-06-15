@@ -337,6 +337,10 @@
   }
 
   function showCompassModal(onReady) {
+    if (!window.CompassIntake) {
+      onReady();
+      return;
+    }
     ensureCompassModal();
     var modal = document.getElementById('guanlan-compass-modal');
     var existing = window.CompassIntake ? window.CompassIntake.load() : null;
@@ -353,12 +357,14 @@
     var submit = document.getElementById('guanlan-compass-submit');
     var handler = function() {
       if (!dobEl.value) { dobEl.focus(); return; }
-      window.CompassIntake.save({
-        dob: dobEl.value,
-        gender: genderEl.value,
-        facing: facingEl.value,
-        year: existing && existing.year || 2026,
-      });
+      if (window.CompassIntake) {
+        window.CompassIntake.save({
+          dob: dobEl.value,
+          gender: genderEl.value,
+          facing: facingEl.value,
+          year: existing && existing.year || 2026,
+        });
+      }
       modal.classList.remove('open');
       submit.removeEventListener('click', handler);
       onReady();
