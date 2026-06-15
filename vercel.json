@@ -345,6 +345,10 @@
       "destination": "/compass/intake/index.html"
     },
     {
+      "source": "/compass/2026-flying-stars",
+      "destination": "/compass/2026-flying-stars.html"
+    },
+    {
       "source": "/compass/facing/:slug",
       "destination": "/compass/facing/:slug.html"
     },
