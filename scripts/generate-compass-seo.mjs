@@ -573,9 +573,8 @@ function pageShell({ title, description, canonical, body, schemaName }) {
     <div class="name">The Living Compass<span>八宅 · Ba Zhai</span></div>
   </a>
   <div class="lc-nav-links">
-    <a href="/compass/">Compass</a>
-    <a href="/compass/xray/">X-Ray</a>
-    <a href="/">MetaphysicFlow</a>
+    <a href="/compass/#how">How it reads you</a>
+    <a href="/" class="lc-nav-mf">MetaphysicFlow</a>
   </div>
 </nav>
 <main class="wrap article">
@@ -816,9 +815,8 @@ function writeZodiacHub() {
     <div class="name">The Living Compass<span>2026 Zodiac</span></div>
   </a>
   <div class="lc-nav-links">
-    <a href="/compass/heatmap/">Heatmap</a>
-    <a href="/compass/guides/">Guides</a>
-    <a href="/compass/">Compass</a>
+    <a href="/compass/#how">How it reads you</a>
+    <a href="/" class="lc-nav-mf">MetaphysicFlow</a>
   </div>
 </nav>
 <main class="wrap">
@@ -907,9 +905,8 @@ function writeCityHub() {
     <div class="name">The Living Compass<span>City guides</span></div>
   </a>
   <div class="lc-nav-links">
-    <a href="/compass/guides/">Guides</a>
-    <a href="/compass/heatmap/">Heatmap</a>
-    <a href="/compass/">Compass</a>
+    <a href="/compass/#how">How it reads you</a>
+    <a href="/" class="lc-nav-mf">MetaphysicFlow</a>
   </div>
 </nav>
 <main class="wrap">

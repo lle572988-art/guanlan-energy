@@ -49,7 +49,7 @@ Until products exist on Gumroad, empty SKUs force Stripe checkout.
 |--------|--------|
 | Wow #1 活罗盘 + Save PNG | ✅ |
 | Wow #2 Energy X-Ray + paid reports | ✅ |
-| Wow #3 AI cure staging | ✅ (needs `FAL_API_KEY`) |
+| Wow #3 cure staging | ✅ (free Canvas in browser) |
 | 流年热力图 + annual pass | ✅ |
 | 黄金漏斗 $19 / $39 / $49 | ✅ |
 | pSEO 矩阵 (347+ URLs) | ✅ |
